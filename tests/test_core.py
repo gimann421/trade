@@ -20,10 +20,42 @@ def test_keys_never_in_repr(tmp_path):
         assert "abc123" not in text and "shh456" not in text
 
 
-def test_missing_keys_raise(tmp_path):
+@pytest.fixture
+def no_env_keys(monkeypatch):
+    monkeypatch.delenv("ALPACA_PAPER_API_KEY", raising=False)
+    monkeypatch.delenv("ALPACA_PAPER_SECRET_KEY", raising=False)
+    return monkeypatch
+
+
+def test_missing_keys_raise(tmp_path, no_env_keys):
     env = tmp_path / ".env"
     env.write_text("ALPACA_PAPER_API_KEY=\nALPACA_PAPER_SECRET_KEY=\n")
     with pytest.raises(ConfigError, match="ALPACA_PAPER_API_KEY"):
+        load_paper_keys(env)
+    with pytest.raises(ConfigError, match="not set in the environment"):
+        load_paper_keys(tmp_path / "absent.env")
+
+
+@pytest.mark.parametrize("env_text", [None, "", "ALPACA_PAPER_API_KEY=\nALPACA_PAPER_SECRET_KEY=\n"])
+def test_env_var_fallback(tmp_path, no_env_keys, env_text):
+    env = tmp_path / ".env"
+    if env_text is not None:
+        env.write_text(env_text)
+    no_env_keys.setenv("ALPACA_PAPER_API_KEY", "env-key")
+    no_env_keys.setenv("ALPACA_PAPER_SECRET_KEY", "env-secret")
+    keys = load_paper_keys(env)
+    assert (keys.api_key, keys.secret_key) == ("env-key", "env-secret")
+    assert "env-secret" not in repr(keys)
+
+
+def test_env_file_wins_and_sources_never_mix(tmp_path, no_env_keys):
+    no_env_keys.setenv("ALPACA_PAPER_API_KEY", "env-key")
+    no_env_keys.setenv("ALPACA_PAPER_SECRET_KEY", "env-secret")
+    env = tmp_path / ".env"
+    env.write_text("ALPACA_PAPER_API_KEY=file-key\nALPACA_PAPER_SECRET_KEY=file-secret\n")
+    assert load_paper_keys(env).api_key == "file-key"
+    env.write_text("ALPACA_PAPER_API_KEY=file-key\n")
+    with pytest.raises(ConfigError, match="missing in .env: ALPACA_PAPER_SECRET_KEY"):
         load_paper_keys(env)
 
 

@@ -23,7 +23,9 @@ An AI-assisted trading research loop. **Paper trading only.**
 - Orders go through `core.broker.submit_order()`, which checks `config/risk_limits.yaml`
   and journals the decision (sent, blocked or failed) with its reasoning. Record holds and
   skips with `core.journal.record()`.
-- Keys live in `config/.env` (see `config/.env.example`). Never print or log them.
+- Keys live in `config/.env` (see `config/.env.example`). If that file is missing or sets neither
+  key, `ALPACA_PAPER_API_KEY` / `ALPACA_PAPER_SECRET_KEY` are read from the environment instead.
+  Never print or log them.
 - A changed strategy gets a new file with the next version number; old versions stay so
   backtests and journal entries can point at the exact code they used.
 
