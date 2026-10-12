@@ -1,0 +1,40 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.10702005539310355,
+    "cagr": 0.014647260060749456,
+    "ann_vol": 0.04926942491187998,
+    "sharpe": 0.319756325621909,
+    "max_drawdown": -0.06941910523257944,
+    "exposure": 0.20374574347332577,
+    "trades": 40,
+    "entries": 20,
+    "exits": 20,
+    "exposure_days": 359,
+    "return_per_exposure_day": 0.00030683687607912944
+  },
+  "buy_and_hold": {
+    "total_return": -0.04735376044568018,
+    "cagr": -0.00691408918276204,
+    "ann_vol": 0.14947416720598067,
+    "sharpe": 0.02822386735318619,
+    "max_drawdown": -0.44135583605162265,
+    "mean_daily_return": 1.6741028047418935e-05
+  },
+  "strategy_file": "strategies/squeeze_release_v1.py",
+  "params": {
+    "atr": 10,
+    "pct_window": 250,
+    "pct": 0.2,
+    "recent": 5,
+    "channel": 10,
+    "max_hold": 40,
+    "warmup": 260
+  },
+  "symbol": "TLT",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150158Z"
+}

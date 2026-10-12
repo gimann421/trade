@@ -1,0 +1,37 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.12459060526007415,
+    "cagr": -0.018850725773830845,
+    "ann_vol": 0.05770560111612038,
+    "sharpe": -0.30086523029350476,
+    "max_drawdown": -0.19043772849539453,
+    "exposure": 0.12769580022701477,
+    "trades": 90,
+    "entries": 45,
+    "exits": 45,
+    "exposure_days": 225,
+    "return_per_exposure_day": -0.0005395265432702824
+  },
+  "buy_and_hold": {
+    "total_return": 0.6487510934007203,
+    "cagr": 0.07413129271549446,
+    "ann_vol": 0.14255319695421645,
+    "sharpe": 0.5730042296430109,
+    "max_drawdown": -0.22002166176698223,
+    "mean_daily_return": 0.00032414120953928253
+  },
+  "strategy_file": "strategies/volume_shock_reversal_v1.py",
+  "params": {
+    "z_max": -1.25,
+    "volume_mult": 1.25,
+    "vol_window": 20,
+    "hold": 5
+  },
+  "symbol": "GLD",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150156Z"
+}

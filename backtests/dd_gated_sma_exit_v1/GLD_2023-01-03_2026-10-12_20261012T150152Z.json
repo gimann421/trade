@@ -1,0 +1,38 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.1479726238050856,
+    "cagr": 0.22561482417869438,
+    "ann_vol": 0.18345165758293575,
+    "sharpe": 1.201697673056457,
+    "max_drawdown": -0.2184181425548215,
+    "exposure": 0.8827877507919747,
+    "trades": 6,
+    "entries": 2,
+    "exits": 2,
+    "exposure_days": 874,
+    "return_per_exposure_day": 0.0009478832872210798
+  },
+  "buy_and_hold": {
+    "total_return": 1.2520631926432428,
+    "cagr": 0.24114613443812538,
+    "ann_vol": 0.20119953785550623,
+    "sharpe": 1.1753179782552476,
+    "max_drawdown": -0.26404517039725695,
+    "mean_daily_return": 0.0009383866430881894
+  },
+  "strategy_file": "strategies/dd_gated_sma_exit_v1.py",
+  "params": {
+    "sma": 200,
+    "high": 252,
+    "bear": -0.2,
+    "correction": -0.1,
+    "recover": -0.05
+  },
+  "symbol": "GLD",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150152Z"
+}

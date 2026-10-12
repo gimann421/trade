@@ -3,7 +3,7 @@
 - **Date:** 2026-10-12
 - **Analyst:** mean-reversion-analyst (round 2)
 - **Ledger hypothesis ids:** 17 (A), 18 (B), 19 (C)
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/bollinger_stepaside_v1.py` (H17), `strategies/mean_reversion_z50_v1.py` (H18), `strategies/volume_shock_reversal_v1.py` (H19)
 
 No returns, backtests or tuning were run. Only row counts were checked (2,709 daily rows per symbol, 2016-01-04 to 2026-10-12). Every parameter below is fixed from published convention or reasoning, stated per idea. None of the ideas touch SPY or QQQ. None repeat H1-H13 (H5 RSI(2), H6 three down closes, H7 IBS are the only mean-reversion ones; see "Difference from round 1").
 
@@ -36,7 +36,7 @@ Market conditions: SPY/QQQ drifted up strongly from 2023, which made a flat-most
 ## Idea A (hypothesis 17): Bollinger overbought step-aside
 
 - **Ledger hypothesis id:** 17
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/bollinger_stepaside_v1.py`
 
 ### Hypothesis
 Holding each of IWM/TLT/GLD/XLE/EFA at weight 1 by default, but stepping to 0 from the close where z = (close - SMA20) / std20 exceeds 2.0 until the first close with z < 0 (weight 1 in warmup), improves Sharpe by at least 0.10 and does not worsen max drawdown versus buy-and-hold, after 5 bps, daily bars.
@@ -59,14 +59,30 @@ A cell fails if ANY of: Sharpe < B&H Sharpe + 0.10; max drawdown more than 0 pts
 Run on all 5 symbols, both windows, 5 bps, benchmark buy-and-hold same symbol. Pass rule as in the shared section.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/bollinger_stepaside_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.33 / 0.45 | -40.9% / -41.3% | 4.8% / 8.2% | 0.041% / 0.042% | 0.41 | 68% | 34 / 33 / 33 | contradicts: Sharpe 0.33 < buy&hold 0.45 + 0.10; return/exposure day 0.041% < buy&hold mean 0.042% + 1bp | [IWM_2016-01-04_2022-12-30_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/IWM_2016-01-04_2022-12-30_20261012T150155Z.json) |
+| IWM OOS | 0.80 / 0.76 | -24.2% / -27.5% | 13.2% / 14.6% | 0.086% / 0.062% | 1.02 | 64% | 21 / 20 / 20 | contradicts: Sharpe 0.80 < buy&hold 0.76 + 0.10 | [IWM_2023-01-03_2026-10-12_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/IWM_2023-01-03_2026-10-12_20261012T150155Z.json) |
+| TLT IS | -0.18 / 0.03 | -42.0% / -44.1% | -3.0% / -0.7% | -0.013% / 0.002% | -0.19 | 72% | 28 / 27 / 27 | contradicts: Sharpe -0.18 < buy&hold 0.03 + 0.10; return/exposure day -0.013% < buy&hold mean 0.002% + 1bp | [TLT_2016-01-04_2022-12-30_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/TLT_2016-01-04_2022-12-30_20261012T150155Z.json) |
+| TLT OOS | 0.27 / -0.10 | -22.5% / -22.4% | 2.6% / -2.4% | 0.018% / -0.006% | 0.34 | 74% | 24 / 23 / 23 | contradicts: MaxDD -22.5% worse than -22.4% | [TLT_2023-01-03_2026-10-12_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/TLT_2023-01-03_2026-10-12_20261012T150155Z.json) |
+| GLD IS | 0.38 / 0.57 | -15.6% / -22.0% | 3.8% / 7.4% | 0.026% / 0.032% | 0.49 | 69% | 34 / 34 / 34 | contradicts: Sharpe 0.38 < buy&hold 0.57 + 0.10; return/exposure day 0.026% < buy&hold mean 0.032% + 1bp | [GLD_2016-01-04_2022-12-30_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/GLD_2016-01-04_2022-12-30_20261012T150155Z.json) |
+| GLD OOS | 1.07 / 1.18 | -25.5% / -26.4% | 16.5% / 24.1% | 0.103% / 0.094% | 1.36 | 64% | 21 / 20 / 20 | contradicts: Sharpe 1.07 < buy&hold 1.18 + 0.10; return/exposure day 0.103% < buy&hold mean 0.094% + 1bp | [GLD_2023-01-03_2026-10-12_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/GLD_2023-01-03_2026-10-12_20261012T150155Z.json) |
+| XLE IS | 0.44 / 0.46 | -64.2% / -66.8% | 8.8% / 10.0% | 0.069% / 0.059% | 0.53 | 71% | 37 / 36 / 36 | contradicts: Sharpe 0.44 < buy&hold 0.46 + 0.10 | [XLE_2016-01-04_2022-12-30_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/XLE_2016-01-04_2022-12-30_20261012T150155Z.json) |
+| XLE OOS | 0.70 / 0.74 | -18.8% / -20.1% | 12.4% / 15.1% | 0.080% / 0.066% | 0.87 | 67% | 21 / 20 / 20 | contradicts: Sharpe 0.70 < buy&hold 0.74 + 0.10 | [XLE_2023-01-03_2026-10-12_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/XLE_2023-01-03_2026-10-12_20261012T150155Z.json) |
+| EFA IS | 0.20 / 0.35 | -33.4% / -34.2% | 1.9% / 4.8% | 0.020% / 0.026% | 0.25 | 69% | 31 / 30 / 30 | contradicts: Sharpe 0.20 < buy&hold 0.35 + 0.10; return/exposure day 0.020% < buy&hold mean 0.026% + 1bp | [EFA_2016-01-04_2022-12-30_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/EFA_2016-01-04_2022-12-30_20261012T150155Z.json) |
+| EFA OOS | 1.26 / 1.08 | -13.1% / -14.1% | 17.1% / 16.2% | 0.100% / 0.064% | 1.58 | 66% | 22 / 21 / 21 | supports: passes kill threshold | [EFA_2023-01-03_2026-10-12_20261012T150155Z.json](../backtests/bollinger_stepaside_v1/EFA_2023-01-03_2026-10-12_20261012T150155Z.json) |
+
+The memo assumed the strategy would be in the market about 90% of days; measured exposure is 64-74%, because the step-aside lasts until the close falls back below the 20-day mean. The rule was tested exactly as written.
 
 ---
 
 ## Idea B (hypothesis 18): Multi-week 50-day mean reversion, no trend filter
 
 - **Ledger hypothesis id:** 18
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/mean_reversion_z50_v1.py`
 
 ### Hypothesis
 Going long at the close where z50 = (close - SMA50) / std50 < -1.5 and holding until the first close with z50 >= 0 or 30 trading days, whichever first, with no trend filter, earns at least 5 bps/day more per exposure day than buy-and-hold's daily mean and a conditional Sharpe at least 0.25 above buy-and-hold's Sharpe on GLD/TLT/XLE (and IWM/EFA in the test set).
@@ -89,14 +105,28 @@ A cell fails if ANY of: rped < bh_mean + 5 bps; cond_sharpe < bh_sharpe + 0.25; 
 Same cells and pass rule as the shared section; 5 bps; B&H benchmark.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/mean_reversion_z50_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.06 / 0.45 | -42.7% / -41.3% | -0.2% / 8.2% | 0.019% / 0.042% | 0.16 | 21% | 20 / 19 / 19 | contradicts: return/exposure day 0.019% < buy&hold mean 0.042% + 5bps; conditional Sharpe 0.16 < buy&hold 0.45 + 0.25; Sharpe 0.06 < buy&hold 0.45 - 0.10 | [IWM_2016-01-04_2022-12-30_20261012T150155Z.json](../backtests/mean_reversion_z50_v1/IWM_2016-01-04_2022-12-30_20261012T150155Z.json) |
+| IWM OOS | 0.23 / 0.76 | -19.1% / -27.5% | 2.0% / 14.6% | 0.047% / 0.062% | 0.51 | 22% | 11 / 10 / 10 | contradicts: return/exposure day 0.047% < buy&hold mean 0.062% + 5bps; conditional Sharpe 0.51 < buy&hold 0.76 + 0.25; Sharpe 0.23 < buy&hold 0.76 - 0.10 | [IWM_2023-01-03_2026-10-12_20261012T150155Z.json](../backtests/mean_reversion_z50_v1/IWM_2023-01-03_2026-10-12_20261012T150155Z.json) |
+| TLT IS | -0.37 / 0.03 | -34.2% / -44.1% | -3.5% / -0.7% | -0.041% / 0.002% | -0.63 | 31% | 27 / 27 / 27 | contradicts: return/exposure day -0.041% < buy&hold mean 0.002% + 5bps; conditional Sharpe -0.63 < buy&hold 0.03 + 0.25; Sharpe -0.37 < buy&hold 0.03 - 0.10 | [TLT_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/TLT_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| TLT OOS | 0.14 / -0.10 | -13.2% / -22.4% | 0.8% / -2.4% | 0.013% / -0.006% | 0.27 | 38% | 17 / 16 / 16 | contradicts: return/exposure day 0.013% < buy&hold mean -0.006% + 5bps | [TLT_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/TLT_2023-01-03_2026-10-12_20261012T150156Z.json) |
+| GLD IS | 0.53 / 0.57 | -11.7% / -22.0% | 3.6% / 7.4% | 0.059% / 0.032% | 1.10 | 25% | 24 / 24 / 24 | contradicts: return/exposure day 0.059% < buy&hold mean 0.032% + 5bps | [GLD_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/GLD_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| GLD OOS | -0.02 / 1.18 | -16.9% / -26.4% | -0.5% / 24.1% | -0.006% / 0.094% | -0.03 | 13% | 7 / 7 / 7 | contradicts: return/exposure day -0.006% < buy&hold mean 0.094% + 5bps; conditional Sharpe -0.03 < buy&hold 1.18 + 0.25; Sharpe -0.02 < buy&hold 1.18 - 0.10 | [GLD_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/GLD_2023-01-03_2026-10-12_20261012T150156Z.json) |
+| XLE IS | 0.14 / 0.46 | -55.3% / -66.8% | 0.7% / 10.0% | 0.045% / 0.059% | 0.29 | 27% | 22 / 22 / 22 | contradicts: return/exposure day 0.045% < buy&hold mean 0.059% + 5bps; conditional Sharpe 0.29 < buy&hold 0.46 + 0.25; Sharpe 0.14 < buy&hold 0.46 - 0.10 | [XLE_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/XLE_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| XLE OOS | 1.07 / 0.74 | -11.8% / -20.1% | 12.4% / 15.1% | 0.225% / 0.066% | 2.33 | 22% | 12 / 12 / 12 | supports: passes kill threshold | [XLE_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/XLE_2023-01-03_2026-10-12_20261012T150156Z.json) |
+| EFA IS | 0.29 / 0.35 | -29.1% / -34.2% | 3.0% / 4.8% | 0.066% / 0.026% | 0.64 | 23% | 24 / 24 / 24 | contradicts: return/exposure day 0.066% < buy&hold mean 0.026% + 5bps | [EFA_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/EFA_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| EFA OOS | 1.08 / 1.08 | -8.2% / -14.1% | 8.7% / 16.2% | 0.196% / 0.064% | 2.63 | 18% | 11 / 10 / 10 | supports: passes kill threshold | [EFA_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/mean_reversion_z50_v1/EFA_2023-01-03_2026-10-12_20261012T150156Z.json) |
 
 ---
 
 ## Idea C (hypothesis 19): High-volume liquidity-shock reversal, 5-day hold
 
 - **Ledger hypothesis id:** 19
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/volume_shock_reversal_v1.py`
 
 ### Hypothesis
 Going long at the close of a day where the 3-day return divided by (sd20 x sqrt(3)) is below -1.25 AND volume exceeds 1.25 times the mean of the previous 20 days' volume, then holding exactly 5 trading days, earns at least 5 bps/day more per exposure day than buy-and-hold's daily mean and a conditional Sharpe at least 0.25 above buy-and-hold's.
@@ -121,7 +151,23 @@ A cell fails if ANY of: rped < bh_mean + 5 bps; cond_sharpe < bh_sharpe + 0.25; 
 Same cells and pass rule as the shared section; 5 bps; B&H benchmark.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/volume_shock_reversal_v1.py`.
+
+Notes: veto: GLD IS: return/exposure day -0.054% below -5bps; XLE OOS: return/exposure day -0.097% below -5bps; EFA IS: return/exposure day -0.077% below -5bps
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.16 / 0.45 | -37.9% / -41.3% | 1.2% / 8.2% | 0.050% / 0.042% | 0.47 | 16% | 57 / 57 / 57 | contradicts: return/exposure day 0.050% < buy&hold mean 0.042% + 5bps; conditional Sharpe 0.47 < buy&hold 0.45 + 0.25; Sharpe 0.16 < buy&hold 0.45 - 0.10 | [IWM_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/IWM_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| IWM OOS | 0.29 / 0.76 | -12.9% / -27.5% | 2.3% / 14.6% | 0.072% / 0.062% | 0.88 | 14% | 28 / 27 / 27 | contradicts: return/exposure day 0.072% < buy&hold mean 0.062% + 5bps; conditional Sharpe 0.88 < buy&hold 0.76 + 0.25; Sharpe 0.29 < buy&hold 0.76 - 0.10 | [IWM_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/IWM_2023-01-03_2026-10-12_20261012T150156Z.json) |
+| TLT IS | -0.19 / 0.03 | -17.2% / -44.1% | -1.6% / -0.7% | -0.035% / 0.002% | -0.34 | 15% | 53 / 53 / 53 | contradicts: return/exposure day -0.035% < buy&hold mean 0.002% + 5bps; conditional Sharpe -0.34 < buy&hold 0.03 + 0.25; Sharpe -0.19 < buy&hold 0.03 - 0.10 | [TLT_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/TLT_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| TLT OOS | -0.02 / -0.10 | -9.8% / -22.4% | -0.3% / -2.4% | -0.003% / -0.006% | 0.12 | 16% | 30 / 30 / 30 | contradicts: return/exposure day -0.003% < buy&hold mean -0.006% + 5bps; conditional Sharpe 0.12 < buy&hold -0.10 + 0.25 | [TLT_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/TLT_2023-01-03_2026-10-12_20261012T150156Z.json) |
+| GLD IS | -0.30 / 0.57 | -19.0% / -22.0% | -1.9% / 7.4% | -0.054% / 0.032% | -0.69 | 13% | 45 / 45 / 45 | contradicts: return/exposure day -0.054% < buy&hold mean 0.032% + 5bps; conditional Sharpe -0.69 < buy&hold 0.57 + 0.25; Sharpe -0.30 < buy&hold 0.57 - 0.10 | [GLD_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/GLD_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| GLD OOS | 0.08 / 1.18 | -12.2% / -26.4% | 0.3% / 24.1% | 0.026% / 0.094% | 0.34 | 10% | 18 / 18 / 18 | contradicts: return/exposure day 0.026% < buy&hold mean 0.094% + 5bps; conditional Sharpe 0.34 < buy&hold 1.18 + 0.25; Sharpe 0.08 < buy&hold 1.18 - 0.10 | [GLD_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/GLD_2023-01-03_2026-10-12_20261012T150156Z.json) |
+| XLE IS | 0.12 / 0.46 | -51.1% / -66.8% | 0.6% / 10.0% | 0.054% / 0.059% | 0.38 | 14% | 50 / 50 / 50 | contradicts: return/exposure day 0.054% < buy&hold mean 0.059% + 5bps; conditional Sharpe 0.38 < buy&hold 0.46 + 0.25; Sharpe 0.12 < buy&hold 0.46 - 0.10 | [XLE_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/XLE_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| XLE OOS | -0.32 / 0.74 | -16.6% / -20.1% | -3.8% / 15.1% | -0.097% / 0.066% | -0.78 | 14% | 26 / 26 / 26 | contradicts: return/exposure day -0.097% < buy&hold mean 0.066% + 5bps; conditional Sharpe -0.78 < buy&hold 0.74 + 0.25; Sharpe -0.32 < buy&hold 0.74 - 0.10 | [XLE_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/XLE_2023-01-03_2026-10-12_20261012T150156Z.json) |
+| EFA IS | -0.29 / 0.35 | -25.8% / -34.2% | -3.4% / 4.8% | -0.077% / 0.026% | -0.66 | 15% | 53 / 53 / 53 | contradicts: return/exposure day -0.077% < buy&hold mean 0.026% + 5bps; conditional Sharpe -0.66 < buy&hold 0.35 + 0.25; Sharpe -0.29 < buy&hold 0.35 - 0.10 | [EFA_2016-01-04_2022-12-30_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/EFA_2016-01-04_2022-12-30_20261012T150156Z.json) |
+| EFA OOS | 0.54 / 1.08 | -5.0% / -14.1% | 3.9% / 16.2% | 0.115% / 0.064% | 1.56 | 14% | 27 / 27 / 27 | contradicts: Sharpe 0.54 < buy&hold 1.08 - 0.10 | [EFA_2023-01-03_2026-10-12_20261012T150156Z.json](../backtests/volume_shock_reversal_v1/EFA_2023-01-03_2026-10-12_20261012T150156Z.json) |
 
 ---
 

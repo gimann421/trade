@@ -1,0 +1,40 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.1131558712607672,
+    "cagr": 0.01544967207682757,
+    "ann_vol": 0.07159151076040567,
+    "sharpe": 0.249847699301443,
+    "max_drawdown": -0.19064595173665322,
+    "exposure": 0.12372304199772985,
+    "trades": 21,
+    "entries": 11,
+    "exits": 10,
+    "exposure_days": 218,
+    "return_per_exposure_day": 0.0005737011910912566
+  },
+  "buy_and_hold": {
+    "total_return": 0.3902843601895787,
+    "cagr": 0.04825412841322274,
+    "ann_vol": 0.18596747149378318,
+    "sharpe": 0.3473278079911677,
+    "max_drawdown": -0.3420464316423032,
+    "mean_daily_return": 0.00025631616758569714
+  },
+  "strategy_file": "strategies/vol_peak_rebound_v1.py",
+  "params": {
+    "vol_window": 20,
+    "pct_window": 500,
+    "pct": 0.9,
+    "lookback": 10,
+    "peak": 0.9,
+    "hold": 20,
+    "warmup": 520
+  },
+  "symbol": "EFA",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150159Z"
+}

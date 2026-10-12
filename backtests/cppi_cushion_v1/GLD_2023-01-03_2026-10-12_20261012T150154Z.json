@@ -1,0 +1,38 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.1545680298456098,
+    "cagr": 0.22661512039104403,
+    "ann_vol": 0.1719713015283153,
+    "sharpe": 1.2748643389560583,
+    "max_drawdown": -0.23055285027827244,
+    "exposure": 0.8685322069693769,
+    "trades": 41,
+    "entries": 2,
+    "exits": 1,
+    "exposure_days": 913,
+    "return_per_exposure_day": 0.000902399013461927
+  },
+  "buy_and_hold": {
+    "total_return": 1.2520631926432428,
+    "cagr": 0.24114613443812538,
+    "ann_vol": 0.20119953785550623,
+    "sharpe": 1.1753179782552476,
+    "max_drawdown": -0.26404517039725695,
+    "mean_daily_return": 0.0009383866430881894
+  },
+  "strategy_file": "strategies/cppi_cushion_v1.py",
+  "params": {
+    "high": 252,
+    "floor": 0.7,
+    "multiplier": 4.0,
+    "gate_sma": 100,
+    "step": 0.25
+  },
+  "symbol": "GLD",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150154Z"
+}

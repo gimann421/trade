@@ -1,0 +1,39 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.20363436799079948,
+    "cagr": -0.05879181743213713,
+    "ann_vol": 0.08967942740802703,
+    "sharpe": -0.630680536490595,
+    "max_drawdown": -0.24214070187905945,
+    "exposure": 0.6267159450897571,
+    "trades": 34,
+    "entries": 1,
+    "exits": 0,
+    "exposure_days": 947,
+    "return_per_exposure_day": -0.00022444075154707881
+  },
+  "buy_and_hold": {
+    "total_return": -0.08795321637427167,
+    "cagr": -0.024200895382400667,
+    "ann_vol": 0.141301164991928,
+    "sharpe": -0.10277943238069986,
+    "max_drawdown": -0.22447023746139905,
+    "mean_daily_return": -5.7630371161118965e-05
+  },
+  "strategy_file": "strategies/trend_vol_throttle_v1.py",
+  "params": {
+    "sma": 200,
+    "release": 1.02,
+    "vol_window": 63,
+    "target": 0.1,
+    "cap": 0.5,
+    "step": 0.25
+  },
+  "symbol": "TLT",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150153Z"
+}

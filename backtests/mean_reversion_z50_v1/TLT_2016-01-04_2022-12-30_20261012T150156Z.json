@@ -1,0 +1,37 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.21921552120641308,
+    "cagr": -0.03477206215921069,
+    "ann_vol": 0.08518104336175372,
+    "sharpe": -0.37284314600662616,
+    "max_drawdown": -0.34230217787639416,
+    "exposure": 0.3081725312145289,
+    "trades": 54,
+    "entries": 27,
+    "exits": 27,
+    "exposure_days": 543,
+    "return_per_exposure_day": -0.00040895418125135854
+  },
+  "buy_and_hold": {
+    "total_return": -0.04735376044568018,
+    "cagr": -0.00691408918276204,
+    "ann_vol": 0.14947416720598067,
+    "sharpe": 0.02822386735318619,
+    "max_drawdown": -0.44135583605162265,
+    "mean_daily_return": 1.6741028047418935e-05
+  },
+  "strategy_file": "strategies/mean_reversion_z50_v1.py",
+  "params": {
+    "window": 50,
+    "enter_z": -1.5,
+    "exit_z": 0.0,
+    "max_hold": 30
+  },
+  "symbol": "TLT",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150156Z"
+}

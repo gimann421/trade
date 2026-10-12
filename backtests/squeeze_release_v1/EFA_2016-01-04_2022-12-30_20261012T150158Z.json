@@ -1,0 +1,40 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.017780714964345634,
+    "cagr": -0.0025625759888213695,
+    "ann_vol": 0.05037658292138744,
+    "sharpe": -0.02568533741393294,
+    "max_drawdown": -0.1514289339918009,
+    "exposure": 0.2593643586833144,
+    "trades": 52,
+    "entries": 26,
+    "exits": 26,
+    "exposure_days": 457,
+    "return_per_exposure_day": -1.9797171442730157e-05
+  },
+  "buy_and_hold": {
+    "total_return": 0.3902843601895787,
+    "cagr": 0.04825412841322274,
+    "ann_vol": 0.18596747149378318,
+    "sharpe": 0.3473278079911677,
+    "max_drawdown": -0.3420464316423032,
+    "mean_daily_return": 0.00025631616758569714
+  },
+  "strategy_file": "strategies/squeeze_release_v1.py",
+  "params": {
+    "atr": 10,
+    "pct_window": 250,
+    "pct": 0.2,
+    "recent": 5,
+    "channel": 10,
+    "max_hold": 40,
+    "warmup": 260
+  },
+  "symbol": "EFA",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150158Z"
+}

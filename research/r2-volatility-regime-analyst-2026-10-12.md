@@ -3,7 +3,7 @@
 - **Date:** 2026-10-12
 - **Analyst:** volatility-regime-analyst (round 2)
 - **Ledger hypothesis ids:** 20, 21, 22
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/good_bad_vol_filter_v1.py` (H20), `strategies/squeeze_release_v1.py` (H21), `strategies/vol_peak_rebound_v1.py` (H22)
 
 No returns were computed and no backtest was run; every parameter below is fixed from convention or reasoning, not from these data. Only row counts were checked (2,710 daily rows per symbol).
 
@@ -30,7 +30,23 @@ Per cell (precise, codable): PASS iff B&H Sharpe >= 0.20 AND Sharpe >= B&H Sharp
 IWM, TLT, GLD, XLE, EFA, windows above, 5 bps, benchmark B&H same symbol. Daily position so turnover is only at exits/entries (binary weights).
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/good_bad_vol_filter_v1.py`.
+
+Notes: veto: GLD IS: Sharpe 0.30 more than 0.15 below buy&hold 0.57; GLD OOS: Sharpe 0.87 more than 0.15 below buy&hold 1.18; XLE OOS: Sharpe 0.36 more than 0.15 below buy&hold 0.74; EFA OOS: Sharpe 0.80 more than 0.15 below buy&hold 1.08
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.48 / 0.45 | -38.4% / -41.3% | 7.5% / 8.2% | 0.042% / 0.042% | 0.54 | 84% | 20 / 19 / 19 | contradicts: MaxDD -38.4% not 5pts better than -41.3%; Sharpe 0.48 < buy&hold 0.45 + 0.05 | [IWM_2016-01-04_2022-12-30_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/IWM_2016-01-04_2022-12-30_20261012T150157Z.json) |
+| IWM OOS | 0.72 / 0.76 | -20.4% / -27.5% | 12.5% / 14.6% | 0.059% / 0.062% | 0.76 | 91% | 10 / 9 / 9 | contradicts: Sharpe 0.72 < 1x buy&hold 0.76; Sharpe 0.72 < buy&hold 0.76 + 0.05 | [IWM_2023-01-03_2026-10-12_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/IWM_2023-01-03_2026-10-12_20261012T150157Z.json) |
+| TLT IS | 0.08 / 0.03 | -36.9% / -44.1% | 0.2% / -0.7% | 0.005% / 0.002% | 0.10 | 86% | 18 / 17 / 17 | inconclusive: buy&hold Sharpe 0.03 < 0.20 (nothing to protect) | [TLT_2016-01-04_2022-12-30_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/TLT_2016-01-04_2022-12-30_20261012T150157Z.json) |
+| TLT OOS | -0.21 / -0.10 | -20.6% / -22.4% | -3.5% / -2.4% | -0.012% / -0.006% | -0.21 | 89% | 6 / 6 / 6 | inconclusive: buy&hold Sharpe -0.10 < 0.20 (nothing to protect) | [TLT_2023-01-03_2026-10-12_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/TLT_2023-01-03_2026-10-12_20261012T150157Z.json) |
+| GLD IS | 0.30 / 0.57 | -28.5% / -22.0% | 3.2% / 7.4% | 0.018% / 0.032% | 0.34 | 86% | 24 / 23 / 23 | contradicts: Sharpe 0.30 < 1x buy&hold 0.57; MaxDD -28.5% not 5pts better than -22.0%; Sharpe 0.30 < buy&hold 0.57 + 0.05 | [GLD_2016-01-04_2022-12-30_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/GLD_2016-01-04_2022-12-30_20261012T150157Z.json) |
+| GLD OOS | 0.87 / 1.18 | -38.9% / -26.4% | 15.2% / 24.1% | 0.072% / 0.094% | 0.94 | 87% | 11 / 10 / 10 | contradicts: Sharpe 0.87 < 1x buy&hold 1.18; MaxDD -38.9% not 5pts better than -26.4%; Sharpe 0.87 < buy&hold 1.18 + 0.05 | [GLD_2023-01-03_2026-10-12_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/GLD_2023-01-03_2026-10-12_20261012T150157Z.json) |
+| XLE IS | 0.73 / 0.46 | -38.8% / -66.8% | 17.0% / 10.0% | 0.088% / 0.059% | 0.79 | 86% | 14 / 13 / 13 | supports: passes kill threshold | [XLE_2016-01-04_2022-12-30_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/XLE_2016-01-04_2022-12-30_20261012T150157Z.json) |
+| XLE OOS | 0.36 / 0.74 | -32.6% / -20.1% | 5.3% / 15.1% | 0.032% / 0.066% | 0.40 | 86% | 13 / 12 / 12 | contradicts: Sharpe 0.36 < 1x buy&hold 0.74; MaxDD -32.6% not 5pts better than -20.1%; Sharpe 0.36 < buy&hold 0.74 + 0.05 | [XLE_2023-01-03_2026-10-12_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/XLE_2023-01-03_2026-10-12_20261012T150157Z.json) |
+| EFA IS | 0.26 / 0.35 | -38.3% / -34.2% | 2.6% / 4.8% | 0.017% / 0.026% | 0.30 | 81% | 19 / 18 / 18 | contradicts: Sharpe 0.26 < 1x buy&hold 0.35; MaxDD -38.3% not 5pts better than -34.2%; Sharpe 0.26 < buy&hold 0.35 + 0.05 | [EFA_2016-01-04_2022-12-30_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/EFA_2016-01-04_2022-12-30_20261012T150157Z.json) |
+| EFA OOS | 0.80 / 1.08 | -19.3% / -14.1% | 10.3% / 16.2% | 0.047% / 0.064% | 0.85 | 91% | 9 / 8 / 8 | contradicts: Sharpe 0.80 < 1x buy&hold 1.08; MaxDD -19.3% not 5pts better than -14.1%; Sharpe 0.80 < buy&hold 1.08 + 0.05 | [EFA_2023-01-03_2026-10-12_20261012T150157Z.json](../backtests/good_bad_vol_filter_v1/EFA_2023-01-03_2026-10-12_20261012T150157Z.json) |
 
 ## Idea 2 (H21): Squeeze-release long, upside breakout after range compression
 
@@ -47,7 +63,23 @@ Per cell PASS iff return per exposure day >= 3 bps AND >= B&H mean daily return 
 Same symbols/windows/costs. Benchmark B&H same symbol. Round trips pay 10 bps; with ~40-day max holds this is small versus the target edge.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/squeeze_release_v1.py`.
+
+Notes: veto: IWM IS: return/exposure day -0.026% below 0; TLT OOS: return/exposure day -0.110% below 0; EFA IS: return/exposure day -0.002% below 0; EFA OOS: return/exposure day -0.001% below 0
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | -0.21 / 0.45 | -19.1% / -41.3% | -1.3% / 8.2% | -0.026% / 0.042% | -0.44 | 18% | 22 / 22 / 22 | contradicts: return/exposure day -0.026% < 3bps; return/exposure day -0.026% < buy&hold mean 0.042% + 3bps; conditional Sharpe -0.44 < buy&hold 0.45 + 0.10 | [IWM_2016-01-04_2022-12-30_20261012T150157Z.json](../backtests/squeeze_release_v1/IWM_2016-01-04_2022-12-30_20261012T150157Z.json) |
+| IWM OOS | 0.39 / 0.76 | -12.8% / -27.5% | 3.7% / 14.6% | 0.050% / 0.062% | 0.71 | 34% | 19 / 19 / 19 | contradicts: return/exposure day 0.050% < buy&hold mean 0.062% + 3bps; conditional Sharpe 0.71 < buy&hold 0.76 + 0.10 | [IWM_2023-01-03_2026-10-12_20261012T150158Z.json](../backtests/squeeze_release_v1/IWM_2023-01-03_2026-10-12_20261012T150158Z.json) |
+| TLT IS | 0.32 / 0.03 | -6.9% / -44.1% | 1.5% / -0.7% | 0.031% / 0.002% | 0.77 | 20% | 20 / 20 / 20 | contradicts: return/exposure day 0.031% < buy&hold mean 0.002% + 3bps | [TLT_2016-01-04_2022-12-30_20261012T150158Z.json](../backtests/squeeze_release_v1/TLT_2016-01-04_2022-12-30_20261012T150158Z.json) |
+| TLT OOS | -1.07 / -0.10 | -27.4% / -22.4% | -7.8% / -2.4% | -0.110% / -0.006% | -1.92 | 28% | 26 / 26 / 26 | contradicts: return/exposure day -0.110% < 3bps; return/exposure day -0.110% < buy&hold mean -0.006% + 3bps; conditional Sharpe -1.92 < buy&hold -0.10 + 0.10 | [TLT_2023-01-03_2026-10-12_20261012T150158Z.json](../backtests/squeeze_release_v1/TLT_2023-01-03_2026-10-12_20261012T150158Z.json) |
+| GLD IS | 0.22 / 0.57 | -17.1% / -22.0% | 1.3% / 7.4% | 0.022% / 0.032% | 0.47 | 27% | 29 / 28 / 28 | contradicts: return/exposure day 0.022% < 3bps; return/exposure day 0.022% < buy&hold mean 0.032% + 3bps; conditional Sharpe 0.47 < buy&hold 0.57 + 0.10 | [GLD_2016-01-04_2022-12-30_20261012T150158Z.json](../backtests/squeeze_release_v1/GLD_2016-01-04_2022-12-30_20261012T150158Z.json) |
+| GLD OOS | 1.46 / 1.18 | -8.4% / -26.4% | 13.2% / 24.1% | 0.198% / 0.094% | 2.96 | 26% | 11 / 11 / 11 | supports: passes kill threshold | [GLD_2023-01-03_2026-10-12_20261012T150158Z.json](../backtests/squeeze_release_v1/GLD_2023-01-03_2026-10-12_20261012T150158Z.json) |
+| XLE IS | 0.51 / 0.46 | -19.3% / -66.8% | 4.7% / 10.0% | 0.108% / 0.059% | 1.22 | 19% | 20 / 19 / 19 | supports: passes kill threshold | [XLE_2016-01-04_2022-12-30_20261012T150158Z.json](../backtests/squeeze_release_v1/XLE_2016-01-04_2022-12-30_20261012T150158Z.json) |
+| XLE OOS | 0.06 / 0.74 | -28.1% / -20.1% | 0.0% / 15.1% | 0.008% / 0.066% | 0.15 | 36% | 25 / 24 / 24 | contradicts: return/exposure day 0.008% < 3bps; return/exposure day 0.008% < buy&hold mean 0.066% + 3bps; conditional Sharpe 0.15 < buy&hold 0.74 + 0.10 | [XLE_2023-01-03_2026-10-12_20261012T150158Z.json](../backtests/squeeze_release_v1/XLE_2023-01-03_2026-10-12_20261012T150158Z.json) |
+| EFA IS | -0.03 / 0.35 | -15.1% / -34.2% | -0.3% / 4.8% | -0.002% / 0.026% | 0.02 | 26% | 26 / 26 / 26 | contradicts: return/exposure day -0.002% < 3bps; return/exposure day -0.002% < buy&hold mean 0.026% + 3bps; conditional Sharpe 0.02 < buy&hold 0.35 + 0.10 | [EFA_2016-01-04_2022-12-30_20261012T150158Z.json](../backtests/squeeze_release_v1/EFA_2016-01-04_2022-12-30_20261012T150158Z.json) |
+| EFA OOS | -0.01 / 1.08 | -17.1% / -14.1% | -0.3% / 16.2% | -0.001% / 0.064% | 0.05 | 32% | 20 / 20 / 20 | contradicts: return/exposure day -0.001% < 3bps; return/exposure day -0.001% < buy&hold mean 0.064% + 3bps; conditional Sharpe 0.05 < buy&hold 1.08 + 0.10 | [EFA_2023-01-03_2026-10-12_20261012T150158Z.json](../backtests/squeeze_release_v1/EFA_2023-01-03_2026-10-12_20261012T150158Z.json) |
 
 ## Idea 3 (H22): Post-spike vol-peak rebound long, 20-day hold
 
@@ -64,4 +96,20 @@ Per cell PASS iff return per exposure day >= B&H mean daily return + 5 bps AND c
 Same symbols/windows/costs/benchmark. Because the long window is flat most of the time, only per-exposure and conditional metrics are used (full-window Sharpe would be dominated by low exposure).
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/vol_peak_rebound_v1.py`.
+
+Notes: veto: IWM OOS: return/exposure day -0.038% below 0; TLT IS: return/exposure day -0.006% below 0; GLD IS: return/exposure day -0.003% below 0; GLD OOS: return/exposure day -0.050% below 0; XLE OOS: return/exposure day -0.097% below 0
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.34 / 0.45 | -15.8% / -41.3% | 3.0% / 8.2% | 0.100% / 0.042% | 0.96 | 14% | 12 / 12 / 12 | supports: passes kill threshold | [IWM_2016-01-04_2022-12-30_20261012T150158Z.json](../backtests/vol_peak_rebound_v1/IWM_2016-01-04_2022-12-30_20261012T150158Z.json) |
+| IWM OOS | -0.12 / 0.76 | -12.3% / -27.5% | -0.8% / 14.6% | -0.038% / 0.062% | -0.42 | 6% | 3 / 3 / 3 | inconclusive: only 3 entries (need 4) | [IWM_2023-01-03_2026-10-12_20261012T150158Z.json](../backtests/vol_peak_rebound_v1/IWM_2023-01-03_2026-10-12_20261012T150158Z.json) |
+| TLT IS | -0.03 / 0.03 | -25.1% / -44.1% | -0.5% / -0.7% | -0.006% / 0.002% | -0.04 | 18% | 16 / 16 / 16 | contradicts: return/exposure day -0.006% < buy&hold mean 0.002% + 5bps; conditional Sharpe -0.04 < buy&hold 0.03 | [TLT_2016-01-04_2022-12-30_20261012T150158Z.json](../backtests/vol_peak_rebound_v1/TLT_2016-01-04_2022-12-30_20261012T150158Z.json) |
+| TLT OOS | 0.86 / -0.10 | -5.4% / -22.4% | 3.8% / -2.4% | 0.238% / -0.006% | 3.51 | 6% | 3 / 3 / 3 | inconclusive: only 3 entries (need 4) | [TLT_2023-01-03_2026-10-12_20261012T150158Z.json](../backtests/vol_peak_rebound_v1/TLT_2023-01-03_2026-10-12_20261012T150158Z.json) |
+| GLD IS | -0.02 / 0.57 | -9.9% / -22.0% | -0.2% / 7.4% | -0.003% / 0.032% | -0.01 | 10% | 9 / 8 / 8 | contradicts: return/exposure day -0.003% < buy&hold mean 0.032% + 5bps; conditional Sharpe -0.01 < buy&hold 0.57 | [GLD_2016-01-04_2022-12-30_20261012T150158Z.json](../backtests/vol_peak_rebound_v1/GLD_2016-01-04_2022-12-30_20261012T150158Z.json) |
+| GLD OOS | -0.23 / 1.18 | -24.4% / -26.4% | -3.4% / 24.1% | -0.050% / 0.094% | -0.47 | 22% | 11 / 11 / 11 | contradicts: return/exposure day -0.050% < buy&hold mean 0.094% + 5bps; conditional Sharpe -0.47 < buy&hold 1.18 | [GLD_2023-01-03_2026-10-12_20261012T150159Z.json](../backtests/vol_peak_rebound_v1/GLD_2023-01-03_2026-10-12_20261012T150159Z.json) |
+| XLE IS | 0.37 / 0.46 | -23.7% / -66.8% | 4.2% / 10.0% | 0.148% / 0.059% | 1.03 | 14% | 12 / 12 / 12 | supports: passes kill threshold | [XLE_2016-01-04_2022-12-30_20261012T150159Z.json](../backtests/vol_peak_rebound_v1/XLE_2016-01-04_2022-12-30_20261012T150159Z.json) |
+| XLE OOS | -0.24 / 0.74 | -18.8% / -20.1% | -3.2% / 15.1% | -0.097% / 0.066% | -0.70 | 11% | 5 / 5 / 5 | contradicts: return/exposure day -0.097% < buy&hold mean 0.066% + 5bps; conditional Sharpe -0.70 < buy&hold 0.74 | [XLE_2023-01-03_2026-10-12_20261012T150159Z.json](../backtests/vol_peak_rebound_v1/XLE_2023-01-03_2026-10-12_20261012T150159Z.json) |
+| EFA IS | 0.25 / 0.35 | -19.1% / -34.2% | 1.5% / 4.8% | 0.057% / 0.026% | 0.74 | 12% | 11 / 10 / 10 | contradicts: return/exposure day 0.057% < buy&hold mean 0.026% + 5bps | [EFA_2016-01-04_2022-12-30_20261012T150159Z.json](../backtests/vol_peak_rebound_v1/EFA_2016-01-04_2022-12-30_20261012T150159Z.json) |
+| EFA OOS | 0.36 / 1.08 | -11.2% / -14.1% | 2.6% / 16.2% | 0.132% / 0.064% | 1.25 | 9% | 5 / 5 / 5 | supports: passes kill threshold | [EFA_2023-01-03_2026-10-12_20261012T150159Z.json](../backtests/vol_peak_rebound_v1/EFA_2023-01-03_2026-10-12_20261012T150159Z.json) |

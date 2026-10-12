@@ -1,0 +1,39 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.1421038119287188,
+    "cagr": 0.019184972647829035,
+    "ann_vol": 0.12182689839351517,
+    "sharpe": 0.21734105360989298,
+    "max_drawdown": -0.2778515773092497,
+    "exposure": 0.7779511918274687,
+    "trades": 27,
+    "entries": 3,
+    "exits": 2,
+    "exposure_days": 1701,
+    "return_per_exposure_day": 0.00010883936651055962
+  },
+  "buy_and_hold": {
+    "total_return": 0.3902843601895787,
+    "cagr": 0.04825412841322274,
+    "ann_vol": 0.18596747149378318,
+    "sharpe": 0.3473278079911677,
+    "max_drawdown": -0.3420464316423032,
+    "mean_daily_return": 0.00025631616758569714
+  },
+  "strategy_file": "strategies/trend_vol_throttle_v1.py",
+  "params": {
+    "sma": 200,
+    "release": 1.02,
+    "vol_window": 63,
+    "target": 0.1,
+    "cap": 0.5,
+    "step": 0.25
+  },
+  "symbol": "EFA",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150154Z"
+}

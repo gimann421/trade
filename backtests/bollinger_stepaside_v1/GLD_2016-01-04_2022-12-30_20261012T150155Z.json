@@ -1,0 +1,36 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3013768332956175,
+    "cagr": 0.038393226998168606,
+    "ann_vol": 0.11633286956060952,
+    "sharpe": 0.3819473567182285,
+    "max_drawdown": -0.15621087220352692,
+    "exposure": 0.6878547105561862,
+    "trades": 68,
+    "entries": 34,
+    "exits": 34,
+    "exposure_days": 1212,
+    "return_per_exposure_day": 0.0002563354629418437
+  },
+  "buy_and_hold": {
+    "total_return": 0.6487510934007203,
+    "cagr": 0.07413129271549446,
+    "ann_vol": 0.14255319695421645,
+    "sharpe": 0.5730042296430109,
+    "max_drawdown": -0.22002166176698223,
+    "mean_daily_return": 0.00032414120953928253
+  },
+  "strategy_file": "strategies/bollinger_stepaside_v1.py",
+  "params": {
+    "window": 20,
+    "enter_z": 2.0,
+    "reenter_z": 0.0
+  },
+  "symbol": "GLD",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150155Z"
+}
