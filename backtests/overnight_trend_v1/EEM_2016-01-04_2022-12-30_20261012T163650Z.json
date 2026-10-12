@@ -1,0 +1,35 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.661410231156099,
+    "cagr": 0.07530693891886475,
+    "ann_vol": 0.1393978897886839,
+    "sharpe": 0.5907547456276045,
+    "max_drawdown": -0.2212127203986496,
+    "exposure": 0.5953461975028377,
+    "trades": 38,
+    "entries": 19,
+    "exits": 19,
+    "exposure_days": 1049,
+    "return_per_exposure_day": 0.0005489000794201982
+  },
+  "buy_and_hold": {
+    "total_return": 0.4032064128256496,
+    "cagr": 0.0496420531878603,
+    "ann_vol": 0.21668487305634118,
+    "sharpe": 0.33256095072155073,
+    "max_drawdown": -0.39816799844085105,
+    "mean_daily_return": 0.0002859560610737911
+  },
+  "strategy_file": "strategies/overnight_trend_v1.py",
+  "params": {
+    "window": 126,
+    "component": "overnight"
+  },
+  "symbol": "EEM",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163650Z"
+}

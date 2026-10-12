@@ -1,0 +1,38 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.2639249218884636,
+    "cagr": 0.0340656349746189,
+    "ann_vol": 0.08894420128592008,
+    "sharpe": 0.421118674557762,
+    "max_drawdown": -0.2202236266407389,
+    "exposure": 0.887911464245176,
+    "trades": 67,
+    "entries": 1,
+    "exits": 0,
+    "exposure_days": 1761,
+    "return_per_exposure_day": 0.00014871957906612189
+  },
+  "buy_and_hold": {
+    "total_return": 0.29940515532055145,
+    "cagr": 0.038168077226253816,
+    "ann_vol": 0.09444031606293168,
+    "sharpe": 0.4438767231411307,
+    "max_drawdown": -0.22022362664073913,
+    "mean_daily_return": 0.00016634864296201113
+  },
+  "strategy_file": "strategies/overnight_tilt_v1.py",
+  "params": {
+    "sum_window": 20,
+    "rank_window": 252,
+    "enter": 0.8,
+    "exit": 0.6,
+    "reduced": 0.5
+  },
+  "symbol": "HYG",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163650Z"
+}

@@ -1,0 +1,40 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.04701104407868728,
+    "cagr": 0.01231276376300805,
+    "ann_vol": 0.06759889401853697,
+    "sharpe": 0.214805832859651,
+    "max_drawdown": -0.07593758756998203,
+    "exposure": 0.17864693446088795,
+    "trades": 30,
+    "entries": 15,
+    "exits": 15,
+    "exposure_days": 169,
+    "return_per_exposure_day": 0.0003225444337987411
+  },
+  "buy_and_hold": {
+    "total_return": 0.81891456206341,
+    "cagr": 0.17276242227913396,
+    "ann_vol": 0.16410934760696835,
+    "sharpe": 1.0531953127046851,
+    "max_drawdown": -0.18493688039369438,
+    "mean_daily_return": 0.0006858698240900115
+  },
+  "strategy_file": "strategies/earnings_season_v1.py",
+  "params": {
+    "months": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "first_day": 11
+  },
+  "symbol": "XLI",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163659Z"
+}

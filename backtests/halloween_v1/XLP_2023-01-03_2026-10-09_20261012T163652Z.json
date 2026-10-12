@@ -1,0 +1,41 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3614228143508307,
+    "cagr": 0.08565966248689749,
+    "ann_vol": 0.09223668573883562,
+    "sharpe": 0.9372576539322974,
+    "max_drawdown": -0.09693126486241643,
+    "exposure": 0.47568710359408034,
+    "trades": 7,
+    "entries": 4,
+    "exits": 4,
+    "exposure_days": 450,
+    "return_per_exposure_day": 0.0007211751723037019
+  },
+  "buy_and_hold": {
+    "total_return": 0.23673287874296145,
+    "cagr": 0.058232016702454814,
+    "ann_vol": 0.12594734812533298,
+    "sharpe": 0.5123436563726338,
+    "max_drawdown": -0.1336739037888457,
+    "mean_daily_return": 0.0002560647811467067
+  },
+  "strategy_file": "strategies/halloween_v1.py",
+  "params": {
+    "months": [
+      11,
+      12,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "symbol": "XLP",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163652Z"
+}

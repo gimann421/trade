@@ -1,0 +1,78 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "TLT",
+    "GLD",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.6623373121836384,
+    "cagr": 0.14497557582684317,
+    "ann_vol": 0.1522408992749619,
+    "sharpe": 0.9658424799783953,
+    "max_drawdown": -0.1427601447958099,
+    "exposure": 1.0,
+    "trades": 44,
+    "annual_turnover": 5.726175489971149
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.7354879831759986,
+      "cagr": 0.1581858979484978,
+      "ann_vol": 0.1132521931920064,
+      "sharpe": 1.3536198076965436,
+      "max_drawdown": -0.09888104154930355,
+      "exposure": 0.9999999999999996,
+      "trades": 0,
+      "annual_turnover": 0.0
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.5871443472800439,
+      "cagr": 0.13094415994790354,
+      "ann_vol": 0.09958022015497715,
+      "sharpe": 1.2857204048570834,
+      "max_drawdown": -0.09184651395297405,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.26842814005229576
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.6366672445387698,
+      "cagr": 0.1402387372952103,
+      "ann_vol": 0.1090808145759139,
+      "sharpe": 1.2578619685322137,
+      "max_drawdown": -0.10326947482799886,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.9091035061568682
+    },
+    "sixty_forty": {
+      "total_return": 0.5313953571199972,
+      "cagr": 0.12022289958645493,
+      "ann_vol": 0.11100031408132593,
+      "sharpe": 1.0783371132512793,
+      "max_drawdown": -0.12742392274538505,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.18065518906629024
+    }
+  },
+  "strategy_file": "strategies/dual_momentum_v1.py",
+  "params": {
+    "lookback": 252,
+    "top": 2,
+    "cash": "BIL"
+  },
+  "symbol": "CORE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163638Z"
+}

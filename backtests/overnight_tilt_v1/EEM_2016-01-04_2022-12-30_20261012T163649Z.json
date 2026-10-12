@@ -1,0 +1,38 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3004577004526432,
+    "cagr": 0.03828830581812892,
+    "ann_vol": 0.2031680339820886,
+    "sharpe": 0.28716092292051093,
+    "max_drawdown": -0.3890534556655636,
+    "exposure": 0.8828036322360954,
+    "trades": 70,
+    "entries": 1,
+    "exits": 0,
+    "exposure_days": 1761,
+    "return_per_exposure_day": 0.0002316470243676458
+  },
+  "buy_and_hold": {
+    "total_return": 0.4032064128256496,
+    "cagr": 0.0496420531878603,
+    "ann_vol": 0.21668487305634118,
+    "sharpe": 0.33256095072155073,
+    "max_drawdown": -0.39816799844085105,
+    "mean_daily_return": 0.0002859560610737911
+  },
+  "strategy_file": "strategies/overnight_tilt_v1.py",
+  "params": {
+    "sum_window": 20,
+    "rank_window": 252,
+    "enter": 0.8,
+    "exit": 0.6,
+    "reduced": 0.5
+  },
+  "symbol": "EEM",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163649Z"
+}

@@ -1,0 +1,35 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.14514834628847129,
+    "cagr": 0.03676391807163326,
+    "ann_vol": 0.04798488676254867,
+    "sharpe": 0.7763980427757524,
+    "max_drawdown": -0.07326519632994133,
+    "exposure": 0.8276955602536998,
+    "trades": 62,
+    "entries": 31,
+    "exits": 30,
+    "exposure_days": 783,
+    "return_per_exposure_day": 0.00017861492260300694
+  },
+  "buy_and_hold": {
+    "total_return": 0.3094269243811518,
+    "cagr": 0.07445607867692527,
+    "ann_vol": 0.05593530317847773,
+    "sharpe": 1.311973870284042,
+    "max_drawdown": -0.04908271644673279,
+    "mean_daily_return": 0.00029121292141499487
+  },
+  "strategy_file": "strategies/overnight_trend_v1.py",
+  "params": {
+    "window": 126,
+    "component": "overnight"
+  },
+  "symbol": "HYG",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163650Z"
+}

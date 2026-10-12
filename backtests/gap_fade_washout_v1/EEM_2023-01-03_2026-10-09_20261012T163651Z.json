@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.09713172522812719,
+    "cagr": 0.025001083441985594,
+    "ann_vol": 0.057721479547303875,
+    "sharpe": 0.45613566459780325,
+    "max_drawdown": -0.06422965869355579,
+    "exposure": 0.0507399577167019,
+    "trades": 32,
+    "entries": 16,
+    "exits": 16,
+    "exposure_days": 48,
+    "return_per_exposure_day": 0.0020591161426417454
+  },
+  "buy_and_hold": {
+    "total_return": 0.908026278206234,
+    "cagr": 0.1878002168952082,
+    "ann_vol": 0.19170992014907717,
+    "sharpe": 0.9938505004297342,
+    "max_drawdown": -0.17285587975243077,
+    "mean_daily_return": 0.0007560753971329553
+  },
+  "strategy_file": "strategies/gap_fade_washout_v1.py",
+  "params": {
+    "std_window": 60,
+    "z_max": -2.0,
+    "hold": 3,
+    "warmup": 61
+  },
+  "symbol": "EEM",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163651Z"
+}

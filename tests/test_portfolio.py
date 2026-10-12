@@ -164,3 +164,84 @@ def test_load_portfolio_strategy_checks_name_version_and_function(tmp_path):
         path.write_text(body)
         with pytest.raises(ValueError, match=message):
             load_portfolio_strategy(path)
+
+
+def test_signal_only_symbol_informs_the_strategy_but_is_not_held_or_benchmarked():
+    bars = make_bars(symbols=("SPY", "TLT", "AGG"))
+    seen = {}
+
+    def strategy(b):
+        seen["symbols"] = list(b)
+        return weights_on(b, {0: [0.5, 0.5, 0.0]})
+
+    result = run_portfolio_backtest(bars, strategy, cost_bps=0, signal_only=("AGG",))
+    assert seen["symbols"] == ["SPY", "TLT", "AGG"]
+    assert result["symbols"] == ["SPY", "TLT"] and result["signal_only"] == ["AGG"]
+    growth = close_of(bars).iloc[-1] / close_of(bars).iloc[0]
+    # equal_weight_hold covers SPY and TLT only
+    assert result["benchmarks"]["equal_weight_hold"]["total_return"] == pytest.approx(
+        (growth["SPY"] + growth["TLT"]) / 2 - 1)
+    with pytest.raises(ValueError, match="signal-only"):
+        run_portfolio_backtest(bars, lambda b: weights_on(b, {0: [0.4, 0.4, 0.2]}), signal_only=("AGG",))
+
+
+def test_inverse_vol_benchmark_ignores_cash_assets():
+    from core.portfolio import benchmark_targets
+    bars = make_bars(symbols=("SPY", "TLT"))
+    idx = bars["SPY"].index
+    flat = 100 * (1 + 1e-5 * np.arange(len(idx)))               # almost no volatility
+    bars["BIL"] = pd.DataFrame({"open": flat, "high": flat, "low": flat, "close": flat,
+                                "volume": 1e6}, index=idx)
+    with_cash = benchmark_targets(bars)["inverse_vol_monthly"].dropna()
+    without = benchmark_targets(bars, cash_symbols=("BIL",))["inverse_vol_monthly"].dropna()
+    assert with_cash["BIL"].min() > 0.9                       # nearly all weight in the quiet asset
+    assert (without["BIL"] == 0).all() and without.sum(axis=1).round(9).eq(1).all()
+
+
+def test_portfolio_placebo_high_for_foresight_and_middling_for_random_timing():
+    from core.portfolio import portfolio_placebo_percentile
+    bars = make_bars(n=900, seed=4)
+    close = close_of(bars)
+    ret = close.pct_change().fillna(0.0)
+
+    # A position that knows tomorrow's best asset: cheating (the engine's look-ahead check would
+    # reject it), so build the targets directly to give the placebo a clear edge to detect.
+    best = ret.shift(-1).fillna(0.0).idxmax(axis=1)
+    foresight = pd.DataFrame(0.0, close.index, close.columns)
+    for date, symbol in best.items():
+        foresight.loc[date, symbol] = 1.0
+    run_f = simulate(close, foresight, cost_bps=0)
+    assert portfolio_placebo_percentile(close, run_f, cost_bps=0) > 0.99
+
+    rng = np.random.default_rng(1)
+    random_w = pd.DataFrame(rng.dirichlet(np.ones(3), size=len(close)) * (rng.random((len(close), 1)) < 0.7),
+                            close.index, close.columns)
+    run_r = simulate(close, random_w, cost_bps=0)
+    assert 0.02 < portfolio_placebo_percentile(close, run_r, cost_bps=0, seed=3) < 0.98
+    with pytest.raises(ValueError, match="too short"):
+        portfolio_placebo_percentile(close, run_r, start=str(close.index[0].date()),
+                                     end=str(close.index[300].date()), cost_bps=0)
+
+
+def test_run_holdings_rebuild_the_engine_returns():
+    bars = make_bars(n=400, seed=2)
+    gen = lambda b: weights_on(b, {0: [0.4, 0.3, 0.3], 60: [0.2, 0.2, 0.2], 120: [0.5, 0.5, 0.0]})
+    from core.portfolio import prepare
+    _, close, run = prepare(bars, gen, cost_bps=5)
+    rebuilt = (run["weights"] * close.pct_change().fillna(0.0)).sum(axis=1) - run["traded"] * 5 / 10_000
+    assert np.allclose(rebuilt, run["returns"])
+    assert np.allclose(run["weights"].sum(axis=1) + run["cash"], 1.0)
+
+
+def test_month_ends_follow_the_calendar_not_the_data():
+    from core.market_calendar import trading_days
+    idx = trading_days("2024-01-01", "2024-12-31")             # real sessions: no bar on holidays
+    flags = month_ends(idx)
+    last_days = idx[flags]
+    assert len(last_days) == 12 and str(last_days[0].date()) == "2024-01-31"
+    assert str(last_days[-1].date()) == "2024-12-31"
+    # truncating mid-month must not invent a month-end at the new last bar
+    assert not month_ends(idx[idx <= "2024-03-14"])[-1]
+    # a month ending on a holiday weekend (Fri 2024-03-29 is Good Friday): Thursday is the last session
+    spring = idx[(idx >= "2024-03-25") & (idx <= "2024-04-03")]
+    assert str(spring[month_ends(spring)][0].date()) == "2024-03-28"

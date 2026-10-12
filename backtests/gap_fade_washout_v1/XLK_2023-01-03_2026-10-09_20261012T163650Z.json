@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.29047498139885364,
+    "cagr": 0.07029132346643241,
+    "ann_vol": 0.10302709300268773,
+    "sharpe": 0.7089493198439113,
+    "max_drawdown": -0.06598665799365733,
+    "exposure": 0.06659619450317125,
+    "trades": 42,
+    "entries": 21,
+    "exits": 21,
+    "exposure_days": 63,
+    "return_per_exposure_day": 0.004352278545239626
+  },
+  "buy_and_hold": {
+    "total_return": 2.2764133838800014,
+    "cagr": 0.37181126851174895,
+    "ann_vol": 0.2406193380578232,
+    "sharpe": 1.4344154905169944,
+    "max_drawdown": -0.25660912350929865,
+    "mean_daily_return": 0.0013696353405876468
+  },
+  "strategy_file": "strategies/gap_fade_washout_v1.py",
+  "params": {
+    "std_window": 60,
+    "z_max": -2.0,
+    "hold": 3,
+    "warmup": 61
+  },
+  "symbol": "XLK",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163650Z"
+}

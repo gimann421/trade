@@ -1,0 +1,68 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "QQQ",
+    "IWM",
+    "LQD",
+    "HYG",
+    "IEF",
+    "DBC",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.40891420484953467,
+    "cagr": 0.09562157854206266,
+    "ann_vol": 0.14627608783131774,
+    "sharpe": 0.6974625138744467,
+    "max_drawdown": -0.17460574745355262,
+    "exposure": 1.0,
+    "trades": 43,
+    "annual_turnover": 5.458812906487266
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.7301023863748692,
+      "cagr": 0.15722739189703017,
+      "ann_vol": 0.10593168841539237,
+      "sharpe": 1.4317427015334439,
+      "max_drawdown": -0.13724250436913454,
+      "exposure": 0.9999999999999987,
+      "trades": 0,
+      "annual_turnover": 0.0
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.48605211944271276,
+      "cagr": 0.11128959979247144,
+      "ann_vol": 0.07332996421731441,
+      "sharpe": 1.4758875757098353,
+      "max_drawdown": -0.08891421732625926,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.25870188265042715
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.32041781431250893,
+      "cagr": 0.07685114165513673,
+      "ann_vol": 0.06456435100983761,
+      "sharpe": 1.1791743203197111,
+      "max_drawdown": -0.06034243263323835,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.8900044993105545
+    }
+  },
+  "strategy_file": "strategies/dual_momentum_v1.py",
+  "params": {
+    "lookback": 252,
+    "top": 2,
+    "cash": "BIL"
+  },
+  "symbol": "ALTERNATE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163640Z"
+}

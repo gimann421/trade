@@ -1,0 +1,68 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "QQQ",
+    "IWM",
+    "LQD",
+    "HYG",
+    "IEF",
+    "DBC",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.692228707245145,
+    "cagr": 0.07813725598724619,
+    "ann_vol": 0.1427600226000757,
+    "sharpe": 0.5988335622239583,
+    "max_drawdown": -0.24511643304539188,
+    "exposure": 0.9892167990919409,
+    "trades": 73,
+    "annual_turnover": 4.0165447406303345
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.5403539996143749,
+      "cagr": 0.06373477622643664,
+      "ann_vol": 0.10853697167895897,
+      "sharpe": 0.6237823318721455,
+      "max_drawdown": -0.20619129418479953,
+      "exposure": 0.9994324631100999,
+      "trades": 1,
+      "annual_turnover": 0.1430192962542565
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.5144182546911535,
+      "cagr": 0.06115453055172493,
+      "ann_vol": 0.09129856478836756,
+      "sharpe": 0.6960205267879632,
+      "max_drawdown": -0.18917421206287377,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.40672200525909696
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.21976542358040585,
+      "cagr": 0.028819479060799624,
+      "ann_vol": 0.07463803019064603,
+      "sharpe": 0.4181215307257776,
+      "max_drawdown": -0.1817862880709874,
+      "exposure": 0.9534619750283768,
+      "trades": 81,
+      "annual_turnover": 1.1196011114822457
+    }
+  },
+  "strategy_file": "strategies/dual_momentum_v1.py",
+  "params": {
+    "lookback": 252,
+    "top": 2,
+    "cash": "BIL"
+  },
+  "symbol": "ALTERNATE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163639Z"
+}

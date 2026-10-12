@@ -1,0 +1,70 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "XLE",
+    "XLK",
+    "XLV",
+    "XLF",
+    "XLU",
+    "XLP",
+    "XLY",
+    "XLI",
+    "XLB",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.3887922501858163,
+    "cagr": 0.09143129255048166,
+    "ann_vol": 0.08973419537631509,
+    "sharpe": 1.02001088549388,
+    "max_drawdown": -0.10412997040822802,
+    "exposure": 1.0,
+    "trades": 44,
+    "annual_turnover": 7.781188268329586
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.7913245872083865,
+      "cagr": 0.16799713160255547,
+      "ann_vol": 0.1276987456806349,
+      "sharpe": 1.280127886329159,
+      "max_drawdown": -0.16234612046337926,
+      "exposure": 1.0,
+      "trades": 0,
+      "annual_turnover": 0.0
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.644490970258244,
+      "cagr": 0.1416881709567437,
+      "ann_vol": 0.11086048701042209,
+      "sharpe": 1.2509122538596236,
+      "max_drawdown": -0.1399017714036288,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.33225362752693244
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.5923300859569585,
+      "cagr": 0.13192732162551413,
+      "ann_vol": 0.11885083688030139,
+      "sharpe": 1.1022592404090965,
+      "max_drawdown": -0.15015370646011061,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.7406511799552664
+    }
+  },
+  "strategy_file": "strategies/breadth_paa_v1.py",
+  "params": {
+    "window": 252,
+    "cash": "BIL"
+  },
+  "symbol": "ALTERNATE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163648Z"
+}
