@@ -1,13 +1,14 @@
 """Download daily bars from Alpaca into data/ and load them back.
 
-Prices are adjusted for splits and dividends. Downloading needs your paper keys;
-loading cached files does not.
+Prices are adjusted for splits and dividends, and only completed sessions are saved (a bar for a
+session still in progress is dropped). Downloading needs your paper keys; loading cached files
+does not.
 
     python -m core.data SPY QQQ --start 2016-01-01
 """
 
 import argparse
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, time, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
@@ -24,6 +25,18 @@ COLUMNS = ["open", "high", "low", "close", "volume"]
 
 def bars_path(symbol: str, data_dir: Path = DATA_DIR) -> Path:
     return data_dir / f"{symbol.upper()}_1Day.csv"
+
+
+def drop_incomplete_session(df: pd.DataFrame, end: datetime) -> pd.DataFrame:
+    """Drop a bar dated D unless the 16:00 New York close of D had passed by `end`.
+
+    A request made during the session returns today's bar as it stands so far, with partial
+    volume and a close that is only the latest trade; saving it would pass it off as a full day.
+    """
+    end_ny = pd.Timestamp(end)
+    end_ny = (end_ny.tz_localize("UTC") if end_ny.tzinfo is None else end_ny).tz_convert("America/New_York")
+    last_complete = end_ny.date() if end_ny.time() >= time(16, 0) else end_ny.date() - timedelta(days=1)
+    return df[df.index <= last_complete]
 
 
 def download_daily_bars(symbol: str, start: datetime, end: datetime | None = None, *,
@@ -43,6 +56,9 @@ def download_daily_bars(symbol: str, start: datetime, end: datetime | None = Non
         df = df.xs(symbol.upper(), level="symbol")
     df.index = pd.to_datetime(df.index).tz_convert("America/New_York").date
     df.index.name = "date"
+    df = drop_incomplete_session(df, end)
+    if df.empty:
+        raise ValueError(f"no completed sessions returned for {symbol}")
     data_dir.mkdir(parents=True, exist_ok=True)
     path = bars_path(symbol, data_dir)
     df[COLUMNS].to_csv(path)
