@@ -1,0 +1,37 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.02249530425086599,
+    "cagr": 0.0031866763168357792,
+    "ann_vol": 0.026643342193169568,
+    "sharpe": 0.13257419443525165,
+    "max_drawdown": -0.059000036596635774,
+    "exposure": 0.047105561861521,
+    "trades": 55,
+    "entries": 28,
+    "exits": 27,
+    "exposure_days": 83,
+    "return_per_exposure_day": 0.00029756028806194907
+  },
+  "buy_and_hold": {
+    "total_return": 0.29940515532055145,
+    "cagr": 0.038168077226253816,
+    "ann_vol": 0.09444031606293168,
+    "sharpe": 0.4438767231411307,
+    "max_drawdown": -0.22022362664073913,
+    "mean_daily_return": 0.00016634864296201113
+  },
+  "strategy_file": "strategies/gap_fade_washout_v1.py",
+  "params": {
+    "std_window": 60,
+    "z_max": -2.0,
+    "hold": 3,
+    "warmup": 61
+  },
+  "symbol": "HYG",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163651Z"
+}

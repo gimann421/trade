@@ -1,0 +1,90 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "IWM",
+    "QQQ",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "DBC",
+    "GLD",
+    "TLT",
+    "HYG",
+    "LQD",
+    "BIL"
+  ],
+  "signal_only": [
+    "AGG"
+  ],
+  "strategy": {
+    "total_return": 0.4446655244198392,
+    "cagr": 0.10295953404635982,
+    "ann_vol": 0.10246215685311608,
+    "sharpe": 1.0078503660572988,
+    "max_drawdown": -0.1035180879548343,
+    "exposure": 1.0,
+    "trades": 43,
+    "annual_turnover": 10.693349906576762
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.8002305422392642,
+      "cagr": 0.16954120141984919,
+      "ann_vol": 0.11331016020382428,
+      "sharpe": 1.43908475254927,
+      "max_drawdown": -0.1270826115450614,
+      "exposure": 0.9999999999999997,
+      "trades": 0,
+      "annual_turnover": 0.0
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.6182273556459528,
+      "cagr": 0.13680231955415656,
+      "ann_vol": 0.0945925656063609,
+      "sharpe": 1.4030242046504482,
+      "max_drawdown": -0.09915675017819958,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.2833984937955303
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.514423310066648,
+      "cagr": 0.11690216605640291,
+      "ann_vol": 0.08525584673847245,
+      "sharpe": 1.339606541151292,
+      "max_drawdown": -0.08337639405597397,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.9799230714737844
+    },
+    "sixty_forty": {
+      "total_return": 0.5313953571199972,
+      "cagr": 0.12022289958645493,
+      "ann_vol": 0.11100031408132593,
+      "sharpe": 1.0783371132512796,
+      "max_drawdown": -0.12742392274538505,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.18065518906629027
+    }
+  },
+  "strategy_file": "strategies/canary_momentum_v1.py",
+  "params": {
+    "weights": {
+      "21": 12,
+      "63": 4,
+      "126": 2,
+      "252": 1
+    },
+    "cash": "BIL",
+    "max_bad": 2
+  },
+  "symbol": "CORE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163642Z"
+}

@@ -1,0 +1,90 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "IWM",
+    "QQQ",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "DBC",
+    "GLD",
+    "TLT",
+    "HYG",
+    "LQD",
+    "BIL"
+  ],
+  "signal_only": [
+    "AGG"
+  ],
+  "strategy": {
+    "total_return": 0.5273942624772483,
+    "cagr": 0.06245015623105221,
+    "ann_vol": 0.07174686373726012,
+    "sharpe": 0.8803739195462554,
+    "max_drawdown": -0.12788619922120814,
+    "exposure": 0.9892167990919409,
+    "trades": 64,
+    "annual_turnover": 8.2639593039502
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.5564121965329349,
+      "cagr": 0.06531374074035634,
+      "ann_vol": 0.11977542149950202,
+      "sharpe": 0.5884411967514994,
+      "max_drawdown": -0.23199456004192442,
+      "exposure": 0.9994324631101019,
+      "trades": 1,
+      "annual_turnover": 0.14301929625425652
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.560231176623728,
+      "cagr": 0.0656871961668124,
+      "ann_vol": 0.11059742349656153,
+      "sharpe": 0.6308508185941758,
+      "max_drawdown": -0.22511870238558884,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.4292563153554661
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.39792323923401995,
+      "cagr": 0.04907593006344202,
+      "ann_vol": 0.1004057286231884,
+      "sharpe": 0.5276514485161021,
+      "max_drawdown": -0.23035599607997792,
+      "exposure": 0.9534619750283768,
+      "trades": 81,
+      "annual_turnover": 1.1679347524666979
+    },
+    "sixty_forty": {
+      "total_return": 0.6035641199664112,
+      "cagr": 0.06987072154272611,
+      "ann_vol": 0.11187200259907458,
+      "sharpe": 0.659885053917685,
+      "max_drawdown": -0.2766145388450941,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.40231423136076533
+    }
+  },
+  "strategy_file": "strategies/canary_momentum_v1.py",
+  "params": {
+    "weights": {
+      "21": 12,
+      "63": 4,
+      "126": 2,
+      "252": 1
+    },
+    "cash": "BIL",
+    "max_bad": 2
+  },
+  "symbol": "CORE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163641Z"
+}

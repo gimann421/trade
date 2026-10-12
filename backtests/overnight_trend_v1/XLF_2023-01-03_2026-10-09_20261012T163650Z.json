@@ -1,0 +1,35 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.6119030498105333,
+    "cagr": 0.13561712069774923,
+    "ann_vol": 0.1288538895908415,
+    "sharpe": 1.0516014566264666,
+    "max_drawdown": -0.1553588987217306,
+    "exposure": 0.5972515856236786,
+    "trades": 16,
+    "entries": 9,
+    "exits": 8,
+    "exposure_days": 565,
+    "return_per_exposure_day": 0.0009003074823323938
+  },
+  "buy_and_hold": {
+    "total_return": 0.6996894409937866,
+    "cagr": 0.15177314573691314,
+    "ann_vol": 0.16260191023097945,
+    "sharpe": 0.9506030855826899,
+    "max_drawdown": -0.16250358886017835,
+    "mean_daily_return": 0.0006133725301079707
+  },
+  "strategy_file": "strategies/overnight_trend_v1.py",
+  "params": {
+    "window": 126,
+    "component": "overnight"
+  },
+  "symbol": "XLF",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163650Z"
+}

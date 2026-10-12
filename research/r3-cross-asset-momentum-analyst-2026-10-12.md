@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis ids:** 23 (dual momentum), 24 (canary-protected / DAA-style), 25 (breadth-protected / PAA-style); all status `proposed`
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/dual_momentum_v1.py` (H23), `strategies/canary_momentum_v1.py` (H24), `strategies/breadth_paa_v1.py` (H25)
 
 No backtest, return computation or parameter tuning was done for this memo; only row counts were checked (about 2709 daily bars per symbol, 2016-01-04 to 2026-10-12). Every parameter below is fixed now from published work or reasoning.
 
@@ -44,7 +44,7 @@ SUPPORTED only if all 4 cells pass 1-6. Any miss = REJECTED (a trade-count miss 
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 23
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/dual_momentum_v1.py`
 
 ### Hypothesis
 Holding the two ETFs with the highest trailing 252-day return among a six-asset risky universe, each only if its 252-day return exceeds BIL's (otherwise that half sits in BIL), rebalanced at month-end, beats the same-universe monthly equal-weight portfolio on Sharpe by at least 0.10 and on max drawdown by at least 3 points in both windows on both universes.
@@ -68,7 +68,15 @@ Any of the 4 cells fails the common rule. Specific expectation of failure: Sharp
 Universes above; benchmark equal_weight_monthly (justified above); 5 bps; IS 2016-01-01..2022-12-31, OOS 2023-01-01..end; placebo as in the common rule. Parameters frozen.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/dual_momentum_v1.py`.
+
+| Cell | Sharpe (strat / equal-weight monthly / best benchmark) | Max DD (strat / eq-wt) | CAGR (strat / eq-wt) | Trades | Placebo percentile | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|
+| core IS | 0.22 / 0.55 / 0.66 | -26.4% / -22.6% | 2.0% / 5.3% | 68 | 0.37 | contradicts: Sharpe 0.22 < equal-weight 0.55 + 0.10; MaxDD -26.4% not 3pts shallower than -22.6%; CAGR 2.0% more than 3pts below 5.3%; Sharpe 0.22 more than 0.20 below best benchmark 0.66; placebo percentile 0.37 < 0.95 | [CORE_2016-01-04_2022-12-30_20261012T163637Z.json](../backtests/dual_momentum_v1/CORE_2016-01-04_2022-12-30_20261012T163637Z.json) |
+| core OOS | 0.97 / 1.29 / 1.35 | -14.3% / -9.2% | 14.5% / 13.1% | 44 | 0.12 | contradicts: Sharpe 0.97 < equal-weight 1.29 + 0.10; MaxDD -14.3% not 3pts shallower than -9.2%; Sharpe 0.97 more than 0.20 below best benchmark 1.35; placebo percentile 0.12 < 0.95 | [CORE_2023-01-03_2026-10-09_20261012T163638Z.json](../backtests/dual_momentum_v1/CORE_2023-01-03_2026-10-09_20261012T163638Z.json) |
+| alternate IS | 0.60 / 0.70 / 0.70 | -24.5% / -18.9% | 7.8% / 6.1% | 73 | 0.72 | contradicts: Sharpe 0.60 < equal-weight 0.70 + 0.10; MaxDD -24.5% not 3pts shallower than -18.9%; placebo percentile 0.72 < 0.95 | [ALTERNATE_2016-01-04_2022-12-30_20261012T163639Z.json](../backtests/dual_momentum_v1/ALTERNATE_2016-01-04_2022-12-30_20261012T163639Z.json) |
+| alternate OOS | 0.70 / 1.48 / 1.48 | -17.5% / -8.9% | 9.6% / 11.1% | 43 | 0.00 | contradicts: Sharpe 0.70 < equal-weight 1.48 + 0.10; MaxDD -17.5% not 3pts shallower than -8.9%; Sharpe 0.70 more than 0.20 below best benchmark 1.48; placebo percentile 0.00 < 0.95 | [ALTERNATE_2023-01-03_2026-10-09_20261012T163640Z.json](../backtests/dual_momentum_v1/ALTERNATE_2023-01-03_2026-10-09_20261012T163640Z.json) |
 
 ---
 
@@ -76,7 +84,7 @@ TBD
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 24
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/canary_momentum_v1.py`
 
 ### Hypothesis
 Holding the top 6 of 11 risky ETFs by 13612W momentum, with a cash fraction in BIL of 0 / 50 / 100% when 0 / 1 / 2 canaries (EEM, AGG) have non-positive momentum, beats the same-universe monthly equal-weight portfolio on Sharpe (+0.10) and drawdown (3 points) in both windows on both universes.
@@ -100,7 +108,15 @@ The common rule on all 4 cells. In particular: if the strategy's drawdown is not
 As in the common rule; benchmark equal_weight_monthly (the idea claims drawdown protection on an equity-heavy basket, and the core universe also reports sixty_forty, used only in the veto, rule 5). Parameters frozen.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/canary_momentum_v1.py`.
+
+| Cell | Sharpe (strat / equal-weight monthly / best benchmark) | Max DD (strat / eq-wt) | CAGR (strat / eq-wt) | Trades | Placebo percentile | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|
+| core IS | 0.88 / 0.63 / 0.66 | -12.8% / -22.5% | 6.2% / 6.6% | 64 | 0.96 | supports: passes kill rule | [CORE_2016-01-04_2022-12-30_20261012T163641Z.json](../backtests/canary_momentum_v1/CORE_2016-01-04_2022-12-30_20261012T163641Z.json) |
+| core OOS | 1.01 / 1.40 / 1.44 | -10.4% / -9.9% | 10.3% / 13.7% | 43 | 0.16 | contradicts: Sharpe 1.01 < equal-weight 1.40 + 0.10; MaxDD -10.4% not 3pts shallower than -9.9%; CAGR 10.3% more than 3pts below 13.7%; Sharpe 1.01 more than 0.20 below best benchmark 1.44; placebo percentile 0.16 < 0.95 | [CORE_2023-01-03_2026-10-09_20261012T163642Z.json](../backtests/canary_momentum_v1/CORE_2023-01-03_2026-10-09_20261012T163642Z.json) |
+| alternate IS | 0.60 / 0.70 / 0.70 | -16.5% / -33.4% | 5.8% / 10.8% | 66 | 0.66 | contradicts: Sharpe 0.60 < equal-weight 0.70 + 0.10; CAGR 5.8% more than 3pts below 10.8%; placebo percentile 0.66 < 0.95 | [ALTERNATE_2016-01-04_2022-12-30_20261012T163643Z.json](../backtests/canary_momentum_v1/ALTERNATE_2016-01-04_2022-12-30_20261012T163643Z.json) |
+| alternate OOS | 0.76 / 1.25 / 1.28 | -17.2% / -14.0% | 7.7% / 14.2% | 44 | 0.19 | contradicts: Sharpe 0.76 < equal-weight 1.25 + 0.10; MaxDD -17.2% not 3pts shallower than -14.0%; CAGR 7.7% more than 3pts below 14.2%; Sharpe 0.76 more than 0.20 below best benchmark 1.28; placebo percentile 0.19 < 0.95 | [ALTERNATE_2023-01-03_2026-10-09_20261012T163644Z.json](../backtests/canary_momentum_v1/ALTERNATE_2023-01-03_2026-10-09_20261012T163644Z.json) |
 
 ---
 
@@ -108,7 +124,7 @@ TBD
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 25
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/breadth_paa_v1.py`
 
 ### Hypothesis
 Holding the top N/2 assets by price-over-252-day-SMA momentum, with the cash fraction BF = min(1, (N - n)/(N/2)) in BIL, where n is the number of the N risky assets above their own 252-day SMA, beats the same-universe monthly equal-weight portfolio on Sharpe (+0.10) and drawdown (3 points) in both windows on both universes.
@@ -135,4 +151,12 @@ The common rule on all 4 cells. The sector alternate is the harder cell: all nin
 As in the common rule; benchmark equal_weight_monthly; sixty_forty enters only through the veto on the core universe. Parameters frozen.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/breadth_paa_v1.py`.
+
+| Cell | Sharpe (strat / equal-weight monthly / best benchmark) | Max DD (strat / eq-wt) | CAGR (strat / eq-wt) | Trades | Placebo percentile | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|
+| core IS | 1.02 / 0.63 / 0.66 | -6.7% / -20.5% | 5.1% / 6.1% | 55 | 0.93 | contradicts: placebo percentile 0.93 < 0.95 | [CORE_2016-01-04_2022-12-30_20261012T163645Z.json](../backtests/breadth_paa_v1/CORE_2016-01-04_2022-12-30_20261012T163645Z.json) |
+| core OOS | 1.10 / 1.39 / 1.44 | -8.0% / -9.0% | 10.4% / 12.7% | 44 | 0.10 | contradicts: Sharpe 1.10 < equal-weight 1.39 + 0.10; MaxDD -8.0% not 3pts shallower than -9.0%; Sharpe 1.10 more than 0.20 below best benchmark 1.44; placebo percentile 0.10 < 0.95 | [CORE_2023-01-03_2026-10-09_20261012T163646Z.json](../backtests/breadth_paa_v1/CORE_2023-01-03_2026-10-09_20261012T163646Z.json) |
+| alternate IS | 0.54 / 0.70 / 0.70 | -11.1% / -33.4% | 4.6% / 10.8% | 63 | 0.66 | contradicts: Sharpe 0.54 < equal-weight 0.70 + 0.10; CAGR 4.6% more than 3pts below 10.8%; placebo percentile 0.66 < 0.95 | [ALTERNATE_2016-01-04_2022-12-30_20261012T163647Z.json](../backtests/breadth_paa_v1/ALTERNATE_2016-01-04_2022-12-30_20261012T163647Z.json) |
+| alternate OOS | 1.02 / 1.25 / 1.28 | -10.4% / -14.0% | 9.1% / 14.2% | 44 | 0.42 | contradicts: Sharpe 1.02 < equal-weight 1.25 + 0.10; CAGR 9.1% more than 3pts below 14.2%; Sharpe 1.02 more than 0.20 below best benchmark 1.28; placebo percentile 0.42 < 0.95 | [ALTERNATE_2023-01-03_2026-10-09_20261012T163648Z.json](../backtests/breadth_paa_v1/ALTERNATE_2023-01-03_2026-10-09_20261012T163648Z.json) |

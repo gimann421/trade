@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis ids:** 26 (overnight-strength tilt), 27 (overnight-component trend filter), 28 (gap-up-faded washout)
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/overnight_tilt_v1.py` (H26), `strategies/overnight_trend_v1.py` (H27), `strategies/gap_fade_washout_v1.py` (H28)
 
 Paper trading only. No returns, backtests or parameter tuning were run; every parameter below is fixed from convention or the cited work.
 
@@ -53,10 +53,26 @@ Cell (symbol, window) verdict:
 Veto: if ANY of the 10 cells has `Sharpe_s < Sharpe_bh - 0.20` or `CAGR_s < CAGR_bh - 0.04`, status cannot be SUPPORTED even if 4 symbols pass. Placebo metric: `sharpe` (return_per_exposure_day is degenerate as exposure is ~100%). Rejected if <4 symbols can still pass.
 
 ### Test plan
-5 symbols x 2 windows, 5 bps, benchmark = buy-and-hold per cell. Strategy file TBD. Report per cell: Sharpe, CAGR, number of episodes, share of days at 0.5.
+5 symbols x 2 windows, 5 bps, benchmark = buy-and-hold per cell. Strategy files are listed above. Report per cell: Sharpe, CAGR, number of episodes, share of days at 0.5.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/overnight_tilt_v1.py`.
+
+Notes: veto also fires: XLK OOS: CAGR 28.4% more than 4pts below buy&hold 37.2%; XLF OOS: CAGR 11.1% more than 4pts below buy&hold 15.2%
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| XLK IS | 0.70 / 0.80 | -33.8% / -33.6% | 14.6% / 18.1% | 0.065% / 0.078% | 0.70 | 88% | 1 / 40 | contradicts: Sharpe 0.70 < buy&hold 0.80 + 0.05; CAGR 14.6% more than 2pts below 18.1% | [XLK_2016-01-04_2022-12-30_20261012T163648Z.json](../backtests/overnight_tilt_v1/XLK_2016-01-04_2022-12-30_20261012T163648Z.json) |
+| XLK OOS | 1.28 / 1.43 | -25.7% / -25.7% | 28.4% / 37.2% | 0.108% / 0.137% | 1.28 | 80% | 1 / 28 | contradicts: Sharpe 1.28 < buy&hold 1.43 + 0.05; CAGR 28.4% more than 2pts below 37.2% | [XLK_2023-01-03_2026-10-09_20261012T163648Z.json](../backtests/overnight_tilt_v1/XLK_2023-01-03_2026-10-09_20261012T163648Z.json) |
+| XLV IS | 0.62 / 0.71 | -28.4% / -28.4% | 9.2% / 11.6% | 0.040% / 0.050% | 0.62 | 88% | 1 / 21 | contradicts: Sharpe 0.62 < buy&hold 0.71 + 0.05; CAGR 9.2% more than 2pts below 11.6% | [XLV_2016-01-04_2022-12-30_20261012T163649Z.json](../backtests/overnight_tilt_v1/XLV_2016-01-04_2022-12-30_20261012T163649Z.json) |
+| XLV OOS | 0.46 / 0.62 | -16.3% / -17.1% | 5.1% / 8.1% | 0.023% / 0.035% | 0.46 | 83% | 1 / 22 | contradicts: Sharpe 0.46 < buy&hold 0.62 + 0.05; CAGR 5.1% more than 2pts below 8.1% | [XLV_2023-01-03_2026-10-09_20261012T163649Z.json](../backtests/overnight_tilt_v1/XLV_2023-01-03_2026-10-09_20261012T163649Z.json) |
+| XLF IS | 0.38 / 0.44 | -42.9% / -42.9% | 6.3% / 8.1% | 0.035% / 0.044% | 0.38 | 90% | 1 / 22 | contradicts: Sharpe 0.38 < buy&hold 0.44 + 0.05 | [XLF_2016-01-04_2022-12-30_20261012T163649Z.json](../backtests/overnight_tilt_v1/XLF_2016-01-04_2022-12-30_20261012T163649Z.json) |
+| XLF OOS | 0.79 / 0.95 | -16.3% / -16.3% | 11.1% / 15.2% | 0.046% / 0.061% | 0.79 | 85% | 1 / 19 | contradicts: Sharpe 0.79 < buy&hold 0.95 + 0.05; CAGR 11.1% more than 2pts below 15.2% | [XLF_2023-01-03_2026-10-09_20261012T163649Z.json](../backtests/overnight_tilt_v1/XLF_2023-01-03_2026-10-09_20261012T163649Z.json) |
+| EEM IS | 0.29 / 0.33 | -38.9% / -39.8% | 3.8% / 5.0% | 0.023% / 0.029% | 0.29 | 88% | 1 / 35 | contradicts: Sharpe 0.29 < buy&hold 0.33 + 0.05 | [EEM_2016-01-04_2022-12-30_20261012T163649Z.json](../backtests/overnight_tilt_v1/EEM_2016-01-04_2022-12-30_20261012T163649Z.json) |
+| EEM OOS | 1.03 / 0.99 | -15.4% / -17.3% | 17.4% / 18.8% | 0.069% / 0.076% | 1.03 | 84% | 1 / 25 | contradicts: Sharpe 1.03 < buy&hold 0.99 + 0.05 | [EEM_2023-01-03_2026-10-09_20261012T163649Z.json](../backtests/overnight_tilt_v1/EEM_2023-01-03_2026-10-09_20261012T163649Z.json) |
+| HYG IS | 0.42 / 0.44 | -22.0% / -22.0% | 3.4% / 3.8% | 0.015% / 0.017% | 0.42 | 89% | 1 / 33 | contradicts: Sharpe 0.42 < buy&hold 0.44 + 0.05 | [HYG_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/overnight_tilt_v1/HYG_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| HYG OOS | 1.19 / 1.31 | -4.6% / -4.9% | 6.0% / 7.4% | 0.024% / 0.029% | 1.19 | 84% | 1 / 22 | contradicts: Sharpe 1.19 < buy&hold 1.31 + 0.05 | [HYG_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/overnight_tilt_v1/HYG_2023-01-03_2026-10-09_20261012T163650Z.json) |
 
 ## Idea 2: Overnight-component trend filter (ledger id 27)
 
@@ -81,7 +97,23 @@ Cell supports iff `core.verdicts.drawdown_rule(r, dd_margin=0.05, sharpe_mult=1.
 5 symbols x 2 windows, 5 bps; B&H per cell; control run for comparison.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/overnight_trend_v1.py`.
+
+Notes: veto also fires: XLK OOS: Sharpe 0.89 more than 0.30 below buy&hold 1.43; XLF IS: Sharpe 0.12 more than 0.30 below buy&hold 0.44; HYG OOS: Sharpe 0.78 more than 0.30 below buy&hold 1.31 close-to-close control would support: EEM IS, HYG IS
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| XLK IS | 0.59 / 0.80 | -24.9% / -33.6% | 8.8% / 18.1% | 0.055% / 0.078% | 0.70 | 71% | 14 / 14 | contradicts: Sharpe 0.59 < 1x buy&hold 0.80; CAGR 8.8% more than 5pts below 18.1% | [XLK_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/overnight_trend_v1/XLK_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| XLK OOS | 0.89 / 1.43 | -18.8% / -25.7% | 17.3% / 37.2% | 0.094% / 0.137% | 1.03 | 76% | 9 / 8 | contradicts: Sharpe 0.89 < 1x buy&hold 1.43; CAGR 17.3% more than 5pts below 37.2% | [XLK_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/overnight_trend_v1/XLK_2023-01-03_2026-10-09_20261012T163650Z.json) |
+| XLV IS | 0.56 / 0.71 | -18.1% / -28.4% | 6.5% / 11.6% | 0.039% / 0.050% | 0.67 | 72% | 16 / 15 | contradicts: Sharpe 0.56 < 1x buy&hold 0.71; CAGR 6.5% more than 5pts below 11.6% | [XLV_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/overnight_trend_v1/XLV_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| XLV OOS | 0.42 / 0.62 | -13.0% / -17.1% | 3.2% / 8.1% | 0.029% / 0.035% | 0.63 | 48% | 13 / 12 | contradicts: Sharpe 0.42 < 1x buy&hold 0.62; MaxDD -13.0% not 5pts better than -17.1% | [XLV_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/overnight_trend_v1/XLV_2023-01-03_2026-10-09_20261012T163650Z.json) |
+| XLF IS | 0.12 / 0.44 | -39.3% / -42.9% | 0.6% / 8.1% | 0.011% / 0.044% | 0.15 | 64% | 17 / 16 | contradicts: Sharpe 0.12 < 1x buy&hold 0.44; MaxDD -39.3% not 5pts better than -42.9%; CAGR 0.6% more than 5pts below 8.1% | [XLF_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/overnight_trend_v1/XLF_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| XLF OOS | 1.05 / 0.95 | -15.5% / -16.3% | 13.6% / 15.2% | 0.090% / 0.061% | 1.37 | 60% | 9 / 8 | contradicts: MaxDD -15.5% not 5pts better than -16.3% | [XLF_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/overnight_trend_v1/XLF_2023-01-03_2026-10-09_20261012T163650Z.json) |
+| EEM IS | 0.59 / 0.33 | -22.1% / -39.8% | 7.5% / 5.0% | 0.055% / 0.029% | 0.78 | 60% | 19 / 19 | supports: passes kill threshold | [EEM_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/overnight_trend_v1/EEM_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| EEM OOS | 0.81 / 0.99 | -13.5% / -17.3% | 11.9% / 18.8% | 0.076% / 0.076% | 1.02 | 65% | 16 / 15 | contradicts: Sharpe 0.81 < 1x buy&hold 0.99; MaxDD -13.5% not 5pts better than -17.3%; CAGR 11.9% more than 5pts below 18.8% | [EEM_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/overnight_trend_v1/EEM_2023-01-03_2026-10-09_20261012T163650Z.json) |
+| HYG IS | 0.69 / 0.44 | -6.7% / -22.0% | 3.4% / 3.8% | 0.019% / 0.017% | 0.85 | 73% | 21 / 20 | supports: passes kill threshold | [HYG_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/overnight_trend_v1/HYG_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| HYG OOS | 0.78 / 1.31 | -7.3% / -4.9% | 3.7% / 7.4% | 0.018% / 0.029% | 0.95 | 83% | 31 / 31 | contradicts: Sharpe 0.78 < 1x buy&hold 1.31; MaxDD -7.3% not 5pts better than -4.9% | [HYG_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/overnight_trend_v1/HYG_2023-01-03_2026-10-09_20261012T163650Z.json) |
 
 ## Idea 3: Gap-up-faded intraday washout (ledger id 28)
 
@@ -106,7 +138,23 @@ Cell supports iff `return_per_exposure_day >= B&H mean_daily_return + 0.0010` (a
 5 symbols x 2 windows, 5 bps (10 bps per event), B&H per cell; report events, hit rate, mean net event return.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/gap_fade_washout_v1.py`.
+
+Notes: veto also fires: XLV IS: return/exposure day -0.004% below 0
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| XLK IS | 0.57 / 0.80 | -12.8% / -33.6% | 3.8% / 18.1% | 0.331% / 0.078% | 2.77 | 5% | 28 / 28 | supports: passes kill threshold (hit rate 61%) | [XLK_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/gap_fade_washout_v1/XLK_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| XLK OOS | 0.71 / 1.43 | -6.6% / -25.7% | 7.0% / 37.2% | 0.435% / 0.137% | 2.88 | 7% | 21 / 21 | supports: passes kill threshold (hit rate 67%) | [XLK_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/gap_fade_washout_v1/XLK_2023-01-03_2026-10-09_20261012T163650Z.json) |
+| XLV IS | -0.01 / 0.71 | -14.2% / -28.4% | -0.2% / 11.6% | -0.004% / 0.050% | 0.12 | 4% | 24 / 24 | contradicts: return/exposure day -0.004% < buy&hold mean 0.050% + 10bps; hit rate 46% < 55% | [XLV_2016-01-04_2022-12-30_20261012T163650Z.json](../backtests/gap_fade_washout_v1/XLV_2016-01-04_2022-12-30_20261012T163650Z.json) |
+| XLV OOS | 0.07 / 0.62 | -2.9% / -17.1% | 0.2% / 8.1% | 0.026% / 0.035% | 0.61 | 4% | 12 / 12 | contradicts: return/exposure day 0.026% < buy&hold mean 0.035% + 10bps | [XLV_2023-01-03_2026-10-09_20261012T163650Z.json](../backtests/gap_fade_washout_v1/XLV_2023-01-03_2026-10-09_20261012T163650Z.json) |
+| XLF IS | 0.33 / 0.44 | -14.0% / -42.9% | 2.4% / 8.1% | 0.219% / 0.044% | 1.64 | 5% | 28 / 28 | supports: passes kill threshold (hit rate 57%) | [XLF_2016-01-04_2022-12-30_20261012T163651Z.json](../backtests/gap_fade_washout_v1/XLF_2016-01-04_2022-12-30_20261012T163651Z.json) |
+| XLF OOS | 0.30 / 0.95 | -6.1% / -16.3% | 1.5% / 15.2% | 0.117% / 0.061% | 1.45 | 6% | 18 / 18 | contradicts: return/exposure day 0.117% < buy&hold mean 0.061% + 10bps; hit rate 50% < 55% | [XLF_2023-01-03_2026-10-09_20261012T163651Z.json](../backtests/gap_fade_washout_v1/XLF_2023-01-03_2026-10-09_20261012T163651Z.json) |
+| EEM IS | 0.39 / 0.33 | -11.4% / -39.8% | 2.3% / 5.0% | 0.238% / 0.029% | 2.06 | 4% | 24 / 24 | contradicts: hit rate 54% < 55% | [EEM_2016-01-04_2022-12-30_20261012T163651Z.json](../backtests/gap_fade_washout_v1/EEM_2016-01-04_2022-12-30_20261012T163651Z.json) |
+| EEM OOS | 0.46 / 0.99 | -6.4% / -17.3% | 2.5% / 18.8% | 0.206% / 0.076% | 2.19 | 5% | 16 / 16 | supports: passes kill threshold (hit rate 62%) | [EEM_2023-01-03_2026-10-09_20261012T163651Z.json](../backtests/gap_fade_washout_v1/EEM_2023-01-03_2026-10-09_20261012T163651Z.json) |
+| HYG IS | 0.13 / 0.44 | -5.9% / -22.0% | 0.3% / 3.8% | 0.030% / 0.017% | 0.94 | 5% | 28 / 28 | contradicts: return/exposure day 0.030% < buy&hold mean 0.017% + 10bps; hit rate 54% < 55% | [HYG_2016-01-04_2022-12-30_20261012T163651Z.json](../backtests/gap_fade_washout_v1/HYG_2016-01-04_2022-12-30_20261012T163651Z.json) |
+| HYG OOS | 0.28 / 1.31 | -1.6% / -4.9% | 0.5% / 7.4% | 0.065% / 0.029% | 1.98 | 3% | 11 / 10 | contradicts: return/exposure day 0.065% < buy&hold mean 0.029% + 10bps | [HYG_2023-01-03_2026-10-09_20261012T163651Z.json](../backtests/gap_fade_washout_v1/HYG_2023-01-03_2026-10-09_20261012T163651Z.json) |
 
 ## Honest limits of this sample
 

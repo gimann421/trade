@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis ids:** 29 (Halloween window), 30 (earnings-season window)
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/halloween_v1.py` (H29), `strategies/earnings_season_v1.py` (H30)
 
 ## Status of the FOMC pre-announcement drift (the assigned lead idea): NOT proposed
 I could not obtain reliable FOMC dates. WebFetch to federalreserve.gov failed twice (DNS: `getaddrinfo ENOTFOUND`). WebSearch returned only summarized snippets: the 2026 schedule (Jan 27-28, Mar 17-18, Apr 28-29, Jun 16-17, Jul 28-29, Sep 15-16, Oct 27-28, Dec 8-9) from the current calendar page, and the 2016 tentative schedule from a 2015 Fed press release; nothing for 2017-2025 and no way to see which meetings carried a press conference. Dates for 2017-2025 are therefore NOT hardcoded here and none were invented. Per instructions the two ideas below need no external dates (the calendar comes from `core.market_calendar` plus month arithmetic).
@@ -43,4 +43,37 @@ Existing ledger entries consulted: H11 (turn-of-month), H12 (pre-holiday), H13 (
 See each idea above (the per-idea sections hold the mechanisms, kill thresholds and the common test plan). Benchmarks: buy-and-hold of the same ETF in the same window plus the circular-shift placebo. Costs 5 bps per unit turnover. Both ideas share a reason to fail: a published calendar effect that is a minority of annual returns, tested on about 7 plus 3.3 years, with correlated symbols.
 
 ## Results
-TBD
+
+### Idea 1 (H29)
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/halloween_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| XLU IS | 0.39 / 0.61 | -36.1% / -36.1% | 5.1% / 10.7% | 0.051% / 0.048% | 0.56 | 49% | 8 / 7 | contradicts: return/exposure day 0.051% < buy&hold mean 0.048% + 3bps; conditional Sharpe 0.56 < buy&hold 0.61 + 0.1 | [XLU_2016-01-04_2022-12-30_20261012T163651Z.json](../backtests/halloween_v1/XLU_2016-01-04_2022-12-30_20261012T163651Z.json) |
+| XLU OOS | 0.45 / 0.53 | -11.3% / -20.2% | 4.9% / 7.6% | 0.046% / 0.034% | 0.66 | 48% | 4 / 4 | contradicts: return/exposure day 0.046% < buy&hold mean 0.034% + 3bps | [XLU_2023-01-03_2026-10-09_20261012T163651Z.json](../backtests/halloween_v1/XLU_2023-01-03_2026-10-09_20261012T163651Z.json) |
+| XLP IS | 0.44 / 0.60 | -26.0% / -24.5% | 5.0% / 8.7% | 0.046% / 0.038% | 0.63 | 49% | 8 / 7 | contradicts: return/exposure day 0.046% < buy&hold mean 0.038% + 3bps; conditional Sharpe 0.63 < buy&hold 0.60 + 0.1 | [XLP_2016-01-04_2022-12-30_20261012T163652Z.json](../backtests/halloween_v1/XLP_2016-01-04_2022-12-30_20261012T163652Z.json) |
+| XLP OOS | 0.94 / 0.51 | -9.7% / -13.4% | 8.6% / 5.8% | 0.072% / 0.026% | 1.37 | 48% | 4 / 4 | supports: passes kill threshold | [XLP_2023-01-03_2026-10-09_20261012T163652Z.json](../backtests/halloween_v1/XLP_2023-01-03_2026-10-09_20261012T163652Z.json) |
+| XLY IS | 0.36 / 0.50 | -33.9% / -39.7% | 4.7% / 8.9% | 0.050% / 0.044% | 0.51 | 49% | 8 / 7 | contradicts: return/exposure day 0.050% < buy&hold mean 0.044% + 3bps; conditional Sharpe 0.51 < buy&hold 0.50 + 0.1 | [XLY_2016-01-04_2022-12-30_20261012T163652Z.json](../backtests/halloween_v1/XLY_2016-01-04_2022-12-30_20261012T163652Z.json) |
+| XLY OOS | 0.55 / 0.86 | -26.9% / -26.0% | 7.7% / 17.0% | 0.072% / 0.071% | 0.80 | 48% | 4 / 4 | contradicts: return/exposure day 0.072% < buy&hold mean 0.071% + 3bps; conditional Sharpe 0.80 < buy&hold 0.86 + 0.1 | [XLY_2023-01-03_2026-10-09_20261012T163653Z.json](../backtests/halloween_v1/XLY_2023-01-03_2026-10-09_20261012T163653Z.json) |
+| XLI IS | 0.46 / 0.62 | -42.3% / -42.3% | 6.4% / 11.4% | 0.062% / 0.052% | 0.65 | 49% | 8 / 7 | contradicts: return/exposure day 0.062% < buy&hold mean 0.052% + 3bps; conditional Sharpe 0.65 < buy&hold 0.62 + 0.1 | [XLI_2016-01-04_2022-12-30_20261012T163653Z.json](../backtests/halloween_v1/XLI_2016-01-04_2022-12-30_20261012T163653Z.json) |
+| XLI OOS | 0.80 / 1.05 | -18.5% / -18.5% | 9.8% / 17.3% | 0.085% / 0.069% | 1.17 | 48% | 4 / 4 | contradicts: return/exposure day 0.085% < buy&hold mean 0.069% + 3bps | [XLI_2023-01-03_2026-10-09_20261012T163653Z.json](../backtests/halloween_v1/XLI_2023-01-03_2026-10-09_20261012T163653Z.json) |
+| XLB IS | 0.53 / 0.58 | -37.2% / -37.3% | 8.1% / 11.1% | 0.076% / 0.052% | 0.76 | 49% | 8 / 7 | contradicts: return/exposure day 0.076% < buy&hold mean 0.052% + 3bps | [XLB_2016-01-04_2022-12-30_20261012T163654Z.json](../backtests/halloween_v1/XLB_2016-01-04_2022-12-30_20261012T163654Z.json) |
+| XLB OOS | 0.67 / 0.57 | -23.6% / -23.2% | 8.2% / 8.7% | 0.073% / 0.039% | 0.97 | 48% | 4 / 4 | supports: passes kill threshold | [XLB_2023-01-03_2026-10-09_20261012T163654Z.json](../backtests/halloween_v1/XLB_2023-01-03_2026-10-09_20261012T163654Z.json) |
+
+### Idea 2 (H30)
+
+**Verdict: rejected** (round 3, 2026-10-12; rules fixed before testing, scored by `research/round3_verdicts.py`). Strategy: `strategies/earnings_season_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| XLU IS | 0.71 / 0.61 | -11.7% / -36.1% | 4.7% / 10.7% | 0.110% / 0.048% | 1.78 | 17% | 28 / 28 | supports: passes kill threshold | [XLU_2016-01-04_2022-12-30_20261012T163655Z.json](../backtests/earnings_season_v1/XLU_2016-01-04_2022-12-30_20261012T163655Z.json) |
+| XLU OOS | 0.29 / 0.53 | -7.5% / -20.2% | 1.8% / 7.6% | 0.046% / 0.034% | 0.76 | 18% | 15 / 15 | contradicts: return/exposure day 0.046% < buy&hold mean 0.034% + 4bps | [XLU_2023-01-03_2026-10-09_20261012T163655Z.json](../backtests/earnings_season_v1/XLU_2023-01-03_2026-10-09_20261012T163655Z.json) |
+| XLP IS | 0.27 / 0.60 | -12.2% / -24.5% | 1.3% / 8.7% | 0.034% / 0.038% | 0.75 | 17% | 28 / 28 | contradicts: return/exposure day 0.034% < buy&hold mean 0.038% + 4bps | [XLP_2016-01-04_2022-12-30_20261012T163656Z.json](../backtests/earnings_season_v1/XLP_2016-01-04_2022-12-30_20261012T163656Z.json) |
+| XLP OOS | 0.61 / 0.51 | -6.3% / -13.4% | 3.4% / 5.8% | 0.078% / 0.026% | 1.54 | 18% | 15 / 15 | supports: passes kill threshold | [XLP_2023-01-03_2026-10-09_20261012T163657Z.json](../backtests/earnings_season_v1/XLP_2023-01-03_2026-10-09_20261012T163657Z.json) |
+| XLY IS | 0.38 / 0.50 | -16.2% / -39.7% | 2.8% / 8.9% | 0.071% / 0.044% | 0.97 | 17% | 28 / 28 | contradicts: return/exposure day 0.071% < buy&hold mean 0.044% + 4bps | [XLY_2016-01-04_2022-12-30_20261012T163657Z.json](../backtests/earnings_season_v1/XLY_2016-01-04_2022-12-30_20261012T163657Z.json) |
+| XLY OOS | 0.09 / 0.86 | -13.9% / -26.0% | 0.4% / 17.0% | 0.019% / 0.071% | 0.27 | 18% | 15 / 15 | contradicts: return/exposure day 0.019% < buy&hold mean 0.071% + 4bps; return/exposure day 0.019% < 3bps absolute; conditional Sharpe 0.27 < buy&hold 0.86 + 0.15 | [XLY_2023-01-03_2026-10-09_20261012T163658Z.json](../backtests/earnings_season_v1/XLY_2023-01-03_2026-10-09_20261012T163658Z.json) |
+| XLI IS | 0.28 / 0.62 | -18.0% / -42.3% | 1.8% / 11.4% | 0.046% / 0.052% | 0.73 | 17% | 28 / 28 | contradicts: return/exposure day 0.046% < buy&hold mean 0.052% + 4bps; conditional Sharpe 0.73 < buy&hold 0.62 + 0.15 | [XLI_2016-01-04_2022-12-30_20261012T163659Z.json](../backtests/earnings_season_v1/XLI_2016-01-04_2022-12-30_20261012T163659Z.json) |
+| XLI OOS | 0.21 / 1.05 | -7.6% / -18.5% | 1.2% / 17.3% | 0.032% / 0.069% | 0.58 | 18% | 15 / 15 | contradicts: return/exposure day 0.032% < buy&hold mean 0.069% + 4bps; conditional Sharpe 0.58 < buy&hold 1.05 + 0.15 | [XLI_2023-01-03_2026-10-09_20261012T163659Z.json](../backtests/earnings_season_v1/XLI_2023-01-03_2026-10-09_20261012T163659Z.json) |
+| XLB IS | 0.29 / 0.58 | -18.4% / -37.3% | 1.9% / 11.1% | 0.050% / 0.052% | 0.75 | 17% | 28 / 28 | contradicts: return/exposure day 0.050% < buy&hold mean 0.052% + 4bps | [XLB_2016-01-04_2022-12-30_20261012T163700Z.json](../backtests/earnings_season_v1/XLB_2016-01-04_2022-12-30_20261012T163700Z.json) |
+| XLB OOS | -0.08 / 0.57 | -10.3% / -23.2% | -0.7% / 8.7% | -0.011% / 0.039% | -0.11 | 18% | 15 / 15 | contradicts: return/exposure day -0.011% < buy&hold mean 0.039% + 4bps; return/exposure day -0.011% < 3bps absolute; conditional Sharpe -0.11 < buy&hold 0.57 + 0.15 | [XLB_2023-01-03_2026-10-09_20261012T163700Z.json](../backtests/earnings_season_v1/XLB_2023-01-03_2026-10-09_20261012T163700Z.json) |

@@ -1,0 +1,40 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3749003758351872,
+    "cagr": 0.0465872847993527,
+    "ann_vol": 0.06757572566986685,
+    "sharpe": 0.7076387294883486,
+    "max_drawdown": -0.1165037013698772,
+    "exposure": 0.17253121452894438,
+    "trades": 56,
+    "entries": 28,
+    "exits": 28,
+    "exposure_days": 304,
+    "return_per_exposure_day": 0.001099851602419113
+  },
+  "buy_and_hold": {
+    "total_return": 1.0316129032258092,
+    "cagr": 0.10669308876348538,
+    "ann_vol": 0.19889805505633096,
+    "sharpe": 0.6092200245483469,
+    "max_drawdown": -0.3608605135322689,
+    "mean_daily_return": 0.0004808439602541127
+  },
+  "strategy_file": "strategies/earnings_season_v1.py",
+  "params": {
+    "months": [
+      1,
+      4,
+      7,
+      10
+    ],
+    "first_day": 11
+  },
+  "symbol": "XLU",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163655Z"
+}

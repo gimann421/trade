@@ -1,0 +1,78 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "TLT",
+    "GLD",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.14663136505812502,
+    "cagr": 0.019761830883650022,
+    "ann_vol": 0.1236364768169888,
+    "sharpe": 0.2202167537289439,
+    "max_drawdown": -0.2643445319781369,
+    "exposure": 0.9892167990919409,
+    "trades": 68,
+    "annual_turnover": 5.084131434598783
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.4244403248335811,
+      "cagr": 0.05189912511625416,
+      "ann_vol": 0.10916180121314371,
+      "sharpe": 0.5183172133990707,
+      "max_drawdown": -0.23527640808002404,
+      "exposure": 0.9994324631101027,
+      "trades": 1,
+      "annual_turnover": 0.1430192962542565
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.4392308631918511,
+      "cagr": 0.0534543180220759,
+      "ann_vol": 0.10360801236841405,
+      "sharpe": 0.5546359391545128,
+      "max_drawdown": -0.22628985127616363,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.43432888082279486
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.4025146357163809,
+      "cagr": 0.04956802923955017,
+      "ann_vol": 0.11002691815925153,
+      "sharpe": 0.4949717009461889,
+      "max_drawdown": -0.25617362570283475,
+      "exposure": 0.9534619750283768,
+      "trades": 81,
+      "annual_turnover": 1.0329408205671895
+    },
+    "sixty_forty": {
+      "total_return": 0.6035641199664148,
+      "cagr": 0.06987072154272633,
+      "ann_vol": 0.11187200259907457,
+      "sharpe": 0.6598850539176851,
+      "max_drawdown": -0.27661453884509346,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.40231423136076533
+    }
+  },
+  "strategy_file": "strategies/dual_momentum_v1.py",
+  "params": {
+    "lookback": 252,
+    "top": 2,
+    "cash": "BIL"
+  },
+  "symbol": "CORE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163637Z"
+}

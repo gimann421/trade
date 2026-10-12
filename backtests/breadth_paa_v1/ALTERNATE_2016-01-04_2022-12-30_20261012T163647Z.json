@@ -1,0 +1,70 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "XLE",
+    "XLK",
+    "XLV",
+    "XLF",
+    "XLU",
+    "XLP",
+    "XLY",
+    "XLI",
+    "XLB",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.3725934009737115,
+    "cagr": 0.04633594909936378,
+    "ann_vol": 0.09234743353389503,
+    "sharpe": 0.5367986709524909,
+    "max_drawdown": -0.11134923124072316,
+    "exposure": 0.9892167990919409,
+    "trades": 63,
+    "annual_turnover": 5.911153858272767
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.9951216069641096,
+      "cagr": 0.10382800554832339,
+      "ann_vol": 0.1714166053014119,
+      "sharpe": 0.6624728156613751,
+      "max_drawdown": -0.33218590016688476,
+      "exposure": 0.9994324631101019,
+      "trades": 1,
+      "annual_turnover": 0.14301929625425652
+    },
+    "equal_weight_monthly": {
+      "total_return": 1.0490388482708761,
+      "cagr": 0.10804574223023744,
+      "ann_vol": 0.16544479488256947,
+      "sharpe": 0.7033473030503646,
+      "max_drawdown": -0.33360999356222243,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.4632155885136243
+    },
+    "inverse_vol_monthly": {
+      "total_return": 1.0421660995134983,
+      "cagr": 0.1075134408104561,
+      "ann_vol": 0.1746795997505283,
+      "sharpe": 0.6724706405015233,
+      "max_drawdown": -0.35423164900577975,
+      "exposure": 0.9534619750283768,
+      "trades": 81,
+      "annual_turnover": 0.8737929069344967
+    }
+  },
+  "strategy_file": "strategies/breadth_paa_v1.py",
+  "params": {
+    "window": 252,
+    "cash": "BIL"
+  },
+  "symbol": "ALTERNATE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163647Z"
+}

@@ -1,0 +1,83 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "DBC",
+    "GLD",
+    "HYG",
+    "LQD",
+    "TLT",
+    "IEF",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.44801983303669646,
+    "cagr": 0.10364114278999259,
+    "ann_vol": 0.09377127614650115,
+    "sharpe": 1.0987787897438706,
+    "max_drawdown": -0.07963100469826423,
+    "exposure": 1.0,
+    "trades": 44,
+    "annual_turnover": 6.3619311257399955
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.7624258904697521,
+      "cagr": 0.1629477101422534,
+      "ann_vol": 0.10936795512054999,
+      "sharpe": 1.4352353585478224,
+      "max_drawdown": -0.12106722647088997,
+      "exposure": 0.9999999999999993,
+      "trades": 0,
+      "annual_turnover": 0.0
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.5680236769300142,
+      "cagr": 0.1272985887016227,
+      "ann_vol": 0.0893398754612992,
+      "sharpe": 1.386111434164884,
+      "max_drawdown": -0.08993706362740028,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.27359505438920645
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.4369088476235905,
+      "cagr": 0.10137888842623166,
+      "ann_vol": 0.07802550760548879,
+      "sharpe": 1.2767552063839986,
+      "max_drawdown": -0.075504414545846,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.9547005265687097
+    },
+    "sixty_forty": {
+      "total_return": 0.5313953571199972,
+      "cagr": 0.12022289958645493,
+      "ann_vol": 0.11100031408132593,
+      "sharpe": 1.0783371132512796,
+      "max_drawdown": -0.12742392274538505,
+      "exposure": 1.0,
+      "trades": 45,
+      "annual_turnover": 0.18065518906629027
+    }
+  },
+  "strategy_file": "strategies/breadth_paa_v1.py",
+  "params": {
+    "window": 252,
+    "cash": "BIL"
+  },
+  "symbol": "CORE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163646Z"
+}

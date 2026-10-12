@@ -1,0 +1,83 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "DBC",
+    "GLD",
+    "HYG",
+    "LQD",
+    "TLT",
+    "IEF",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.41521829385464715,
+    "cagr": 0.0509224300440676,
+    "ann_vol": 0.050132865893006535,
+    "sharpe": 1.0159303971252251,
+    "max_drawdown": -0.06723955718109309,
+    "exposure": 0.9892167990919409,
+    "trades": 55,
+    "annual_turnover": 4.164069652117298
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.5146414130395647,
+      "cagr": 0.06117689268090576,
+      "ann_vol": 0.11210594876112107,
+      "sharpe": 0.5859880163745002,
+      "max_drawdown": -0.2186856931040141,
+      "exposure": 0.9994324631101023,
+      "trades": 1,
+      "annual_turnover": 0.1430192962542565
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.5137444721971816,
+      "cagr": 0.06108699538669771,
+      "ann_vol": 0.10213955368682985,
+      "sharpe": 0.631847004500668,
+      "max_drawdown": -0.20533511231994506,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.4279513815022656
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.28795396928565187,
+      "cagr": 0.03685462577566323,
+      "ann_vol": 0.08503107033543345,
+      "sharpe": 0.46832706787015266,
+      "max_drawdown": -0.2131119716067933,
+      "exposure": 0.9534619750283768,
+      "trades": 81,
+      "annual_turnover": 1.1389886063575023
+    },
+    "sixty_forty": {
+      "total_return": 0.6035641199664112,
+      "cagr": 0.06987072154272611,
+      "ann_vol": 0.11187200259907458,
+      "sharpe": 0.659885053917685,
+      "max_drawdown": -0.2766145388450941,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.40231423136076533
+    }
+  },
+  "strategy_file": "strategies/breadth_paa_v1.py",
+  "params": {
+    "window": 252,
+    "cash": "BIL"
+  },
+  "symbol": "CORE",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163645Z"
+}

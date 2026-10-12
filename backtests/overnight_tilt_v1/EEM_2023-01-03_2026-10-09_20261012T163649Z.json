@@ -1,0 +1,38 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.8275632606316692,
+    "cagr": 0.1742452881225427,
+    "ann_vol": 0.1690473016096207,
+    "sharpe": 1.0349102390994738,
+    "max_drawdown": -0.1537805593653766,
+    "exposure": 0.8414376321353065,
+    "trades": 51,
+    "entries": 1,
+    "exits": 0,
+    "exposure_days": 946,
+    "return_per_exposure_day": 0.0006942412036822755
+  },
+  "buy_and_hold": {
+    "total_return": 0.908026278206234,
+    "cagr": 0.1878002168952082,
+    "ann_vol": 0.19170992014907717,
+    "sharpe": 0.9938505004297342,
+    "max_drawdown": -0.17285587975243077,
+    "mean_daily_return": 0.0007560753971329553
+  },
+  "strategy_file": "strategies/overnight_tilt_v1.py",
+  "params": {
+    "sum_window": 20,
+    "rank_window": 252,
+    "enter": 0.8,
+    "exit": 0.6,
+    "reduced": 0.5
+  },
+  "symbol": "EEM",
+  "git_commit": "e028e2d-dirty",
+  "run_at": "20261012T163649Z"
+}
