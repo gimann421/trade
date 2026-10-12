@@ -1,0 +1,30 @@
+{
+  "start": "2016-01-04",
+  "end": "2026-10-09",
+  "days": 2708,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.8868627329184915,
+    "cagr": 0.10368757721475896,
+    "ann_vol": 0.14376654999365288,
+    "sharpe": 0.7585188660366069,
+    "max_drawdown": -0.3379388816644995,
+    "exposure": 0.7773264401772526,
+    "trades": 9
+  },
+  "buy_and_hold": {
+    "total_return": 3.5615772205296414,
+    "cagr": 0.15169019008465723,
+    "ann_vol": 0.1743954168292253,
+    "sharpe": 0.8974683943405114,
+    "max_drawdown": -0.33793888166449937
+  },
+  "strategy_file": "strategies/sma_crossover_v1.py",
+  "params": {
+    "fast": 50,
+    "slow": 200
+  },
+  "symbol": "SPY",
+  "git_commit": "0ef8ca1",
+  "run_at": "20261012T024344Z"
+}
