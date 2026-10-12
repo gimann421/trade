@@ -1,0 +1,9 @@
+# Risk limits for paper trading. Percentages are of account equity.
+# Tracked in git so every change to a limit shows up in history.
+
+max_position_pct: 5.0         # largest single position
+max_gross_exposure_pct: 50.0  # sum of absolute position values
+max_open_positions: 10
+max_order_notional: 5000      # USD per order
+max_daily_loss_pct: 2.0       # stop opening new positions past this drawdown for the day
+allow_short: false

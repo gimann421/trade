@@ -1,6 +1,7 @@
-# Secrets and risk config: keep only the templates in git
+# Secrets: keep only templates and risk limits in git
 config/*
 !config/*.example
+!config/risk_limits.yaml
 
 # Historical price data
 data/*
