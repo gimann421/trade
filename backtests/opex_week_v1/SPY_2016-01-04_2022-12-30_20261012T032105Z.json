@@ -1,0 +1,32 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.22013975299956556,
+    "cagr": -0.03493555345601984,
+    "ann_vol": 0.09071816633218782,
+    "sharpe": -0.34561197787522585,
+    "max_drawdown": -0.33696028464080874,
+    "exposure": 0.23382519863791146,
+    "trades": 168,
+    "entries": 84,
+    "exits": 84,
+    "exposure_days": 412,
+    "return_per_exposure_day": -0.0005320974725062162
+  },
+  "buy_and_hold": {
+    "total_return": 1.1370400749941423,
+    "cagr": 0.11472970808745786,
+    "ann_vol": 0.1866709968380342,
+    "sharpe": 0.675749317616849,
+    "max_drawdown": -0.33793888166449937,
+    "mean_daily_return": 0.00050056666163555
+  },
+  "strategy_file": "strategies/opex_week_v1.py",
+  "params": {},
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032105Z"
+}

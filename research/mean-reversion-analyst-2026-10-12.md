@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis ids:** 5 (RSI(2) pullback), 6 (three down closes), 7 (low IBS close)
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/rsi2_pullback_v1.py` (5), `strategies/down_streak_v1.py` (6), `strategies/ibs_reversal_v1.py` (7)
 
 Prior work checked in `memory/ledger.db`: ids 1-4 are trend/volatility ideas (SMA 50/200 cross,
 vol targeting, multi-horizon momentum, Donchian breakout). None is mean reversion and none is
@@ -75,7 +75,15 @@ been arbitraged down, and the OOS window is the test of that.
 SPY and QQQ; IS 2016-01-01..2022-12-31, OOS 2023-01-01..end; 5 bps; benchmark buy-and-hold.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/rsi2_pullback_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.21 / 0.68 | -15.8% / -33.8% | 1.1% / 11.5% | 0.059% / 0.050% | 9% | 45 | contradicts: Sharpe 0.21 < 1x buy&hold 0.68; return/exposure day 0.059% < 2x buy&hold 0.050% | [SPY_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/rsi2_pullback_v1/SPY_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| SPY OOS | 1.38 / 1.43 | -4.7% / -18.8% | 7.6% / 22.4% | 0.222% / 0.085% | 13% | 42 | contradicts: Sharpe 1.38 < 1x buy&hold 1.43 | [SPY_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/rsi2_pullback_v1/SPY_2023-01-03_2026-10-09_20261012T032100Z.json) |
+| QQQ IS | 0.28 / 0.70 | -10.3% / -35.0% | 1.9% / 14.5% | 0.093% / 0.065% | 9% | 45 | contradicts: Sharpe 0.28 < 1x buy&hold 0.70; return/exposure day 0.093% < 2x buy&hold 0.065% | [QQQ_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/rsi2_pullback_v1/QQQ_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| QQQ OOS | 1.18 / 1.51 | -5.9% / -22.8% | 9.2% / 32.6% | 0.250% / 0.120% | 14% | 40 | contradicts: Sharpe 1.18 < 1x buy&hold 1.51 | [QQQ_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/rsi2_pullback_v1/QQQ_2023-01-03_2026-10-09_20261012T032100Z.json) |
 
 ---
 
@@ -109,7 +117,15 @@ time stop locks in losses.
 SPY and QQQ; IS 2016-01-01..2022-12-31, OOS 2023-01-01..end; 5 bps; benchmark buy-and-hold.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/down_streak_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.19 / 0.68 | -14.3% / -33.8% | 0.7% / 11.5% | 0.068% / 0.050% | 5% | 51 | contradicts: Sharpe 0.19 < 1x buy&hold 0.68; return/exposure day 0.068% < 2x buy&hold 0.050% | [SPY_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/down_streak_v1/SPY_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| SPY OOS | 1.01 / 1.43 | -2.1% / -18.8% | 3.5% / 22.4% | 0.195% / 0.085% | 7% | 45 | contradicts: Sharpe 1.01 < 1x buy&hold 1.43 | [SPY_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/down_streak_v1/SPY_2023-01-03_2026-10-09_20261012T032100Z.json) |
+| QQQ IS | 0.33 / 0.70 | -7.0% / -35.0% | 1.3% / 14.5% | 0.131% / 0.065% | 4% | 45 | contradicts: Sharpe 0.33 < 1x buy&hold 0.70 | [QQQ_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/down_streak_v1/QQQ_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| QQQ OOS | 1.17 / 1.51 | -3.4% / -22.8% | 5.7% / 32.6% | 0.343% / 0.120% | 7% | 41 | contradicts: Sharpe 1.17 < 1x buy&hold 1.51 | [QQQ_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/down_streak_v1/QQQ_2023-01-03_2026-10-09_20261012T032101Z.json) |
 
 ---
 
@@ -143,4 +159,12 @@ optimistic close fill.
 SPY and QQQ; IS 2016-01-01..2022-12-31, OOS 2023-01-01..end; 5 bps; benchmark buy-and-hold.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/ibs_reversal_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | -0.40 / 0.68 | -25.0% / -33.8% | -2.6% / 11.5% | -0.088% / 0.050% | 11% | 161 | contradicts: Sharpe -0.40 < 1x buy&hold 0.68; return/exposure day -0.088% < 2x buy&hold 0.050% | [SPY_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/ibs_reversal_v1/SPY_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| SPY OOS | 0.66 / 1.43 | -4.9% / -18.8% | 3.4% / 22.4% | 0.086% / 0.085% | 16% | 123 | contradicts: Sharpe 0.66 < 1x buy&hold 1.43; return/exposure day 0.086% < 2x buy&hold 0.085% | [SPY_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/ibs_reversal_v1/SPY_2023-01-03_2026-10-09_20261012T032101Z.json) |
+| QQQ IS | 0.68 / 0.70 | -11.1% / -35.0% | 4.6% / 14.5% | 0.178% / 0.065% | 11% | 159 | contradicts: Sharpe 0.68 < 1x buy&hold 0.70 | [QQQ_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/ibs_reversal_v1/QQQ_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| QQQ OOS | 0.66 / 1.51 | -8.1% / -22.8% | 4.8% / 32.6% | 0.125% / 0.120% | 16% | 123 | contradicts: Sharpe 0.66 < 1x buy&hold 1.51; return/exposure day 0.125% < 2x buy&hold 0.120% | [QQQ_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/ibs_reversal_v1/QQQ_2023-01-03_2026-10-09_20261012T032101Z.json) |

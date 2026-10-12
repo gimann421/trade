@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 11 (turn-of-month), 12 (pre-holiday), 13 (options-expiration week)
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/turn_of_month_v1.py` (11), `strategies/pre_holiday_v1.py` (12), `strategies/opex_week_v1.py` (13)
 
 Author: seasonality-analyst. Only date-driven rules on daily bars. No returns were computed and
 no parameters were tested on `data/` before writing this. Every window and parameter below is
@@ -111,7 +111,15 @@ SPY and QQQ, `data/*_1Day.csv`, 2016-01-04..2026-10-09, 5 bps, benchmark buy-and
 symbol. No parameters to tune: the window is fixed at [-1, +3] by the literature.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/turn_of_month_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.27 / 0.68 | -9.1% / -33.8% | 1.8% / 11.5% | 0.044% / 0.050% | 19% | 85 | contradicts: Sharpe 0.27 < 1x buy&hold 0.68; return/exposure day 0.044% < 2x buy&hold 0.050% | [SPY_2016-01-04_2022-12-30_20261012T032102Z.json](../backtests/turn_of_month_v1/SPY_2016-01-04_2022-12-30_20261012T032102Z.json) |
+| SPY OOS | 0.48 / 1.43 | -10.6% / -18.8% | 3.0% / 22.4% | 0.064% / 0.085% | 19% | 46 | contradicts: Sharpe 0.48 < 1x buy&hold 1.43; return/exposure day 0.064% < 2x buy&hold 0.085% | [SPY_2023-01-03_2026-10-09_20261012T032102Z.json](../backtests/turn_of_month_v1/SPY_2023-01-03_2026-10-09_20261012T032102Z.json) |
+| QQQ IS | 0.32 / 0.70 | -15.5% / -35.0% | 2.8% / 14.5% | 0.067% / 0.065% | 19% | 85 | contradicts: Sharpe 0.32 < 1x buy&hold 0.70; return/exposure day 0.067% < 2x buy&hold 0.065% | [QQQ_2016-01-04_2022-12-30_20261012T032103Z.json](../backtests/turn_of_month_v1/QQQ_2016-01-04_2022-12-30_20261012T032103Z.json) |
+| QQQ OOS | 0.61 / 1.51 | -13.0% / -22.8% | 5.1% / 32.6% | 0.110% / 0.120% | 19% | 46 | contradicts: Sharpe 0.61 < 1x buy&hold 1.51; return/exposure day 0.110% < 2x buy&hold 0.120% | [QQQ_2023-01-03_2026-10-09_20261012T032103Z.json](../backtests/turn_of_month_v1/QQQ_2023-01-03_2026-10-09_20261012T032103Z.json) |
 
 ---
 
@@ -167,7 +175,21 @@ from the fixed rule list above. Report the 3 largest pre-holiday returns and the
 ones per window, so a result driven by one or two days is visible.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/pre_holiday_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.34 / 0.68 | -3.4% / -33.8% | 0.8% / 11.5% | 0.092% / 0.050% | 4% | 63 | contradicts: return/exposure day 0.092% < 3x buy&hold 0.050% | [SPY_2016-01-04_2022-12-30_20261012T032103Z.json](../backtests/pre_holiday_v1/SPY_2016-01-04_2022-12-30_20261012T032103Z.json) |
+| SPY OOS | 0.41 / 1.43 | -1.2% / -18.8% | 0.7% / 22.4% | 0.070% / 0.085% | 4% | 37 | contradicts: Sharpe 0.41 < 0.5x buy&hold 1.43; return/exposure day 0.070% < 3x buy&hold 0.085% | [SPY_2023-01-03_2026-10-09_20261012T032104Z.json](../backtests/pre_holiday_v1/SPY_2023-01-03_2026-10-09_20261012T032104Z.json) |
+| QQQ IS | 0.12 / 0.70 | -5.9% / -35.0% | 0.3% / 14.5% | 0.041% / 0.065% | 4% | 63 | contradicts: Sharpe 0.12 < 0.5x buy&hold 0.70; return/exposure day 0.041% < 3x buy&hold 0.065% | [QQQ_2016-01-04_2022-12-30_20261012T032104Z.json](../backtests/pre_holiday_v1/QQQ_2016-01-04_2022-12-30_20261012T032104Z.json) |
+| QQQ OOS | 0.34 / 1.51 | -2.3% / -22.8% | 1.0% / 32.6% | 0.100% / 0.120% | 4% | 37 | contradicts: Sharpe 0.34 < 0.5x buy&hold 1.51; return/exposure day 0.100% < 3x buy&hold 0.120% | [QQQ_2023-01-03_2026-10-09_20261012T032105Z.json](../backtests/pre_holiday_v1/QQQ_2023-01-03_2026-10-09_20261012T032105Z.json) |
+Largest and smallest single pre-holiday-day returns (gross), per window:
+
+- SPY IS: best 2022-05-27 +2.46%, 2016-02-12 +2.06%, 2020-04-09 +1.54%; worst 2018-12-24 -2.59%, 2016-01-15 -2.15%, 2022-04-14 -1.25%
+- SPY OOS: best 2023-05-26 +1.29%, 2024-12-24 +1.11%, 2026-06-18 +1.04%; worst 2025-12-31 -0.74%, 2025-05-23 -0.68%, 2025-08-29 -0.60%
+- QQQ IS: best 2022-05-27 +3.26%, 2018-03-29 +1.83%, 2021-04-01 +1.71%; worst 2016-01-15 -3.11%, 2018-12-24 -2.48%, 2022-04-14 -2.29%
+- QQQ OOS: best 2023-05-26 +2.55%, 2026-06-18 +2.51%, 2025-01-17 +1.69%; worst 2026-07-02 -1.73%, 2025-08-29 -1.16%, 2025-05-23 -0.93%
 
 ---
 
@@ -221,4 +243,12 @@ SPY and QQQ, 2016-01-04..2026-10-09, 5 bps, benchmark buy-and-hold same symbol. 
 Friday comes from the calendar, not from any options data. No parameters to tune.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/opex_week_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | -0.35 / 0.68 | -33.7% / -33.8% | -3.5% / 11.5% | -0.053% / 0.050% | 23% | 84 | contradicts: Sharpe -0.35 < 1x buy&hold 0.68; return/exposure day -0.053% < 2x buy&hold 0.050% | [SPY_2016-01-04_2022-12-30_20261012T032105Z.json](../backtests/opex_week_v1/SPY_2016-01-04_2022-12-30_20261012T032105Z.json) |
+| SPY OOS | 0.49 / 1.43 | -5.6% / -18.8% | 2.9% / 22.4% | 0.053% / 0.085% | 23% | 45 | contradicts: Sharpe 0.49 < 1x buy&hold 1.43; return/exposure day 0.053% < 2x buy&hold 0.085% | [SPY_2023-01-03_2026-10-09_20261012T032105Z.json](../backtests/opex_week_v1/SPY_2023-01-03_2026-10-09_20261012T032105Z.json) |
+| QQQ IS | -0.08 / 0.70 | -27.9% / -35.0% | -1.4% / 14.5% | -0.014% / 0.065% | 23% | 84 | contradicts: Sharpe -0.08 < 1x buy&hold 0.70; return/exposure day -0.014% < 2x buy&hold 0.065% | [QQQ_2016-01-04_2022-12-30_20261012T032105Z.json](../backtests/opex_week_v1/QQQ_2016-01-04_2022-12-30_20261012T032105Z.json) |
+| QQQ OOS | 0.39 / 1.51 | -11.7% / -22.8% | 3.1% / 32.6% | 0.060% / 0.120% | 23% | 45 | contradicts: Sharpe 0.39 < 1x buy&hold 1.51; return/exposure day 0.060% < 2x buy&hold 0.120% | [QQQ_2023-01-03_2026-10-09_20261012T032106Z.json](../backtests/opex_week_v1/QQQ_2023-01-03_2026-10-09_20261012T032106Z.json) |

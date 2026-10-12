@@ -25,7 +25,7 @@ Three proposals. Before writing them I checked the ledger (`memory/ledger.db`). 
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 2
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/vol_target_v1.py`
 
 ### Hypothesis
 Holding SPY/QQQ at weight `min(1, 0.15 / annualized 20-day realized close-to-close volatility)`, recomputed daily, beats buy-and-hold on Sharpe and cuts max drawdown by at least 5 points after 5 bps costs. This must hold in both 2016-2022 and 2023-onward.
@@ -57,7 +57,15 @@ Holding SPY/QQQ at weight `min(1, 0.15 / annualized 20-day realized close-to-clo
 - Fixed parameters: 15% target and 20-day lookback. No parameter sweep.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/vol_target_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.85 / 0.68 | -19.0% / -33.8% | 10.4% / 11.5% | 0.043% / 0.050% | 86% | 1 | supports: passes kill threshold | [SPY_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/vol_target_v1/SPY_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| SPY OOS | 1.42 / 1.43 | -14.8% / -18.8% | 19.0% / 22.4% | 0.072% / 0.085% | 95% | 1 | contradicts: Sharpe 1.42 < buy&hold 1.43; MaxDD -14.8% not 5pts better than -18.8% | [SPY_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/vol_target_v1/SPY_2023-01-03_2026-10-09_20261012T032100Z.json) |
+| QQQ IS | 0.93 / 0.70 | -21.4% / -35.0% | 13.0% / 14.5% | 0.053% / 0.065% | 78% | 1 | supports: passes kill threshold | [QQQ_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/vol_target_v1/QQQ_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| QQQ OOS | 1.48 / 1.51 | -16.3% / -22.8% | 23.9% / 32.6% | 0.090% / 0.120% | 83% | 1 | contradicts: Sharpe 1.48 < buy&hold 1.51 | [QQQ_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/vol_target_v1/QQQ_2023-01-03_2026-10-09_20261012T032100Z.json) |
 
 ---
 
@@ -65,7 +73,7 @@ TBD
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 3
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/tsmom_ladder_v1.py`
 
 ### Hypothesis
 Holding SPY/QQQ at weight equal to the fraction of the 21-, 63-, 126- and 252-trading-day trailing close-to-close returns that are positive (so 0, 0.25, 0.5, 0.75 or 1) beats buy-and-hold on Sharpe and cuts max drawdown by at least 5 points after 5 bps costs. This must hold in both 2016-2022 and 2023-onward.
@@ -96,7 +104,15 @@ Holding SPY/QQQ at weight equal to the fraction of the 21-, 63-, 126- and 252-tr
 - Fixed lookbacks: 21, 63, 126 and 252 days. No parameter sweep.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/tsmom_ladder_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.64 / 0.68 | -16.7% / -33.8% | 6.2% / 11.5% | 0.028% / 0.050% | 71% | 12 | contradicts: Sharpe 0.64 < buy&hold 0.68 | [SPY_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/tsmom_ladder_v1/SPY_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| SPY OOS | 1.44 / 1.43 | -9.4% / -18.8% | 15.5% / 22.4% | 0.060% / 0.085% | 84% | 5 | supports: passes kill threshold | [SPY_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/tsmom_ladder_v1/SPY_2023-01-03_2026-10-09_20261012T032100Z.json) |
+| QQQ IS | 0.72 / 0.70 | -24.5% / -35.0% | 9.6% / 14.5% | 0.044% / 0.065% | 71% | 19 | supports: passes kill threshold | [QQQ_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/tsmom_ladder_v1/QQQ_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| QQQ OOS | 1.40 / 1.51 | -14.5% / -22.8% | 21.8% / 32.6% | 0.083% / 0.120% | 83% | 2 | contradicts: Sharpe 1.40 < buy&hold 1.51 | [QQQ_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/tsmom_ladder_v1/QQQ_2023-01-03_2026-10-09_20261012T032100Z.json) |
 
 ---
 
@@ -104,7 +120,7 @@ TBD
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 4
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/donchian_breakout_v1.py`
 
 ### Hypothesis
 - Rule: go long SPY/QQQ (weight 1) after a close at a new 63-day closing high.
@@ -139,4 +155,12 @@ This rule beats buy-and-hold on Sharpe and cuts max drawdown by at least 5 point
 - Starting state: flat until the first 63-day high.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/donchian_breakout_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.50 / 0.68 | -12.5% / -33.8% | 3.9% / 11.5% | 0.032% / 0.050% | 52% | 19 | contradicts: Sharpe 0.50 < buy&hold 0.68 | [SPY_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/donchian_breakout_v1/SPY_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| SPY OOS | 1.01 / 1.43 | -7.9% / -18.8% | 8.6% / 22.4% | 0.058% / 0.085% | 59% | 12 | contradicts: Sharpe 1.01 < buy&hold 1.43 | [SPY_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/donchian_breakout_v1/SPY_2023-01-03_2026-10-09_20261012T032100Z.json) |
+| QQQ IS | 0.58 / 0.70 | -16.6% / -35.0% | 5.8% / 14.5% | 0.048% / 0.065% | 51% | 17 | contradicts: Sharpe 0.58 < buy&hold 0.70 | [QQQ_2016-01-04_2022-12-30_20261012T032100Z.json](../backtests/donchian_breakout_v1/QQQ_2016-01-04_2022-12-30_20261012T032100Z.json) |
+| QQQ OOS | 1.21 / 1.51 | -10.5% / -22.8% | 14.9% / 32.6% | 0.109% / 0.120% | 53% | 9 | contradicts: Sharpe 1.21 < buy&hold 1.51 | [QQQ_2023-01-03_2026-10-09_20261012T032100Z.json](../backtests/donchian_breakout_v1/QQQ_2023-01-03_2026-10-09_20261012T032100Z.json) |

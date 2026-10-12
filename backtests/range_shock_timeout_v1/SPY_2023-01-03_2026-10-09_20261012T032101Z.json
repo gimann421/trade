@@ -1,0 +1,36 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.6686315439562229,
+    "cagr": 0.1461288350187575,
+    "ann_vol": 0.11105897626163219,
+    "sharpe": 1.283994240311938,
+    "max_drawdown": -0.1592688294416994,
+    "exposure": 0.7822410147991543,
+    "trades": 32,
+    "entries": 17,
+    "exits": 16,
+    "exposure_days": 740,
+    "return_per_exposure_day": 0.0007233951910055379
+  },
+  "buy_and_hold": {
+    "total_return": 1.134530500342691,
+    "cagr": 0.22383011951246123,
+    "ann_vol": 0.14888536769017596,
+    "sharpe": 1.4311939863774787,
+    "max_drawdown": -0.18754263088722145,
+    "mean_daily_return": 0.000845570805149919
+  },
+  "strategy_file": "strategies/range_shock_timeout_v1.py",
+  "params": {
+    "atr": 20,
+    "mult": 2.0,
+    "timeout": 10
+  },
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032101Z"
+}

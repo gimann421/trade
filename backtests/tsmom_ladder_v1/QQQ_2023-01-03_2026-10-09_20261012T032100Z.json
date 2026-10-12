@@ -1,0 +1,39 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.095007766248214,
+    "cagr": 0.21775231730332245,
+    "ann_vol": 0.14925793124784387,
+    "sharpe": 1.3951336758268136,
+    "max_drawdown": -0.14495925045231883,
+    "exposure": 0.8316596194503171,
+    "trades": 132,
+    "entries": 2,
+    "exits": 1,
+    "exposure_days": 938,
+    "return_per_exposure_day": 0.0008333760148645898
+  },
+  "buy_and_hold": {
+    "total_return": 1.881962559459872,
+    "cagr": 0.32572661425543603,
+    "ann_vol": 0.2005773919479078,
+    "sharpe": 1.5062828224491365,
+    "max_drawdown": -0.22769075479457168,
+    "mean_daily_return": 0.0011989138097729414
+  },
+  "strategy_file": "strategies/tsmom_ladder_v1.py",
+  "params": {
+    "lookbacks": [
+      21,
+      63,
+      126,
+      252
+    ]
+  },
+  "symbol": "QQQ",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032100Z"
+}

@@ -1,0 +1,32 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.02563238321596817,
+    "cagr": 0.006764812668939246,
+    "ann_vol": 0.01665329741153441,
+    "sharpe": 0.4131428266080047,
+    "max_drawdown": -0.012456885160382236,
+    "exposure": 0.039112050739957716,
+    "trades": 75,
+    "entries": 37,
+    "exits": 37,
+    "exposure_days": 37,
+    "return_per_exposure_day": 0.0006980544921962742
+  },
+  "buy_and_hold": {
+    "total_return": 1.134530500342691,
+    "cagr": 0.22383011951246123,
+    "ann_vol": 0.14888536769017596,
+    "sharpe": 1.4311939863774787,
+    "max_drawdown": -0.18754263088722145,
+    "mean_daily_return": 0.000845570805149919
+  },
+  "strategy_file": "strategies/pre_holiday_v1.py",
+  "params": {},
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032104Z"
+}

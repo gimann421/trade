@@ -1,0 +1,35 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.19142002249383916,
+    "cagr": 0.04776172618726737,
+    "ann_vol": 0.07488913473061207,
+    "sharpe": 0.6603829772206332,
+    "max_drawdown": -0.08057566642564562,
+    "exposure": 0.15644820295983086,
+    "trades": 246,
+    "entries": 123,
+    "exits": 123,
+    "exposure_days": 148,
+    "return_per_exposure_day": 0.001254421713538054
+  },
+  "buy_and_hold": {
+    "total_return": 1.881962559459872,
+    "cagr": 0.32572661425543603,
+    "ann_vol": 0.2005773919479078,
+    "sharpe": 1.5062828224491365,
+    "max_drawdown": -0.22769075479457168,
+    "mean_daily_return": 0.0011989138097729414
+  },
+  "strategy_file": "strategies/ibs_reversal_v1.py",
+  "params": {
+    "ibs_max": 0.2,
+    "trend": 200
+  },
+  "symbol": "QQQ",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032101Z"
+}

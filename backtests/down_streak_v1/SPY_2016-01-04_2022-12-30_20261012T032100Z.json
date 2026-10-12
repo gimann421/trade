@@ -1,0 +1,36 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.052940473392182996,
+    "cagr": 0.007405177397091345,
+    "ann_vol": 0.044328633365893,
+    "sharpe": 0.18865616732992718,
+    "max_drawdown": -0.14280448758976416,
+    "exposure": 0.04880817253121453,
+    "trades": 102,
+    "entries": 51,
+    "exits": 51,
+    "exposure_days": 86,
+    "return_per_exposure_day": 0.000679926959671718
+  },
+  "buy_and_hold": {
+    "total_return": 1.1370400749941423,
+    "cagr": 0.11472970808745786,
+    "ann_vol": 0.1866709968380342,
+    "sharpe": 0.675749317616849,
+    "max_drawdown": -0.33793888166449937,
+    "mean_daily_return": 0.00050056666163555
+  },
+  "strategy_file": "strategies/down_streak_v1.py",
+  "params": {
+    "streak": 3,
+    "trend": 200,
+    "max_hold": 5
+  },
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032100Z"
+}
