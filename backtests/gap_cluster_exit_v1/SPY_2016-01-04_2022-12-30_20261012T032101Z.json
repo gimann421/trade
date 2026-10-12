@@ -1,0 +1,37 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.7762283120200879,
+    "cagr": 0.085633262460028,
+    "ann_vol": 0.14226120825633626,
+    "sharpe": 0.6489266682633994,
+    "max_drawdown": -0.21372944925048998,
+    "exposure": 0.8637911464245176,
+    "trades": 65,
+    "entries": 33,
+    "exits": 32,
+    "exposure_days": 1522,
+    "return_per_exposure_day": 0.0004241044467449764
+  },
+  "buy_and_hold": {
+    "total_return": 1.1370400749941423,
+    "cagr": 0.11472970808745786,
+    "ann_vol": 0.1866709968380342,
+    "sharpe": 0.675749317616849,
+    "max_drawdown": -0.33793888166449937,
+    "mean_daily_return": 0.00050056666163555
+  },
+  "strategy_file": "strategies/gap_cluster_exit_v1.py",
+  "params": {
+    "gap_mult": 2.0,
+    "baseline": 60,
+    "window": 10,
+    "min_gaps": 2
+  },
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032101Z"
+}

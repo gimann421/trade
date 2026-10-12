@@ -69,6 +69,14 @@ def set_status(conn, hypothesis_id: int, status: str) -> None:
         raise KeyError(hypothesis_id)
 
 
+def set_strategy(conn, hypothesis_id: int, strategy: str) -> None:
+    with conn:
+        cur = conn.execute("UPDATE hypotheses SET strategy = ?, updated_at = ? WHERE id = ?",
+                           (strategy, _now(), hypothesis_id))
+    if cur.rowcount == 0:
+        raise KeyError(hypothesis_id)
+
+
 def add_evidence(conn, hypothesis_id: int, kind: str, summary: str, verdict: str, ref=None) -> int:
     with conn:
         cur = conn.execute(

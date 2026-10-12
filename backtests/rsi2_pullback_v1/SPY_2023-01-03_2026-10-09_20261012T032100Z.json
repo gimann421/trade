@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3153143214156242,
+    "cagr": 0.07574084796575487,
+    "ann_vol": 0.05381552088784299,
+    "sharpe": 1.3836506547357794,
+    "max_drawdown": -0.04699743382691368,
+    "exposure": 0.1331923890063425,
+    "trades": 84,
+    "entries": 42,
+    "exits": 42,
+    "exposure_days": 126,
+    "return_per_exposure_day": 0.0022184725104873637
+  },
+  "buy_and_hold": {
+    "total_return": 1.134530500342691,
+    "cagr": 0.22383011951246123,
+    "ann_vol": 0.14888536769017596,
+    "sharpe": 1.4311939863774787,
+    "max_drawdown": -0.18754263088722145,
+    "mean_daily_return": 0.000845570805149919
+  },
+  "strategy_file": "strategies/rsi2_pullback_v1.py",
+  "params": {
+    "rsi_period": 2,
+    "entry_rsi": 10,
+    "trend": 200,
+    "exit_sma": 5
+  },
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032100Z"
+}

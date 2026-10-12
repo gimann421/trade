@@ -1,0 +1,32 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.057273464536048424,
+    "cagr": 0.007997036429809645,
+    "ann_vol": 0.02445834684977794,
+    "sharpe": 0.33789360864544066,
+    "max_drawdown": -0.03391978580467725,
+    "exposure": 0.03575482406356413,
+    "trades": 125,
+    "entries": 63,
+    "exits": 62,
+    "exposure_days": 63,
+    "return_per_exposure_day": 0.000917216566921528
+  },
+  "buy_and_hold": {
+    "total_return": 1.1370400749941423,
+    "cagr": 0.11472970808745786,
+    "ann_vol": 0.1866709968380342,
+    "sharpe": 0.675749317616849,
+    "max_drawdown": -0.33793888166449937,
+    "mean_daily_return": 0.00050056666163555
+  },
+  "strategy_file": "strategies/pre_holiday_v1.py",
+  "params": {},
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032103Z"
+}

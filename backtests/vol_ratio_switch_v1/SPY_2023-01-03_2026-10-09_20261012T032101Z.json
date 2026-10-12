@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.6861004265387194,
+    "cagr": 0.14931293451124295,
+    "ann_vol": 0.11750402595159926,
+    "sharpe": 1.2433745838011492,
+    "max_drawdown": -0.10232631328406783,
+    "exposure": 0.8699788583509513,
+    "trades": 16,
+    "entries": 9,
+    "exits": 8,
+    "exposure_days": 823,
+    "return_per_exposure_day": 0.0006664161185218258
+  },
+  "buy_and_hold": {
+    "total_return": 1.134530500342691,
+    "cagr": 0.22383011951246123,
+    "ann_vol": 0.14888536769017596,
+    "sharpe": 1.4311939863774787,
+    "max_drawdown": -0.18754263088722145,
+    "mean_daily_return": 0.000845570805149919
+  },
+  "strategy_file": "strategies/vol_ratio_switch_v1.py",
+  "params": {
+    "short": 10,
+    "long": 100,
+    "exit_ratio": 1.5,
+    "reenter_ratio": 1.0
+  },
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032101Z"
+}

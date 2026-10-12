@@ -5,7 +5,7 @@ import pytest
 from core import broker
 from core.broker import LiveAccountError, get_paper_client
 from core.config import ConfigError, PaperKeys, load_paper_keys
-from core.ledger import add_evidence, add_hypothesis, connect, set_status
+from core.ledger import add_evidence, add_hypothesis, connect, set_status, set_strategy
 from core.risk import load_risk_limits
 
 FAKE = PaperKeys("fake-key-id", "fake-secret")
@@ -90,6 +90,9 @@ def test_ledger_roundtrip(tmp_path):
     hid = add_hypothesis(conn, "t", "SPY drifts up after 3 down days")
     add_evidence(conn, hid, "backtest", "Sharpe 0.4 over 2010-2024", "inconclusive")
     set_status(conn, hid, "testing")
-    assert conn.execute("SELECT status FROM hypotheses").fetchone()[0] == "testing"
+    set_strategy(conn, hid, "drift_v1.py")
+    assert tuple(conn.execute("SELECT status, strategy FROM hypotheses").fetchone()) == ("testing", "drift_v1.py")
+    with pytest.raises(KeyError):
+        set_strategy(conn, 999, "x_v1.py")
     with pytest.raises(sqlite3.IntegrityError):
         set_status(conn, hid, "bogus")

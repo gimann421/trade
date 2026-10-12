@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis id:** 8, 9, 10
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/vol_ratio_switch_v1.py` (8), `strategies/gap_cluster_exit_v1.py` (9), `strategies/range_shock_timeout_v1.py` (10)
 
 Author: volatility-analyst. Scope: volatility-based exposure rules on daily bars only
 (`data/SPY_1Day.csv`, `data/QQQ_1Day.csv`, 2016-01-04..2026-10-09). `generate_signals(bars)` sees
@@ -93,7 +93,15 @@ near the bottom of a V-shaped recovery and re-enters late, giving up the rebound
 below buy-and-hold without a 5-point drawdown improvement.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/vol_ratio_switch_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.74 / 0.68 | -28.3% / -33.8% | 9.4% / 11.5% | 0.048% / 0.050% | 82% | 18 | supports: passes kill threshold | [SPY_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/vol_ratio_switch_v1/SPY_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| SPY OOS | 1.24 / 1.43 | -10.2% / -18.8% | 14.9% / 22.4% | 0.067% / 0.085% | 87% | 9 | contradicts: Sharpe 1.24 < buy&hold 1.43 | [SPY_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/vol_ratio_switch_v1/SPY_2023-01-03_2026-10-09_20261012T032101Z.json) |
+| QQQ IS | 0.62 / 0.70 | -35.7% / -35.0% | 9.5% / 14.5% | 0.054% / 0.065% | 78% | 22 | contradicts: Sharpe 0.62 < buy&hold 0.70; MaxDD -35.7% not 5pts better than -35.0% | [QQQ_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/vol_ratio_switch_v1/QQQ_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| QQQ OOS | 1.40 / 1.51 | -16.8% / -22.8% | 24.3% / 32.6% | 0.105% / 0.120% | 88% | 7 | contradicts: Sharpe 1.40 < buy&hold 1.51 | [QQQ_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/vol_ratio_switch_v1/QQQ_2023-01-03_2026-10-09_20261012T032101Z.json) |
 
 ---
 
@@ -124,7 +132,15 @@ It fails if it hits the common kill rule above on SPY or QQQ in either window. T
 gap-down clusters mark short-term capitulation, so the rule is flat right before strong rebounds.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/gap_cluster_exit_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.65 / 0.68 | -21.4% / -33.8% | 8.6% / 11.5% | 0.042% / 0.050% | 86% | 33 | contradicts: Sharpe 0.65 < buy&hold 0.68 | [SPY_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/gap_cluster_exit_v1/SPY_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| SPY OOS | 1.72 / 1.43 | -12.9% / -18.8% | 22.0% / 22.4% | 0.092% / 0.085% | 89% | 18 | supports: passes kill threshold | [SPY_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/gap_cluster_exit_v1/SPY_2023-01-03_2026-10-09_20261012T032101Z.json) |
+| QQQ IS | 0.85 / 0.70 | -37.1% / -35.0% | 15.3% / 14.5% | 0.073% / 0.065% | 87% | 34 | contradicts: MaxDD -37.1% not 5pts better than -35.0% | [QQQ_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/gap_cluster_exit_v1/QQQ_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| QQQ OOS | 1.46 / 1.51 | -19.5% / -22.8% | 26.4% / 32.6% | 0.109% / 0.120% | 91% | 17 | contradicts: Sharpe 1.46 < buy&hold 1.51; MaxDD -19.5% not 5pts better than -22.8% | [QQQ_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/gap_cluster_exit_v1/QQQ_2023-01-03_2026-10-09_20261012T032101Z.json) |
 
 ---
 
@@ -157,4 +173,12 @@ It fails if it hits the common kill rule above on SPY or QQQ in either window. W
 in bull years giving up too much return to clear the Sharpe bar.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 1, 2026-10-12; rule fixed before testing, scored by `research/round1_verdicts.py`). Strategy: `strategies/range_shock_timeout_v1.py`.
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Ret per exposure day (strat / B&H mean) | Exposure | Entries | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|
+| SPY IS | 0.83 / 0.68 | -15.6% / -33.8% | 10.7% / 11.5% | 0.063% / 0.050% | 70% | 41 | supports: passes kill threshold | [SPY_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/range_shock_timeout_v1/SPY_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| SPY OOS | 1.28 / 1.43 | -15.9% / -18.8% | 14.6% / 22.4% | 0.072% / 0.085% | 78% | 17 | contradicts: Sharpe 1.28 < buy&hold 1.43; MaxDD -15.9% not 5pts better than -18.8% | [SPY_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/range_shock_timeout_v1/SPY_2023-01-03_2026-10-09_20261012T032101Z.json) |
+| QQQ IS | 0.76 / 0.70 | -27.3% / -35.0% | 12.9% / 14.5% | 0.074% / 0.065% | 74% | 37 | supports: passes kill threshold | [QQQ_2016-01-04_2022-12-30_20261012T032101Z.json](../backtests/range_shock_timeout_v1/QQQ_2016-01-04_2022-12-30_20261012T032101Z.json) |
+| QQQ OOS | 1.21 / 1.51 | -19.0% / -22.8% | 19.8% / 32.6% | 0.098% / 0.120% | 78% | 17 | contradicts: Sharpe 1.21 < buy&hold 1.51; MaxDD -19.0% not 5pts better than -22.8% | [QQQ_2023-01-03_2026-10-09_20261012T032101Z.json](../backtests/range_shock_timeout_v1/QQQ_2023-01-03_2026-10-09_20261012T032101Z.json) |

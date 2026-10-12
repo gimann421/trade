@@ -1,0 +1,35 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.31082816941104907,
+    "cagr": 0.039468451315592734,
+    "ann_vol": 0.08451859383930568,
+    "sharpe": 0.5005905358484519,
+    "max_drawdown": -0.12484151980476044,
+    "exposure": 0.5221339387060159,
+    "trades": 38,
+    "entries": 19,
+    "exits": 19,
+    "exposure_days": 920,
+    "return_per_exposure_day": 0.0003215529020518788
+  },
+  "buy_and_hold": {
+    "total_return": 1.1370400749941423,
+    "cagr": 0.11472970808745786,
+    "ann_vol": 0.1866709968380342,
+    "sharpe": 0.675749317616849,
+    "max_drawdown": -0.33793888166449937,
+    "mean_daily_return": 0.00050056666163555
+  },
+  "strategy_file": "strategies/donchian_breakout_v1.py",
+  "params": {
+    "entry": 63,
+    "exit": 21
+  },
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032100Z"
+}

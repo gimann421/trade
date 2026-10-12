@@ -1,0 +1,35 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.1322062788363425,
+    "cagr": 0.033629624672334435,
+    "ann_vol": 0.051881111459493354,
+    "sharpe": 0.6634729196731654,
+    "max_drawdown": -0.04877277006486602,
+    "exposure": 0.15856236786469344,
+    "trades": 246,
+    "entries": 123,
+    "exits": 123,
+    "exposure_days": 150,
+    "return_per_exposure_day": 0.0008614534397126813
+  },
+  "buy_and_hold": {
+    "total_return": 1.134530500342691,
+    "cagr": 0.22383011951246123,
+    "ann_vol": 0.14888536769017596,
+    "sharpe": 1.4311939863774787,
+    "max_drawdown": -0.18754263088722145,
+    "mean_daily_return": 0.000845570805149919
+  },
+  "strategy_file": "strategies/ibs_reversal_v1.py",
+  "params": {
+    "ibs_max": 0.2,
+    "trend": 200
+  },
+  "symbol": "SPY",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032101Z"
+}

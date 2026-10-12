@@ -1,0 +1,32 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.036179308703201185,
+    "cagr": 0.009512327400284182,
+    "ann_vol": 0.029484569740012,
+    "sharpe": 0.3357415282725766,
+    "max_drawdown": -0.023449445216558895,
+    "exposure": 0.039112050739957716,
+    "trades": 75,
+    "entries": 37,
+    "exits": 37,
+    "exposure_days": 37,
+    "return_per_exposure_day": 0.0010043584300410296
+  },
+  "buy_and_hold": {
+    "total_return": 1.881962559459872,
+    "cagr": 0.32572661425543603,
+    "ann_vol": 0.2005773919479078,
+    "sharpe": 1.5062828224491365,
+    "max_drawdown": -0.22769075479457168,
+    "mean_daily_return": 0.0011989138097729414
+  },
+  "strategy_file": "strategies/pre_holiday_v1.py",
+  "params": {},
+  "symbol": "QQQ",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032105Z"
+}

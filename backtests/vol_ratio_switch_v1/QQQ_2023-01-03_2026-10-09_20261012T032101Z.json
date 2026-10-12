@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-09",
+  "days": 946,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.2620893622179974,
+    "cagr": 0.2428994705969778,
+    "ann_vol": 0.1655479015249643,
+    "sharpe": 1.396803088862862,
+    "max_drawdown": -0.16789199171942304,
+    "exposure": 0.8763213530655392,
+    "trades": 12,
+    "entries": 7,
+    "exits": 6,
+    "exposure_days": 829,
+    "return_per_exposure_day": 0.0010471163283061152
+  },
+  "buy_and_hold": {
+    "total_return": 1.881962559459872,
+    "cagr": 0.32572661425543603,
+    "ann_vol": 0.2005773919479078,
+    "sharpe": 1.5062828224491365,
+    "max_drawdown": -0.22769075479457168,
+    "mean_daily_return": 0.0011989138097729414
+  },
+  "strategy_file": "strategies/vol_ratio_switch_v1.py",
+  "params": {
+    "short": 10,
+    "long": 100,
+    "exit_ratio": 1.5,
+    "reenter_ratio": 1.0
+  },
+  "symbol": "QQQ",
+  "git_commit": "50f3c7f-dirty",
+  "run_at": "20261012T032101Z"
+}
