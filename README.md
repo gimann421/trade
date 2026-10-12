@@ -52,4 +52,7 @@ python -c "from core.broker import get_paper_client as g; a=g().get_account(); p
 3. Get data (needs keys): `python -m core.data SPY --start 2016-01-01`
 4. Backtest: `python -m core.backtest strategies/<name>_v1.py SPY --hypothesis-id 1 --verdict supports`
    The backtester rejects strategies that use future data and compares against buy-and-hold.
+   Strategies that allocate across several symbols define `generate_weights(bars_by_symbol)`
+   instead and run with `python -m core.portfolio strategies/<name>_v1.py SPY EFA TLT --start 2023-01-01`;
+   see the `core/portfolio.py` docstring for the weights contract and the benchmarks each run is scored against.
 5. Paper trade through `submit_order()`; every decision lands in `journal/`.
