@@ -10,6 +10,7 @@ return, i.e. filled at day t's close. That is slightly optimistic; cost_bps
 
     python -m core.backtest strategies/sma_crossover_v1.py SPY
     python -m core.backtest strategies/sma_crossover_v1.py SPY --hypothesis-id 1 --verdict supports
+    python -m core.backtest strategies/sma_crossover_v1.py SPY --start 2023-01-01   # score one window
 """
 
 import argparse
@@ -78,7 +79,13 @@ def check_no_lookahead(bars: pd.DataFrame, generate_signals, samples: int = 5) -
                              f"when later bars are added")
 
 
-def run_backtest(bars: pd.DataFrame, generate_signals, cost_bps: float = 5.0) -> dict:
+def run_backtest(bars: pd.DataFrame, generate_signals, cost_bps: float = 5.0,
+                 start: str | None = None, end: str | None = None) -> dict:
+    """Backtest on the full history; report metrics only for [start, end] if given.
+
+    Signals and positions are always computed on the full history, so a window starts
+    with warmed-up indicators and the position carried in from the day before.
+    """
     check_no_lookahead(bars, generate_signals)
     close = bars["close"]
     asset_returns = close.pct_change().fillna(0.0)
@@ -87,16 +94,31 @@ def run_backtest(bars: pd.DataFrame, generate_signals, cost_bps: float = 5.0) ->
     turnover = position.diff().abs().fillna(position.abs())
     returns = position * asset_returns - turnover * cost_bps / 10_000
 
+    window = slice(start, end)
+    returns, asset_returns = returns.loc[window], asset_returns.loc[window]
+    position, turnover = position.loc[window], turnover.loc[window]
+    if returns.empty:
+        raise ValueError(f"no bars between {start} and {end}")
+    in_market = position > 0
+    was_in = in_market.shift(1, fill_value=False)
+    exposure_days = int(in_market.sum())
+
     return {
-        "start": str(close.index[0].date()),
-        "end": str(close.index[-1].date()),
-        "days": len(close),
+        "start": str(returns.index[0].date()),
+        "end": str(returns.index[-1].date()),
+        "days": len(returns),
         "cost_bps": cost_bps,
         "strategy": _metrics(returns) | {
             "exposure": float(position.abs().mean()),
             "trades": int((turnover > 0).sum()),
+            "entries": int((in_market & ~was_in).sum()),
+            "exits": int((~in_market & was_in).sum()),
+            "exposure_days": exposure_days,
+            "return_per_exposure_day": float(returns.sum() / exposure_days) if exposure_days else 0.0,
         },
-        "buy_and_hold": _metrics(asset_returns),
+        "buy_and_hold": _metrics(asset_returns) | {
+            "mean_daily_return": float(asset_returns.mean()),
+        },
         "equity_curve": (1 + returns).cumprod(),
     }
 
@@ -112,11 +134,12 @@ def _git_commit() -> str:
         return "unknown"
 
 
-def save_result(result: dict, strategy, symbol: str, backtests_dir: Path = BACKTESTS_DIR) -> Path:
+def save_result(result: dict, strategy, symbol: str, backtests_dir: Path = BACKTESTS_DIR,
+                window: str | None = None) -> Path:
     run_dir = backtests_dir / f"{strategy.STRATEGY_NAME}_v{strategy.VERSION}"
     run_dir.mkdir(parents=True, exist_ok=True)
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-    stem = f"{symbol.upper()}_{stamp}"
+    stem = f"{symbol.upper()}_{window + '_' if window else ''}{stamp}"
     summary = {k: v for k, v in result.items() if k != "equity_curve"} | {
         "strategy_file": f"strategies/{strategy.STRATEGY_NAME}_v{strategy.VERSION}.py",
         "params": getattr(strategy, "PARAMS", {}),
@@ -137,6 +160,8 @@ def main() -> None:
     parser.add_argument("strategy", type=Path)
     parser.add_argument("symbol")
     parser.add_argument("--cost-bps", type=float, default=5.0)
+    parser.add_argument("--start", help="first date to score (YYYY-MM-DD); signals still use all history")
+    parser.add_argument("--end", help="last date to score (YYYY-MM-DD)")
     parser.add_argument("--hypothesis-id", type=int, help="log this run as evidence in the ledger")
     parser.add_argument("--verdict", choices=VERDICTS)
     args = parser.parse_args()
@@ -144,8 +169,10 @@ def main() -> None:
         parser.error("--hypothesis-id and --verdict go together")
 
     strategy = load_strategy(args.strategy)
-    result = run_backtest(load_bars(args.symbol), strategy.generate_signals, args.cost_bps)
-    path = save_result(result, strategy, args.symbol)
+    result = run_backtest(load_bars(args.symbol), strategy.generate_signals, args.cost_bps,
+                          args.start, args.end)
+    window = f"{result['start']}_{result['end']}" if args.start or args.end else None
+    path = save_result(result, strategy, args.symbol, window=window)
     s, b = result["strategy"], result["buy_and_hold"]
     print(f"{args.symbol.upper()} {result['start']}..{result['end']}  "
           f"strategy: CAGR {s['cagr']:.1%} Sharpe {s['sharpe']:.2f} MaxDD {s['max_drawdown']:.1%}  |  "
@@ -154,7 +181,8 @@ def main() -> None:
 
     if args.hypothesis_id is not None:
         conn = connect()
-        summary = (f"{strategy.STRATEGY_NAME}_v{strategy.VERSION} on {args.symbol.upper()}: "
+        summary = (f"{strategy.STRATEGY_NAME}_v{strategy.VERSION} on {args.symbol.upper()} "
+                   f"{result['start']}..{result['end']}: "
                    f"Sharpe {s['sharpe']:.2f} vs buy&hold {b['sharpe']:.2f}, MaxDD {s['max_drawdown']:.1%}")
         add_evidence(conn, args.hypothesis_id, "backtest", summary, args.verdict,
                      ref=str(path.relative_to(ROOT)))

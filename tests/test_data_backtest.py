@@ -89,3 +89,30 @@ def test_example_strategy_runs_and_saves(tmp_path):
     assert summary["strategy_file"] == "strategies/sma_crossover_v1.py"
     assert summary["params"] == {"fast": 50, "slow": 200}
     assert path.with_name(path.stem + "_equity.csv").exists()
+
+
+def test_window_uses_full_history_signals_and_counts_entries():
+    bars = synthetic_bars(400)
+    # Long for 5 days out of every 20; needs 10 bars of history, so a window starting
+    # mid-history must not restart a warm-up.
+    def every_20(b):
+        n = np.arange(len(b))
+        return pd.Series(((n % 20) < 5) & (n >= 10), index=b.index, dtype=float)
+    full = run_backtest(bars, every_20, cost_bps=0)
+    start, end = bars.index[200], bars.index[299]
+    win = run_backtest(bars, every_20, cost_bps=0, start=start, end=end)
+
+    assert win["start"] == str(start.date()) and win["days"] == 100
+    s = win["strategy"]
+    assert s["entries"] == 5 and s["exits"] == 5 and s["exposure_days"] == 25
+    asset = bars["close"].pct_change().loc[start:end]
+    held = every_20(bars).shift(1).fillna(0).loc[start:end]
+    assert s["return_per_exposure_day"] == pytest.approx((held * asset).sum() / 25)
+    assert win["buy_and_hold"]["mean_daily_return"] == pytest.approx(asset.mean())
+    assert full["strategy"]["entries"] > s["entries"]
+
+
+def test_empty_window_raises():
+    with pytest.raises(ValueError, match="no bars"):
+        run_backtest(synthetic_bars(50), lambda b: pd.Series(1.0, index=b.index),
+                     start="2030-01-01")
