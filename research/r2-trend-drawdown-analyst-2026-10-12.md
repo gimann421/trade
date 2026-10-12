@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-12
 - **Ledger hypothesis ids:** 14, 15, 16 (all 'proposed')
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/dd_gated_sma_exit_v1.py` (H14), `strategies/trend_vol_throttle_v1.py` (H15), `strategies/cppi_cushion_v1.py` (H16)
 
 Markets: IWM, TLT, GLD, XLE, EFA daily bars (2,710 rows each, 2016-01-04..2026-10-12). SPY/QQQ excluded.
 No returns were computed and no parameter was tuned on data; every number below is fixed from the cited source or from reasoning.
@@ -27,7 +27,7 @@ Not repeats: no SMA 50/200 cross (H1), no always-on vol scaling (H2), no multi-h
 
 ## Idea 1 (H14): Drawdown-gated SMA200 stepped exit with slow re-entry
 - **Ledger hypothesis id:** 14
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/dd_gated_sma_exit_v1.py`
 
 ### Hypothesis
 Weight s in {1, 0.5, 0}, starting at 1. With c = close, S = 200-day SMA of closes, H = 252-day rolling max of closes, DD = c/H - 1, update daily: if c < S and DD <= -0.20 then s = 0; elif c < S and DD <= -0.10 then s = min(s, 0.5); elif c > S and s == 0 then s = 0.5; elif c > S and s == 0.5 and DD > -0.05 then s = 1; else s unchanged. Target weight = s (held over next day). On IWM, TLT, GLD, XLE, EFA it matches or beats buy-and-hold Sharpe and has a drawdown shallower by min(5 pts, 25% of benchmark drawdown) in both windows on >= 4 of 5 symbols.
@@ -45,13 +45,29 @@ Any of the common protocol failures: fewer than 4 of 5 symbols passing both wind
 Per common protocol. 10 cells (5 symbols x 2 windows).
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/dd_gated_sma_exit_v1.py`.
+
+Notes: veto: IWM OOS: Sharpe 0.50 more than 0.15 below buy&hold 0.76; TLT OOS: Sharpe -0.70 more than 0.15 below buy&hold -0.10; GLD IS: Sharpe 0.42 more than 0.15 below buy&hold 0.57; XLE OOS: Sharpe 0.37 more than 0.15 below buy&hold 0.74; EFA OOS: Sharpe 0.86 more than 0.15 below buy&hold 1.08
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.52 / 0.45 | -27.4% / -41.3% | 6.7% / 8.2% | 0.036% / 0.042% | 0.58 | 72% | 7 / 7 / 10 | supports: passes kill threshold | [IWM_2016-01-04_2022-12-30_20261012T150152Z.json](../backtests/dd_gated_sma_exit_v1/IWM_2016-01-04_2022-12-30_20261012T150152Z.json) |
+| IWM OOS | 0.50 / 0.76 | -16.6% / -27.5% | 7.1% / 14.6% | 0.035% / 0.062% | 0.52 | 80% | 2 / 1 / 4 | contradicts: Sharpe 0.50 < 1x buy&hold 0.76 | [IWM_2023-01-03_2026-10-12_20261012T150152Z.json](../backtests/dd_gated_sma_exit_v1/IWM_2023-01-03_2026-10-12_20261012T150152Z.json) |
+| TLT IS | 0.14 / 0.03 | -26.1% / -44.1% | 1.0% / -0.7% | 0.008% / 0.002% | 0.16 | 74% | 2 / 2 / 6 | supports: passes kill threshold | [TLT_2016-01-04_2022-12-30_20261012T150152Z.json](../backtests/dd_gated_sma_exit_v1/TLT_2016-01-04_2022-12-30_20261012T150152Z.json) |
+| TLT OOS | -0.70 / -0.10 | -21.8% / -22.4% | -6.0% / -2.4% | -0.026% / -0.006% | -0.74 | 63% | 3 / 2 / 5 | contradicts: Sharpe -0.70 < 1x buy&hold -0.10; MaxDD -21.8% not 5pts better than -22.4% | [TLT_2023-01-03_2026-10-12_20261012T150152Z.json](../backtests/dd_gated_sma_exit_v1/TLT_2023-01-03_2026-10-12_20261012T150152Z.json) |
+| GLD IS | 0.42 / 0.57 | -18.7% / -22.0% | 4.4% / 7.4% | 0.021% / 0.032% | 0.43 | 79% | 2 / 1 / 6 | contradicts: Sharpe 0.42 < 1x buy&hold 0.57; MaxDD -18.7% not 5pts better than -22.0% | [GLD_2016-01-04_2022-12-30_20261012T150152Z.json](../backtests/dd_gated_sma_exit_v1/GLD_2016-01-04_2022-12-30_20261012T150152Z.json) |
+| GLD OOS | 1.20 / 1.18 | -21.8% / -26.4% | 22.6% / 24.1% | 0.095% / 0.094% | 1.25 | 88% | 2 / 2 / 3 | contradicts: MaxDD -21.8% not 5pts better than -26.4% | [GLD_2023-01-03_2026-10-12_20261012T150152Z.json](../backtests/dd_gated_sma_exit_v1/GLD_2023-01-03_2026-10-12_20261012T150152Z.json) |
+| XLE IS | 0.46 / 0.46 | -32.6% / -66.8% | 7.6% / 10.0% | 0.048% / 0.059% | 0.53 | 64% | 8 / 7 / 11 | supports: passes kill threshold | [XLE_2016-01-04_2022-12-30_20261012T150153Z.json](../backtests/dd_gated_sma_exit_v1/XLE_2016-01-04_2022-12-30_20261012T150153Z.json) |
+| XLE OOS | 0.37 / 0.74 | -29.3% / -20.1% | 5.3% / 15.1% | 0.029% / 0.066% | 0.38 | 79% | 2 / 1 / 7 | contradicts: Sharpe 0.37 < 1x buy&hold 0.74; MaxDD -29.3% not 5pts better than -20.1% | [XLE_2023-01-03_2026-10-12_20261012T150153Z.json](../backtests/dd_gated_sma_exit_v1/XLE_2023-01-03_2026-10-12_20261012T150153Z.json) |
+| EFA IS | 0.28 / 0.35 | -24.3% / -34.2% | 2.7% / 4.8% | 0.015% / 0.026% | 0.30 | 78% | 4 / 3 / 6 | contradicts: Sharpe 0.28 < 1x buy&hold 0.35 | [EFA_2016-01-04_2022-12-30_20261012T150153Z.json](../backtests/dd_gated_sma_exit_v1/EFA_2016-01-04_2022-12-30_20261012T150153Z.json) |
+| EFA OOS | 0.86 / 1.08 | -13.7% / -14.1% | 11.8% / 16.2% | 0.048% / 0.064% | 0.86 | 97% | 1 / 0 / 3 | contradicts: Sharpe 0.86 < 1x buy&hold 1.08; MaxDD -13.7% not 3.51388pts better than -14.1% | [EFA_2023-01-03_2026-10-12_20261012T150153Z.json](../backtests/dd_gated_sma_exit_v1/EFA_2023-01-03_2026-10-12_20261012T150153Z.json) |
 
 ---
 
 ## Idea 2 (H15): Trend-conditioned volatility throttle (vol ignored in uptrends)
 - **Ledger hypothesis id:** 15
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/trend_vol_throttle_v1.py`
 
 ### Hypothesis
 Regime flag D (downtrend): turns on when close < 200d SMA, turns off only when close > 1.02 x 200d SMA (weight 1 in warmup). When D is off weight = 1. When D is on, weight = floor to the 0.25 grid of min(0.5, 0.10 / sigma), sigma = 63-day standard deviation of daily log returns x sqrt(252), so weight in {0.5, 0.25, 0} (0 when sigma > 40%). Meets the common cell kill rule on >= 4 of 5 symbols in both windows.
@@ -69,13 +85,29 @@ Common protocol failures (fewer than 4 of 5 symbols passing both windows; mean p
 Per common protocol.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/trend_vol_throttle_v1.py`.
+
+Notes: veto: IWM OOS: Sharpe 0.59 more than 0.15 below buy&hold 0.76; TLT OOS: Sharpe -0.63 more than 0.15 below buy&hold -0.10; XLE OOS: Sharpe 0.41 more than 0.15 below buy&hold 0.74
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.47 / 0.45 | -28.8% / -41.3% | 6.1% / 8.2% | 0.029% / 0.042% | 0.48 | 75% | 3 / 2 / 19 | supports: passes kill threshold | [IWM_2016-01-04_2022-12-30_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/IWM_2016-01-04_2022-12-30_20261012T150153Z.json) |
+| IWM OOS | 0.59 / 0.76 | -17.8% / -27.5% | 9.2% / 14.6% | 0.041% / 0.062% | 0.59 | 85% | 1 / 0 / 9 | contradicts: Sharpe 0.59 < 1x buy&hold 0.76 | [IWM_2023-01-03_2026-10-12_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/IWM_2023-01-03_2026-10-12_20261012T150153Z.json) |
+| TLT IS | 0.26 / 0.03 | -28.4% / -44.1% | 2.4% / -0.7% | 0.012% / 0.002% | 0.26 | 74% | 1 / 0 / 13 | supports: passes kill threshold | [TLT_2016-01-04_2022-12-30_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/TLT_2016-01-04_2022-12-30_20261012T150153Z.json) |
+| TLT OOS | -0.63 / -0.10 | -24.2% / -22.4% | -5.9% / -2.4% | -0.022% / -0.006% | -0.63 | 63% | 1 / 0 / 17 | contradicts: Sharpe -0.63 < 1x buy&hold -0.10; MaxDD -24.2% not 5pts better than -22.4% | [TLT_2023-01-03_2026-10-12_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/TLT_2023-01-03_2026-10-12_20261012T150153Z.json) |
+| GLD IS | 0.44 / 0.57 | -22.3% / -22.0% | 4.8% / 7.4% | 0.021% / 0.032% | 0.44 | 78% | 1 / 0 / 14 | contradicts: Sharpe 0.44 < 1x buy&hold 0.57; MaxDD -22.3% not 5pts better than -22.0% | [GLD_2016-01-04_2022-12-30_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/GLD_2016-01-04_2022-12-30_20261012T150153Z.json) |
+| GLD OOS | 1.21 / 1.18 | -23.1% / -26.4% | 23.1% / 24.1% | 0.089% / 0.094% | 1.21 | 91% | 1 / 0 / 4 | contradicts: MaxDD -23.1% not 5pts better than -26.4% | [GLD_2023-01-03_2026-10-12_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/GLD_2023-01-03_2026-10-12_20261012T150153Z.json) |
+| XLE IS | 0.62 / 0.46 | -36.1% / -66.8% | 11.9% / 10.0% | 0.059% / 0.059% | 0.65 | 73% | 3 / 2 / 16 | supports: passes kill threshold | [XLE_2016-01-04_2022-12-30_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/XLE_2016-01-04_2022-12-30_20261012T150153Z.json) |
+| XLE OOS | 0.41 / 0.74 | -25.1% / -20.1% | 6.0% / 15.1% | 0.030% / 0.066% | 0.41 | 79% | 1 / 0 / 17 | contradicts: Sharpe 0.41 < 1x buy&hold 0.74; MaxDD -25.1% not 5pts better than -20.1% | [XLE_2023-01-03_2026-10-12_20261012T150153Z.json](../backtests/trend_vol_throttle_v1/XLE_2023-01-03_2026-10-12_20261012T150153Z.json) |
+| EFA IS | 0.22 / 0.35 | -27.8% / -34.2% | 1.9% / 4.8% | 0.011% / 0.026% | 0.22 | 78% | 3 / 2 / 14 | contradicts: Sharpe 0.22 < 1x buy&hold 0.35 | [EFA_2016-01-04_2022-12-30_20261012T150154Z.json](../backtests/trend_vol_throttle_v1/EFA_2016-01-04_2022-12-30_20261012T150154Z.json) |
+| EFA OOS | 0.97 / 1.08 | -12.5% / -14.1% | 13.3% / 16.2% | 0.053% / 0.064% | 0.97 | 94% | 1 / 0 / 3 | contradicts: Sharpe 0.97 < 1x buy&hold 1.08; MaxDD -12.5% not 3.51388pts better than -14.1% | [EFA_2023-01-03_2026-10-12_20261012T150154Z.json](../backtests/trend_vol_throttle_v1/EFA_2023-01-03_2026-10-12_20261012T150154Z.json) |
 
 ---
 
 ## Idea 3 (H16): CPPI-style drawdown cushion with trend-gated re-risking
 - **Ledger hypothesis id:** 16
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/cppi_cushion_v1.py`
 
 ### Hypothesis
 With H = 252-day rolling max of closes, floor F = 0.70 x H, cushion c = (close - F)/close, target w* = floor to the 0.25 grid of min(1, 4 x c) (0 if c <= 0). Weight w_t = w*_t when w*_t <= w_{t-1} (reductions immediately), and when w*_t > w_{t-1} only if close > 100-day SMA, in which case w_t = w*_t; otherwise w_t = w_{t-1} (weight 1 in warmup). Meets the common cell kill rule on >= 4 of 5 symbols in both windows.
@@ -93,4 +125,20 @@ Same common protocol failures. In particular a mean time at weight < 1 above 40%
 Per common protocol.
 
 ### Results
-TBD
+
+**Verdict: rejected** (round 2, 2026-10-12; rules fixed before testing, scored by `research/round2_verdicts.py`). Strategy: `strategies/cppi_cushion_v1.py`.
+
+Notes: veto: IWM OOS: Sharpe 0.51 more than 0.15 below buy&hold 0.76; TLT OOS: Sharpe -0.60 more than 0.15 below buy&hold -0.10; XLE OOS: Sharpe 0.35 more than 0.15 below buy&hold 0.74; EFA OOS: Sharpe 0.92 more than 0.15 below buy&hold 1.08
+
+| Cell | Sharpe (strat / B&H) | Max DD (strat / B&H) | CAGR (strat / B&H) | Return per exposure day (strat / B&H mean) | Cond. Sharpe | Exposure | Entries / exits / de-risk events | Verdict | Backtest |
+|---|---|---|---|---|---|---|---|---|---|
+| IWM IS | 0.37 / 0.45 | -29.8% / -41.3% | 4.5% / 8.2% | 0.024% / 0.042% | 0.39 | 77% | 8 / 7 / 40 | contradicts: Sharpe 0.37 < 1x buy&hold 0.45 | [IWM_2016-01-04_2022-12-30_20261012T150154Z.json](../backtests/cppi_cushion_v1/IWM_2016-01-04_2022-12-30_20261012T150154Z.json) |
+| IWM OOS | 0.51 / 0.76 | -21.3% / -27.5% | 7.4% / 14.6% | 0.035% / 0.062% | 0.52 | 84% | 2 / 1 / 31 | contradicts: Sharpe 0.51 < 1x buy&hold 0.76 | [IWM_2023-01-03_2026-10-12_20261012T150154Z.json](../backtests/cppi_cushion_v1/IWM_2023-01-03_2026-10-12_20261012T150154Z.json) |
+| TLT IS | 0.11 / 0.03 | -28.6% / -44.1% | 0.6% / -0.7% | 0.005% / 0.002% | 0.11 | 76% | 2 / 2 / 28 | supports: passes kill threshold | [TLT_2016-01-04_2022-12-30_20261012T150154Z.json](../backtests/cppi_cushion_v1/TLT_2016-01-04_2022-12-30_20261012T150154Z.json) |
+| TLT OOS | -0.60 / -0.10 | -22.9% / -22.4% | -6.1% / -2.4% | -0.024% / -0.006% | -0.60 | 72% | 3 / 2 / 24 | contradicts: Sharpe -0.60 < 1x buy&hold -0.10; MaxDD -22.9% not 5pts better than -22.4% | [TLT_2023-01-03_2026-10-12_20261012T150154Z.json](../backtests/cppi_cushion_v1/TLT_2023-01-03_2026-10-12_20261012T150154Z.json) |
+| GLD IS | 0.47 / 0.57 | -21.1% / -22.0% | 5.3% / 7.4% | 0.023% / 0.032% | 0.47 | 85% | 1 / 0 / 23 | contradicts: Sharpe 0.47 < 1x buy&hold 0.57; MaxDD -21.1% not 5pts better than -22.0% | [GLD_2016-01-04_2022-12-30_20261012T150154Z.json](../backtests/cppi_cushion_v1/GLD_2016-01-04_2022-12-30_20261012T150154Z.json) |
+| GLD OOS | 1.27 / 1.18 | -23.1% / -26.4% | 22.7% / 24.1% | 0.090% / 0.094% | 1.30 | 87% | 2 / 1 / 22 | contradicts: MaxDD -23.1% not 5pts better than -26.4% | [GLD_2023-01-03_2026-10-12_20261012T150154Z.json](../backtests/cppi_cushion_v1/GLD_2023-01-03_2026-10-12_20261012T150154Z.json) |
+| XLE IS | 0.34 / 0.46 | -39.4% / -66.8% | 4.7% / 10.0% | 0.030% / 0.059% | 0.37 | 64% | 7 / 6 / 61 | contradicts: Sharpe 0.34 < 1x buy&hold 0.46 | [XLE_2016-01-04_2022-12-30_20261012T150154Z.json](../backtests/cppi_cushion_v1/XLE_2016-01-04_2022-12-30_20261012T150154Z.json) |
+| XLE OOS | 0.35 / 0.74 | -23.7% / -20.1% | 4.8% / 15.1% | 0.025% / 0.066% | 0.35 | 83% | 1 / 0 / 52 | contradicts: Sharpe 0.35 < 1x buy&hold 0.74; MaxDD -23.7% not 5pts better than -20.1% | [XLE_2023-01-03_2026-10-12_20261012T150154Z.json](../backtests/cppi_cushion_v1/XLE_2023-01-03_2026-10-12_20261012T150154Z.json) |
+| EFA IS | 0.20 / 0.35 | -24.7% / -34.2% | 1.8% / 4.8% | 0.011% / 0.026% | 0.21 | 82% | 3 / 2 / 38 | contradicts: Sharpe 0.20 < 1x buy&hold 0.35 | [EFA_2016-01-04_2022-12-30_20261012T150154Z.json](../backtests/cppi_cushion_v1/EFA_2016-01-04_2022-12-30_20261012T150154Z.json) |
+| EFA OOS | 0.92 / 1.08 | -13.5% / -14.1% | 12.5% / 16.2% | 0.050% / 0.064% | 0.92 | 96% | 1 / 0 / 11 | contradicts: Sharpe 0.92 < 1x buy&hold 1.08; MaxDD -13.5% not 3.51388pts better than -14.1% | [EFA_2023-01-03_2026-10-12_20261012T150155Z.json](../backtests/cppi_cushion_v1/EFA_2023-01-03_2026-10-12_20261012T150155Z.json) |

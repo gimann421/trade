@@ -1,0 +1,38 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3074080149117311,
+    "cagr": 0.07393355182780725,
+    "ann_vol": 0.16860499141229335,
+    "sharpe": 0.5072594367418678,
+    "max_drawdown": -0.2125289096899996,
+    "exposure": 0.8397571277719112,
+    "trades": 61,
+    "entries": 2,
+    "exits": 1,
+    "exposure_days": 919,
+    "return_per_exposure_day": 0.0003497312896521279
+  },
+  "buy_and_hold": {
+    "total_return": 0.6678858376304151,
+    "cagr": 0.1458274763663281,
+    "ann_vol": 0.20599874776173743,
+    "sharpe": 0.7636702344325428,
+    "max_drawdown": -0.2750021063274074,
+    "mean_daily_return": 0.000624266317444509
+  },
+  "strategy_file": "strategies/cppi_cushion_v1.py",
+  "params": {
+    "high": 252,
+    "floor": 0.7,
+    "multiplier": 4.0,
+    "gate_sma": 100,
+    "step": 0.25
+  },
+  "symbol": "IWM",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150154Z"
+}

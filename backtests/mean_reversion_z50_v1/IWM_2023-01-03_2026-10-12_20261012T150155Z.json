@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.0778074682247838,
+    "cagr": 0.02013893579827153,
+    "ann_vol": 0.11685243843298675,
+    "sharpe": 0.2287442754389578,
+    "max_drawdown": -0.19115837951574988,
+    "exposure": 0.2249208025343189,
+    "trades": 20,
+    "entries": 11,
+    "exits": 10,
+    "exposure_days": 213,
+    "return_per_exposure_day": 0.0004715826824914234
+  },
+  "buy_and_hold": {
+    "total_return": 0.6678858376304151,
+    "cagr": 0.1458274763663281,
+    "ann_vol": 0.20599874776173743,
+    "sharpe": 0.7636702344325428,
+    "max_drawdown": -0.2750021063274074,
+    "mean_daily_return": 0.000624266317444509
+  },
+  "strategy_file": "strategies/mean_reversion_z50_v1.py",
+  "params": {
+    "window": 50,
+    "enter_z": -1.5,
+    "exit_z": 0.0,
+    "max_hold": 30
+  },
+  "symbol": "IWM",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150155Z"
+}

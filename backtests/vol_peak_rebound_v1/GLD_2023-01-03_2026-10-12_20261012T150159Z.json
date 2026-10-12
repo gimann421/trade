@@ -1,0 +1,40 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.12099478195600799,
+    "cagr": -0.03373570821404759,
+    "ann_vol": 0.11802301012413621,
+    "sharpe": -0.23086381885850493,
+    "max_drawdown": -0.24391552080371648,
+    "exposure": 0.21541710665258712,
+    "trades": 21,
+    "entries": 11,
+    "exits": 11,
+    "exposure_days": 204,
+    "return_per_exposure_day": -0.0005019284733975464
+  },
+  "buy_and_hold": {
+    "total_return": 1.2520631926432428,
+    "cagr": 0.24114613443812538,
+    "ann_vol": 0.20119953785550623,
+    "sharpe": 1.1753179782552476,
+    "max_drawdown": -0.26404517039725695,
+    "mean_daily_return": 0.0009383866430881894
+  },
+  "strategy_file": "strategies/vol_peak_rebound_v1.py",
+  "params": {
+    "vol_window": 20,
+    "pct_window": 500,
+    "pct": 0.9,
+    "lookback": 10,
+    "peak": 0.9,
+    "hold": 20,
+    "warmup": 520
+  },
+  "symbol": "GLD",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150159Z"
+}

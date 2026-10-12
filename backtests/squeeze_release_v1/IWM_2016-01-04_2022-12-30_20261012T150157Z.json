@@ -1,0 +1,40 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.08875705027426628,
+    "cagr": -0.013205071094537946,
+    "ann_vol": 0.05494321284257947,
+    "sharpe": -0.21446281814744883,
+    "max_drawdown": -0.19054143687124958,
+    "exposure": 0.1765039727582293,
+    "trades": 44,
+    "entries": 22,
+    "exits": 22,
+    "exposure_days": 311,
+    "return_per_exposure_day": -0.000264917735641393
+  },
+  "buy_and_hold": {
+    "total_return": 0.7374726534013953,
+    "cagr": 0.08221338322901928,
+    "ann_vol": 0.2357424089172561,
+    "sharpe": 0.4538173510003822,
+    "max_drawdown": -0.4127278541733277,
+    "mean_daily_return": 0.00042453966481459534
+  },
+  "strategy_file": "strategies/squeeze_release_v1.py",
+  "params": {
+    "atr": 10,
+    "pct_window": 250,
+    "pct": 0.2,
+    "recent": 5,
+    "channel": 10,
+    "max_hold": 40,
+    "warmup": 260
+  },
+  "symbol": "IWM",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150157Z"
+}

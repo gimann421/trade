@@ -1,0 +1,36 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3881680667094354,
+    "cagr": 0.04802577005202169,
+    "ann_vol": 0.2117277857442104,
+    "sharpe": 0.3281673180263821,
+    "max_drawdown": -0.40944172883972196,
+    "exposure": 0.6759364358683314,
+    "trades": 67,
+    "entries": 34,
+    "exits": 33,
+    "exposure_days": 1191,
+    "return_per_exposure_day": 0.00040791228517465843
+  },
+  "buy_and_hold": {
+    "total_return": 0.7374726534013953,
+    "cagr": 0.08221338322901928,
+    "ann_vol": 0.2357424089172561,
+    "sharpe": 0.4538173510003822,
+    "max_drawdown": -0.4127278541733277,
+    "mean_daily_return": 0.00042453966481459534
+  },
+  "strategy_file": "strategies/bollinger_stepaside_v1.py",
+  "params": {
+    "window": 20,
+    "enter_z": 2.0,
+    "reenter_z": 0.0
+  },
+  "symbol": "IWM",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150155Z"
+}

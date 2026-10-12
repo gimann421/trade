@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.15575628437231437,
+    "cagr": 0.039271294292604564,
+    "ann_vol": 0.07637944466503342,
+    "sharpe": 0.5420526923172053,
+    "max_drawdown": -0.05013216607888793,
+    "exposure": 0.14255543822597677,
+    "trades": 54,
+    "entries": 27,
+    "exits": 27,
+    "exposure_days": 135,
+    "return_per_exposure_day": 0.001152480728589081
+  },
+  "buy_and_hold": {
+    "total_return": 0.7603545253110588,
+    "cagr": 0.1623985334828857,
+    "ann_vol": 0.14933194055556478,
+    "sharpe": 1.0825189846370187,
+    "max_drawdown": -0.14055528011898843,
+    "mean_daily_return": 0.0006414867486670065
+  },
+  "strategy_file": "strategies/volume_shock_reversal_v1.py",
+  "params": {
+    "z_max": -1.25,
+    "volume_mult": 1.25,
+    "vol_window": 20,
+    "hold": 5
+  },
+  "symbol": "EFA",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150156Z"
+}

@@ -1,0 +1,40 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.5915835228010895,
+    "cagr": 0.13163798258387827,
+    "ann_vol": 0.08716444009580397,
+    "sharpe": 1.4628117824990026,
+    "max_drawdown": -0.08364998004367297,
+    "exposure": 0.2555438225976769,
+    "trades": 21,
+    "entries": 11,
+    "exits": 11,
+    "exposure_days": 242,
+    "return_per_exposure_day": 0.001979984848120094
+  },
+  "buy_and_hold": {
+    "total_return": 1.2520631926432428,
+    "cagr": 0.24114613443812538,
+    "ann_vol": 0.20119953785550623,
+    "sharpe": 1.1753179782552476,
+    "max_drawdown": -0.26404517039725695,
+    "mean_daily_return": 0.0009383866430881894
+  },
+  "strategy_file": "strategies/squeeze_release_v1.py",
+  "params": {
+    "atr": 10,
+    "pct_window": 250,
+    "pct": 0.2,
+    "recent": 5,
+    "channel": 10,
+    "max_hold": 40,
+    "warmup": 260
+  },
+  "symbol": "GLD",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150158Z"
+}

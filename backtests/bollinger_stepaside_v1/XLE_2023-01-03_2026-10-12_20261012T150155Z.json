@@ -1,0 +1,36 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.5495245264442445,
+    "cagr": 0.12360191730148928,
+    "ann_vol": 0.19294277648570635,
+    "sharpe": 0.7011076219659617,
+    "max_drawdown": -0.18795823150411017,
+    "exposure": 0.6737064413938754,
+    "trades": 40,
+    "entries": 21,
+    "exits": 20,
+    "exposure_days": 638,
+    "return_per_exposure_day": 0.0007967865084586086
+  },
+  "buy_and_hold": {
+    "total_return": 0.695276200309757,
+    "cagr": 0.1508048581008692,
+    "ann_vol": 0.22188977312092034,
+    "sharpe": 0.7446181204269028,
+    "max_drawdown": -0.20126748251748272,
+    "mean_daily_return": 0.0006556474039811571
+  },
+  "strategy_file": "strategies/bollinger_stepaside_v1.py",
+  "params": {
+    "window": 20,
+    "enter_z": 2.0,
+    "reenter_z": 0.0
+  },
+  "symbol": "XLE",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150155Z"
+}

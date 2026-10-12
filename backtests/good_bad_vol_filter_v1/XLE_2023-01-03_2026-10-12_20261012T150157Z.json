@@ -1,0 +1,37 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.2129122181880545,
+    "cagr": 0.05270645927228146,
+    "ann_vol": 0.19473754342610283,
+    "sharpe": 0.3613958150830062,
+    "max_drawdown": -0.32596385505911396,
+    "exposure": 0.8627243928194298,
+    "trades": 24,
+    "entries": 13,
+    "exits": 12,
+    "exposure_days": 817,
+    "return_per_exposure_day": 0.00032371303536142
+  },
+  "buy_and_hold": {
+    "total_return": 0.695276200309757,
+    "cagr": 0.1508048581008692,
+    "ann_vol": 0.22188977312092034,
+    "sharpe": 0.7446181204269028,
+    "max_drawdown": -0.20126748251748272,
+    "mean_daily_return": 0.0006556474039811571
+  },
+  "strategy_file": "strategies/good_bad_vol_filter_v1.py",
+  "params": {
+    "vol_window": 20,
+    "median_window": 252,
+    "exit_share": 0.7,
+    "reenter_share": 0.5
+  },
+  "symbol": "XLE",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150157Z"
+}

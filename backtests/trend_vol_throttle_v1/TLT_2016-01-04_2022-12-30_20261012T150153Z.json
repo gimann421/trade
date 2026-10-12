@@ -1,0 +1,39 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.1823398906370841,
+    "cagr": 0.0242443067571394,
+    "ann_vol": 0.11869780896368362,
+    "sharpe": 0.2610427359432694,
+    "max_drawdown": -0.2837591245593427,
+    "exposure": 0.7409194097616345,
+    "trades": 25,
+    "entries": 1,
+    "exits": 0,
+    "exposure_days": 1761,
+    "return_per_exposure_day": 0.00012302696838408764
+  },
+  "buy_and_hold": {
+    "total_return": -0.04735376044568018,
+    "cagr": -0.00691408918276204,
+    "ann_vol": 0.14947416720598067,
+    "sharpe": 0.02822386735318619,
+    "max_drawdown": -0.44135583605162265,
+    "mean_daily_return": 1.6741028047418935e-05
+  },
+  "strategy_file": "strategies/trend_vol_throttle_v1.py",
+  "params": {
+    "sma": 200,
+    "release": 1.02,
+    "vol_window": 63,
+    "target": 0.1,
+    "cap": 0.5,
+    "step": 0.25
+  },
+  "symbol": "TLT",
+  "git_commit": "d827ad8-dirty",
+  "run_at": "20261012T150153Z"
+}
