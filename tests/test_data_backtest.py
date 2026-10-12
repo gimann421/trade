@@ -116,3 +116,29 @@ def test_empty_window_raises():
     with pytest.raises(ValueError, match="no bars"):
         run_backtest(synthetic_bars(50), lambda b: pd.Series(1.0, index=b.index),
                      start="2030-01-01")
+
+
+def test_in_progress_session_is_not_saved(tmp_path):
+    bars = synthetic_bars(5)       # Wed 2020-01-01 .. Tue 2020-01-07
+    idx = pd.MultiIndex.from_arrays(
+        [["SPY"] * 5, bars.index.tz_localize("America/New_York").tz_convert("UTC")],
+        names=["symbol", "timestamp"])
+    client = SimpleNamespace(get_stock_bars=lambda req: SimpleNamespace(
+        df=bars.set_axis(idx).assign(trade_count=1, vwap=1.0)))
+    start = datetime(2019, 12, 1, tzinfo=timezone.utc)
+
+    # 15:30 New York on the last bar's day: that day's session is still open, so it is dropped.
+    during = datetime(2020, 1, 7, 20, 30, tzinfo=timezone.utc)
+    path = download_daily_bars("spy", start, during, client=client, data_dir=tmp_path)
+    assert str(load_bars("SPY", tmp_path).index[-1].date()) == "2020-01-06"
+
+    # 16:30 New York the same day: the session has closed, so the bar is kept.
+    after = datetime(2020, 1, 7, 21, 30, tzinfo=timezone.utc)
+    download_daily_bars("spy", start, after, client=client, data_dir=tmp_path)
+    assert str(load_bars("SPY", tmp_path).index[-1].date()) == "2020-01-07"
+
+    # Only the in-progress bar available: nothing complete to save.
+    one = SimpleNamespace(get_stock_bars=lambda req: SimpleNamespace(
+        df=bars.iloc[-1:].set_axis(idx[-1:]).assign(trade_count=1, vwap=1.0)))
+    with pytest.raises(ValueError, match="no completed sessions"):
+        download_daily_bars("spy", start, during, client=one, data_dir=tmp_path)
