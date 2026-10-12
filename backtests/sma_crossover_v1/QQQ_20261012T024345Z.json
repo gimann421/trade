@@ -1,0 +1,30 @@
+{
+  "start": "2016-01-04",
+  "end": "2026-10-09",
+  "days": 2708,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 4.985024306820382,
+    "cagr": 0.18116860462276607,
+    "ann_vol": 0.18864684925447064,
+    "sharpe": 0.9774268686239617,
+    "max_drawdown": -0.2855822143957736,
+    "exposure": 0.7802806499261448,
+    "trades": 9
+  },
+  "buy_and_hold": {
+    "total_return": 6.425817930216477,
+    "cagr": 0.20511746554199362,
+    "ann_vol": 0.22203897043450133,
+    "sharpe": 0.9517919577531815,
+    "max_drawdown": -0.35002554931016794
+  },
+  "strategy_file": "strategies/sma_crossover_v1.py",
+  "params": {
+    "fast": 50,
+    "slow": 200
+  },
+  "symbol": "QQQ",
+  "git_commit": "0ef8ca1-dirty",
+  "run_at": "20261012T024345Z"
+}
