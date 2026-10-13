@@ -10,6 +10,7 @@ An AI-assisted trading research loop. **Paper trading only.**
 | `strategies/`  | Strategy code, one file per strategy version: `<name>_v<N>.py` | yes     |
 | `backtests/`   | Backtest results                                               | yes     |
 | `journal/`     | Every paper-trading decision and the reasoning behind it       | yes     |
+| `paper/`       | Forward shadow record of rules that passed (nav, decisions)    | yes     |
 | `memory/`      | Hypothesis ledger (SQLite)                                     | yes     |
 | `config/`      | `risk_limits.yaml` (tracked) and API keys in `.env` (ignored)  | partly  |
 | `data/`        | Historical prices                                              | no      |
@@ -56,3 +57,9 @@ python -c "from core.broker import get_paper_client as g; a=g().get_account(); p
    instead and run with `python -m core.portfolio strategies/<name>_v1.py SPY EFA TLT --start 2023-01-01`;
    see the `core/portfolio.py` docstring for the weights contract and the benchmarks each run is scored against.
 5. Paper trade through `submit_order()`; every decision lands in `journal/`.
+   Rules marked `supported` are first tracked forward by `core/paper_runner.py`: list them in
+   `paper/tracked.json` and run `python -m core.paper_runner run` after each close. It rebuilds a
+   shadow portfolio from the start date (same code as the backtest), writes `paper/<rule>/nav.csv`
+   and one never-overwritten `decisions/<date>.json` per month-end, and sends nothing to a broker.
+   `--execute` places paper orders through `submit_order()` only for rules whose `allocation_pct`
+   is above 0. `python -m core.paper_runner preview <rule>` prints the current picks without writing.
