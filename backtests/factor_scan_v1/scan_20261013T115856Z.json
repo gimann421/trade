@@ -1,0 +1,2096 @@
+{
+ "git_commit": "8f9ccff",
+ "run_at": "20261013T115856Z",
+ "bar": {
+  "net_active": 0.02,
+  "information_ratio": 0.3,
+  "placebo": 0.95
+ },
+ "placebo": {
+  "n": 1000,
+  "seed": 0
+ },
+ "note": "Round-6 scan: 37 rules, 2 pass both windows (stock_resmom6_1_decile, stock_resmom6_1_quintile); passing the full bar in IS 3 / OOS 6; placebo >= 0.95 in IS 4 / OOS 9. Hypotheses tested so far: 70.",
+ "results": {
+  "etf_sect_mom3_k2": {
+   "rule": {
+    "id": "etf_sect_mom3_k2",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "mom3",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "placebo 0.846 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.03289431390527925,
+     "information_ratio": 0.30337013711000665,
+     "placebo": 0.846,
+     "gross_active_per_month": 0.003170464274381797,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9621276321486445,
+     "turnover": 11.587839084740708,
+     "cagr": 0.14627906818197478,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.7417915800337417,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.33231164949313297,
+     "delayed_net_active": 0.023436579394362094,
+     "delayed_ir": 0.21423407091369812
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -3.50%/yr < 2.0%; information ratio -0.32 < 0.3; placebo 0.226 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.03500568936045408,
+     "information_ratio": -0.31743188066248007,
+     "placebo": 0.226,
+     "gross_active_per_month": -0.002680506124344869,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.9766084330513553,
+     "turnover": 10.49841161362117,
+     "cagr": 0.10688407635006136,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 0.7037734863186103,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.1890498346151679,
+     "delayed_net_active": -0.05041866448652261,
+     "delayed_ir": -0.45835786264026424
+    }
+   }
+  },
+  "etf_sect_mom3_k3": {
+   "rule": {
+    "id": "etf_sect_mom3_k3",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "mom3",
+    "k": 3
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "information ratio 0.26 < 0.3; placebo 0.816 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.020882798038095854,
+     "information_ratio": 0.25931770158391426,
+     "placebo": 0.816,
+     "gross_active_per_month": 0.002130719630603765,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9588194249387719,
+     "turnover": 9.110073108953877,
+     "cagr": 0.13569420358856377,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.7308700784096397,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.3301258692621145,
+     "delayed_net_active": 0.017172044858238457,
+     "delayed_ir": 0.21031711168054457
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -0.65%/yr < 2.0%; information ratio -0.08 < 0.3; placebo 0.453 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.006538087767977042,
+     "information_ratio": -0.08297326138869567,
+     "placebo": 0.453,
+     "gross_active_per_month": -0.00025602625818334647,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.9458775244050759,
+     "turnover": 9.177887134594942,
+     "cagr": 0.14277522375149965,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 1.0195489834453297,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.16856587704383086,
+     "delayed_net_active": -0.024643461926361306,
+     "delayed_ir": -0.3136517315187947
+    }
+   }
+  },
+  "etf_sect_mom6_k2": {
+   "rule": {
+    "id": "etf_sect_mom6_k2",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "mom6",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active 1.44%/yr < 2.0%; information ratio 0.13 < 0.3; placebo 0.636 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.014379238911978173,
+     "information_ratio": 0.13234464149493477,
+     "placebo": 0.636,
+     "gross_active_per_month": 0.001250465567272395,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9632815284176832,
+     "turnover": 8.037209099643077,
+     "cagr": 0.1251812040691227,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.6549156062484143,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.29705175194241085,
+     "delayed_net_active": 0.001233226520629743,
+     "delayed_ir": 0.011348000080959948
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -4.79%/yr < 2.0%; information ratio -0.45 < 0.3; placebo 0.143 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.04787905486483668,
+     "information_ratio": -0.4518782332731044,
+     "placebo": 0.143,
+     "gross_active_per_month": -0.003803637866065526,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.044806297557217,
+     "turnover": 7.305937570387347,
+     "cagr": 0.092083723788976,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 0.611986554525923,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.2299236676012686,
+     "delayed_net_active": -0.051928136334066746,
+     "delayed_ir": -0.4900853957888574
+    }
+   }
+  },
+  "etf_sect_mom6_k3": {
+   "rule": {
+    "id": "etf_sect_mom6_k3",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "mom6",
+    "k": 3
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active 0.26%/yr < 2.0%; information ratio 0.03 < 0.3; placebo 0.551 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.0025623426968162063,
+     "information_ratio": 0.030273531218174245,
+     "placebo": 0.551,
+     "gross_active_per_month": 0.0003076712121413921,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9467050104256606,
+     "turnover": 7.445142913530674,
+     "cagr": 0.1152119594938481,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.6420971239306597,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.33284505492002636,
+     "delayed_net_active": -0.006865504198626205,
+     "delayed_ir": -0.0815765209845126
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -6.82%/yr < 2.0%; information ratio -0.89 < 0.3; placebo 0.024 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.06820165994487237,
+     "information_ratio": -0.89055467925528,
+     "placebo": 0.024,
+     "gross_active_per_month": -0.005407995415928213,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0112363658918928,
+     "turnover": 6.908923638342752,
+     "cagr": 0.07357772629967974,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 0.5583783991555178,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.20155044820010193,
+     "delayed_net_active": -0.059617637954269255,
+     "delayed_ir": -0.7892285562108982
+    }
+   }
+  },
+  "etf_sect_mom12_1_k2": {
+   "rule": {
+    "id": "etf_sect_mom12_1_k2",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "mom12_1",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "placebo 0.905 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.05074838144255987,
+     "information_ratio": 0.4486849642523947,
+     "placebo": 0.905,
+     "gross_active_per_month": 0.003992103622247529,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9926955258278353,
+     "turnover": 5.085127267134813,
+     "cagr": 0.16499412834320348,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.7965879672803106,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.33231164949313297,
+     "delayed_net_active": 0.04800428248903842,
+     "delayed_ir": 0.42435713930446484
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "placebo 0.784 < 0.95",
+     "rebalances": 46,
+     "net_active": 0.03438235291699544,
+     "information_ratio": 0.33810044346008084,
+     "placebo": 0.784,
+     "gross_active_per_month": 0.003076442492449413,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0234406721026905,
+     "turnover": 5.265154534663334,
+     "cagr": 0.1866317806675606,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 1.1370832493707672,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.15853952855702902,
+     "delayed_net_active": 0.03662422051138193,
+     "delayed_ir": 0.36261073788271503
+    }
+   }
+  },
+  "etf_sect_mom12_1_k3": {
+   "rule": {
+    "id": "etf_sect_mom12_1_k3",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "mom12_1",
+    "k": 3
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "placebo 0.872 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.03402731723982808,
+     "information_ratio": 0.4002192357555189,
+     "placebo": 0.872,
+     "gross_active_per_month": 0.0026466493548486262,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9533612727111466,
+     "turnover": 4.360985904928391,
+     "cagr": 0.1505785537168396,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.792629067135029,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.3026241105645118,
+     "delayed_net_active": 0.03400838060215312,
+     "delayed_ir": 0.4002575725712714
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "placebo 0.787 < 0.95",
+     "rebalances": 46,
+     "net_active": 0.02651811663259068,
+     "information_ratio": 0.35693414119875555,
+     "placebo": 0.787,
+     "gross_active_per_month": 0.00232758305672951,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0342940757152332,
+     "turnover": 5.055175757933428,
+     "cagr": 0.18001409135519464,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 1.195525666110751,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.17075103468841746,
+     "delayed_net_active": 0.02237341484832831,
+     "delayed_ir": 0.3033164625788707
+    }
+   }
+  },
+  "etf_sect_rev1_k2": {
+   "rule": {
+    "id": "etf_sect_rev1_k2",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "rev1",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -5.93%/yr < 2.0%; information ratio -0.53 < 0.3; placebo 0.055 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.0593446708093142,
+     "information_ratio": -0.5269904201110339,
+     "placebo": 0.055,
+     "gross_active_per_month": -0.0043842538144258925,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.0997060284979956,
+     "turnover": 17.116965476266582,
+     "cagr": 0.03925496866705003,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.28146689533734975,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.4924413980776162,
+     "delayed_net_active": -0.04945161225559843,
+     "delayed_ir": -0.4394410713252535
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -6.78%/yr < 2.0%; information ratio -0.65 < 0.3; placebo 0.094 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.06779700337478158,
+     "information_ratio": -0.6547300243950588,
+     "placebo": 0.094,
+     "gross_active_per_month": -0.00505575039099879,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.143322765693806,
+     "turnover": 16.90741335948736,
+     "cagr": 0.06939227450972751,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 0.4718431504975613,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.25251301206633525,
+     "delayed_net_active": -0.04797772325414218,
+     "delayed_ir": -0.4615727785780698
+    }
+   }
+  },
+  "etf_sect_rev1_k3": {
+   "rule": {
+    "id": "etf_sect_rev1_k3",
+    "family": "etf",
+    "tickers": [
+     "XLB",
+     "XLE",
+     "XLF",
+     "XLI",
+     "XLK",
+     "XLP",
+     "XLU",
+     "XLV",
+     "XLY"
+    ],
+    "signal": "rev1",
+    "k": 3
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -4.20%/yr < 2.0%; information ratio -0.50 < 0.3; placebo 0.066 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.042028039047715474,
+     "information_ratio": -0.5041518781716425,
+     "placebo": 0.066,
+     "gross_active_per_month": -0.0030221616090302513,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.087127548977872,
+     "turnover": 15.675233101843528,
+     "cagr": 0.060980838692468176,
+     "benchmark_cagr": 0.11412063896941005,
+     "sharpe": 0.37600265961635926,
+     "benchmark_sharpe": 0.6554110847233154,
+     "max_drawdown": -0.4707582997370776,
+     "delayed_net_active": -0.0382409728427407,
+     "delayed_ir": -0.46023299754051467
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -2.56%/yr < 2.0%; information ratio -0.33 < 0.3; placebo 0.281 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.025620112908483084,
+     "information_ratio": -0.332808190700641,
+     "placebo": 0.281,
+     "gross_active_per_month": -0.0015768736731741739,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.096025780455728,
+     "turnover": 16.335027110299166,
+     "cagr": 0.1188809515255973,
+     "benchmark_cagr": 0.15292773798207726,
+     "sharpe": 0.801293754701544,
+     "benchmark_sharpe": 1.215304216183377,
+     "max_drawdown": -0.21350809300979712,
+     "delayed_net_active": -0.018775946168903105,
+     "delayed_ir": -0.2431707345975699
+    }
+   }
+  },
+  "etf_region_mom3_k1": {
+   "rule": {
+    "id": "etf_region_mom3_k1",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "mom3",
+    "k": 1
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "placebo 0.947 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.05039532800594336,
+     "information_ratio": 0.45973262171987855,
+     "placebo": 0.947,
+     "gross_active_per_month": 0.004569334667711879,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.0202172368455682,
+     "turnover": 12.853691275167785,
+     "cagr": 0.12154317528132341,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.6195183783318183,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.3818506528248019,
+     "delayed_net_active": 0.05956141273724815,
+     "delayed_ir": 0.5445158339704536
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -3.28%/yr < 2.0%; information ratio -0.31 < 0.3; placebo 0.296 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.03280943495749291,
+     "information_ratio": -0.3110607193442667,
+     "placebo": 0.296,
+     "gross_active_per_month": -0.0021710549884181706,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.9971589306002075,
+     "turnover": 14.901795142555438,
+     "cagr": 0.1417358179840209,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 0.8156460247120486,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.19492670182499505,
+     "delayed_net_active": -0.06018940228296802,
+     "delayed_ir": -0.5696147301505627
+    }
+   }
+  },
+  "etf_region_mom3_k2": {
+   "rule": {
+    "id": "etf_region_mom3_k2",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "mom3",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 71,
+     "net_active": 0.031060418945226202,
+     "information_ratio": 0.45635050235254393,
+     "placebo": 0.951,
+     "gross_active_per_month": 0.0029324486992617863,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.003203376927413,
+     "turnover": 9.700814594078153,
+     "cagr": 0.104867207132475,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.5859435246795042,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.36252189078017005,
+     "delayed_net_active": 0.030057160055219884,
+     "delayed_ir": 0.4433316251540766
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -2.67%/yr < 2.0%; information ratio -0.36 < 0.3; placebo 0.225 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.026723412162827104,
+     "information_ratio": -0.3561236542090401,
+     "placebo": 0.225,
+     "gross_active_per_month": -0.0018789970518828356,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.9763584431927352,
+     "turnover": 9.648116901532369,
+     "cagr": 0.15239960975794586,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 0.9442923800019951,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.1673351762843449,
+     "delayed_net_active": -0.048841481540760394,
+     "delayed_ir": -0.6569399048020889
+    }
+   }
+  },
+  "etf_region_mom6_k1": {
+   "rule": {
+    "id": "etf_region_mom6_k1",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "mom6",
+    "k": 1
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "information ratio 0.27 < 0.3; placebo 0.804 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.03091381107170295,
+     "information_ratio": 0.2708589384189097,
+     "placebo": 0.804,
+     "gross_active_per_month": 0.0025258223173341234,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.024397669587191,
+     "turnover": 8.456375838926174,
+     "cagr": 0.09916994106953503,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.5269180294222664,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.3506448175149257,
+     "delayed_net_active": 0.02901064751477372,
+     "delayed_ir": 0.25362798651072677
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -0.83%/yr < 2.0%; information ratio -0.07 < 0.3; placebo 0.450 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.008339911549165465,
+     "information_ratio": -0.07415944496480661,
+     "placebo": 0.45,
+     "gross_active_per_month": -0.0005776624642314517,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0863135797530084,
+     "turnover": 7.450897571277719,
+     "cagr": 0.1667309544895188,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 0.8794259070648844,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.2813568277977748,
+     "delayed_net_active": -0.015577455060392072,
+     "delayed_ir": -0.13961979649073797
+    }
+   }
+  },
+  "etf_region_mom6_k2": {
+   "rule": {
+    "id": "etf_region_mom6_k2",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "mom6",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active 0.08%/yr < 2.0%; information ratio 0.01 < 0.3; placebo 0.570 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.000832896548389467,
+     "information_ratio": 0.01203389244395232,
+     "placebo": 0.57,
+     "gross_active_per_month": 0.00025233391311683,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.0117093635812173,
+     "turnover": 7.338708979465188,
+     "cagr": 0.07150625500453955,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.43579253524918166,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.31370828999979006,
+     "delayed_net_active": 0.005168091211837042,
+     "delayed_ir": 0.07462775531115244
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -5.43%/yr < 2.0%; information ratio -0.72 < 0.3; placebo 0.032 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.05428096356942793,
+     "information_ratio": -0.7194581717002613,
+     "placebo": 0.032,
+     "gross_active_per_month": -0.004315918619190746,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0661254038272092,
+     "turnover": 7.221198203738676,
+     "cagr": 0.11880478322473542,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 0.723941755751535,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.2394441577371399,
+     "delayed_net_active": -0.05455627404789109,
+     "delayed_ir": -0.7267461350453157
+    }
+   }
+  },
+  "etf_region_mom12_1_k1": {
+   "rule": {
+    "id": "etf_region_mom12_1_k1",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "mom12_1",
+    "k": 1
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "information ratio 0.28 < 0.3; placebo 0.799 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.032376086638126654,
+     "information_ratio": 0.2776323926125024,
+     "placebo": 0.799,
+     "gross_active_per_month": 0.002494645686476529,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.01547998186877,
+     "turnover": 4.059060402684564,
+     "cagr": 0.10085625078176452,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.5338058154563383,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.3110013658035369,
+     "delayed_net_active": 0.03115703245120544,
+     "delayed_ir": 0.2665305532770835
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active 1.64%/yr < 2.0%; information ratio 0.15 < 0.3; placebo 0.637 < 0.95",
+     "rebalances": 46,
+     "net_active": 0.016434704748949983,
+     "information_ratio": 0.14872819842980028,
+     "placebo": 0.637,
+     "gross_active_per_month": 0.0011802433060299833,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.093118811675736,
+     "turnover": 4.78986272439282,
+     "cagr": 0.196051064170514,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 1.0064581634485934,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.19418063112936923,
+     "delayed_net_active": 0.01785872917193843,
+     "delayed_ir": 0.1615668779044713
+    }
+   }
+  },
+  "etf_region_mom12_1_k2": {
+   "rule": {
+    "id": "etf_region_mom12_1_k2",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "mom12_1",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active 0.65%/yr < 2.0%; information ratio 0.09 < 0.3; placebo 0.635 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.006494377137973669,
+     "information_ratio": 0.0931628973444867,
+     "placebo": 0.635,
+     "gross_active_per_month": 0.0005697573743440034,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.0281168217979655,
+     "turnover": 4.3665855941384635,
+     "cagr": 0.07692874012230133,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.45608079676312435,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.30845774089507594,
+     "delayed_net_active": 0.00422766364776793,
+     "delayed_ir": 0.060719968038973025
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active 0.56%/yr < 2.0%; information ratio 0.08 < 0.3; placebo 0.576 < 0.95",
+     "rebalances": 46,
+     "net_active": 0.00561886382135411,
+     "information_ratio": 0.08267651293685674,
+     "placebo": 0.576,
+     "gross_active_per_month": 0.00043024676784809355,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0600150012172378,
+     "turnover": 3.56867800175265,
+     "cagr": 0.1886213016829219,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 1.0868426331678012,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.2109490136122928,
+     "delayed_net_active": 0.008281028531832782,
+     "delayed_ir": 0.12171767694740922
+    }
+   }
+  },
+  "etf_region_rev1_k1": {
+   "rule": {
+    "id": "etf_region_rev1_k1",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "rev1",
+    "k": 1
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "placebo 0.893 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.034706136789385354,
+     "information_ratio": 0.3069623969955067,
+     "placebo": 0.893,
+     "gross_active_per_month": 0.0034771852835407493,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.047279172482621,
+     "turnover": 20.295302013422816,
+     "cagr": 0.10242689192876608,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.5358962057212339,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.3872255304609944,
+     "delayed_net_active": 0.0523355187849414,
+     "delayed_ir": 0.4674901144253783
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -8.84%/yr < 2.0%; information ratio -0.83 < 0.3; placebo 0.031 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.08837751898216567,
+     "information_ratio": -0.8260127175741664,
+     "placebo": 0.031,
+     "gross_active_per_month": -0.006865758543671653,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.028532424951762,
+     "turnover": 19.15945089757128,
+     "cagr": 0.07925025857534984,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 0.49937345885316936,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.2653212700905311,
+     "delayed_net_active": -0.10444891175344755,
+     "delayed_ir": -0.9757767185346053
+    }
+   }
+  },
+  "etf_region_rev1_k2": {
+   "rule": {
+    "id": "etf_region_rev1_k2",
+    "family": "etf",
+    "tickers": [
+     "SPY",
+     "QQQ",
+     "IWM",
+     "EFA",
+     "EEM",
+     "VNQ"
+    ],
+    "signal": "rev1",
+    "k": 2
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -2.61%/yr < 2.0%; information ratio -0.37 < 0.3; placebo 0.161 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.026120456355948445,
+     "information_ratio": -0.3719672840244578,
+     "placebo": 0.161,
+     "gross_active_per_month": -0.001757888233848161,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.0399788237580416,
+     "turnover": 15.847083878775967,
+     "cagr": 0.041781903688874245,
+     "benchmark_cagr": 0.07366055047366893,
+     "sharpe": 0.2990040538009234,
+     "benchmark_sharpe": 0.46299387546272347,
+     "max_drawdown": -0.36540683007522257,
+     "delayed_net_active": -0.005664891483814899,
+     "delayed_ir": -0.08111164074548248
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -7.78%/yr < 2.0%; information ratio -1.10 < 0.3; placebo 0.006 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.07779643862818932,
+     "information_ratio": -1.1005739918339725,
+     "placebo": 0.006,
+     "gross_active_per_month": -0.005943026728965723,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0055522775310608,
+     "turnover": 14.489385281201386,
+     "cagr": 0.09473209737941324,
+     "benchmark_cagr": 0.1863275879586861,
+     "sharpe": 0.626165243613887,
+     "benchmark_sharpe": 1.2136568405754171,
+     "max_drawdown": -0.2376722232160593,
+     "delayed_net_active": -0.075839748237637,
+     "delayed_ir": -1.070202704356921
+    }
+   }
+  },
+  "stock_mom12_1_decile": {
+   "rule": {
+    "id": "stock_mom12_1_decile",
+    "family": "stock",
+    "signal": "mom12_1",
+    "fraction": 0.1,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.34%/yr < 2.0%; information ratio -0.03 < 0.3; placebo 0.269 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.0033740794388673794,
+     "information_ratio": -0.025077432419761164,
+     "placebo": 0.269,
+     "gross_active_per_month": -0.0006199880188304535,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9251140373594,
+     "turnover": 7.671014517962019,
+     "cagr": 0.0927215450382659,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.49363511238392505,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.36294957541718886,
+     "delayed_net_active": -0.009656349985095382,
+     "delayed_ir": -0.07196812802124902
+    },
+    "OOS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 46,
+     "net_active": 0.10713766212627142,
+     "information_ratio": 0.6156250031429731,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.00880750483579872,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.082201174901766,
+     "turnover": 7.34920920019388,
+     "cagr": 0.2430655032828919,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 1.0605506920979202,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.2398421781358957,
+     "delayed_net_active": 0.11111957190295439,
+     "delayed_ir": 0.6374053567270206
+    }
+   }
+  },
+  "stock_mom12_1_quintile": {
+   "rule": {
+    "id": "stock_mom12_1_quintile",
+    "family": "stock",
+    "signal": "mom12_1",
+    "fraction": 0.2,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.11%/yr < 2.0%; information ratio -0.01 < 0.3; placebo 0.306 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.001147724386686923,
+     "information_ratio": -0.010697131346278027,
+     "placebo": 0.306,
+     "gross_active_per_month": -0.00033734926758974574,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.8873033155099134,
+     "turnover": 6.365804674221151,
+     "cagr": 0.10066634750191361,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.5547907432572265,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.34991810231531484,
+     "delayed_net_active": -0.006332579187846491,
+     "delayed_ir": -0.05916163036260448
+    },
+    "OOS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 46,
+     "net_active": 0.057047587900949895,
+     "information_ratio": 0.5110902452073073,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.004780422696170672,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0040174493857434,
+     "turnover": 6.046176418072109,
+     "cagr": 0.19479901185041237,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 1.0827822047426199,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.21672121092509844,
+     "delayed_net_active": 0.06056447517316956,
+     "delayed_ir": 0.5412807267994878
+    }
+   }
+  },
+  "stock_mom6_1_decile": {
+   "rule": {
+    "id": "stock_mom6_1_decile",
+    "family": "stock",
+    "signal": "mom6_1",
+    "fraction": 0.1,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.04%/yr < 2.0%; information ratio -0.00 < 0.3; placebo 0.600 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.00044279288813082833,
+     "information_ratio": -0.003523511807037979,
+     "placebo": 0.6,
+     "gross_active_per_month": 0.0002434521790380314,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9381710087342392,
+     "turnover": 10.943828534889116,
+     "cagr": 0.09648200737352441,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.5112746190534587,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.42003790617559655,
+     "delayed_net_active": -0.01579620830268974,
+     "delayed_ir": -0.12587934953103494
+    },
+    "OOS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 46,
+     "net_active": 0.07173551853279107,
+     "information_ratio": 0.4262257958704989,
+     "placebo": 0.998,
+     "gross_active_per_month": 0.005692349249374157,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0710843101926175,
+     "turnover": 10.724463979388666,
+     "cagr": 0.20128705834256433,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.9279916454772207,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.2715205482171057,
+     "delayed_net_active": 0.07520740933574013,
+     "delayed_ir": 0.44447518057941465
+    }
+   }
+  },
+  "stock_mom6_1_quintile": {
+   "rule": {
+    "id": "stock_mom6_1_quintile",
+    "family": "stock",
+    "signal": "mom6_1",
+    "fraction": 0.2,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.41%/yr < 2.0%; information ratio -0.04 < 0.3; placebo 0.472 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.004083979342412688,
+     "information_ratio": -0.04152664645612079,
+     "placebo": 0.472,
+     "gross_active_per_month": -8.577122265358994e-05,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9247967856170353,
+     "turnover": 9.024154900975367,
+     "cagr": 0.09655095034913619,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.5324820801506797,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.40959779418108766,
+     "delayed_net_active": -0.010403226044608454,
+     "delayed_ir": -0.10596053348148597
+    },
+    "OOS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 46,
+     "net_active": 0.03812710428926607,
+     "information_ratio": 0.35469368940633156,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.003203247151785638,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.0078825015013506,
+     "turnover": 8.90897973442659,
+     "cagr": 0.17285881795107727,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.9888926596087081,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.22090328735655063,
+     "delayed_net_active": 0.03645701932397333,
+     "delayed_ir": 0.33776993721249904
+    }
+   }
+  },
+  "stock_resmom6_1_decile": {
+   "rule": {
+    "id": "stock_resmom6_1_decile",
+    "family": "stock",
+    "signal": "resmom6_1",
+    "fraction": 0.1,
+    "trend": false
+   },
+   "status": "supported",
+   "cells": {
+    "IS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 71,
+     "net_active": 0.04303173512739817,
+     "information_ratio": 0.4886259723702099,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.003913616790330496,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9009317089978929,
+     "turnover": 12.15863622730984,
+     "cagr": 0.15183033892079179,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.7825367284977349,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.36905560934064185,
+     "delayed_net_active": 0.04284975050370159,
+     "delayed_ir": 0.48728654342880023
+    },
+    "OOS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 46,
+     "net_active": 0.08426659816819983,
+     "information_ratio": 0.6839724668577046,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.007174117046097537,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.9204609870086428,
+     "turnover": 11.327471016264866,
+     "cagr": 0.22806885594218396,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 1.2451684770954468,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.2186706896314976,
+     "delayed_net_active": 0.07797805655257721,
+     "delayed_ir": 0.6318100080001665
+    }
+   },
+   "spin_off_check": {
+    "IS": {
+     "net_active": 0.04437301109609233,
+     "information_ratio": 0.5054632729386557
+    },
+    "OOS": {
+     "net_active": 0.07531593354401768,
+     "information_ratio": 0.609299593225235
+    }
+   }
+  },
+  "stock_resmom6_1_quintile": {
+   "rule": {
+    "id": "stock_resmom6_1_quintile",
+    "family": "stock",
+    "signal": "resmom6_1",
+    "fraction": 0.2,
+    "trend": false
+   },
+   "status": "supported",
+   "cells": {
+    "IS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 71,
+     "net_active": 0.03497988450438135,
+     "information_ratio": 0.5141329788636899,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.003194271296575855,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9133532681871196,
+     "turnover": 9.626670809688168,
+     "cagr": 0.14374567902406032,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.7618194989735451,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.36831669147284063,
+     "delayed_net_active": 0.0307145756306344,
+     "delayed_ir": 0.45104826134478687
+    },
+    "OOS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 46,
+     "net_active": 0.027417749839254067,
+     "information_ratio": 0.31153060671245325,
+     "placebo": 0.984,
+     "gross_active_per_month": 0.002468456030277177,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.9128065157398934,
+     "turnover": 9.05866895276189,
+     "cagr": 0.164746229467853,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 1.064747637018982,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.20325564239072436,
+     "delayed_net_active": 0.018792050175920682,
+     "delayed_ir": 0.2127235260272809
+    }
+   },
+   "spin_off_check": {
+    "IS": {
+     "net_active": 0.03667128843270633,
+     "information_ratio": 0.5398607042970198
+    },
+    "OOS": {
+     "net_active": 0.02478740734857422,
+     "information_ratio": 0.28009888789483156
+    }
+   }
+  },
+  "stock_rev1_decile": {
+   "rule": {
+    "id": "stock_rev1_decile",
+    "family": "stock",
+    "signal": "rev1",
+    "fraction": 0.1,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.21%/yr < 2.0%; information ratio -0.02 < 0.3; placebo 0.790 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.0020737127341312997,
+     "information_ratio": -0.01596846128996191,
+     "placebo": 0.79,
+     "gross_active_per_month": 0.0010739878694986335,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.2431667729262694,
+     "turnover": 21.17123813884711,
+     "cagr": 0.07939748580368056,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.4096878740784454,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.5216741258469725,
+     "delayed_net_active": -0.008348533800762382,
+     "delayed_ir": -0.06570062620196963
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -3.68%/yr < 2.0%; information ratio -0.31 < 0.3; placebo 0.044 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.036777205318127046,
+     "information_ratio": -0.3118017726946028,
+     "placebo": 0.044,
+     "gross_active_per_month": -0.002735716601420427,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.3057636361322997,
+     "turnover": 20.703626641074006,
+     "cagr": 0.08079701323102784,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.47078025530028084,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.26029265099007415,
+     "delayed_net_active": -0.013874738751380719,
+     "delayed_ir": -0.11751208355822852
+    }
+   }
+  },
+  "stock_rev1_quintile": {
+   "rule": {
+    "id": "stock_rev1_quintile",
+    "family": "stock",
+    "signal": "rev1",
+    "fraction": 0.2,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active 0.07%/yr < 2.0%; information ratio 0.01 < 0.3; placebo 0.902 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.0007254187830237594,
+     "information_ratio": 0.007699692562885154,
+     "placebo": 0.902,
+     "gross_active_per_month": 0.0010055076004792383,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 1.1679361376940232,
+     "turnover": 19.09618374372681,
+     "cagr": 0.09045177488577338,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.4622335381601417,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.4792112892597272,
+     "delayed_net_active": -0.006023444909889233,
+     "delayed_ir": -0.06509408868988642
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -4.21%/yr < 2.0%; information ratio -0.49 < 0.3; placebo 0.003 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.04208598753996315,
+     "information_ratio": -0.49391591842200117,
+     "placebo": 0.003,
+     "gross_active_per_month": -0.003097359578022806,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 1.208760933615578,
+     "turnover": 18.652322955374228,
+     "cagr": 0.08066060842052192,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.5081303468868923,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.2203517849196447,
+     "delayed_net_active": -0.031625733242727806,
+     "delayed_ir": -0.3708336939567994
+    }
+   }
+  },
+  "stock_lowvol_decile": {
+   "rule": {
+    "id": "stock_lowvol_decile",
+    "family": "stock",
+    "signal": "lowvol",
+    "fraction": 0.1,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.43%/yr < 2.0%; information ratio -0.03 < 0.3; placebo 0.406 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.004287438635697491,
+     "information_ratio": -0.032024220087321136,
+     "placebo": 0.406,
+     "gross_active_per_month": -0.00032527809585355656,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.6226823882629221,
+     "turnover": 2.903957216890873,
+     "cagr": 0.10669666493729224,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.6822971038913063,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.35237271535681225,
+     "delayed_net_active": -0.007529193474410134,
+     "delayed_ir": -0.05637767061492753
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -7.33%/yr < 2.0%; information ratio -0.62 < 0.3; placebo 0.000 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.07331516469687077,
+     "information_ratio": -0.6243389293624126,
+     "placebo": 0.0,
+     "gross_active_per_month": -0.005901099812334365,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.4682794975654662,
+     "turnover": 2.5577864799205914,
+     "cagr": 0.059130701017330534,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.5688940473465577,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.11214748414419284,
+     "delayed_net_active": -0.07429205493667529,
+     "delayed_ir": -0.6336766618343131
+    }
+   }
+  },
+  "stock_lowvol_quintile": {
+   "rule": {
+    "id": "stock_lowvol_quintile",
+    "family": "stock",
+    "signal": "lowvol",
+    "fraction": 0.2,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active 0.50%/yr < 2.0%; information ratio 0.05 < 0.3; placebo 0.732 < 0.95",
+     "rebalances": 71,
+     "net_active": 0.005012101459186123,
+     "information_ratio": 0.04552231383714613,
+     "placebo": 0.732,
+     "gross_active_per_month": 0.0004901473921412803,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.6773879807644556,
+     "turnover": 2.2173407883000325,
+     "cagr": 0.11755806960063264,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.7490939022804963,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.3480264610684658,
+     "delayed_net_active": 0.0030389298891089303,
+     "delayed_ir": 0.027689576525227695
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -6.97%/yr < 2.0%; information ratio -0.72 < 0.3; placebo 0.000 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.06967713225509721,
+     "information_ratio": -0.7150799500938965,
+     "placebo": 0.0,
+     "gross_active_per_month": -0.0056149128281386415,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.5690846657132131,
+     "turnover": 2.0491744681162283,
+     "cagr": 0.06318220079859649,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.6101814979680606,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.09363986643743494,
+     "delayed_net_active": -0.06908038847975284,
+     "delayed_ir": -0.708775833731627
+    }
+   }
+  },
+  "stock_lowbeta_decile": {
+   "rule": {
+    "id": "stock_lowbeta_decile",
+    "family": "stock",
+    "signal": "lowbeta",
+    "fraction": 0.1,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -1.23%/yr < 2.0%; information ratio -0.08 < 0.3; placebo 0.173 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.01228776919936667,
+     "information_ratio": -0.07652047475293018,
+     "placebo": 0.173,
+     "gross_active_per_month": -0.0010541091446950484,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.5212052382830306,
+     "turnover": 2.444078787916058,
+     "cagr": 0.09859023314326887,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.6487108337828132,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.32465145366743453,
+     "delayed_net_active": -0.015371727163988508,
+     "delayed_ir": -0.09620045034509923
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -5.83%/yr < 2.0%; information ratio -0.41 < 0.3; placebo 0.004 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.05833135395786697,
+     "information_ratio": -0.4113933912690083,
+     "placebo": 0.004,
+     "gross_active_per_month": -0.004627039121506326,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.34843558951646925,
+     "turnover": 2.725803819435067,
+     "cagr": 0.07424631059085085,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.6608695308755416,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.1113574090003987,
+     "delayed_net_active": -0.05912425461278176,
+     "delayed_ir": -0.4168466450628232
+    }
+   }
+  },
+  "stock_lowbeta_quintile": {
+   "rule": {
+    "id": "stock_lowbeta_quintile",
+    "family": "stock",
+    "signal": "lowbeta",
+    "fraction": 0.2,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -1.21%/yr < 2.0%; information ratio -0.09 < 0.3; placebo 0.111 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.012117867850993431,
+     "information_ratio": -0.09402909426088785,
+     "placebo": 0.111,
+     "gross_active_per_month": -0.0009481591621104683,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.6053412606608878,
+     "turnover": 2.069230598054993,
+     "cagr": 0.09964622734613515,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.6703116528526918,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.33377064979418647,
+     "delayed_net_active": -0.013961678753738388,
+     "delayed_ir": -0.10868234985513706
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -6.44%/yr < 2.0%; information ratio -0.52 < 0.3; placebo 0.000 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.06442678183376892,
+     "information_ratio": -0.5228296063791477,
+     "placebo": 0.0,
+     "gross_active_per_month": -0.005136212133727222,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.4367984632192095,
+     "turnover": 1.7750432001906573,
+     "cagr": 0.06850043562787245,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.6439718743092885,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.09168159431201184,
+     "delayed_net_active": -0.06366800135383813,
+     "delayed_ir": -0.516690887459722
+    }
+   }
+  },
+  "stock_high52_decile": {
+   "rule": {
+    "id": "stock_high52_decile",
+    "family": "stock",
+    "signal": "high52",
+    "fraction": 0.1,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -2.54%/yr < 2.0%; information ratio -0.20 < 0.3; placebo 0.110 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.02540906908620823,
+     "information_ratio": -0.20031961910379759,
+     "placebo": 0.11,
+     "gross_active_per_month": -0.0015086422114425405,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.6555230189002709,
+     "turnover": 17.060645713829317,
+     "cagr": 0.08301290606680212,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.5476978384644385,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.2840708967329635,
+     "delayed_net_active": -0.02707759718880281,
+     "delayed_ir": -0.21363079271825725
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -5.90%/yr < 2.0%; information ratio -0.56 < 0.3; placebo 0.006 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.05902161573427335,
+     "information_ratio": -0.5554912943984399,
+     "placebo": 0.006,
+     "gross_active_per_month": -0.004280308825153173,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.641782392050619,
+     "turnover": 17.23312274228577,
+     "cagr": 0.07207162496327135,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.6015726082368293,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.12202986696483631,
+     "delayed_net_active": -0.06593469916340705,
+     "delayed_ir": -0.6230603668785525
+    }
+   }
+  },
+  "stock_high52_quintile": {
+   "rule": {
+    "id": "stock_high52_quintile",
+    "family": "stock",
+    "signal": "high52",
+    "fraction": 0.2,
+    "trend": false
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.53%/yr < 2.0%; information ratio -0.05 < 0.3; placebo 0.491 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.005250746660905095,
+     "information_ratio": -0.048802693346699344,
+     "placebo": 0.491,
+     "gross_active_per_month": 8.331256768482423e-06,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.7138598178000629,
+     "turnover": 12.149892485810584,
+     "cagr": 0.10466481479666623,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.6566368493616292,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.3137986492653966,
+     "delayed_net_active": -0.009246593511023594,
+     "delayed_ir": -0.08619126439481122
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -3.51%/yr < 2.0%; information ratio -0.41 < 0.3; placebo 0.014 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.03514015347532642,
+     "information_ratio": -0.41419555950275816,
+     "placebo": 0.014,
+     "gross_active_per_month": -0.002431493388400522,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.6919684123386173,
+     "turnover": 12.178676111553171,
+     "cagr": 0.09914761386240523,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.8407842378858674,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.11439069409394287,
+     "delayed_net_active": -0.044512050083818866,
+     "delayed_ir": -0.5263311314338588
+    }
+   }
+  },
+  "stock_mom12_1_decile_trend": {
+   "rule": {
+    "id": "stock_mom12_1_decile_trend",
+    "family": "stock",
+    "signal": "mom12_1",
+    "fraction": 0.1,
+    "trend": true
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -4.63%/yr < 2.0%; information ratio -0.23 < 0.3; placebo 0.010 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.04627199782767972,
+     "information_ratio": -0.22761327250176433,
+     "placebo": 0.01,
+     "gross_active_per_month": -0.003721239523921647,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.32834776243914776,
+     "turnover": 8.174057136620943,
+     "cagr": 0.06276601419285699,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.4584034207526141,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.20605731065317667,
+     "delayed_net_active": -0.04311597593950062,
+     "delayed_ir": -0.21263270723011582
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -0.66%/yr < 2.0%; information ratio -0.04 < 0.3",
+     "rebalances": 46,
+     "net_active": -0.006628063122715063,
+     "information_ratio": -0.03568874136955631,
+     "placebo": 0.997,
+     "gross_active_per_month": -0.0007145139418707447,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.7196070142954283,
+     "turnover": 9.904941307313495,
+     "cagr": 0.11496280836282624,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.6284823947261369,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.1892416515987243,
+     "delayed_net_active": 0.0024408720037074247,
+     "delayed_ir": 0.013042546587354679
+    }
+   }
+  },
+  "stock_mom6_1_decile_trend": {
+   "rule": {
+    "id": "stock_mom6_1_decile_trend",
+    "family": "stock",
+    "signal": "mom6_1",
+    "fraction": 0.1,
+    "trend": true
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -3.43%/yr < 2.0%; information ratio -0.17 < 0.3; placebo 0.286 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.03427459626722766,
+     "information_ratio": -0.17384905814506574,
+     "placebo": 0.286,
+     "gross_active_per_month": -0.002253056278163828,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.34227556638872,
+     "turnover": 10.39117854231071,
+     "cagr": 0.07626651115614336,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.54569651963403,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.20175226715458172,
+     "delayed_net_active": -0.04219574434511241,
+     "delayed_ir": -0.2145216325180365
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -2.69%/yr < 2.0%; information ratio -0.15 < 0.3",
+     "rebalances": 46,
+     "net_active": -0.02691548596311654,
+     "information_ratio": -0.1476398744860943,
+     "placebo": 0.964,
+     "gross_active_per_month": -0.002314277321100306,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.6957073547914923,
+     "turnover": 12.424876375911653,
+     "cagr": 0.09376946183867929,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.5447474542537224,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.19451861609266663,
+     "delayed_net_active": -0.022968485433616487,
+     "delayed_ir": -0.12497474334318906
+    }
+   }
+  },
+  "stock_resmom6_1_decile_trend": {
+   "rule": {
+    "id": "stock_resmom6_1_decile_trend",
+    "family": "stock",
+    "signal": "resmom6_1",
+    "fraction": 0.1,
+    "trend": true
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -0.14%/yr < 2.0%; information ratio -0.01 < 0.3",
+     "rebalances": 71,
+     "net_active": -0.001377892348057886,
+     "information_ratio": -0.007551278120241363,
+     "placebo": 0.981,
+     "gross_active_per_month": 0.0005268571260411997,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.3242271642994051,
+     "turnover": 11.294774696354832,
+     "cagr": 0.11625417521662951,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.895294749640573,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.15010552945166722,
+     "delayed_net_active": 0.004911275437336141,
+     "delayed_ir": 0.026999478193132136
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active 0.04%/yr < 2.0%; information ratio 0.00 < 0.3",
+     "rebalances": 46,
+     "net_active": 0.0003637783274337103,
+     "information_ratio": 0.0025425917419394837,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.0003670119482957445,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.5792159364169853,
+     "turnover": 13.161700561530138,
+     "cagr": 0.1338109609912057,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.8951997266349235,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.15700361585868083,
+     "delayed_net_active": -0.00621556278398606,
+     "delayed_ir": -0.04318507080869784
+    }
+   }
+  },
+  "stock_rev1_decile_trend": {
+   "rule": {
+    "id": "stock_rev1_decile_trend",
+    "family": "stock",
+    "signal": "rev1",
+    "fraction": 0.1,
+    "trend": true
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -2.74%/yr < 2.0%; information ratio -0.14 < 0.3; placebo 0.616 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.02741632618763777,
+     "information_ratio": -0.14369315815081235,
+     "placebo": 0.616,
+     "gross_active_per_month": -0.0014268830926287286,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.43208450918675484,
+     "turnover": 17.43124634692489,
+     "cagr": 0.08067405391075844,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.532690510532099,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.2337135841120227,
+     "delayed_net_active": -0.028384551402390924,
+     "delayed_ir": -0.1491285272627526
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -13.24%/yr < 2.0%; information ratio -1.03 < 0.3; placebo 0.001 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.1323905934316953,
+     "information_ratio": -1.032767211007621,
+     "placebo": 0.001,
+     "gross_active_per_month": -0.010360939514377008,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.7959986465209271,
+     "turnover": 20.622194457151803,
+     "cagr": -0.009295264926347246,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.027849556634023657,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.2122628464455638,
+     "delayed_net_active": -0.12473536698118813,
+     "delayed_ir": -0.9729477838842915
+    }
+   }
+  },
+  "stock_lowvol_decile_trend": {
+   "rule": {
+    "id": "stock_lowvol_decile_trend",
+    "family": "stock",
+    "signal": "lowvol",
+    "fraction": 0.1,
+    "trend": true
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -3.50%/yr < 2.0%; information ratio -0.18 < 0.3; placebo 0.201 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.03501516764693864,
+     "information_ratio": -0.17982159497361164,
+     "placebo": 0.201,
+     "gross_active_per_month": -0.0023776049229234865,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.17011079319639844,
+     "turnover": 4.889785800239407,
+     "cagr": 0.08428551647902127,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.9245313029550214,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.14786438867121787,
+     "delayed_net_active": -0.025470877055535402,
+     "delayed_ir": -0.13105742377598742
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -8.28%/yr < 2.0%; information ratio -0.64 < 0.3; placebo 0.177 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.08283853542546883,
+     "information_ratio": -0.6419299469627449,
+     "placebo": 0.177,
+     "gross_active_per_month": -0.00645863930393385,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.31779188732625663,
+     "turnover": 5.8305221787503365,
+     "cagr": 0.05068247597212627,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.5550173369501629,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.11703726746275134,
+     "delayed_net_active": -0.08203779023924189,
+     "delayed_ir": -0.6365617042051069
+    }
+   }
+  },
+  "stock_lowbeta_decile_trend": {
+   "rule": {
+    "id": "stock_lowbeta_decile_trend",
+    "family": "stock",
+    "signal": "lowbeta",
+    "fraction": 0.1,
+    "trend": true
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -4.68%/yr < 2.0%; information ratio -0.23 < 0.3; placebo 0.028 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.04682982030198877,
+     "information_ratio": -0.22650533615727295,
+     "placebo": 0.028,
+     "gross_active_per_month": -0.0034229500243974894,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.1261127394776078,
+     "turnover": 4.629180205635896,
+     "cagr": 0.07107489148032209,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.7570328788116197,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.14126037406164627,
+     "delayed_net_active": -0.03458322544344572,
+     "delayed_ir": -0.16762938514891382
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -5.51%/yr < 2.0%; information ratio -0.38 < 0.3; placebo 0.738 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.055089018185764914,
+     "information_ratio": -0.37840230645246214,
+     "placebo": 0.738,
+     "gross_active_per_month": -0.00414791516151612,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.2513514360335517,
+     "turnover": 5.803041946901438,
+     "cagr": 0.0791936083521001,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.764672991825087,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.11173520038220697,
+     "delayed_net_active": -0.057209568189729554,
+     "delayed_ir": -0.3923973330844412
+    }
+   }
+  },
+  "stock_high52_decile_trend": {
+   "rule": {
+    "id": "stock_high52_decile_trend",
+    "family": "stock",
+    "signal": "high52",
+    "fraction": 0.1,
+    "trend": true
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "net active -4.80%/yr < 2.0%; information ratio -0.26 < 0.3; placebo 0.041 < 0.95",
+     "rebalances": 71,
+     "net_active": -0.04795297625678113,
+     "information_ratio": -0.2561824531259269,
+     "placebo": 0.041,
+     "gross_active_per_month": -0.0032006716922867704,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.25842420388763737,
+     "turnover": 15.437470099250055,
+     "cagr": 0.0676705368865218,
+     "benchmark_cagr": 0.10271234415217445,
+     "sharpe": 0.6221360556972106,
+     "benchmark_sharpe": 0.5692313010106965,
+     "max_drawdown": -0.1507147066613891,
+     "delayed_net_active": -0.038976408218626,
+     "delayed_ir": -0.2088024296069591
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "net active -7.25%/yr < 2.0%; information ratio -0.62 < 0.3; placebo 0.453 < 0.95",
+     "rebalances": 46,
+     "net_active": -0.07248496534429044,
+     "information_ratio": -0.6167716759267969,
+     "placebo": 0.453,
+     "gross_active_per_month": -0.005257205748780317,
+     "start": "2023-01-03",
+     "end": "2026-10-12",
+     "beta": 0.503161055669271,
+     "turnover": 18.476890559259576,
+     "cagr": 0.059278499282459096,
+     "benchmark_cagr": 0.13574161133871776,
+     "sharpe": 0.546940538464174,
+     "benchmark_sharpe": 0.9809885113307062,
+     "max_drawdown": -0.11744203748159654,
+     "delayed_net_active": -0.07759748572779064,
+     "delayed_ir": -0.6625170363296575
+    }
+   }
+  }
+ }
+}
