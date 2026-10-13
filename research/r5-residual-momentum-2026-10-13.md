@@ -2,7 +2,7 @@
 
 - **Date:** 2026-10-13
 - **Ledger hypothesis id:** 33
-- **Strategy file:** TBD
+- **Strategy file:** `strategies/residual_momentum_v1.py`; scoring in `research/round5_verdicts.py`, summary in `backtests/round5_summary.json`; data plumbing in `core/universe.py`
 - **Source:** idea 3 of "New Trading Ideas — Round 4 Research" (Claude Docs, https://claude.ai/artifact/UWRKnia66kJGerwuqnmk6T), run on its own after round 4 (H31, H32, both rejected). The rule and kill thresholds below are the doc's; reading choices where it is silent are listed separately. All of it is fixed before any strategy code is written or any return is computed. Membership and price files were downloaded before this memo was written; only their coverage (which tickers have bars) was looked at, no returns.
 
 Multiple-testing count: this is hypothesis 33. Thirty-two have been tested before it; none supported.
@@ -53,7 +53,44 @@ Prior: low-medium (the doc's own). The long-only top decile keeps market beta, t
 - Spin-off check. Alpaca's adjusted bars cover splits and dividends but not spin-offs, so a parent's spin-off date shows as a false one-day loss (seen before any returns were computed: UTX/RTX -71% on 2020-04-03, ARNC -89% on 2020-04-01, TGNA -78% on 2017-06-01, APTV -72% on 2017-12-05). It hits strategy and benchmark alike when both hold the name. A second simulation (signals unchanged) sets every single-day stock move below -50% or above +100% to zero; it is reported, not scored, and it also removes real crashes such as SIVB.
 
 ## Data coverage
-TBD
+- All 719 tickers that were members at some month-end from December 2016 on returned Alpaca bars, delisted ones included (SIVB, FRC, TWTR and others).
+- Only 50 member-months lacked a close on the month-end, across 9 tickers (WYND 17, APTV 11, BHGE 7, AABA 6, IR 5, and one each for FTI, INFO, CTXS, TWTR). Those are mostly name changes around corporate events. At least 99.0% of members were priced at every rebalance (99.9% on average).
+- About 501 names were ranked per rebalance (minimum 495), giving 50 picks each time.
+- The survivorship bias the doc warned about is therefore small here. Unadjusted spin-offs are the larger data issue; see the spin-off check below.
 
 ## Results
-TBD
+**Rejected.** Out-of-sample passes; in-sample fails all three tests; both windows were required. The first rebalance was 2017-01-31.
+
+| Window | Rebalances | Net active / yr | Information ratio | Placebo | CAGR, strategy vs EW members | Sharpe | Max drawdown | Cell |
+|---|---|---|---|---|---|---|---|---|
+| IS 2017-02-01..2022-12-30 | 71 | +0.86% | 0.09 | 0.755 | 11.1% vs 10.3% | 0.60 vs 0.57 | -38.0% vs -39.8% | fails (all three) |
+| OOS 2023-01-03..2026-10-12 | 46 | +10.14% | 0.79 | 1.000 | 25.0% vs 13.6% | 1.36 vs 0.98 | -15.1% vs -17.7% | passes |
+
+Reported, not scored:
+
+| Window | Delayed fill, net active (IR) | Plain 12-1 momentum, net active (IR) | Spin-off check, net active (IR) |
+|---|---|---|---|
+| IS | +0.62% (0.06) | -0.34% (-0.03) | +1.07% (0.11) |
+| OOS | +8.91% (0.69) | +10.71% (0.62) | +10.10% (0.79) |
+
+- Other figures:
+  - Turnover: 8.8x a year in-sample and 7.9x out-of-sample, two-sided. That is about 35% a month one-way, in line with the doc's 30-40%.
+  - Benchmark turnover: about 0.75x.
+  - Beta to the benchmark: 0.92 in-sample, 0.86 out-of-sample.
+  - Tracking error: 9.7% in-sample, 12.9% out-of-sample.
+- Benchmark check: equal-weight members compounded 10.3% a year over 2017-2022, close to RSP's figure for those years from memory, so the membership and price plumbing looks right.
+
+What this says:
+- **Out-of-sample:**
+  - 2023 to now is a very strong period for this rule: +10% a year over equal weight, information ratio 0.79, and better than every one of 1000 random 50-name baskets.
+  - It survives a one-day-late rebalance and the spin-off check.
+  - Plain 12-1 momentum earned as much over the benchmark (+10.7%). The window rewarded momentum in general (the 2023-2025 large-cap trend), not the residual step in particular.
+  - Where the residual step did help was risk: 17.5% volatility against 23.0% for plain momentum, and -15% maximum drawdown against -24%, as the papers report.
+- **In-sample (2017-2022):**
+  - The edge is under 1% a year, information ratio 0.09, placebo 0.755.
+  - That period includes the November 2020 factor reversal the doc named as the main way this fails.
+- **Overall:** the pattern is the reverse of earlier rounds, a weak in-sample and a strong out-of-sample. Passing out-of-sample after failing in-sample is not support under the pre-set rule, and the out-of-sample run coincides with an unusually strong momentum regime.
+- **Possible follow-up:** test residual momentum as a lower-risk replacement for plain momentum. That would need its own hypothesis and a fresh holdout; the forward paper period is the only unseen data left.
+
+## Running count
+Hypotheses tested so far: 33; none supported.
