@@ -1,0 +1,490 @@
+{
+  "31": {
+    "status": "rejected",
+    "note": "Round-4 verdict: rejected (3/10 cells, 0/5 ETFs pass both windows; need 4). Hypotheses tested so far: 32. The five ETFs are near-duplicates, so this is close to one test.",
+    "cells": [
+      {
+        "symbol": "VGLT",
+        "window": "IS",
+        "verdict": "contradicts",
+        "why": "delayed-fill mean per event -0.007% not above 0",
+        "ref": "backtests/treasury_month_end_v1/VGLT_2016-01-04_2022-12-30_20261013T105947Z.json",
+        "events": 84,
+        "mean_event": 0.0027322565652007067,
+        "mean_event_delayed": -6.570604197345384e-05,
+        "hit_rate": 0.6071428571428571,
+        "placebo": 0.993,
+        "strategy": {
+          "total_return": 0.249394515986056,
+          "cagr": 0.03235700278624898,
+          "ann_vol": 0.04592876009600115,
+          "sharpe": 0.7162354070786626,
+          "max_drawdown": -0.08100671113268887,
+          "exposure": 0.14301929625425652,
+          "trades": 167,
+          "entries": 84,
+          "exits": 83,
+          "exposure_days": 252,
+          "return_per_exposure_day": 0.0009127363153843625
+        },
+        "buy_and_hold": {
+          "total_return": -0.03576642335766522,
+          "cagr": -0.005195464591659316,
+          "ann_vol": 0.1395455685061708,
+          "sharpe": 0.03234271783651088,
+          "max_drawdown": -0.4250735726898177,
+          "mean_daily_return": 1.7909852966391197e-05
+        },
+        "bil_variant": {
+          "cagr": 0.02714302938706603,
+          "sharpe": 0.6027589264049237,
+          "max_drawdown": -0.09180841263504724
+        }
+      },
+      {
+        "symbol": "VGLT",
+        "window": "OOS",
+        "verdict": "contradicts",
+        "why": "mean net per event 0.075% < 10bps; return/exposure day 0.025% < buy&hold mean -0.002% + 5bps; placebo percentile 0.85 < 0.95",
+        "ref": "backtests/treasury_month_end_v1/VGLT_2023-01-03_2026-10-12_20261013T105948Z.json",
+        "events": 45,
+        "mean_event": 0.0007533239605916231,
+        "mean_event_delayed": 0.0011334719704212206,
+        "hit_rate": 0.5777777777777777,
+        "placebo": 0.855,
+        "strategy": {
+          "total_return": 0.030467184332842567,
+          "cagr": 0.008018347472462661,
+          "ann_vol": 0.0424760091086461,
+          "sharpe": 0.20924150690562598,
+          "max_drawdown": -0.07579878355090885,
+          "exposure": 0.14255543822597677,
+          "trades": 91,
+          "entries": 45,
+          "exits": 45,
+          "exposure_days": 135,
+          "return_per_exposure_day": 0.00024740428316017066
+        },
+        "buy_and_hold": {
+          "total_return": -0.04939439818319591,
+          "cagr": -0.013389299045001524,
+          "ann_vol": 0.12891335430589482,
+          "sharpe": -0.040164949419200395,
+          "max_drawdown": -0.20817457568410158,
+          "mean_daily_return": -2.0546818869665577e-05
+        },
+        "bil_variant": {
+          "cagr": 0.035266114838084395,
+          "sharpe": 0.8376893135563843,
+          "max_drawdown": -0.05856706890739849
+        }
+      },
+      {
+        "symbol": "SPTL",
+        "window": "IS",
+        "verdict": "contradicts",
+        "why": "delayed-fill mean per event -0.008% not above 0",
+        "ref": "backtests/treasury_month_end_v1/SPTL_2016-01-04_2022-12-30_20261013T105950Z.json",
+        "events": 84,
+        "mean_event": 0.002703567709359059,
+        "mean_event_delayed": -7.82191984203315e-05,
+        "hit_rate": 0.6190476190476191,
+        "placebo": 0.989,
+        "strategy": {
+          "total_return": 0.24620843659714398,
+          "cagr": 0.03198007636289946,
+          "ann_vol": 0.04638209753972998,
+          "sharpe": 0.7018041199706142,
+          "max_drawdown": -0.08267158458779955,
+          "exposure": 0.14301929625425652,
+          "trades": 167,
+          "entries": 84,
+          "exits": 83,
+          "exposure_days": 252,
+          "return_per_exposure_day": 0.0009031733634371467
+        },
+        "buy_and_hold": {
+          "total_return": -0.03307692307692045,
+          "cagr": -0.004799092320398657,
+          "ann_vol": 0.14150273175942157,
+          "sharpe": 0.03662595750483484,
+          "max_drawdown": -0.4253583786455766,
+          "mean_daily_return": 2.0566162858089752e-05
+        },
+        "bil_variant": {
+          "cagr": 0.026765635431380108,
+          "sharpe": 0.5889276302615544,
+          "max_drawdown": -0.09345298332579721
+        }
+      },
+      {
+        "symbol": "SPTL",
+        "window": "OOS",
+        "verdict": "contradicts",
+        "why": "mean net per event 0.072% < 10bps; return/exposure day 0.024% < buy&hold mean -0.002% + 5bps; placebo percentile 0.85 < 0.95",
+        "ref": "backtests/treasury_month_end_v1/SPTL_2023-01-03_2026-10-12_20261013T105951Z.json",
+        "events": 45,
+        "mean_event": 0.0007177877645981928,
+        "mean_event_delayed": 0.001082694799306911,
+        "hit_rate": 0.5777777777777777,
+        "placebo": 0.849,
+        "strategy": {
+          "total_return": 0.0288043929230557,
+          "cagr": 0.007585255710909511,
+          "ann_vol": 0.042572522088636974,
+          "sharpe": 0.19877164862872265,
+          "max_drawdown": -0.07648193337825804,
+          "exposure": 0.14255543822597677,
+          "trades": 91,
+          "entries": 45,
+          "exits": 45,
+          "exposure_days": 135,
+          "return_per_exposure_day": 0.0002355588844956939
+        },
+        "buy_and_hold": {
+          "total_return": -0.049323786793954105,
+          "cagr": -0.013369797952919815,
+          "ann_vol": 0.12885748439419842,
+          "sharpe": -0.04008937420284485,
+          "max_drawdown": -0.20778748180494888,
+          "mean_daily_return": -2.0499269486969288e-05
+        },
+        "bil_variant": {
+          "cagr": 0.0348203451465805,
+          "sharpe": 0.8255279060082236,
+          "max_drawdown": -0.058566823963317916
+        }
+      },
+      {
+        "symbol": "EDV",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/treasury_month_end_v1/EDV_2016-01-04_2022-12-30_20261013T105953Z.json",
+        "events": 84,
+        "mean_event": 0.003586310099634112,
+        "mean_event_delayed": 5.711306411927355e-05,
+        "hit_rate": 0.5833333333333334,
+        "placebo": 0.987,
+        "strategy": {
+          "total_return": 0.33207125955105177,
+          "cagr": 0.041861115269476334,
+          "ann_vol": 0.06569259622987604,
+          "sharpe": 0.6569397776797478,
+          "max_drawdown": -0.12057259089344974,
+          "exposure": 0.14301929625425652,
+          "trades": 167,
+          "entries": 84,
+          "exits": 83,
+          "exposure_days": 252,
+          "return_per_exposure_day": 0.0011974208268621643
+        },
+        "buy_and_hold": {
+          "total_return": -0.09887150551423451,
+          "cagr": -0.014779071146085232,
+          "ann_vol": 0.19160086610821697,
+          "sharpe": 0.01794863194799098,
+          "max_drawdown": -0.5429010313802944,
+          "mean_daily_return": 1.3646719947193197e-05
+        },
+        "bil_variant": {
+          "cagr": 0.036590758289460235,
+          "sharpe": 0.5773433799938936,
+          "max_drawdown": -0.13092136515490427
+        }
+      },
+      {
+        "symbol": "EDV",
+        "window": "OOS",
+        "verdict": "contradicts",
+        "why": "mean net per event 0.032% < 10bps; return/exposure day 0.010% < buy&hold mean -0.017% + 5bps; placebo percentile 0.76 < 0.95",
+        "ref": "backtests/treasury_month_end_v1/EDV_2023-01-03_2026-10-12_20261013T105954Z.json",
+        "events": 45,
+        "mean_event": 0.0003179418920852174,
+        "mean_event_delayed": 0.0009880817631239096,
+        "hit_rate": 0.5777777777777777,
+        "placebo": 0.758,
+        "strategy": {
+          "total_return": 0.005797858603881156,
+          "cagr": 0.001539558940598651,
+          "ann_vol": 0.06538527975864357,
+          "sharpe": 0.0561929736291266,
+          "max_drawdown": -0.15010922552513872,
+          "exposure": 0.14255543822597677,
+          "trades": 91,
+          "entries": 45,
+          "exits": 45,
+          "exposure_days": 135,
+          "return_per_exposure_day": 0.00010227692699136877
+        },
+        "buy_and_hold": {
+          "total_return": -0.2130354347516713,
+          "cagr": -0.06176136978386104,
+          "ann_vol": 0.19999932479346227,
+          "sharpe": -0.21875286359227805,
+          "max_drawdown": -0.31473750790638755,
+          "mean_daily_return": -0.00017361279767893638
+        },
+        "bil_variant": {
+          "cagr": 0.02859769482400365,
+          "sharpe": 0.4632327417710531,
+          "max_drawdown": -0.13263223600896767
+        }
+      },
+      {
+        "symbol": "ZROZ",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/treasury_month_end_v1/ZROZ_2016-01-04_2022-12-30_20261013T105956Z.json",
+        "events": 84,
+        "mean_event": 0.004362160666699805,
+        "mean_event_delayed": 0.00015271662824577667,
+        "hit_rate": 0.6071428571428571,
+        "placebo": 0.988,
+        "strategy": {
+          "total_return": 0.4170212432268685,
+          "cagr": 0.05111380647158348,
+          "ann_vol": 0.07268012506497017,
+          "sharpe": 0.7220248189166851,
+          "max_drawdown": -0.12687245817945725,
+          "exposure": 0.14301929625425652,
+          "trades": 167,
+          "entries": 84,
+          "exits": 83,
+          "exposure_days": 252,
+          "return_per_exposure_day": 0.0014560376825507287
+        },
+        "buy_and_hold": {
+          "total_return": -0.08626825377347513,
+          "cagr": -0.012820063710216267,
+          "ann_vol": 0.21632099801753402,
+          "sharpe": 0.04823059902148954,
+          "max_drawdown": -0.5675640355462634,
+          "mean_daily_return": 4.1401949663936965e-05
+        },
+        "bil_variant": {
+          "cagr": 0.045798282275613555,
+          "sharpe": 0.6502339190986358,
+          "max_drawdown": -0.13716177757447479
+        }
+      },
+      {
+        "symbol": "ZROZ",
+        "window": "OOS",
+        "verdict": "contradicts",
+        "why": "mean net per event -0.002% < 10bps; return/exposure day -0.001% < buy&hold mean -0.024% + 5bps; placebo percentile 0.72 < 0.95",
+        "ref": "backtests/treasury_month_end_v1/ZROZ_2023-01-03_2026-10-12_20261013T105957Z.json",
+        "events": 45,
+        "mean_event": -2.1212241896721254e-05,
+        "mean_event_delayed": 0.00140077160447212,
+        "hit_rate": 0.5555555555555556,
+        "placebo": 0.722,
+        "strategy": {
+          "total_return": -0.01149824408288791,
+          "cagr": -0.003072719059361795,
+          "ann_vol": 0.07336526204090715,
+          "sharpe": -0.005275808311475788,
+          "max_drawdown": -0.17618342435551826,
+          "exposure": 0.14255543822597677,
+          "trades": 91,
+          "entries": 45,
+          "exits": 45,
+          "exposure_days": 135,
+          "return_per_exposure_day": -1.0774451002610792e-05
+        },
+        "buy_and_hold": {
+          "total_return": -0.27558420628525326,
+          "cagr": -0.08221216909973361,
+          "ann_vol": 0.22105568378170645,
+          "sharpe": -0.2775295669646147,
+          "max_drawdown": -0.37238344433872417,
+          "mean_daily_return": -0.0002434503499801738
+        },
+        "bil_variant": {
+          "cagr": 0.023853173425878893,
+          "sharpe": 0.35743821368952355,
+          "max_drawdown": -0.15935547666363492
+        }
+      },
+      {
+        "symbol": "TLH",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/treasury_month_end_v1/TLH_2016-01-04_2022-12-30_20261013T105959Z.json",
+        "events": 84,
+        "mean_event": 0.001967568683870906,
+        "mean_event_delayed": 4.823826964149718e-06,
+        "hit_rate": 0.6071428571428571,
+        "placebo": 0.999,
+        "strategy": {
+          "total_return": 0.17487713842910746,
+          "cagr": 0.02331719419662237,
+          "ann_vol": 0.03637639275424034,
+          "sharpe": 0.6517725394662827,
+          "max_drawdown": -0.06673419378141343,
+          "exposure": 0.14301929625425652,
+          "trades": 167,
+          "entries": 84,
+          "exits": 83,
+          "exposure_days": 252,
+          "return_per_exposure_day": 0.0006578403549410956
+        },
+        "buy_and_hold": {
+          "total_return": -0.07119221899127426,
+          "cagr": -0.010506884451967013,
+          "ann_vol": 0.10689699569957489,
+          "sharpe": -0.04538731465239948,
+          "max_drawdown": -0.38232972080671734,
+          "mean_daily_return": -1.9253045949257142e-05
+        },
+        "bil_variant": {
+          "cagr": 0.0181474808938642,
+          "sharpe": 0.5077535511674783,
+          "max_drawdown": -0.07660161694020806
+        }
+      },
+      {
+        "symbol": "TLH",
+        "window": "OOS",
+        "verdict": "contradicts",
+        "why": "mean net per event 0.085% < 10bps; return/exposure day 0.028% < buy&hold mean 0.002% + 5bps; placebo percentile 0.86 < 0.95",
+        "ref": "backtests/treasury_month_end_v1/TLH_2023-01-03_2026-10-12_20261013T110001Z.json",
+        "events": 45,
+        "mean_event": 0.0008510230290731934,
+        "mean_event_delayed": 0.0013730914719640448,
+        "hit_rate": 0.5777777777777777,
+        "placebo": 0.857,
+        "strategy": {
+          "total_return": 0.03576281669349468,
+          "cagr": 0.009394242612034587,
+          "ann_vol": 0.03763021882086612,
+          "sharpe": 0.26727606918598706,
+          "max_drawdown": -0.060764889661614196,
+          "exposure": 0.14255543822597677,
+          "trades": 91,
+          "entries": 45,
+          "exits": 45,
+          "exposure_days": 135,
+          "return_per_exposure_day": 0.0002799706393206941
+        },
+        "buy_and_hold": {
+          "total_return": -0.004102342653571012,
+          "cagr": -0.0010932948918533913,
+          "ann_vol": 0.11496634461105422,
+          "sharpe": 0.047912106830686335,
+          "max_drawdown": -0.18428642466434653,
+          "mean_daily_return": 2.1858253114834644e-05
+        },
+        "bil_variant": {
+          "cagr": 0.03668272593811017,
+          "sharpe": 0.9783693711734427,
+          "max_drawdown": -0.046585297568442985
+        }
+      }
+    ]
+  },
+  "32": {
+    "status": "rejected",
+    "note": "Round-4 verdict: rejected (1/6 cells pass; all six must). Hypotheses tested so far: 32.",
+    "cells": [
+      {
+        "universe": "vti_iei",
+        "window": "IS",
+        "verdict": "contradicts",
+        "why": "sign-shuffle placebo 0.93 < 0.95",
+        "ref": "backtests/pension_tilt_v1/VTI_IEI_2016-01-04_2022-12-30_20261013T110003Z.json",
+        "events": 76,
+        "mean_event": 0.003747585936472551,
+        "mean_event_delayed": 0.0002995033940190514,
+        "hit_rate": 0.5657894736842105,
+        "net_active": 0.00402958512733057,
+        "placebo_shift": 0.968,
+        "placebo_shuffle": 0.933,
+        "strategy_sharpe": 0.6822032589161946,
+        "benchmark_sharpe": 0.6649329137289887
+      },
+      {
+        "universe": "vti_iei",
+        "window": "OOS",
+        "verdict": "contradicts",
+        "why": "mean signed return per event 0.191% < 20bps; net active return -0.01%/yr not above 0; shift placebo 0.83 < 0.95; sign-shuffle placebo 0.77 < 0.95; delayed-fill mean per event -0.001% not above 0",
+        "ref": "backtests/pension_tilt_v1/VTI_IEI_2023-01-03_2026-10-12_20261013T110004Z.json",
+        "events": 42,
+        "mean_event": 0.0019072737240973141,
+        "mean_event_delayed": -7.866680444171017e-06,
+        "hit_rate": 0.5476190476190477,
+        "net_active": -8.30960236242253e-05,
+        "placebo_shift": 0.834,
+        "placebo_shuffle": 0.765,
+        "strategy_sharpe": 1.458339990884547,
+        "benchmark_sharpe": 1.4795223507309676
+      },
+      {
+        "universe": "vti_vgit",
+        "window": "IS",
+        "verdict": "contradicts",
+        "why": "sign-shuffle placebo 0.94 < 0.95",
+        "ref": "backtests/pension_tilt_v1/VTI_VGIT_2016-01-04_2022-12-30_20261013T110005Z.json",
+        "events": 75,
+        "mean_event": 0.003878810066585235,
+        "mean_event_delayed": 0.0007795207208478094,
+        "hit_rate": 0.5866666666666667,
+        "net_active": 0.004420220293493155,
+        "placebo_shift": 0.969,
+        "placebo_shuffle": 0.938,
+        "strategy_sharpe": 0.688912985879562,
+        "benchmark_sharpe": 0.6688530291815955
+      },
+      {
+        "universe": "vti_vgit",
+        "window": "OOS",
+        "verdict": "contradicts",
+        "why": "mean signed return per event 0.166% < 20bps; net active return -0.08%/yr not above 0; shift placebo 0.81 < 0.95; sign-shuffle placebo 0.73 < 0.95",
+        "ref": "backtests/pension_tilt_v1/VTI_VGIT_2023-01-03_2026-10-12_20261013T110006Z.json",
+        "events": 42,
+        "mean_event": 0.0016567100345286898,
+        "mean_event_delayed": 0.00048314774510230756,
+        "hit_rate": 0.5476190476190477,
+        "net_active": -0.0007526563437338233,
+        "placebo_shift": 0.811,
+        "placebo_shuffle": 0.73,
+        "strategy_sharpe": 1.4327107785530178,
+        "benchmark_sharpe": 1.4613307109070872
+      },
+      {
+        "universe": "vea_iei",
+        "window": "IS",
+        "verdict": "contradicts",
+        "why": "shift placebo 0.95 < 0.95; sign-shuffle placebo 0.95 < 0.95; delayed-fill mean per event -0.258% not above 0",
+        "ref": "backtests/pension_tilt_v1/VEA_IEI_2016-01-04_2022-12-30_20261013T110007Z.json",
+        "events": 78,
+        "mean_event": 0.0037341398428402204,
+        "mean_event_delayed": -0.002581390610579546,
+        "hit_rate": 0.5769230769230769,
+        "net_active": 0.004183767804305135,
+        "placebo_shift": 0.948,
+        "placebo_shuffle": 0.946,
+        "strategy_sharpe": 0.4193715914317193,
+        "benchmark_sharpe": 0.383798150445766
+      },
+      {
+        "universe": "vea_iei",
+        "window": "OOS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/pension_tilt_v1/VEA_IEI_2023-01-03_2026-10-12_20261013T110008Z.json",
+        "events": 40,
+        "mean_event": 0.003920163049112057,
+        "mean_event_delayed": 0.0036897455964686834,
+        "hit_rate": 0.55,
+        "net_active": 0.003927615545025643,
+        "placebo_shift": 0.953,
+        "placebo_shuffle": 0.956,
+        "strategy_sharpe": 1.2363791907953452,
+        "benchmark_sharpe": 1.2031607833992077
+      }
+    ]
+  }
+}

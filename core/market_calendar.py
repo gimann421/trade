@@ -38,3 +38,10 @@ def next_trading_day(dates: pd.DatetimeIndex) -> pd.DatetimeIndex:
     """The scheduled trading day after each date (known in advance from the calendar)."""
     days = trading_days(dates.min() - pd.Timedelta(days=10), dates.max() + pd.Timedelta(days=20))
     return days[days.searchsorted(dates, side="right")]
+
+
+def sessions_to_month_end(index: pd.DatetimeIndex) -> pd.Series:
+    """For each date, the number of scheduled sessions after it in its month (0 on the last one)."""
+    days = pd.Series(trading_days(index.min() - pd.Timedelta(days=10), index.max() + pd.Timedelta(days=45)))
+    remaining = days.groupby(days.dt.to_period("M")).cumcount(ascending=False)
+    return pd.Series(remaining.to_numpy(), index=pd.DatetimeIndex(days)).reindex(index)
