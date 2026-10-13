@@ -50,6 +50,7 @@ Prior: low-medium (the doc's own). The long-only top decile keeps market beta, t
 - Delayed fill (every rebalance one trading day late). The round-4 delayed-fill rule targeted holds of five days or fewer; a monthly hold is reported only.
 - Plain 12-1 total-return momentum (same universe, same decile, same mechanics), to see what the residual step adds.
 - Turnover, the strategy's beta to the benchmark, and data coverage.
+- Spin-off check. Alpaca's adjusted bars cover splits and dividends but not spin-offs, so a parent's spin-off date shows as a false one-day loss (seen before any returns were computed: UTX/RTX -71% on 2020-04-03, ARNC -89% on 2020-04-01, TGNA -78% on 2017-06-01, APTV -72% on 2017-12-05). It hits strategy and benchmark alike when both hold the name. A second simulation (signals unchanged) sets every single-day stock move below -50% or above +100% to zero; it is reported, not scored, and it also removes real crashes such as SIVB.
 
 ## Data coverage
 TBD

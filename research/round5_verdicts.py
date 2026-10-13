@@ -122,6 +122,12 @@ def main():
     late = simulate(close_ff, strat_t.shift(1), COST_BPS)
     late_bench = simulate(close_ff, bench_t.shift(1), COST_BPS)
     plain = simulate(close_ff, plain_t, COST_BPS)
+    # spin-off check (reported only): single-day moves beyond -50% / +100% treated as data errors
+    r = close_ff.pct_change(fill_method=None)
+    r = r.mask((r < -0.5) | (r > 1.0), 0.0)
+    clean_close = (1 + r.fillna(0.0)).cumprod().where(close_ff.notna())
+    clean = simulate(clean_close, strat_t, COST_BPS)
+    clean_bench = simulate(clean_close, bench_t, COST_BPS)
     first_hold = index[index.get_loc(detail[0]["date"]) + 1]
     cov = coverage(detail) | {"first_decision": str(detail[0]["date"].date()), "tickers_wanted": cov_info["wanted"],
                               "tickers_with_bars": cov_info["with_bars"], "missing": cov_info["missing_reasons"]}
@@ -135,6 +141,7 @@ def main():
         s, b, stats = window_stats(run, bench, first_hold, start, end)
         _, _, late_stats = window_stats(late, late_bench, first_hold, start, end)
         _, _, plain_stats = window_stats(plain, bench, first_hold, start, end)
+        _, _, clean_stats = window_stats(clean, clean_bench, first_hold, start, end)
         gross_active, pct, n_months = selection_placebo(detail, close_ff, index, start, end)
         rebalances = sum(in_window(first, start, end) for _, first, _ in windows)
         if rebalances < MIN_REBALANCES[label]:
@@ -153,6 +160,8 @@ def main():
                   "placebo": {"gross_active_per_month": gross_active, "percentile": pct, "months": n_months,
                               "draws": PLACEBO["n"], "seed": PLACEBO["seed"]},
                   "stats": stats, "delayed_fill": {k: late_stats[k] for k in ("net_active", "information_ratio")},
+                  "spin_off_check": {k: clean_stats[k] for k in ("net_active", "information_ratio")}
+                  | {"strategy_cagr": clean_stats["strategy"]["cagr"], "benchmark_cagr": clean_stats["benchmark"]["cagr"]},
                   "plain_12_1_momentum": {k: plain_stats[k] for k in
                                           ("net_active", "information_ratio", "annual_turnover", "strategy")},
                   "coverage": cov, "equity_curve": (1 + s).cumprod()}
@@ -163,7 +172,7 @@ def main():
                    f"EW members {stats['benchmark']['cagr']:.1%}, Sharpe {stats['strategy']['sharpe']:.2f} vs "
                    f"{stats['benchmark']['sharpe']:.2f}, beta {stats['beta_to_benchmark']:.2f}, turnover "
                    f"{stats['annual_turnover']:.1f}x/yr. Delayed fill net active {late_stats['net_active']:.2%}; plain "
-                   f"12-1 momentum net active {plain_stats['net_active']:.2%} (not scored). {verdict}: {why}")
+                   f"12-1 momentum net active {plain_stats['net_active']:.2%}; spin-off check net active {clean_stats['net_active']:.2%} (not scored). {verdict}: {why}")
         add_evidence(conn, HID, "backtest", summary, verdict, ref=str(path.relative_to(ROOT)))
         cells[label] = verdict
         rows.append({k: v for k, v in result.items() if k not in ("equity_curve", "coverage")}
