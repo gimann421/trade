@@ -1,0 +1,86 @@
+{
+  "start": "2017-02-01",
+  "end": "2022-12-30",
+  "days": 1490,
+  "cost_bps": 5.0,
+  "window": "IS",
+  "rebalances": 71,
+  "verdict": "contradicts",
+  "why": "net active 0.86%/yr < 2.0%; information ratio 0.09 < 0.3; placebo 0.755 < 0.95",
+  "placebo": {
+    "gross_active_per_month": 0.0007792647873967795,
+    "percentile": 0.755,
+    "months": 71,
+    "draws": 1000,
+    "seed": 0
+  },
+  "stats": {
+    "start": "2017-02-01",
+    "end": "2022-12-30",
+    "days": 1490,
+    "net_active": 0.00860015362051891,
+    "information_ratio": 0.08844393701838853,
+    "tracking_error": 0.09723847569936692,
+    "beta_to_benchmark": 0.9171735067237062,
+    "annual_turnover": 8.779544140736325,
+    "benchmark_annual_turnover": 0.7393803313760862,
+    "strategy": {
+      "total_return": 0.864267723756307,
+      "cagr": 0.11109295464692592,
+      "ann_vol": 0.2160219400018045,
+      "sharpe": 0.5962898761385483,
+      "max_drawdown": -0.3800256776288883
+    },
+    "benchmark": {
+      "total_return": 0.782651286227922,
+      "cagr": 0.10271234415217445,
+      "ann_vol": 0.21118224175818318,
+      "sharpe": 0.5692313010106965,
+      "max_drawdown": -0.39777403366983255
+    }
+  },
+  "delayed_fill": {
+    "net_active": 0.0061815967864852885,
+    "information_ratio": 0.0637497517838826
+  },
+  "spin_off_check": {
+    "net_active": 0.010742474811281238,
+    "information_ratio": 0.11054216001804155,
+    "strategy_cagr": 0.11496615360977125,
+    "benchmark_cagr": 0.10404442747240705
+  },
+  "plain_12_1_momentum": {
+    "net_active": -0.003374079438867365,
+    "information_ratio": -0.02507743241976106,
+    "annual_turnover": 7.671014517962019,
+    "strategy": {
+      "total_return": 0.6892545427360544,
+      "cagr": 0.09272154503826568,
+      "ann_vol": 0.23668790946262397,
+      "sharpe": 0.49363511238392505,
+      "max_drawdown": -0.36294957541718886
+    }
+  },
+  "coverage": {
+    "rebalances": 117,
+    "priced_share_min": 0.9901185770750988,
+    "priced_share_mean": 0.9992565134822226,
+    "ranked_min": 495,
+    "ranked_mean": 500.85470085470087,
+    "picks_mean": 50.0,
+    "first_decision": "2017-01-31",
+    "tickers_wanted": 719,
+    "tickers_with_bars": 719,
+    "missing": {}
+  },
+  "strategy_file": "strategies/residual_momentum_v1.py",
+  "params": {
+    "start_lag": 252,
+    "end_lag": 21,
+    "min_valid": 231,
+    "decile": 0.1
+  },
+  "symbol": "SP500PIT",
+  "git_commit": "8bf7239-dirty",
+  "run_at": "20261013T113115Z"
+}
