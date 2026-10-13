@@ -1,0 +1,70 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "VTI",
+    "IEI"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.6639379298176504,
+    "cagr": 0.07554076478675764,
+    "ann_vol": 0.11677539115805644,
+    "sharpe": 0.6822032589161946,
+    "max_drawdown": -0.20987297462564913,
+    "exposure": 0.9994324631101021,
+    "trades": 431,
+    "annual_turnover": 10.47388317928459
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.5679443779852906,
+      "cagr": 0.06643908212292149,
+      "ann_vol": 0.11489721691571483,
+      "sharpe": 0.6175191768836696,
+      "max_drawdown": -0.2109906550285745,
+      "exposure": 0.9994324631101027,
+      "trades": 1,
+      "annual_turnover": 0.14301929625425652
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.5115805208647812,
+      "cagr": 0.06086992192838725,
+      "ann_vol": 0.0944443264910087,
+      "sharpe": 0.6730427218272284,
+      "max_drawdown": -0.18386384847257153,
+      "exposure": 0.9994324631101021,
+      "trades": 85,
+      "annual_turnover": 0.37352309729329425
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.10169959345166912,
+      "cagr": 0.013948384756189203,
+      "ann_vol": 0.03951157403914919,
+      "sharpe": 0.3703447287676089,
+      "max_drawdown": -0.1482365891155374,
+      "exposure": 0.9534619750283768,
+      "trades": 81,
+      "annual_turnover": 0.6463350423948996
+    }
+  },
+  "strategy_file": "strategies/pension_tilt_v1.py",
+  "params": {
+    "base": 0.6,
+    "tilt": 0.2,
+    "threshold": 0.0033,
+    "signal_days": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "symbol": "VTI_IEI",
+  "git_commit": "e13c628-dirty",
+  "run_at": "20261013T110003Z"
+}

@@ -1,0 +1,38 @@
+{
+  "start": "2016-01-04",
+  "end": "2022-12-30",
+  "days": 1762,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.249394515986056,
+    "cagr": 0.03235700278624898,
+    "ann_vol": 0.04592876009600115,
+    "sharpe": 0.7162354070786626,
+    "max_drawdown": -0.08100671113268887,
+    "exposure": 0.14301929625425652,
+    "trades": 167,
+    "entries": 84,
+    "exits": 83,
+    "exposure_days": 252,
+    "return_per_exposure_day": 0.0009127363153843625
+  },
+  "buy_and_hold": {
+    "total_return": -0.03576642335766522,
+    "cagr": -0.005195464591659316,
+    "ann_vol": 0.1395455685061708,
+    "sharpe": 0.03234271783651088,
+    "max_drawdown": -0.4250735726898177,
+    "mean_daily_return": 1.7909852966391197e-05
+  },
+  "strategy_file": "strategies/treasury_month_end_v1.py",
+  "params": {
+    "days_before_month_end": [
+      1,
+      2,
+      3
+    ]
+  },
+  "symbol": "VGLT",
+  "git_commit": "e13c628-dirty",
+  "run_at": "20261013T105947Z"
+}

@@ -1,0 +1,38 @@
+{
+  "start": "2023-01-03",
+  "end": "2026-10-12",
+  "days": 947,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.01149824408288791,
+    "cagr": -0.003072719059361795,
+    "ann_vol": 0.07336526204090715,
+    "sharpe": -0.005275808311475788,
+    "max_drawdown": -0.17618342435551826,
+    "exposure": 0.14255543822597677,
+    "trades": 91,
+    "entries": 45,
+    "exits": 45,
+    "exposure_days": 135,
+    "return_per_exposure_day": -1.0774451002610792e-05
+  },
+  "buy_and_hold": {
+    "total_return": -0.27558420628525326,
+    "cagr": -0.08221216909973361,
+    "ann_vol": 0.22105568378170645,
+    "sharpe": -0.2775295669646147,
+    "max_drawdown": -0.37238344433872417,
+    "mean_daily_return": -0.0002434503499801738
+  },
+  "strategy_file": "strategies/treasury_month_end_v1.py",
+  "params": {
+    "days_before_month_end": [
+      1,
+      2,
+      3
+    ]
+  },
+  "symbol": "ZROZ",
+  "git_commit": "e13c628-dirty",
+  "run_at": "20261013T105957Z"
+}
