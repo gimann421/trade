@@ -41,14 +41,17 @@ def drop_incomplete_session(df: pd.DataFrame, end: datetime) -> pd.DataFrame:
 
 def download_daily_bars(symbol: str, start: datetime, end: datetime | None = None, *,
                         keys: PaperKeys | None = None, client=None,
-                        data_dir: Path = DATA_DIR) -> Path:
+                        data_dir: Path = DATA_DIR, asof: str | None = None) -> Path:
+    """asof (YYYY-MM-DD) names the date on which `symbol` was the ticker: Alpaca then returns that
+    company's whole history across later renames (FB as of 2022-06-01 gives the META bars)."""
     if client is None:
         keys = keys or load_paper_keys()
         client = StockHistoricalDataClient(keys.api_key, keys.secret_key)
     # The free data plan rejects the most recent 15 minutes of consolidated data.
     end = end or datetime.now(timezone.utc) - timedelta(minutes=20)
+    extra = {"asof": asof} if asof else {}
     request = StockBarsRequest(symbol_or_symbols=symbol.upper(), timeframe=TimeFrame.Day,
-                               start=start, end=end, adjustment=Adjustment.ALL)
+                               start=start, end=end, adjustment=Adjustment.ALL, **extra)
     df = client.get_stock_bars(request).df
     if df.empty:
         raise ValueError(f"no bars returned for {symbol}")
