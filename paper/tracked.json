@@ -1,0 +1,7 @@
+{
+ "note": "Rules tracked by core.paper_runner. start = first month-end decision of the forward record. allocation_pct is the share of account equity placed when run with --execute; 0 means shadow only (nothing is ever sent).",
+ "tracked": [
+  {"rule": "stock_resmom6_1_decile", "start": "2026-10-30", "initial_cash": 100000, "allocation_pct": 0},
+  {"rule": "stock_resmom6_1_quintile", "start": "2026-10-30", "initial_cash": 100000, "allocation_pct": 0}
+ ]
+}
