@@ -184,6 +184,35 @@ def compare_with_alpaca(symbols=ETFS, start="2016-01-01") -> pd.DataFrame:
     return pd.DataFrame(rows).set_index("symbol")
 
 
+# --- the older era (everything up to 2015-12-31) -----------------------------------------------
+
+OLD_END = "2015-12-31"
+
+
+def synthetic_bil(first_real: pd.Timestamp, first_real_close: float) -> pd.DataFrame:
+    """BIL before its 2007-05-30 launch: the French daily one-month T-bill return compounded, scaled so
+    the series joins the real fund's adjusted close on its first day. Flat bars, zero volume."""
+    rf_all = load_french("ff3_daily")["RF"].dropna()
+    rf = rf_all[rf_all.index < first_real]
+    growth = (1 + rf).cumprod()
+    launch_day_return = float(rf_all.get(first_real, 0.0))
+    anchor = first_real_close / (1 + launch_day_return)  # level on the last day before launch
+    close = growth / growth.iloc[-1] * anchor
+    frame = pd.DataFrame({"open": close, "high": close, "low": close, "close": close, "volume": 0.0})
+    frame.index.name = "date"
+    return frame
+
+
+def old_bars(symbol: str, end: str = OLD_END) -> pd.DataFrame:
+    """Yahoo bars for the older-era tests, cut at `end` so nothing after it can be seen. BIL is extended
+    back before its launch with synthetic_bil (documented in research/r7-older-era-2026-10-14.md)."""
+    bars = load_long(symbol)
+    if symbol == "BIL":
+        head = synthetic_bil(bars.index[0], float(bars["close"].iloc[0]))
+        bars = pd.concat([head, bars])
+    return bars.loc[:end]
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("what", choices=["etf", "french", "fred", "check", "all"])
