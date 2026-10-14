@@ -1,4 +1,6 @@
-# Forward tracking rules for the two supported rules (set before any forward result exists)
+> **STATUS: DRAFT, NOT IN FORCE (2026-10-14).** The owner has asked to hold off on stopping rules. Everything below is a proposal, not a commitment: no checkpoint, retirement threshold or "the rule never changes" clause binds anyone yet, and the ledger notes that pointed here are superseded by a note saying the same. The shadow record itself continues; it only records picks. This file will be rewritten and re-committed, before the first forward decision on 2026-10-30, if and when rules are chosen.
+
+# Forward tracking rules for the two supported rules (DRAFT)
 
 - **Date:** 2026-10-13
 - **Applies to:** `stock_resmom6_1_decile` (hypothesis 54, primary) and `stock_resmom6_1_quintile` (hypothesis 55, secondary), as tracked by `core/paper_runner.py` from `paper/tracked.json`.
