@@ -97,10 +97,16 @@ def download_members(start=datetime(2016, 1, 1, tzinfo=timezone.utc), pause: flo
     return manifest
 
 
+def load_member_panel(tickers, field: str = "close") -> pd.DataFrame:
+    """One field (open, high, low, close or volume; prices split- and dividend-adjusted) for the tickers
+    that have a file, one column each."""
+    panel = {t: load_bars(t, STOCK_DIR)[field] for t in tickers if bars_path(t, STOCK_DIR).exists()}
+    return pd.DataFrame(panel).sort_index()
+
+
 def load_member_closes(tickers) -> pd.DataFrame:
     """Close prices (split- and dividend-adjusted) for the tickers that have a file, one column each."""
-    closes = {t: load_bars(t, STOCK_DIR)["close"] for t in tickers if bars_path(t, STOCK_DIR).exists()}
-    return pd.DataFrame(closes).sort_index()
+    return load_member_panel(tickers, "close")
 
 
 def main() -> None:
