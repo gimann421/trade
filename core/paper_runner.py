@@ -11,6 +11,7 @@ they go through core.broker.submit_order (paper account, risk limits, journal).
     python -m core.paper_runner preview stock_resmom6_1_decile   # picks as of the latest month-end
     python -m core.paper_runner run                              # update every tracked rule (dry)
     python -m core.paper_runner run --execute                    # also place paper orders (see above)
+    python -m core.paper_runner plan stock_resmom6_1_decile      # the orders --execute would place, checked against the risk limits; sends nothing
 """
 
 import argparse
@@ -221,6 +222,22 @@ def plan_orders(picks: list[str], prices: dict[str, float], positions: dict[str,
     return sorted(orders, key=lambda o: (o["side"] != "sell", o["symbol"]))
 
 
+def check_plan(orders: list[dict], state, limits) -> list[dict]:
+    """Run planned orders through the risk check one after another, as they would go in. Sends nothing.
+    Each order comes back with the list of limits it would break (empty = it may go)."""
+    from core.risk import AccountState, ProposedOrder, check_order
+
+    positions = dict(state.positions)
+    checked = []
+    for o in orders:
+        order = ProposedOrder(o["symbol"], o["side"], o["qty"], o["price"])
+        violations = check_order(order, AccountState(state.equity, state.day_start_equity, dict(positions)), limits)
+        checked.append(o | {"violations": violations})
+        if not violations:
+            positions[o["symbol"]] = positions.get(o["symbol"], 0.0) + order.signed_notional
+    return checked
+
+
 def execute_orders(cfg: dict, status: dict, closes_by_symbol: dict[str, float], hypothesis_id: int | None) -> list[dict]:
     """Place the planned orders on the paper account via core.broker (risk-checked and journaled)."""
     from core.broker import RiskViolation, account_state, get_paper_client, submit_order
@@ -266,6 +283,9 @@ def main(argv=None) -> int:
     sub = parser.add_subparsers(dest="command", required=True)
     pre = sub.add_parser("preview", help="picks as of the latest month-end; writes nothing")
     pre.add_argument("rule")
+    plan = sub.add_parser("plan", help="the orders --execute would place, risk-checked; sends nothing")
+    plan.add_argument("rule")
+    plan.add_argument("--allocation", type=float, help="percent of account equity (default: the rule's allocation_pct, else 50)")
     run = sub.add_parser("run", help="update every tracked rule")
     run.add_argument("--execute", action="store_true", help="also place paper orders (needs allocation_pct > 0)")
     args = parser.parse_args(argv)
@@ -277,6 +297,31 @@ def main(argv=None) -> int:
         latest = decision_dates(session - pd.Timedelta(days=45), session)[-1]
         status = run_rule({"rule": args.rule, "start": str(latest.date())}, session, membership, fetch_closes, None)
         print(json.dumps({k: status[k] for k in ("rule", "asof", "last_decision", "holdings", "members_without_bars") if k in status}, indent=1))
+        return 0
+
+    if args.command == "plan":
+        from core.broker import account_state, get_paper_client
+        from core.risk import load_risk_limits
+
+        cfg = next((c for c in load_tracked() if c["rule"] == args.rule), {})
+        allocation = args.allocation if args.allocation is not None else (cfg.get("allocation_pct") or 50.0)
+        latest = decision_dates(session - pd.Timedelta(days=45), session)[-1]
+        status = run_rule({"rule": args.rule, "start": str(latest.date())}, session, membership, fetch_closes, None)
+        client = get_paper_client()
+        state, limits = account_state(client), load_risk_limits()
+        held = {p.symbol: float(p.qty) for p in client.get_all_positions()}
+        managed = set((_read_json(PAPER_DIR / args.rule, "managed.json") or {"symbols": []})["symbols"])
+        prices = fetch_closes(sorted(set(status["holdings"]) | managed), session - pd.Timedelta(days=10), session).iloc[-1].to_dict()
+        checked = check_plan(plan_orders(status["holdings"], prices, held, managed, state.equity * allocation / 100), state, limits)
+        blocked = [o for o in checked if o["violations"]]
+        reasons = sorted({v.split(" (")[0].split(" would")[0] if "max_open" in v else v[:90] for o in blocked for v in o["violations"]})
+        print(json.dumps({"rule": args.rule, "decision": status["last_decision"], "equity": state.equity, "allocation_pct": allocation,
+                          "orders": len(checked), "buys": sum(o["side"] == "buy" for o in checked),
+                          "sells": sum(o["side"] == "sell" for o in checked),
+                          "buy_notional": round(sum(o["qty"] * o["price"] for o in checked if o["side"] == "buy"), 2),
+                          "blocked_by_limits": len(blocked), "reasons": reasons[:6],
+                          "limits": {k: getattr(limits, k) for k in ("max_position_pct", "max_gross_exposure_pct", "max_open_positions",
+                                                                     "max_order_notional", "max_daily_loss_pct")}}, indent=1))
         return 0
 
     failures = 0

@@ -125,3 +125,24 @@ def test_preview_writes_nothing(tmp_path):
     status = pr.run_rule(CFG | {"start": "2020-08-31"}, pd.Timestamp("2020-09-15"), membership_for(data), make_fetch(data), None)
     assert status["state"] == "running" and status["last_decision"] == "2020-08-31" and len(status["holdings"]) == 3
     assert list(tmp_path.iterdir()) == []
+
+
+def test_check_plan_applies_the_risk_limits_in_sequence_and_sends_nothing():
+    from core.risk import AccountState, RiskLimits
+
+    picks = [f"S{i:02d}" for i in range(50)]
+    prices = {p: 100.0 for p in picks}
+    state = AccountState(equity=100_000.0, day_start_equity=100_000.0, positions={})
+    orders = pr.plan_orders(picks, prices, {}, set(), budget=50_000.0)           # $1,000 a name = 10 shares
+    assert len(orders) == 50 and all(o["qty"] == 10 for o in orders)
+    old = RiskLimits(5.0, 50.0, 10, 5000.0, 2.0, False)
+    new = RiskLimits(5.0, 60.0, 60, 5000.0, 2.0, False)
+    blocked_old = [o for o in pr.check_plan(orders, state, old) if o["violations"]]
+    assert len(blocked_old) == 40 and "max_open_positions" in blocked_old[0]["violations"][0]   # the 11th name onward
+    assert not [o for o in pr.check_plan(orders, state, new) if o["violations"]]
+    # a bad day blocks buys, and a full-size book against a 60% gross cap is blocked once the cap is reached
+    down = AccountState(equity=97_000.0, day_start_equity=100_000.0, positions={})
+    assert all(o["violations"] for o in pr.check_plan(orders, down, new))
+    full = pr.plan_orders(picks, prices, {}, set(), budget=100_000.0)
+    blocked_full = [o for o in pr.check_plan(full, state, new) if o["violations"]]
+    assert 0 < len(blocked_full) < 50 and any("gross exposure" in v for o in blocked_full for v in o["violations"])
