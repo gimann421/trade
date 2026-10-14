@@ -1,0 +1,281 @@
+{
+ "git_commit": "c501545-dirty",
+ "run_at": "20261014T005841Z",
+ "bar": {
+  "net_active": 0.02,
+  "information_ratio": 0.3,
+  "placebo": 0.95
+ },
+ "costs": {
+  "primary": 5.0,
+  "stress": 10.0
+ },
+ "events_total": 21268,
+ "events_member": 18083,
+ "note": "Round-8 Part B earnings drift: 4 rules, 0 supported (none). Hypotheses tested so far: 93.",
+ "results": {
+  "pead_q80_h5": {
+   "rule": {
+    "id": "pead_q80_h5",
+    "q": 80,
+    "hold": 5
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -13.07%/yr < 2.0%",
+      "information ratio -0.66 < 0.3",
+      "placebo 0.303 < 0.95",
+      "delayed-fill net active -2.36% not above 0",
+      "10 bps net active -19.74% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 1772,
+     "net_active": -0.13066075633163202,
+     "information_ratio": -0.6560671306940907,
+     "placebo": 0.303,
+     "gross_active": -0.06387647219821337,
+     "annual_turnover": 134.22424547784982,
+     "break_even_bps": -4.782298187894312,
+     "delayed_net_active": -0.023589168587758728,
+     "stress_net_active": -0.19744504046505068,
+     "mean_h_abnormal_qualifiers": -0.0011828426366134533,
+     "mean_h_abnormal_pool": -0.0008075853067585956,
+     "mean_ar_qualifiers": 0.0578426908686505,
+     "events_in_window": 11660,
+     "beta": 0.8713776838405936,
+     "start": "2017-01-03",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -2.54%/yr < 2.0%",
+      "information ratio -0.11 < 0.3",
+      "placebo 0.426 < 0.95",
+      "delayed-fill net active -10.56% not above 0",
+      "10 bps net active -9.41% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 1394,
+     "net_active": -0.025447416823302135,
+     "information_ratio": -0.1075484642835973,
+     "placebo": 0.426,
+     "gross_active": 0.04315800970087175,
+     "annual_turnover": 137.944429665083,
+     "break_even_bps": 3.145378717648854,
+     "delayed_net_active": -0.10562042081217,
+     "stress_net_active": -0.09405284334747603,
+     "mean_h_abnormal_qualifiers": -0.0009751329273181875,
+     "mean_h_abnormal_pool": -0.0007961261298479637,
+     "mean_ar_qualifiers": 0.07683989303392644,
+     "events_in_window": 7725,
+     "beta": 0.9949992502609212,
+     "start": "2023-01-03",
+     "end": "2026-10-12"
+    }
+   },
+   "information_ratio_all": -0.41949403691504106,
+   "net_active_all": -0.08994272097634456,
+   "weeks_to_confidence": null
+  },
+  "pead_q80_h20": {
+   "rule": {
+    "id": "pead_q80_h20",
+    "q": 80,
+    "hold": 20
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -0.85%/yr < 2.0%",
+      "information ratio -0.09 < 0.3",
+      "placebo 0.944 < 0.95",
+      "delayed-fill net active -1.04% not above 0",
+      "10 bps net active -3.62% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 1772,
+     "net_active": -0.00853842174877566,
+     "information_ratio": -0.08885979018315927,
+     "placebo": 0.944,
+     "gross_active": 0.019153439253696055,
+     "annual_turnover": 56.03939921595596,
+     "break_even_bps": 3.4583156494947125,
+     "delayed_net_active": -0.010405842991437885,
+     "stress_net_active": -0.03623028275124738,
+     "mean_h_abnormal_qualifiers": 0.0007087512794445338,
+     "mean_h_abnormal_pool": -0.00156743273978352,
+     "mean_ar_qualifiers": 0.0578426908686505,
+     "events_in_window": 11660,
+     "beta": 1.0321898362746247,
+     "start": "2017-01-03",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -3.55%/yr < 2.0%",
+      "information ratio -0.35 < 0.3",
+      "placebo 0.722 < 0.95",
+      "delayed-fill net active -7.20% not above 0",
+      "10 bps net active -6.33% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 1391,
+     "net_active": -0.03546272592378811,
+     "information_ratio": -0.3526808895763532,
+     "placebo": 0.722,
+     "gross_active": -0.007605178625530742,
+     "annual_turnover": 56.44867121324997,
+     "break_even_bps": -1.3650122432003347,
+     "delayed_net_active": -0.07203159693973507,
+     "stress_net_active": -0.06332027322204549,
+     "mean_h_abnormal_qualifiers": -0.003032476848359121,
+     "mean_h_abnormal_pool": -0.004125242131327796,
+     "mean_ar_qualifiers": 0.07684388793740991,
+     "events_in_window": 7708,
+     "beta": 0.9416471427750409,
+     "start": "2023-01-03",
+     "end": "2026-10-12"
+    }
+   },
+   "information_ratio_all": -0.193801155899195,
+   "net_active_all": -0.01895824849733995,
+   "weeks_to_confidence": null
+  },
+  "pead_q80_h60": {
+   "rule": {
+    "id": "pead_q80_h60",
+    "q": 80,
+    "hold": 60
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active 0.57%/yr < 2.0%",
+      "information ratio 0.16 < 0.3",
+      "10 bps net active -0.13% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 1772,
+     "net_active": 0.005680719725148457,
+     "information_ratio": 0.15880689905146736,
+     "placebo": 0.951,
+     "gross_active": 0.012680090813893187,
+     "annual_turnover": 14.654419388501989,
+     "break_even_bps": 9.058021537308747,
+     "delayed_net_active": 0.009517371830274412,
+     "stress_net_active": -0.0013186513635962726,
+     "mean_h_abnormal_qualifiers": -0.0013007526752572577,
+     "mean_h_abnormal_pool": -0.005208219372716703,
+     "mean_ar_qualifiers": 0.0578426908686505,
+     "events_in_window": 11660,
+     "beta": 1.0428694468490782,
+     "start": "2017-01-03",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active 0.62%/yr < 2.0%",
+      "information ratio 0.15 < 0.3",
+      "placebo 0.910 < 0.95",
+      "10 bps net active -0.04% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 1304,
+     "net_active": 0.00618943537895033,
+     "information_ratio": 0.15197014676241075,
+     "placebo": 0.91,
+     "gross_active": 0.012804510863415077,
+     "annual_turnover": 13.963727585664733,
+     "break_even_bps": 9.67828023541529,
+     "delayed_net_active": 0.008607880203407308,
+     "stress_net_active": -0.0004256401055144232,
+     "mean_h_abnormal_qualifiers": -0.0074454029275796835,
+     "mean_h_abnormal_pool": -0.011796516392329245,
+     "mean_ar_qualifiers": 0.07594585528338015,
+     "events_in_window": 7252,
+     "beta": 1.038983724766698,
+     "start": "2023-01-03",
+     "end": "2026-10-12"
+    }
+   },
+   "information_ratio_all": 0.15566250271357374,
+   "net_active_all": 0.005877594969999449,
+   "weeks_to_confidence": 8584.110857888421
+  },
+  "pead_q90_h20": {
+   "rule": {
+    "id": "pead_q90_h20",
+    "q": 90,
+    "hold": 20
+   },
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -5.80%/yr < 2.0%",
+      "information ratio -0.44 < 0.3",
+      "placebo 0.697 < 0.95",
+      "delayed-fill net active -7.25% not above 0",
+      "10 bps net active -8.53% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 828,
+     "net_active": -0.057991590835791085,
+     "information_ratio": -0.4423912475237208,
+     "placebo": 0.697,
+     "gross_active": -0.030713228442489266,
+     "annual_turnover": 55.21240199761617,
+     "break_even_bps": -5.629595354674018,
+     "delayed_net_active": -0.07249549897701742,
+     "stress_net_active": -0.08526995322909292,
+     "mean_h_abnormal_qualifiers": -0.0005566473043064356,
+     "mean_h_abnormal_pool": -0.00156743273978352,
+     "mean_ar_qualifiers": 0.07946814109199792,
+     "events_in_window": 11660,
+     "beta": 0.9712826486272279,
+     "start": "2017-01-03",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "information ratio 0.17 < 0.3",
+      "delayed-fill net active -2.67% not above 0",
+      "10 bps net active -0.11% not above 0"
+     ],
+     "execution_sensitive": false,
+     "decisions": 686,
+     "net_active": 0.02745374035509932,
+     "information_ratio": 0.17050858275554176,
+     "placebo": 0.975,
+     "gross_active": 0.056009167097005375,
+     "annual_turnover": 57.844430100547335,
+     "break_even_bps": 9.807096844189346,
+     "delayed_net_active": -0.026699934088501125,
+     "stress_net_active": -0.001101686386806758,
+     "mean_h_abnormal_qualifiers": 0.0012223776201493604,
+     "mean_h_abnormal_pool": -0.004125242131327796,
+     "mean_ar_qualifiers": 0.10811909670062327,
+     "events_in_window": 7708,
+     "beta": 0.8511109806537679,
+     "start": "2023-01-03",
+     "end": "2026-10-12"
+    }
+   },
+   "information_ratio_all": -0.17380429641986053,
+   "net_active_all": -0.02492386356248777,
+   "weeks_to_confidence": null
+  }
+ }
+}
