@@ -63,3 +63,6 @@ python -c "from core.broker import get_paper_client as g; a=g().get_account(); p
    and one never-overwritten `decisions/<date>.json` per month-end, and sends nothing to a broker.
    `--execute` places paper orders through `submit_order()` only for rules whose `allocation_pct`
    is above 0. `python -m core.paper_runner preview <rule>` prints the current picks without writing.
+   Rules that pass the bar in all three eras (2016-22, 2023+, 2000-15) also get a forward record, as a
+   `kind: "signal"` entry (single-symbol, shadow only, `core/signal_tracker.py`). `python research/three_era_screen.py`
+   prints the chance those passers are luck and an ALERT line if it reaches 10% (`research/screen-funnel-2026-10-14.md`).
