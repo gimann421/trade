@@ -326,6 +326,21 @@ def main(argv=None) -> int:
 
     failures = 0
     for cfg in load_tracked():
+        if cfg.get("kind") == "signal":
+            from core import signal_tracker as st
+            try:
+                bars = st.fetch_bars(cfg["symbol"], pd.Timestamp(cfg["start"]) - pd.Timedelta(days=st.HISTORY_DAYS), session)
+                status = st.run_signal_rule(cfg, session, bars, PAPER_DIR / cfg["rule"])
+            except DataNotReady as exc:
+                print(f"{cfg['rule']}: data not ready ({exc})", file=sys.stderr)
+                failures += 1
+                continue
+            print(cfg["rule"], json.dumps({k: status.get(k) for k in ("state", "asof", "nav", "benchmark_nav", "excess_return", "entries", "in_position")}))
+            if status.get("decisions_changed_since_recorded"):
+                print(f"  WARNING: recomputed signals differ from the recorded ones: {status['decisions_changed_since_recorded']}", file=sys.stderr)
+            if args.execute and cfg.get("allocation_pct", 0) > 0:
+                print(f"  {cfg['rule']}: signal rules are shadow-only; no orders placed", file=sys.stderr)
+            continue
         try:
             status = run_rule(cfg, session, membership, fetch_closes, PAPER_DIR / cfg["rule"])
         except DataNotReady as exc:
