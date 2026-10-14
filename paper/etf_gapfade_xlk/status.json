@@ -1,0 +1,9 @@
+{
+ "asof": "2026-10-13",
+ "kind": "signal",
+ "rule": "etf_gapfade_xlk",
+ "start": "2026-10-15",
+ "state": "waiting",
+ "strategy": "gap_fade_washout_v1",
+ "symbol": "XLK"
+}
