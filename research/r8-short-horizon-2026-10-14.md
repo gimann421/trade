@@ -45,8 +45,39 @@ A rule that passes 1 but fails 2 or 3 is rejected and labelled "execution-sensit
 ## How it could fail
 Large-cap reversal and overnight effects are small per trade, so the cost line is the likely killer: a rule that turns the whole book over every 5 days pays about 5% a year at 5 bps, and a daily one about 25%. Expect most of the 19 to fail the cost or delayed-fill checks even if their gross edge is positive.
 
-## Data
+## Part A: data and results
 TBD
 
-## Results
+## Part B: earnings-announcement drift from SEC filings (hypotheses 90-93)
+Written and committed before any filing was downloaded and before any return of these rules was computed. Part A's results were already known when this was written: all 19 rules were rejected, with gross edges of 2-16% a year eaten by costs, and the break-even cost per unit of turnover was only 1-8 bps.
+
+### Idea
+Stocks whose price jumps on an earnings release keep drifting in the same direction for weeks (post-earnings-announcement drift; Chan, Jegadeesh and Lakonishok used the announcement-day return as the signal). The holding periods are 5 to 60 sessions, so costs are small relative to the hold. Prior: low to medium: the drift is well documented but is reported to have shrunk, especially in large, heavily followed stocks.
+
+### Universe and data
+- Events are 8-K filings with Item 2.02 ("Results of Operations") from the SEC's `data.sec.gov` submissions service, one request or two per company.
+- **Only today's S&P 500 constituents have a usable company number** (the constituent file at fja05680/sp500 carries one for 503 of them); delisted members have none. To keep that survivorship out of the comparison, **both the rule and its benchmark are restricted to point-in-time members that are also current constituents**, and the benchmark is equal weight of that same set, rebalanced monthly. The result therefore says nothing about survivorship-free performance; it asks whether ranking events beats not ranking them within one fixed set of stocks.
+- Prices: the same Alpaca daily bars; the same 2020-03-09 to 2020-03-20 exclusion as Part A.
+
+### Event timing
+- The acceptance time of the filing is converted to New York time. Before 09:30 the reaction session R is that day's session (or the next one if that date is not a session); at 09:30 or later R is the next session after the acceptance date. (Releases during market hours are therefore measured from the next session, which understates their reaction.)
+- Reaction return AR = the stock's close-to-close return on R minus the equal-weight return of the restricted set on R.
+- Two filings by the same company on the same R count once.
+
+### Rules (exact)
+- An event **qualifies** at the close of R if AR is at or above the q-th percentile of the ARs of all events with reaction sessions in the 252 sessions before R (strictly earlier), with at least 100 such events; the company must be a point-in-time member on R and priced.
+- A qualifying event is held from the close of R through the close of R + h (h sessions of holding). Weights are equal across all names with an active qualifying event; the portfolio trades only on days when that set changes, and holds BIL when it is empty.
+- **The four rules:** `pead_q80_h5`, `pead_q80_h20`, `pead_q80_h60` (q = 80), and `pead_q90_h20` (q = 90).
+- Costs 5 bps per unit of turnover; stress 10 bps; delayed fill = every target one session later.
+
+### Bar
+As in Part A. Windows: in-sample decisions from 2017-01-03 to 2022-12-30, out-of-sample from 2023-01-03. In each window: net active >= +2.0%/yr, information ratio >= 0.3, **event placebo** >= 0.95, and at least 200 qualifying events in-sample and 100 out-of-sample (else inconclusive). Event placebo: the mean h-session abnormal return after R (stock return minus the equal-weight return of the set over the same sessions) of the qualifying events in the window, compared with the same mean for random draws, of the same number of events, from all events with sufficient history in that window (1000 draws, seed 0). Delayed-fill and 10 bps net active must also be above 0 in both windows.
+
+### Reported
+Events found, qualifying events per window, average AR of qualifiers, gross active return, turnover, break-even cost, weeks of data to a t-statistic of 2 (as in Part A).
+
+### Limits
+Current-constituent filter (above); 8-K filings for results are not a complete earnings calendar (companies that release inside another form are missed); Item 2.02 is also used for guidance updates; the event count per window is the binding constraint on how much the placebo can say.
+
+### Part B data and results
 TBD
