@@ -93,10 +93,10 @@ def break_even_bps(gross_active: float, extra_turnover: float):
     return float(gross_active / extra_turnover * 1e4) if extra_turnover > 0 else None
 
 
-def judge(label, decisions, stats, pct, late_active, stress_active):
+def judge(label, decisions, stats, pct, late_active, stress_active, minimum=MIN_DECISIONS):
     """Returns (verdict, reasons, execution_sensitive)."""
-    if decisions < MIN_DECISIONS[label]:
-        return "inconclusive", [f"only {decisions} decisions (need {MIN_DECISIONS[label]})"], False
+    if decisions < minimum[label]:
+        return "inconclusive", [f"only {decisions} decisions (need {minimum[label]})"], False
     bar_fails = []
     if stats["net_active"] < BAR["net_active"]:
         bar_fails.append(f"net active {stats['net_active']:.2%}/yr < 2.0%")
