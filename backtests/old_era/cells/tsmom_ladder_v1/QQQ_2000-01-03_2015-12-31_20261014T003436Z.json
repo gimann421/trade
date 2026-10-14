@@ -1,0 +1,39 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.8676605860024491,
+    "cagr": 0.03988571191964829,
+    "ann_vol": 0.1470099551975234,
+    "sharpe": 0.3396227119443779,
+    "max_drawdown": -0.49300380889898365,
+    "exposure": 0.6591304347826087,
+    "trades": 680,
+    "entries": 50,
+    "exits": 49,
+    "exposure_days": 3584,
+    "return_per_exposure_day": 0.00022250553237016004
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/tsmom_ladder_v1.py",
+  "params": {
+    "lookbacks": [
+      21,
+      63,
+      126,
+      252
+    ]
+  },
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003436Z"
+}

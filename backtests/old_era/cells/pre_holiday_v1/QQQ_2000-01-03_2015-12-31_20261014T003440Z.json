@@ -1,0 +1,32 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": -0.10711793373251277,
+    "cagr": -0.00706851322784019,
+    "ann_vol": 0.04963295331199161,
+    "sharpe": -0.11812614522475863,
+    "max_drawdown": -0.19584670076979527,
+    "exposure": 0.03527950310559006,
+    "trades": 283,
+    "entries": 142,
+    "exits": 141,
+    "exposure_days": 142,
+    "return_per_exposure_day": -0.0006594671232879385
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/pre_holiday_v1.py",
+  "params": {},
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003440Z"
+}

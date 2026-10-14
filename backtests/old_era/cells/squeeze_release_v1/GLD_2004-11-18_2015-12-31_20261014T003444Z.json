@@ -1,0 +1,40 @@
+{
+  "start": "2004-11-18",
+  "end": "2015-12-31",
+  "days": 2799,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.022991230581877797,
+    "cagr": 0.0020486087559126176,
+    "ann_vol": 0.07020278455356642,
+    "sharpe": 0.06435354289290969,
+    "max_drawdown": -0.18015225285487757,
+    "exposure": 0.20435869953554842,
+    "trades": 76,
+    "entries": 38,
+    "exits": 38,
+    "exposure_days": 572,
+    "return_per_exposure_day": 8.77269698468754e-05
+  },
+  "buy_and_hold": {
+    "total_return": 1.2861648635102494,
+    "cagr": 0.07728652097498245,
+    "ann_vol": 0.1986265822801532,
+    "sharpe": 0.47431532957700057,
+    "max_drawdown": -0.4555501273425696,
+    "mean_daily_return": 0.0003738556858609686
+  },
+  "strategy_file": "strategies/squeeze_release_v1.py",
+  "params": {
+    "atr": 10,
+    "pct_window": 250,
+    "pct": 0.2,
+    "recent": 5,
+    "channel": 10,
+    "max_hold": 40,
+    "warmup": 260
+  },
+  "symbol": "GLD",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003444Z"
+}

@@ -1,0 +1,35 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.3979182385589659,
+    "cagr": 0.021194398510171242,
+    "ann_vol": 0.1332119776081198,
+    "sharpe": 0.22346672899246234,
+    "max_drawdown": -0.3872943907709707,
+    "exposure": 0.1903105590062112,
+    "trades": 384,
+    "entries": 193,
+    "exits": 192,
+    "exposure_days": 766,
+    "return_per_exposure_day": 0.0006207156881619747
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/turn_of_month_v1.py",
+  "params": {
+    "days_before": 1,
+    "days_after": 3
+  },
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003439Z"
+}

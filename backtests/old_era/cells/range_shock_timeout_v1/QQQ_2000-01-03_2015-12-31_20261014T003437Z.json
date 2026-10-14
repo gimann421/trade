@@ -1,0 +1,36 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.2922914452161727,
+    "cagr": 0.01618348792626545,
+    "ann_vol": 0.269332192383124,
+    "sharpe": 0.1938852334820635,
+    "max_drawdown": -0.8245599930963021,
+    "exposure": 0.8377639751552795,
+    "trades": 108,
+    "entries": 55,
+    "exits": 54,
+    "exposure_days": 3372,
+    "return_per_exposure_day": 0.00024734935273784
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/range_shock_timeout_v1.py",
+  "params": {
+    "atr": 20,
+    "mult": 2.0,
+    "timeout": 10
+  },
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003437Z"
+}

@@ -1,0 +1,38 @@
+{
+  "start": "2001-08-27",
+  "end": "2015-12-31",
+  "days": 3609,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.4399283399347238,
+    "cagr": 0.02578470922310183,
+    "ann_vol": 0.1408723538483501,
+    "sharpe": 0.2513124621190728,
+    "max_drawdown": -0.3576390427468369,
+    "exposure": 0.7723053477417567,
+    "trades": 145,
+    "entries": 6,
+    "exits": 5,
+    "exposure_days": 3262,
+    "return_per_exposure_day": 0.00015543262474977424
+  },
+  "buy_and_hold": {
+    "total_return": 0.9607179796511613,
+    "cagr": 0.04813690826547523,
+    "ann_vol": 0.23004923485576745,
+    "sharpe": 0.3192601925015557,
+    "max_drawdown": -0.6103729711819859,
+    "mean_daily_return": 0.0002914506468447933
+  },
+  "strategy_file": "strategies/cppi_cushion_v1.py",
+  "params": {
+    "high": 252,
+    "floor": 0.7,
+    "multiplier": 4.0,
+    "gate_sma": 100,
+    "step": 0.25
+  },
+  "symbol": "EFA",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003442Z"
+}

@@ -1,0 +1,38 @@
+{
+  "start": "2000-05-26",
+  "end": "2015-12-31",
+  "days": 3924,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.0076950544794232,
+    "cagr": 0.045777527178118005,
+    "ann_vol": 0.15864153774557835,
+    "sharpe": 0.361568476358598,
+    "max_drawdown": -0.2909078418005918,
+    "exposure": 0.7370030581039755,
+    "trades": 44,
+    "entries": 8,
+    "exits": 7,
+    "exposure_days": 3286,
+    "return_per_exposure_day": 0.0002718118390050457
+  },
+  "buy_and_hold": {
+    "total_return": 2.0229092523036143,
+    "cagr": 0.07362592199273843,
+    "ann_vol": 0.2453220696473991,
+    "sharpe": 0.4124692260827042,
+    "max_drawdown": -0.5863998771954861,
+    "mean_daily_return": 0.00040153890558916654
+  },
+  "strategy_file": "strategies/dd_gated_sma_exit_v1.py",
+  "params": {
+    "sma": 200,
+    "high": 252,
+    "bear": -0.2,
+    "correction": -0.1,
+    "recover": -0.05
+  },
+  "symbol": "IWM",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003441Z"
+}

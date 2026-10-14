@@ -1,0 +1,32 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.055489201272820976,
+    "cagr": 0.0033868648823309755,
+    "ann_vol": 0.1415099354022663,
+    "sharpe": 0.09415538702238642,
+    "max_drawdown": -0.3777105355050615,
+    "exposure": 0.2337888198757764,
+    "trades": 384,
+    "entries": 192,
+    "exits": 192,
+    "exposure_days": 941,
+    "return_per_exposure_day": 0.00022615584994701676
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/opex_week_v1.py",
+  "params": {},
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003441Z"
+}

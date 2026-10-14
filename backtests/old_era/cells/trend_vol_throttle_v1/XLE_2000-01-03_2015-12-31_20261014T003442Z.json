@@ -1,0 +1,39 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.7049533902564273,
+    "cagr": 0.06428259658946645,
+    "ann_vol": 0.17939554907023372,
+    "sharpe": 0.437228691262446,
+    "max_drawdown": -0.3372852326178112,
+    "exposure": 0.7327329192546583,
+    "trades": 77,
+    "entries": 6,
+    "exits": 5,
+    "exposure_days": 3782,
+    "return_per_exposure_day": 0.0003312562918981327
+  },
+  "buy_and_hold": {
+    "total_return": 1.9403871260843304,
+    "cagr": 0.0698581405488945,
+    "ann_vol": 0.28298751979889036,
+    "sharpe": 0.38056461248980944,
+    "max_drawdown": -0.5735939687807421,
+    "mean_daily_return": 0.00042736125322109916
+  },
+  "strategy_file": "strategies/trend_vol_throttle_v1.py",
+  "params": {
+    "sma": 200,
+    "release": 1.02,
+    "vol_window": 63,
+    "target": 0.1,
+    "cap": 0.5,
+    "step": 0.25
+  },
+  "symbol": "XLE",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003442Z"
+}

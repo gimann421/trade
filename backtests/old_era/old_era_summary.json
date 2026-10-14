@@ -1,0 +1,1004 @@
+{
+ "old_status": {
+  "2": "supported",
+  "3": "supported",
+  "4": "rejected",
+  "5": "supported",
+  "6": "supported",
+  "7": "rejected",
+  "8": "supported",
+  "9": "rejected",
+  "10": "rejected",
+  "11": "rejected",
+  "12": "rejected",
+  "13": "rejected",
+  "14": "rejected",
+  "15": "rejected",
+  "16": "rejected",
+  "17": "rejected",
+  "18": "rejected",
+  "19": "rejected",
+  "20": "rejected",
+  "21": "rejected",
+  "22": "rejected",
+  "23": "rejected",
+  "24": "rejected",
+  "25": "rejected",
+  "26": "rejected",
+  "27": "rejected",
+  "28": "rejected",
+  "29": "rejected",
+  "30": "rejected",
+  "31": "rejected",
+  "32": "supported"
+ },
+ "earlier_status": {
+  "2": "rejected",
+  "3": "rejected",
+  "4": "rejected",
+  "5": "rejected",
+  "6": "rejected",
+  "7": "rejected",
+  "8": "rejected",
+  "9": "rejected",
+  "10": "rejected",
+  "11": "rejected",
+  "12": "rejected",
+  "13": "rejected",
+  "14": "rejected",
+  "15": "rejected",
+  "16": "rejected",
+  "17": "rejected",
+  "18": "rejected",
+  "19": "rejected",
+  "20": "rejected",
+  "21": "rejected",
+  "22": "rejected",
+  "23": "rejected",
+  "24": "rejected",
+  "25": "rejected",
+  "26": "rejected",
+  "27": "rejected",
+  "28": "rejected",
+  "29": "rejected",
+  "30": "rejected",
+  "31": "rejected",
+  "32": "rejected"
+ },
+ "cells": [
+  {
+   "hypothesis": 2,
+   "cell": "SPY",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 2,
+   "cell": "QQQ",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 3,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 3,
+   "cell": "QQQ",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 4,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 4,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 5,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 5,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 6,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 6,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 7,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 7,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 8,
+   "cell": "SPY",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 8,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 9,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 9,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 10,
+   "cell": "SPY",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 10,
+   "cell": "QQQ",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 11,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 11,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 12,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 12,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 13,
+   "cell": "SPY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 13,
+   "cell": "QQQ",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 14,
+   "cell": "IWM",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 14,
+   "cell": "TLT",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 14,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 14,
+   "cell": "XLE",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 14,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 15,
+   "cell": "IWM",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 15,
+   "cell": "TLT",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 15,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 15,
+   "cell": "XLE",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 15,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 16,
+   "cell": "IWM",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 16,
+   "cell": "TLT",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 16,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 16,
+   "cell": "XLE",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 16,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 17,
+   "cell": "IWM",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 17,
+   "cell": "TLT",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 17,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 17,
+   "cell": "XLE",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 17,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 18,
+   "cell": "IWM",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 18,
+   "cell": "TLT",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 18,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 18,
+   "cell": "XLE",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 18,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 19,
+   "cell": "IWM",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 19,
+   "cell": "TLT",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 19,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 19,
+   "cell": "XLE",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 19,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 20,
+   "cell": "IWM",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 20,
+   "cell": "TLT",
+   "IS": "inconclusive",
+   "OOS": "inconclusive",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 20,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 20,
+   "cell": "XLE",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 20,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 21,
+   "cell": "IWM",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 21,
+   "cell": "TLT",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 21,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 21,
+   "cell": "XLE",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 21,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 22,
+   "cell": "IWM",
+   "IS": "supports",
+   "OOS": "inconclusive",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 22,
+   "cell": "TLT",
+   "IS": "contradicts",
+   "OOS": "inconclusive",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 22,
+   "cell": "GLD",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 22,
+   "cell": "XLE",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 22,
+   "cell": "EFA",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 23,
+   "cell": "core",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 23,
+   "cell": "alternate",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 24,
+   "cell": "core",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 24,
+   "cell": "alternate",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 25,
+   "cell": "core",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 25,
+   "cell": "alternate",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 26,
+   "cell": "XLK",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 26,
+   "cell": "XLV",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 26,
+   "cell": "XLF",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 26,
+   "cell": "EEM",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 26,
+   "cell": "HYG",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 27,
+   "cell": "XLK",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 27,
+   "cell": "XLV",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 27,
+   "cell": "XLF",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 27,
+   "cell": "EEM",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 27,
+   "cell": "HYG",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 28,
+   "cell": "XLK",
+   "IS": "supports",
+   "OOS": "supports",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 28,
+   "cell": "XLV",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 28,
+   "cell": "XLF",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 28,
+   "cell": "EEM",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 28,
+   "cell": "HYG",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 29,
+   "cell": "XLU",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 29,
+   "cell": "XLP",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 29,
+   "cell": "XLY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 29,
+   "cell": "XLI",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 29,
+   "cell": "XLB",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 30,
+   "cell": "XLU",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 30,
+   "cell": "XLP",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 30,
+   "cell": "XLY",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 30,
+   "cell": "XLI",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 30,
+   "cell": "XLB",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 31,
+   "cell": "VGLT",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 31,
+   "cell": "SPTL",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 31,
+   "cell": "EDV",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 31,
+   "cell": "ZROZ",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 31,
+   "cell": "TLH",
+   "IS": "supports",
+   "OOS": "contradicts",
+   "OLD": "contradicts"
+  },
+  {
+   "hypothesis": 32,
+   "cell": "vti_iei",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 32,
+   "cell": "vti_vgit",
+   "IS": "contradicts",
+   "OOS": "contradicts",
+   "OLD": "supports"
+  },
+  {
+   "hypothesis": 32,
+   "cell": "vea_iei",
+   "IS": "contradicts",
+   "OOS": "supports",
+   "OLD": "supports"
+  }
+ ],
+ "rotation": {
+  "etf_sect_mom3_k2": {
+   "verdict": "contradicts",
+   "why": "net active -3.17%/yr < 2.0%; information ratio -0.28 < 0.3; placebo 0.083 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": -0.03171280974180639,
+   "information_ratio": -0.27835403428770905,
+   "placebo": 0.083,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_sect_mom3_k3": {
+   "verdict": "contradicts",
+   "why": "net active -1.43%/yr < 2.0%; information ratio -0.17 < 0.3; placebo 0.219 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": -0.014345758684611087,
+   "information_ratio": -0.16903447282706308,
+   "placebo": 0.219,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_sect_mom6_k2": {
+   "verdict": "contradicts",
+   "why": "net active -0.88%/yr < 2.0%; information ratio -0.08 < 0.3; placebo 0.379 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": -0.008757795612401182,
+   "information_ratio": -0.07587465919383013,
+   "placebo": 0.379,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_sect_mom6_k3": {
+   "verdict": "contradicts",
+   "why": "net active -1.11%/yr < 2.0%; information ratio -0.13 < 0.3; placebo 0.259 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": -0.011108878530429711,
+   "information_ratio": -0.12666074902639732,
+   "placebo": 0.259,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_sect_mom12_1_k2": {
+   "verdict": "contradicts",
+   "why": "net active 0.05%/yr < 2.0%; information ratio 0.00 < 0.3; placebo 0.566 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": 0.0005185517263230348,
+   "information_ratio": 0.004419934960039306,
+   "placebo": 0.566,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_sect_mom12_1_k3": {
+   "verdict": "contradicts",
+   "why": "net active 0.01%/yr < 2.0%; information ratio 0.00 < 0.3; placebo 0.567 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": 7.370619620125541e-05,
+   "information_ratio": 0.0008264310082943384,
+   "placebo": 0.567,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_sect_rev1_k2": {
+   "verdict": "contradicts",
+   "why": "net active -0.52%/yr < 2.0%; information ratio -0.04 < 0.3; placebo 0.472 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": -0.005228884599099217,
+   "information_ratio": -0.04342002778347036,
+   "placebo": 0.472,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_sect_rev1_k3": {
+   "verdict": "contradicts",
+   "why": "net active -0.97%/yr < 2.0%; information ratio -0.11 < 0.3; placebo 0.325 < 0.95",
+   "first_decision": "1999-12-31",
+   "rebalances": 192,
+   "net_active": -0.00972472207826939,
+   "information_ratio": -0.10962612602273863,
+   "placebo": 0.325,
+   "start": "2000-01-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_mom3_k1": {
+   "verdict": "contradicts",
+   "why": "net active 0.23%/yr < 2.0%; information ratio 0.02 < 0.3; placebo 0.596 < 0.95",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": 0.0022952258456057756,
+   "information_ratio": 0.01834891814389871,
+   "placebo": 0.596,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_mom3_k2": {
+   "verdict": "contradicts",
+   "why": "net active 0.83%/yr < 2.0%; information ratio 0.10 < 0.3; placebo 0.781 < 0.95",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": 0.008326348510841698,
+   "information_ratio": 0.10047342342238848,
+   "placebo": 0.781,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_mom6_k1": {
+   "verdict": "contradicts",
+   "why": "information ratio 0.16 < 0.3; placebo 0.771 < 0.95",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": 0.020503470105893006,
+   "information_ratio": 0.16494833765382066,
+   "placebo": 0.771,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_mom6_k2": {
+   "verdict": "supports",
+   "why": "passes the bar",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": 0.0249480417585921,
+   "information_ratio": 0.30786829910879965,
+   "placebo": 0.96,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_mom12_1_k1": {
+   "verdict": "contradicts",
+   "why": "net active 1.99%/yr < 2.0%; information ratio 0.15 < 0.3; placebo 0.724 < 0.95",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": 0.0198649875327649,
+   "information_ratio": 0.14811769109241205,
+   "placebo": 0.724,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_mom12_1_k2": {
+   "verdict": "contradicts",
+   "why": "net active 0.50%/yr < 2.0%; information ratio 0.07 < 0.3; placebo 0.670 < 0.95",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": 0.005009786735409199,
+   "information_ratio": 0.06653895098884484,
+   "placebo": 0.67,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_rev1_k1": {
+   "verdict": "contradicts",
+   "why": "net active -0.77%/yr < 2.0%; information ratio -0.05 < 0.3; placebo 0.292 < 0.95",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": -0.007683054567278089,
+   "information_ratio": -0.045412676930437344,
+   "placebo": 0.292,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  },
+  "etf_region_rev1_k2": {
+   "verdict": "contradicts",
+   "why": "net active -1.04%/yr < 2.0%; information ratio -0.11 < 0.3; placebo 0.291 < 0.95",
+   "first_decision": "2005-09-30",
+   "rebalances": 123,
+   "net_active": -0.010385546670893113,
+   "information_ratio": -0.11394527962146878,
+   "placebo": 0.291,
+   "start": "2005-10-03",
+   "end": "2015-12-31"
+  }
+ }
+}

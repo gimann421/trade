@@ -1,0 +1,68 @@
+{
+  "start": "2007-04-11",
+  "end": "2015-12-31",
+  "days": 2199,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "QQQ",
+    "IWM",
+    "LQD",
+    "HYG",
+    "IEF",
+    "DBC",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.6092281432990463,
+    "cagr": 0.056033929092911494,
+    "ann_vol": 0.1303398697653965,
+    "sharpe": 0.4836563973275763,
+    "max_drawdown": -0.2557318596995166,
+    "exposure": 0.9936334697589814,
+    "trades": 94,
+    "annual_turnover": 4.027566682011832
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.5140539614448096,
+      "cagr": 0.048681862659595065,
+      "ann_vol": 0.0881935955310954,
+      "sharpe": 0.5831505968426857,
+      "max_drawdown": -0.2813832099220167,
+      "exposure": 0.9995452478399293,
+      "trades": 1,
+      "annual_turnover": 0.11459754433833558
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.45932454885133,
+      "cagr": 0.044266637547692556,
+      "ann_vol": 0.09485163190079551,
+      "sharpe": 0.504142281968915,
+      "max_drawdown": -0.2921518495058606,
+      "exposure": 0.9995452478399273,
+      "trades": 106,
+      "annual_turnover": 0.4091459844978383
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.529634723737183,
+      "cagr": 0.04991297058296107,
+      "ann_vol": 0.07270421401318805,
+      "sharpe": 0.7063975107403313,
+      "max_drawdown": -0.22872614093652976,
+      "exposure": 0.9645293315143247,
+      "trades": 102,
+      "annual_turnover": 1.1189383436725262
+    }
+  },
+  "strategy_file": "strategies/dual_momentum_v1.py",
+  "params": {
+    "lookback": 252,
+    "top": 2,
+    "cash": "BIL"
+  },
+  "symbol": "ALTERNATE",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003447Z"
+}
