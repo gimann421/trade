@@ -35,8 +35,11 @@ A rule that passes 1 but fails 2 or 3 is rejected and labelled "execution-sensit
 ## Reported for every rule (no bar attached)
 Gross active return, annual turnover, break-even cost, the round-8 close-timed net active return of the same rule (same-day close signal, same-day close fill, which cannot be traded), delayed-fill net active, weeks of data to a t-statistic of 2 as in round 8, and beta to the benchmark.
 
+## Universe change made before any run (2026-10-14)
+The 15-minute history for all 719 members is about 115 million bars and downloads at roughly 9,000 bars a second, which is over three hours. The round therefore uses **a fixed random sample of 300 of the 719 member tickers** (`core.intraday.sample_tickers`, numpy `default_rng(0)`), about 210 of them members on any date. Universe, benchmark (equal weight of the sampled members priced on the date, rebalanced at month-end, same costs) and placebo all use the sample, and a decile is about 20 names. Because the sample changes what the rules hold, the "close-timed" column (same rule, same sample, signal from the official close) is the like-for-like comparison for the effect of the snapshot; the round-8 full-universe numbers are context only. This edit was made before any return of any rule was computed.
+
 ## Data handling fixed in advance
-- Intraday bars: Alpaca 15-minute bars, adjustment ALL, 2016-12-01 to the last completed session, for the same 719 members. Per session only three numbers are kept: the close of the 15:15 bar (the "15:30 price"), the close of the 15:30 bar (the "15:45 price"), and total volume in bars starting from 09:30 up to 15:30 inclusive.
+- Intraday bars: Alpaca 15-minute bars, adjustment ALL, 2016-12-01 to the last completed session, for the 300 sampled members. Per session only three numbers are kept: the close of the 15:15 bar (the "15:30 price"), the close of the 15:30 bar (the "15:45 price"), and total volume in bars starting from 09:30 up to 15:30 inclusive.
 - Check before scoring: the 15:45 price must be within 5% of the same day's official close for at least 99.9% of name-sessions; names-days outside that are dropped from the signal, not repaired. The number dropped is reported.
 - March 2020: returns on 2020-03-09 to 2020-03-20 are dropped from every statistic, as in round 8; decisions whose holding period touches those sessions are left out of the placebo.
 - Spin-offs: as in round 8, not removed.

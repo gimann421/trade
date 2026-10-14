@@ -26,6 +26,17 @@ INTRADAY_DIR = DATA_DIR / "intraday"
 START = datetime(2016, 12, 1, tzinfo=timezone.utc)
 
 
+SAMPLE_SIZE, SAMPLE_SEED = 300, 0
+
+
+def sample_tickers(n: int = SAMPLE_SIZE, seed: int = SAMPLE_SEED) -> list[str]:
+    """The fixed random sample of the member tickers that round 9 uses (sorted)."""
+    import numpy as np
+    names = sorted(last_member_dates(load_membership()))
+    pick = np.random.default_rng(seed).choice(len(names), size=min(n, len(names)), replace=False)
+    return sorted(names[i] for i in pick)
+
+
 def intraday_path(symbol: str):
     return INTRADAY_DIR / f"{symbol.upper()}.csv"
 
@@ -77,8 +88,9 @@ def download(workers: int = 4) -> dict:
     end = datetime.now(timezone.utc) - timedelta(minutes=20)
     manifest_path = INTRADAY_DIR / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"done": {}, "missing": {}}
+    chosen = set(sample_tickers())
     todo = [(t, str(a.date())) for t, a in last_member_dates(load_membership()).items()
-            if bars_path(t, STOCK_DIR).exists() and not intraday_path(t).exists()]
+            if t in chosen and bars_path(t, STOCK_DIR).exists() and not intraday_path(t).exists()]
     print(f"{len(todo)} tickers to fetch", flush=True)
     with ThreadPoolExecutor(workers) as pool:
         futures = {pool.submit(fetch_one, client, t, a, end): t for t, a in todo}
