@@ -51,4 +51,37 @@ The 15:45 signal may lose the part of the reversal that happens in the last 15 m
 A pass in both windows is evidence for a forward shadow record, as in round 8, not for orders. Passing the bar says nothing about whether a retail broker's market-on-close orders would fill at the official close at 5 bps.
 
 ## Results
-(to be filled after the run)
+Data: 296 of the 300 sampled tickers had snapshots (4 missing at Alpaca); 99.97% of 15:45 prices were within 5% of the official close (197 of 652,000 name-sessions dropped), 99.95% for 15:30, so the agreement check passed. Run at commit 71a8f20 plus the results file `backtests/short_horizon_v2/`. Net active is per year, 5 bps, against the equal-weight sampled members.
+
+**One rule is supported: `rev5_h2_band_s`. The other eight are rejected.**
+
+| Rule | Net active IS / OOS | IR IS / OOS | Placebo IS / OOS | Gross IS / OOS | Turnover/yr | 10 bps IS / OOS | 15:30 signal IS / OOS | Close-timed IS / OOS |
+|---|---|---|---|---|---|---|---|---|
+| `rev1_h2_s` | -6.3% / +0.8% | -0.43 / +0.05 | 0.93 / 1.00 | +4.5% / +11.6% | 218x | -17.2% / -10.1% | -8.4% / +4.3% | -8.5% / +4.0% |
+| `rev5_h2_s` | +2.5% / +8.7% | +0.17 / +0.57 | 1.00 / 1.00 | +9.7% / +16.0% | 144x | -4.6% / +1.4% | +1.7% / +10.4% | +0.5% / +6.1% |
+| `id5_h2_s` | +2.8% / +4.1% | +0.19 / +0.29 | 1.00 / 1.00 | +10.1% / +11.4% | 147x | -4.5% / -3.2% | +1.8% / +5.7% | +1.3% / +4.4% |
+| `rev1_h5_s` | -5.8% / +10.3% | -0.38 / +0.71 | 0.34 / 1.00 | -1.6% / +14.7% | 86x | -10.1% / +5.9% | -6.8% / +10.2% | -4.2% / +10.0% |
+| `rev1_h2_band_s` | -3.2% / +5.2% | -0.23 / +0.35 | 0.97 / 1.00 | +5.3% / +13.6% | 169x | -11.6% / -3.1% | -5.5% / +8.1% | -5.0% / +6.6% |
+| **`rev5_h2_band_s`** | **+6.7% / +6.6%** | **+0.43 / +0.45** | **1.00 / 1.00** | +11.4% / +11.3% | 94x | **+2.0% / +1.9%** | **+5.0% / +6.3%** | +5.3% / +7.1% |
+| `id5_h2_band_s` | +8.3% / +3.9% | +0.57 / +0.29 | 1.00 / 0.99 | +12.9% / +8.5% | 94x | +3.6% / -0.6% | +5.7% / +5.1% | +5.5% / +3.0% |
+| `rev1_h2_lv_s` | -7.6% / -3.4% | -0.51 / -0.21 | 0.79 / 0.93 | +3.6% / +8.0% | 225x | -18.8% / -14.8% | -8.1% / -3.4% | -10.3% / -1.6% |
+| `rev5_h2_lv_s` | +0.9% / +10.4% | +0.06 / +0.63 | 0.99 / 1.00 | +9.7% / +19.3% | 176x | -7.8% / +1.5% | +2.2% / +7.5% | +0.1% / +10.6% |
+
+What this says:
+- **The 15:45 snapshot costs almost nothing.** Reading the price 15 minutes early gives about the same net active as the impossible close-timed signal (for example `rev5_h2_s` IS +2.5% against +0.5%, OOS +8.7% against +6.1%). Round 8's "edge you cannot capture" reading was mostly the delay model, not the signal: with a market-on-close fill the 2-day reversal rules keep their gross edge. Whether real fills at the close would cost 5 bps is the open question, not the signal timing.
+- **The band is what clears the cost line.** It cuts `rev5_h2` turnover from 144x to 94x a year and lifts net active in-sample from +2.5% to +6.7%. `rev5_h2_band_s` passes every part of the bar in both windows, including 10 bps (+2.0% / +1.9%, only just) and the 15:30-signal check. `id5_h2_band_s` has the better in-sample result but fails the 10 bps check out-of-sample (-0.6%) and IR is 0.29 there.
+- **`rev1` rules still lose in-sample at every setting** (net -3% to -8%), as expected; the low-volume filter did not rescue them and made `rev5` worse in-sample (+0.9%).
+- Out-of-sample (2023+) is stronger than in-sample for every reversal rule except the band ones on `id5`, so part of the edge is a regime that may fade; `rev5_h2_band_s` is steady across the two windows (+6.7% / +6.6%), which is the reason it is more believable than the others.
+
+### Post-hoc check on stocks the round never used
+`research/round9_holdout.py` runs the close-timed versions on the other 419 member tickers (no snapshots exist for them, so it cannot be traded and is report-only, not a ledger test). `rev5_h2_band`: net +4.6% IS / +4.7% OOS, IR 0.34 / 0.35, turnover 90x, 10 bps +0.1% / +0.1%; the plain `rev5_h2` there: +1.0% / +6.6%. So the band effect (turnover down by a third, in-sample edge up by about 3.5 points) shows up on unseen stocks, with a smaller margin: at 10 bps it only breaks even.
+
+### Limits and caveats
+- One of nine rules passing is not strong evidence on its own: 102 hypotheses have now been tested and the nine are highly correlated. The band version of `rev5_h2` was an expected candidate (named in the prior before any run), which helps, but the band width of 30% and the decile were chosen after seeing round 8.
+- The 10 bps margin is thin (+2.0% / +1.9%) and the unseen-stock check breaks even at 10 bps: the rule lives between 5 and 10 bps of true cost.
+- A 300-stock sample, flat 5 bps, no closing-auction imbalance cost, no borrow or tax; fills at the official close are assumed available for a ~20-name book that trades about half its names every two days.
+- Delayed fill (a session late) is still negative out-of-sample for the close-timed holdout (-1.9%), so the edge depends on acting before the close, not after seeing it.
+- Stocks are only available from 2016; there is no older-era check.
+
+### Recommendation
+`rev5_h2_band_s` meets the bar the project set, so under the existing rules it earns a forward shadow record (no orders), which is what measures the real 15:45-to-close behaviour. Adding it to the paper tracker is a separate change that this round did not make.
