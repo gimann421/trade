@@ -1,0 +1,35 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.21636624101623259,
+    "cagr": 0.012338534511729504,
+    "ann_vol": 0.08628075267005213,
+    "sharpe": 0.18494269859587703,
+    "max_drawdown": -0.24447067837643432,
+    "exposure": 0.11950310559006211,
+    "trades": 786,
+    "entries": 394,
+    "exits": 393,
+    "exposure_days": 481,
+    "return_per_exposure_day": 0.000529872502917397
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/ibs_reversal_v1.py",
+  "params": {
+    "ibs_max": 0.2,
+    "trend": 200
+  },
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003437Z"
+}

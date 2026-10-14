@@ -1,0 +1,40 @@
+H23 dual_momentum_v1.py: rejected
+  core      IS  Sharpe  0.62 (eq-wt  0.55, best  0.75) MaxDD -23.0%/-36.9% CAGR   9.0%/  6.9% trades 123 placebo 0.94 -> contradicts: Sharpe 0.62 < equal-weight 0.55 + 0.10; placebo percentile 0.94 < 0.95
+  alternate IS  Sharpe  0.48 (eq-wt  0.50, best  0.71) MaxDD -25.6%/-29.2% CAGR   5.6%/  4.4% trades  94 placebo 0.82 -> contradicts: Sharpe 0.48 < equal-weight 0.50 + 0.10; Sharpe 0.48 more than 0.20 below best benchmark 0.71; placebo percentile 0.82 < 0.95
+H24 canary_momentum_v1.py: rejected
+  core      IS  Sharpe  0.74 (eq-wt  0.38, best  0.70) MaxDD -15.0%/-38.1% CAGR   7.9%/  4.5% trades  89 placebo 0.99 -> supports: passes kill rule
+  alternate IS  Sharpe  0.63 (eq-wt  0.57, best  0.62) MaxDD -33.2%/-49.5% CAGR   7.3%/  8.5% trades 151 placebo 0.85 -> contradicts: Sharpe 0.63 < equal-weight 0.57 + 0.10; placebo percentile 0.85 < 0.95
+H25 breadth_paa_v1.py: rejected
+  core      IS  Sharpe  0.49 (eq-wt  0.42, best  0.70) MaxDD -11.0%/-35.1% CAGR   3.5%/  4.7% trades  73 placebo 0.89 -> contradicts: Sharpe 0.49 < equal-weight 0.42 + 0.10; Sharpe 0.49 more than 0.20 below best benchmark 0.70; placebo percentile 0.89 < 0.95
+  alternate IS  Sharpe  0.68 (eq-wt  0.41, best  0.43) MaxDD -16.0%/-49.5% CAGR   6.6%/  5.7% trades 156 placebo 1.00 -> supports: passes kill rule
+H26 overnight_tilt_v1.py: rejected
+  XLK IS  Sharpe  0.08/ 0.12 CAGR  -1.0%/ -0.3% MaxDD -77.5%/-82.0% rped  0.008%/ 0.013% cond  0.08 exp  86% ent   1 ev  82 -> contradicts: Sharpe 0.08 < buy&hold 0.12 + 0.05
+  XLV IS  Sharpe  0.42/ 0.45 CAGR   5.9%/  6.9% MaxDD -34.1%/-39.2% rped  0.028%/ 0.033% cond  0.42 exp  85% ent   1 ev  80 -> contradicts: Sharpe 0.42 < buy&hold 0.45 + 0.05
+  XLF IS  Sharpe  0.27/ 0.22 CAGR   3.6%/  2.1% MaxDD -76.9%/-82.7% rped  0.030%/ 0.028% cond  0.27 exp  86% ent   1 ev  84 -> contradicts: Sharpe 0.27 < buy&hold 0.22 + 0.05
+  EEM IS  Sharpe  0.44/ 0.47 CAGR   8.9%/ 10.5% MaxDD -64.6%/-66.4% rped  0.051%/ 0.059% cond  0.44 exp  88% ent   1 ev  68 -> contradicts: Sharpe 0.44 < buy&hold 0.47 + 0.05
+  HYG IS  Sharpe  0.47/ 0.39 CAGR   4.5%/  4.5% MaxDD -25.6%/-34.2% rped  0.019%/ 0.021% cond  0.47 exp  90% ent   1 ev  31 -> supports: passes kill threshold
+H27 overnight_trend_v1.py: rejected  [close-to-close control would support: XLK IS, XLF IS, HYG IS]
+  XLK IS  Sharpe -0.15/ 0.12 CAGR  -4.6%/ -0.3% MaxDD -82.4%/-82.0% rped -0.015%/ 0.013% cond -0.16 exp  74% ent  64 ev  64 -> contradicts: Sharpe -0.15 < 1x buy&hold 0.12; MaxDD -82.4% not 5pts better than -82.0%; Sharpe -0.15 below 0
+  XLV IS  Sharpe  0.24/ 0.45 CAGR   2.3%/  6.9% MaxDD -53.0%/-39.2% rped  0.018%/ 0.033% cond  0.29 exp  73% ent  49 ev  48 -> contradicts: Sharpe 0.24 < 1x buy&hold 0.45; MaxDD -53.0% not 5pts better than -39.2%
+  XLF IS  Sharpe  0.24/ 0.22 CAGR   3.0%/  2.1% MaxDD -64.7%/-82.7% rped  0.028%/ 0.028% cond  0.29 exp  77% ent  60 ev  59 -> supports: passes kill threshold
+  EEM IS  Sharpe  0.55/ 0.47 CAGR   9.5%/ 10.5% MaxDD -38.9%/-66.4% rped  0.060%/ 0.059% cond  0.66 exp  73% ent  60 ev  60 -> supports: passes kill threshold
+  HYG IS  Sharpe  0.47/ 0.39 CAGR   5.0%/  4.5% MaxDD -24.6%/-34.2% rped  0.025%/ 0.021% cond  0.51 exp  89% ent  23 ev  23 -> supports: passes kill threshold
+H28 gap_fade_washout_v1.py: rejected  [veto also fires: XLV IS: return/exposure day -0.095% below 0]
+  XLK IS  Sharpe  0.44/ 0.12 CAGR   3.2%/ -0.3% MaxDD -18.7%/-82.0% rped  0.214%/ 0.013% cond  1.89 exp   6% ent  87 ev  87 -> supports: passes kill threshold (hit rate 64%)
+  XLV IS  Sharpe -0.23/ 0.45 CAGR  -1.5%/  6.9% MaxDD -35.0%/-39.2% rped -0.095%/ 0.033% cond -0.81 exp   6% ent  76 ev  76 -> contradicts: return/exposure day -0.095% < buy&hold mean 0.033% + 10bps; hit rate 49% < 55%
+  XLF IS  Sharpe  0.25/ 0.22 CAGR   2.1%/  2.1% MaxDD -19.1%/-82.7% rped  0.175%/ 0.028% cond  1.11 exp   6% ent  81 ev  81 -> supports: passes kill threshold (hit rate 63%)
+  EEM IS  Sharpe  0.18/ 0.47 CAGR   1.0%/ 10.5% MaxDD -13.8%/-66.4% rped  0.099%/ 0.059% cond  0.96 exp   5% ent  52 ev  52 -> contradicts: return/exposure day 0.099% < buy&hold mean 0.059% + 10bps
+  HYG IS  Sharpe  0.40/ 0.39 CAGR   1.6%/  4.5% MaxDD -10.8%/-34.2% rped  0.117%/ 0.021% cond  1.88 exp   6% ent  43 ev  43 -> contradicts: return/exposure day 0.117% < buy&hold mean 0.021% + 10bps
+H29 halloween_v1.py: rejected
+  XLU IS  Sharpe  0.46/ 0.43 CAGR   5.0%/  6.6% MaxDD -27.4%/-52.3% rped  0.046%/ 0.033% cond  0.66 exp  49% ent  17 ev  16 -> contradicts: return/exposure day 0.046% < buy&hold mean 0.033% + 3bps
+  XLP IS  Sharpe  0.41/ 0.55 CAGR   3.8%/  7.4% MaxDD -23.2%/-35.9% rped  0.035%/ 0.033% cond  0.59 exp  49% ent  17 ev  16 -> contradicts: return/exposure day 0.035% < buy&hold mean 0.033% + 3bps; conditional Sharpe 0.59 < buy&hold 0.55 + 0.1
+  XLY IS  Sharpe  0.52/ 0.42 CAGR   7.3%/  7.2% MaxDD -40.8%/-59.0% rped  0.067%/ 0.038% cond  0.74 exp  49% ent  17 ev  16 -> contradicts: return/exposure day 0.067% < buy&hold mean 0.038% + 3bps
+  XLI IS  Sharpe  0.51/ 0.36 CAGR   6.7%/  5.6% MaxDD -41.8%/-62.3% rped  0.062%/ 0.031% cond  0.74 exp  49% ent  17 ev  16 -> supports: passes kill threshold
+  XLB IS  Sharpe  0.53/ 0.34 CAGR   8.0%/  5.6% MaxDD -32.8%/-59.8% rped  0.074%/ 0.034% cond  0.76 exp  49% ent  17 ev  16 -> supports: passes kill threshold
+H30 earnings_season_v1.py: rejected
+  XLU IS  Sharpe  0.30/ 0.43 CAGR   2.4%/  6.6% MaxDD -32.7%/-52.3% rped  0.064%/ 0.033% cond  0.76 exp  18% ent  64 ev  64 -> contradicts: return/exposure day 0.064% < buy&hold mean 0.033% + 4bps
+  XLP IS  Sharpe  0.07/ 0.55 CAGR   0.2%/  7.4% MaxDD -17.4%/-35.9% rped  0.010%/ 0.033% cond  0.24 exp  18% ent  64 ev  64 -> contradicts: return/exposure day 0.010% < buy&hold mean 0.033% + 4bps; return/exposure day 0.010% < 3bps absolute; conditional Sharpe 0.24 < buy&hold 0.55 + 0.15
+  XLY IS  Sharpe  0.23/ 0.42 CAGR   1.8%/  7.2% MaxDD -20.2%/-59.0% rped  0.053%/ 0.038% cond  0.59 exp  18% ent  64 ev  64 -> contradicts: return/exposure day 0.053% < buy&hold mean 0.038% + 4bps
+  XLI IS  Sharpe  0.24/ 0.36 CAGR   1.9%/  5.6% MaxDD -23.0%/-62.3% rped  0.053%/ 0.031% cond  0.62 exp  18% ent  64 ev  64 -> contradicts: return/exposure day 0.053% < buy&hold mean 0.031% + 4bps
+  XLB IS  Sharpe  0.09/ 0.34 CAGR   0.4%/  5.6% MaxDD -30.6%/-59.8% rped  0.024%/ 0.034% cond  0.26 exp  18% ent  64 ev  64 -> contradicts: return/exposure day 0.024% < buy&hold mean 0.034% + 4bps; return/exposure day 0.024% < 3bps absolute; conditional Sharpe 0.26 < buy&hold 0.34 + 0.15
+wrote backtests/round3_summary.json

@@ -1,0 +1,39 @@
+{
+  "start": "2000-05-26",
+  "end": "2015-12-31",
+  "days": 3924,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.0573243733065598,
+    "cagr": 0.04741879208618238,
+    "ann_vol": 0.1583168482400651,
+    "sharpe": 0.3718998003221914,
+    "max_drawdown": -0.3463825857513996,
+    "exposure": 0.7518476044852191,
+    "trades": 106,
+    "entries": 4,
+    "exits": 3,
+    "exposure_days": 3679,
+    "return_per_exposure_day": 0.00024920213035549096
+  },
+  "buy_and_hold": {
+    "total_return": 2.0229092523036143,
+    "cagr": 0.07362592199273843,
+    "ann_vol": 0.2453220696473991,
+    "sharpe": 0.4124692260827042,
+    "max_drawdown": -0.5863998771954861,
+    "mean_daily_return": 0.00040153890558916654
+  },
+  "strategy_file": "strategies/trend_vol_throttle_v1.py",
+  "params": {
+    "sma": 200,
+    "release": 1.02,
+    "vol_window": 63,
+    "target": 0.1,
+    "cap": 0.5,
+    "step": 0.25
+  },
+  "symbol": "IWM",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003441Z"
+}

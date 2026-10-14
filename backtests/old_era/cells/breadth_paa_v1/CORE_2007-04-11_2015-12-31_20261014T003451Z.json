@@ -1,0 +1,83 @@
+{
+  "start": "2007-04-11",
+  "end": "2015-12-31",
+  "days": 2199,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "IWM",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "DBC",
+    "GLD",
+    "HYG",
+    "LQD",
+    "TLT",
+    "IEF",
+    "BIL"
+  ],
+  "signal_only": [],
+  "strategy": {
+    "total_return": 0.3460514876434977,
+    "cagr": 0.03464211112776461,
+    "ann_vol": 0.07529342262620083,
+    "sharpe": 0.48999020388471326,
+    "max_drawdown": -0.10990439336251456,
+    "exposure": 0.9936334697589814,
+    "trades": 73,
+    "annual_turnover": 5.40504502476299
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.46928081519201714,
+      "cagr": 0.045080635374883604,
+      "ann_vol": 0.10976942275052842,
+      "sharpe": 0.45660595193263603,
+      "max_drawdown": -0.31655070910414806,
+      "exposure": 0.9995452478399252,
+      "trades": 1,
+      "annual_turnover": 0.11459754433833558
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.4947457553060739,
+      "cagr": 0.0471405727785561,
+      "ann_vol": 0.12886927612950644,
+      "sharpe": 0.4218807595229277,
+      "max_drawdown": -0.35108172693991113,
+      "exposure": 0.9995452478399273,
+      "trades": 106,
+      "annual_turnover": 0.46622215909450077
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.6129684290496376,
+      "cagr": 0.05631492105569835,
+      "ann_vol": 0.08900563121851576,
+      "sharpe": 0.66009194968596,
+      "max_drawdown": -0.2500717401347279,
+      "exposure": 0.9645293315143247,
+      "trades": 102,
+      "annual_turnover": 1.1028079836478373
+    },
+    "sixty_forty": {
+      "total_return": 0.8794851079313362,
+      "cagr": 0.07498940455602443,
+      "ann_vol": 0.11213307131662728,
+      "sharpe": 0.7009386886160012,
+      "max_drawdown": -0.31423379468231927,
+      "exposure": 0.9995452478399273,
+      "trades": 106,
+      "annual_turnover": 0.42442404737050254
+    }
+  },
+  "strategy_file": "strategies/breadth_paa_v1.py",
+  "params": {
+    "window": 252,
+    "cash": "BIL"
+  },
+  "symbol": "CORE",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003451Z"
+}

@@ -1,0 +1,90 @@
+{
+  "start": "2007-04-11",
+  "end": "2015-12-31",
+  "days": 2199,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "SPY",
+    "IWM",
+    "QQQ",
+    "EFA",
+    "EEM",
+    "VNQ",
+    "DBC",
+    "GLD",
+    "TLT",
+    "HYG",
+    "LQD",
+    "BIL"
+  ],
+  "signal_only": [
+    "AGG"
+  ],
+  "strategy": {
+    "total_return": 0.9358956388622637,
+    "cagr": 0.07863862031276381,
+    "ann_vol": 0.11134520707718601,
+    "sharpe": 0.7356188086814379,
+    "max_drawdown": -0.14977807208839966,
+    "exposure": 0.9936334697589814,
+    "trades": 89,
+    "annual_turnover": 9.165431282946884
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 0.45512874835973727,
+      "cagr": 0.04392212654917982,
+      "ann_vol": 0.12306498013068774,
+      "sharpe": 0.4108452471407324,
+      "max_drawdown": -0.349609087339522,
+      "exposure": 0.9995452478399256,
+      "trades": 1,
+      "annual_turnover": 0.1145975443383356
+    },
+    "equal_weight_monthly": {
+      "total_return": 0.47317824679286136,
+      "cagr": 0.04539794946557407,
+      "ann_vol": 0.1418749298242518,
+      "sharpe": 0.3838776151486707,
+      "max_drawdown": -0.3805578490687038,
+      "exposure": 0.9995452478399273,
+      "trades": 106,
+      "annual_turnover": 0.4653559386406661
+    },
+    "inverse_vol_monthly": {
+      "total_return": 0.5631319831795403,
+      "cagr": 0.052522588225357714,
+      "ann_vol": 0.11332633293626627,
+      "sharpe": 0.5083943114000448,
+      "max_drawdown": -0.3270768672750439,
+      "exposure": 0.9645293315143247,
+      "trades": 102,
+      "annual_turnover": 1.1362308426177559
+    },
+    "sixty_forty": {
+      "total_return": 0.8794851079313362,
+      "cagr": 0.07498940455602443,
+      "ann_vol": 0.11213307131662728,
+      "sharpe": 0.7009386886160012,
+      "max_drawdown": -0.31423379468231927,
+      "exposure": 0.9995452478399273,
+      "trades": 106,
+      "annual_turnover": 0.42442404737050254
+    }
+  },
+  "strategy_file": "strategies/canary_momentum_v1.py",
+  "params": {
+    "weights": {
+      "21": 12,
+      "63": 4,
+      "126": 2,
+      "252": 1
+    },
+    "cash": "BIL",
+    "max_bad": 2
+  },
+  "symbol": "CORE",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003448Z"
+}

@@ -1,0 +1,1244 @@
+{
+  "reading_notes": [
+    "Portfolio rule 5 ('Sharpe >= highest benchmark Sharpe - 0.20') is applied to the benchmarks the engine reports: equal_weight_hold, equal_weight_monthly, inverse_vol_monthly (cash assets excluded from it, since BIL's tiny volatility would make it nearly all cash) and sixty_forty when SPY and TLT are both held.",
+    "Any failed portfolio cell, including a trade-count miss, makes the idea 'rejected' (the memo says any miss = REJECTED).",
+    "Windows start with holdings carried in; engine 'entries' counts a position already open on the first day of a window as an entry.",
+    "H26 episodes = days the weight drops by at least 0.25 (the 1 -> 0.5 transitions); H27 position changes = entries + exits; H28 events = entries, and an event's net return is its three daily net returns plus the exit-day cost.",
+    "Overnight memo vetoes 'block SUPPORTED': a cell set that would be supported becomes 'testing'.",
+    "Calendar memo veto is a hard reject: in either window, 3 or more symbols with return per exposure day below buy-and-hold's mean daily return minus 5 bps.",
+    "Exit bars stay flat for H28 (no same-bar re-trigger); month-ends come from the exchange calendar."
+  ],
+  "hypotheses": {
+    "23": {
+      "status": "rejected",
+      "notes": [],
+      "cells": [
+        {
+          "cell": "core IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.62 < equal-weight 0.55 + 0.10; placebo percentile 0.94 < 0.95",
+          "ref": "backtests/old_era/cells/dual_momentum_v1/CORE_2004-11-18_2015-12-31_20261014T003446Z.json",
+          "placebo": 0.937,
+          "strategy": {
+            "total_return": 1.6004718392398143,
+            "cagr": 0.08985329031706213,
+            "ann_vol": 0.15828506935228756,
+            "sharpe": 0.6228645591774549,
+            "max_drawdown": -0.22959447763022156,
+            "exposure": 0.9971418363701322,
+            "trades": 123,
+            "annual_turnover": 4.574135029840681
+          },
+          "benchmarks": {
+            "equal_weight_hold": {
+              "total_return": 0.9361555403408368,
+              "cagr": 0.06128945299159749,
+              "ann_vol": 0.1382686377792106,
+              "sharpe": 0.49935540545980844,
+              "max_drawdown": -0.37901769788971784,
+              "exposure": 0.999642729546268,
+              "trades": 1,
+              "annual_turnover": 0.09003215434083599
+            },
+            "equal_weight_monthly": {
+              "total_return": 1.1013711727781512,
+              "cagr": 0.06914256263092389,
+              "ann_vol": 0.14050246770126665,
+              "sharpe": 0.5460960364524915,
+              "max_drawdown": -0.3692047674653288,
+              "exposure": 0.9996427295462665,
+              "trades": 135,
+              "annual_turnover": 0.4455908264348425
+            },
+            "inverse_vol_monthly": {
+              "total_return": 1.4048261514814704,
+              "cagr": 0.08220562075261717,
+              "ann_vol": 0.12386235550965283,
+              "sharpe": 0.6997847501511075,
+              "max_drawdown": -0.29781362971918446,
+              "exposure": 0.9753483386923901,
+              "trades": 131,
+              "annual_turnover": 0.9851831458861311
+            },
+            "sixty_forty": {
+              "total_return": 1.2579986905822698,
+              "cagr": 0.07608482121272808,
+              "ann_vol": 0.10455685069121509,
+              "sharpe": 0.7536464736957532,
+              "max_drawdown": -0.31423379468231927,
+              "exposure": 0.9996427295462665,
+              "trades": 135,
+              "annual_turnover": 0.36987840191409177
+            }
+          }
+        },
+        {
+          "cell": "alternate IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.48 < equal-weight 0.50 + 0.10; Sharpe 0.48 more than 0.20 below best benchmark 0.71; placebo percentile 0.82 < 0.95",
+          "ref": "backtests/old_era/cells/dual_momentum_v1/ALTERNATE_2007-04-11_2015-12-31_20261014T003447Z.json",
+          "placebo": 0.825,
+          "strategy": {
+            "total_return": 0.6092281432990463,
+            "cagr": 0.056033929092911494,
+            "ann_vol": 0.1303398697653965,
+            "sharpe": 0.4836563973275763,
+            "max_drawdown": -0.2557318596995166,
+            "exposure": 0.9936334697589814,
+            "trades": 94,
+            "annual_turnover": 4.027566682011832
+          },
+          "benchmarks": {
+            "equal_weight_hold": {
+              "total_return": 0.5140539614448096,
+              "cagr": 0.048681862659595065,
+              "ann_vol": 0.0881935955310954,
+              "sharpe": 0.5831505968426857,
+              "max_drawdown": -0.2813832099220167,
+              "exposure": 0.9995452478399293,
+              "trades": 1,
+              "annual_turnover": 0.11459754433833558
+            },
+            "equal_weight_monthly": {
+              "total_return": 0.45932454885133,
+              "cagr": 0.044266637547692556,
+              "ann_vol": 0.09485163190079551,
+              "sharpe": 0.504142281968915,
+              "max_drawdown": -0.2921518495058606,
+              "exposure": 0.9995452478399273,
+              "trades": 106,
+              "annual_turnover": 0.4091459844978383
+            },
+            "inverse_vol_monthly": {
+              "total_return": 0.529634723737183,
+              "cagr": 0.04991297058296107,
+              "ann_vol": 0.07270421401318805,
+              "sharpe": 0.7063975107403313,
+              "max_drawdown": -0.22872614093652976,
+              "exposure": 0.9645293315143247,
+              "trades": 102,
+              "annual_turnover": 1.1189383436725262
+            }
+          }
+        }
+      ]
+    },
+    "24": {
+      "status": "rejected",
+      "notes": [],
+      "cells": [
+        {
+          "cell": "core IS",
+          "verdict": "supports",
+          "why": "passes kill rule",
+          "ref": "backtests/old_era/cells/canary_momentum_v1/CORE_2007-04-11_2015-12-31_20261014T003448Z.json",
+          "placebo": 0.99,
+          "strategy": {
+            "total_return": 0.9358956388622637,
+            "cagr": 0.07863862031276381,
+            "ann_vol": 0.11134520707718601,
+            "sharpe": 0.7356188086814379,
+            "max_drawdown": -0.14977807208839966,
+            "exposure": 0.9936334697589814,
+            "trades": 89,
+            "annual_turnover": 9.165431282946884
+          },
+          "benchmarks": {
+            "equal_weight_hold": {
+              "total_return": 0.45512874835973727,
+              "cagr": 0.04392212654917982,
+              "ann_vol": 0.12306498013068774,
+              "sharpe": 0.4108452471407324,
+              "max_drawdown": -0.349609087339522,
+              "exposure": 0.9995452478399256,
+              "trades": 1,
+              "annual_turnover": 0.1145975443383356
+            },
+            "equal_weight_monthly": {
+              "total_return": 0.47317824679286136,
+              "cagr": 0.04539794946557407,
+              "ann_vol": 0.1418749298242518,
+              "sharpe": 0.3838776151486707,
+              "max_drawdown": -0.3805578490687038,
+              "exposure": 0.9995452478399273,
+              "trades": 106,
+              "annual_turnover": 0.4653559386406661
+            },
+            "inverse_vol_monthly": {
+              "total_return": 0.5631319831795403,
+              "cagr": 0.052522588225357714,
+              "ann_vol": 0.11332633293626627,
+              "sharpe": 0.5083943114000448,
+              "max_drawdown": -0.3270768672750439,
+              "exposure": 0.9645293315143247,
+              "trades": 102,
+              "annual_turnover": 1.1362308426177559
+            },
+            "sixty_forty": {
+              "total_return": 0.8794851079313362,
+              "cagr": 0.07498940455602443,
+              "ann_vol": 0.11213307131662728,
+              "sharpe": 0.7009386886160012,
+              "max_drawdown": -0.31423379468231927,
+              "exposure": 0.9995452478399273,
+              "trades": 106,
+              "annual_turnover": 0.42442404737050254
+            }
+          }
+        },
+        {
+          "cell": "alternate IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.63 < equal-weight 0.57 + 0.10; placebo percentile 0.85 < 0.95",
+          "ref": "backtests/old_era/cells/canary_momentum_v1/ALTERNATE_2002-07-30_2015-12-31_20261014T003449Z.json",
+          "placebo": 0.854,
+          "strategy": {
+            "total_return": 1.5733301199260534,
+            "cagr": 0.0729906514262193,
+            "ann_vol": 0.12328170974386979,
+            "sharpe": 0.6332542888307605,
+            "max_drawdown": -0.33236496367076773,
+            "exposure": 0.9994084590357882,
+            "trades": 151,
+            "annual_turnover": 10.976397681318083
+          },
+          "benchmarks": {
+            "equal_weight_hold": {
+              "total_return": 1.9581827757840218,
+              "cagr": 0.08419513383556687,
+              "ann_vol": 0.17509637806126085,
+              "sharpe": 0.5494049649620166,
+              "max_drawdown": -0.4880749317449715,
+              "exposure": 0.9997042295178931,
+              "trades": 1,
+              "annual_turnover": 0.07453416149068323
+            },
+            "equal_weight_monthly": {
+              "total_return": 2.0050646510378405,
+              "cagr": 0.08546652277120592,
+              "ann_vol": 0.16880330794976284,
+              "sharpe": 0.5704008206145161,
+              "max_drawdown": -0.4947505346857304,
+              "exposure": 0.9997042295178941,
+              "trades": 163,
+              "annual_turnover": 0.3536893842961991
+            },
+            "inverse_vol_monthly": {
+              "total_return": 2.372463680716878,
+              "cagr": 0.09483861835614804,
+              "ann_vol": 0.1691628056640904,
+              "sharpe": 0.6203699387712208,
+              "max_drawdown": -0.5000577984104086,
+              "exposure": 0.9801833776989056,
+              "trades": 159,
+              "annual_turnover": 0.7491524228135424
+            }
+          }
+        }
+      ]
+    },
+    "25": {
+      "status": "rejected",
+      "notes": [],
+      "cells": [
+        {
+          "cell": "core IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.49 < equal-weight 0.42 + 0.10; Sharpe 0.49 more than 0.20 below best benchmark 0.70; placebo percentile 0.89 < 0.95",
+          "ref": "backtests/old_era/cells/breadth_paa_v1/CORE_2007-04-11_2015-12-31_20261014T003451Z.json",
+          "placebo": 0.885,
+          "strategy": {
+            "total_return": 0.3460514876434977,
+            "cagr": 0.03464211112776461,
+            "ann_vol": 0.07529342262620083,
+            "sharpe": 0.48999020388471326,
+            "max_drawdown": -0.10990439336251456,
+            "exposure": 0.9936334697589814,
+            "trades": 73,
+            "annual_turnover": 5.40504502476299
+          },
+          "benchmarks": {
+            "equal_weight_hold": {
+              "total_return": 0.46928081519201714,
+              "cagr": 0.045080635374883604,
+              "ann_vol": 0.10976942275052842,
+              "sharpe": 0.45660595193263603,
+              "max_drawdown": -0.31655070910414806,
+              "exposure": 0.9995452478399252,
+              "trades": 1,
+              "annual_turnover": 0.11459754433833558
+            },
+            "equal_weight_monthly": {
+              "total_return": 0.4947457553060739,
+              "cagr": 0.0471405727785561,
+              "ann_vol": 0.12886927612950644,
+              "sharpe": 0.4218807595229277,
+              "max_drawdown": -0.35108172693991113,
+              "exposure": 0.9995452478399273,
+              "trades": 106,
+              "annual_turnover": 0.46622215909450077
+            },
+            "inverse_vol_monthly": {
+              "total_return": 0.6129684290496376,
+              "cagr": 0.05631492105569835,
+              "ann_vol": 0.08900563121851576,
+              "sharpe": 0.66009194968596,
+              "max_drawdown": -0.2500717401347279,
+              "exposure": 0.9645293315143247,
+              "trades": 102,
+              "annual_turnover": 1.1028079836478373
+            },
+            "sixty_forty": {
+              "total_return": 0.8794851079313362,
+              "cagr": 0.07498940455602443,
+              "ann_vol": 0.11213307131662728,
+              "sharpe": 0.7009386886160012,
+              "max_drawdown": -0.31423379468231927,
+              "exposure": 0.9995452478399273,
+              "trades": 106,
+              "annual_turnover": 0.42442404737050254
+            }
+          }
+        },
+        {
+          "cell": "alternate IS",
+          "verdict": "supports",
+          "why": "passes kill rule",
+          "ref": "backtests/old_era/cells/breadth_paa_v1/ALTERNATE_2000-01-03_2015-12-31_20261014T003452Z.json",
+          "placebo": 0.999,
+          "strategy": {
+            "total_return": 1.7929324438148266,
+            "cagr": 0.06641749630194282,
+            "ann_vol": 0.10287561950132736,
+            "sharpe": 0.6766636680833957,
+            "max_drawdown": -0.1598797136079677,
+            "exposure": 1.0,
+            "trades": 156,
+            "annual_turnover": 5.530723671036748
+          },
+          "benchmarks": {
+            "equal_weight_hold": {
+              "total_return": 1.2652375170331283,
+              "cagr": 0.05252691038692614,
+              "ann_vol": 0.174258389371972,
+              "sharpe": 0.3810645449226013,
+              "max_drawdown": -0.4865938407625413,
+              "exposure": 1.0000000000000007,
+              "trades": 0,
+              "annual_turnover": 0.0
+            },
+            "equal_weight_monthly": {
+              "total_return": 1.4345148816438003,
+              "cagr": 0.05728672279455105,
+              "ann_vol": 0.1698391337610106,
+              "sharpe": 0.413022299307638,
+              "max_drawdown": -0.4947505346857304,
+              "exposure": 1.0,
+              "trades": 192,
+              "annual_turnover": 0.3067786560326995
+            },
+            "inverse_vol_monthly": {
+              "total_return": 1.5826664162949995,
+              "cagr": 0.0612044433381842,
+              "ann_vol": 0.17623723615333556,
+              "sharpe": 0.4252897063022345,
+              "max_drawdown": -0.5000577984104084,
+              "exposure": 1.0,
+              "trades": 192,
+              "annual_turnover": 0.7218278996748811
+            }
+          }
+        }
+      ]
+    },
+    "26": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "XLK",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.08 < buy&hold 0.12 + 0.05",
+          "ref": "backtests/old_era/cells/overnight_tilt_v1/XLK_2000-01-03_2015-12-31_20261014T003453Z.json",
+          "strategy": {
+            "total_return": -0.14724643563398276,
+            "cagr": -0.009923044372173062,
+            "ann_vol": 0.24567683693805487,
+            "sharpe": 0.0816539502732263,
+            "max_drawdown": -0.7746141095583488,
+            "exposure": 0.86,
+            "trades": 164,
+            "entries": 1,
+            "exits": 0,
+            "exposure_days": 4025,
+            "return_per_exposure_day": 7.960509613739468e-05
+          },
+          "buy_and_hold": {
+            "total_return": -0.04663096103989817,
+            "cagr": -0.0029853013587490818,
+            "ann_vol": 0.26788589248226075,
+            "sharpe": 0.12215202540545571,
+            "max_drawdown": -0.8204650666636074,
+            "mean_daily_return": 0.00012985239819149322
+          },
+          "extras": {
+            "cond_sharpe": 0.0816539502732263,
+            "derisk_events": 82,
+            "frac_below_1": 0.28
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLV",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.42 < buy&hold 0.45 + 0.05",
+          "ref": "backtests/old_era/cells/overnight_tilt_v1/XLV_2000-01-03_2015-12-31_20261014T003453Z.json",
+          "strategy": {
+            "total_return": 1.4820266684148464,
+            "cagr": 0.05856691563699856,
+            "ann_vol": 0.1693494498200887,
+            "sharpe": 0.4206949045933271,
+            "max_drawdown": -0.34138996394497134,
+            "exposure": 0.8536645962732919,
+            "trades": 159,
+            "entries": 1,
+            "exits": 0,
+            "exposure_days": 4025,
+            "return_per_exposure_day": 0.0002827160739483915
+          },
+          "buy_and_hold": {
+            "total_return": 1.9140881446766347,
+            "cagr": 0.06925652010985694,
+            "ann_vol": 0.1850319412718095,
+            "sharpe": 0.454452954636404,
+            "max_drawdown": -0.3917027470403338,
+            "mean_daily_return": 0.00033368377941699767
+          },
+          "extras": {
+            "cond_sharpe": 0.4206949045933272,
+            "derisk_events": 80,
+            "frac_below_1": 0.29267080745341617
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLF",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.27 < buy&hold 0.22 + 0.05",
+          "ref": "backtests/old_era/cells/overnight_tilt_v1/XLF_2000-01-03_2015-12-31_20261014T003453Z.json",
+          "strategy": {
+            "total_return": 0.7541421853023667,
+            "cagr": 0.035811142059557266,
+            "ann_vol": 0.2843332614771952,
+            "sharpe": 0.26546223714855516,
+            "max_drawdown": -0.7686460642982196,
+            "exposure": 0.8614906832298137,
+            "trades": 167,
+            "entries": 1,
+            "exits": 0,
+            "exposure_days": 4025,
+            "return_per_exposure_day": 0.0002995227924106402
+          },
+          "buy_and_hold": {
+            "total_return": 0.387408554159711,
+            "cagr": 0.020712022099524274,
+            "ann_vol": 0.3179670899829608,
+            "sharpe": 0.2230054395723278,
+            "max_drawdown": -0.8268653866084804,
+            "mean_daily_return": 0.0002813825026634289
+          },
+          "extras": {
+            "cond_sharpe": 0.26546223714855516,
+            "derisk_events": 84,
+            "frac_below_1": 0.27701863354037265
+          },
+          "events": 0
+        },
+        {
+          "symbol": "EEM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.44 < buy&hold 0.47 + 0.05",
+          "ref": "backtests/old_era/cells/overnight_tilt_v1/EEM_2003-04-14_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 1.968970258279989,
+            "cagr": 0.0893886634220531,
+            "ann_vol": 0.2925453054986971,
+            "sharpe": 0.4379613111328113,
+            "max_drawdown": -0.6458638846161542,
+            "exposure": 0.8819856384639401,
+            "trades": 137,
+            "entries": 1,
+            "exits": 0,
+            "exposure_days": 3202,
+            "return_per_exposure_day": 0.0005085854728380974
+          },
+          "buy_and_hold": {
+            "total_return": 2.5632871492729405,
+            "cagr": 0.10514063611493762,
+            "ann_vol": 0.3134054317661666,
+            "sharpe": 0.4747404565910016,
+            "max_drawdown": -0.6643428762491872,
+            "mean_daily_return": 0.0005904215784713092
+          },
+          "extras": {
+            "cond_sharpe": 0.43802972522312056,
+            "derisk_events": 68,
+            "frac_below_1": 0.23571651576646893
+          },
+          "events": 0
+        },
+        {
+          "symbol": "HYG",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/overnight_tilt_v1/HYG_2007-04-11_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.46287594725913106,
+            "cagr": 0.044557553004288986,
+            "ann_vol": 0.10468174812257984,
+            "sharpe": 0.46870546760683945,
+            "max_drawdown": -0.25570209920250586,
+            "exposure": 0.9004092769440655,
+            "trades": 63,
+            "entries": 1,
+            "exits": 0,
+            "exposure_days": 2198,
+            "return_per_exposure_day": 0.0001947905961415603
+          },
+          "buy_and_hold": {
+            "total_return": 0.462350536531128,
+            "cagr": 0.04451455303100915,
+            "ann_vol": 0.13350567406711467,
+            "sharpe": 0.3927223648379881,
+            "max_drawdown": -0.34246556510244497,
+            "mean_daily_return": 0.00020805819063066244
+          },
+          "extras": {
+            "cond_sharpe": 0.4688121208732216,
+            "derisk_events": 31,
+            "frac_below_1": 0.19872669395179626
+          },
+          "events": 0
+        }
+      ]
+    },
+    "27": {
+      "status": "rejected",
+      "notes": [
+        "close-to-close control would support: XLK IS, XLF IS, HYG IS"
+      ],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "XLK",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe -0.15 < 1x buy&hold 0.12; MaxDD -82.4% not 5pts better than -82.0%; Sharpe -0.15 below 0",
+          "ref": "backtests/old_era/cells/overnight_trend_v1/XLK_2000-01-03_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": -0.5260815987454565,
+            "cagr": -0.04567516999011123,
+            "ann_vol": 0.19225497148747367,
+            "sharpe": -0.14672978938086234,
+            "max_drawdown": -0.8238366713982033,
+            "exposure": 0.7398757763975156,
+            "trades": 127,
+            "entries": 64,
+            "exits": 64,
+            "exposure_days": 2978,
+            "return_per_exposure_day": -0.00015129916235191317
+          },
+          "buy_and_hold": {
+            "total_return": -0.04663096103989817,
+            "cagr": -0.0029853013587490818,
+            "ann_vol": 0.26788589248226075,
+            "sharpe": 0.12215202540545571,
+            "max_drawdown": -0.8204650666636074,
+            "mean_daily_return": 0.00012985239819149322
+          },
+          "extras": {
+            "cond_sharpe": -0.15846546778234766,
+            "derisk_events": 64,
+            "frac_below_1": 0.2601242236024845
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLV",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.24 < 1x buy&hold 0.45; MaxDD -53.0% not 5pts better than -39.2%",
+          "ref": "backtests/old_era/cells/overnight_trend_v1/XLV_2000-01-03_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.4487045166763519,
+            "cagr": 0.023478528819354638,
+            "ann_vol": 0.14028017611778207,
+            "sharpe": 0.2356719782976587,
+            "max_drawdown": -0.5303703448618933,
+            "exposure": 0.7257142857142858,
+            "trades": 96,
+            "entries": 49,
+            "exits": 48,
+            "exposure_days": 2921,
+            "return_per_exposure_day": 0.00018077486122933985
+          },
+          "buy_and_hold": {
+            "total_return": 1.9140881446766347,
+            "cagr": 0.06925652010985694,
+            "ann_vol": 0.1850319412718095,
+            "sharpe": 0.454452954636404,
+            "max_drawdown": -0.3917027470403338,
+            "mean_daily_return": 0.00033368377941699767
+          },
+          "extras": {
+            "cond_sharpe": 0.2892283365925663,
+            "derisk_events": 48,
+            "frac_below_1": 0.2742857142857143
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLF",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/overnight_trend_v1/XLF_2000-01-03_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.6015821629217406,
+            "cagr": 0.029927276399811298,
+            "ann_vol": 0.21924921208335382,
+            "sharpe": 0.24411648881290524,
+            "max_drawdown": -0.6472340031855275,
+            "exposure": 0.7652173913043478,
+            "trades": 118,
+            "entries": 60,
+            "exits": 59,
+            "exposure_days": 3080,
+            "return_per_exposure_day": 0.0002775554653819534
+          },
+          "buy_and_hold": {
+            "total_return": 0.387408554159711,
+            "cagr": 0.020712022099524274,
+            "ann_vol": 0.3179670899829608,
+            "sharpe": 0.2230054395723278,
+            "max_drawdown": -0.8268653866084804,
+            "mean_daily_return": 0.0002813825026634289
+          },
+          "extras": {
+            "cond_sharpe": 0.28869994313326136,
+            "derisk_events": 59,
+            "frac_below_1": 0.23478260869565218
+          },
+          "events": 0
+        },
+        {
+          "symbol": "EEM",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/overnight_trend_v1/EEM_2003-04-14_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 2.1802654297834763,
+            "cagr": 0.0952970780064244,
+            "ann_vol": 0.20168948047922758,
+            "sharpe": 0.5523607294777075,
+            "max_drawdown": -0.3886463014647178,
+            "exposure": 0.7343115828910397,
+            "trades": 120,
+            "entries": 60,
+            "exits": 60,
+            "exposure_days": 2352,
+            "return_per_exposure_day": 0.0006020396883693237
+          },
+          "buy_and_hold": {
+            "total_return": 2.5632871492729405,
+            "cagr": 0.10514063611493762,
+            "ann_vol": 0.3134054317661666,
+            "sharpe": 0.4747404565910016,
+            "max_drawdown": -0.6643428762491872,
+            "mean_daily_return": 0.0005904215784713092
+          },
+          "extras": {
+            "cond_sharpe": 0.6583850283059492,
+            "derisk_events": 60,
+            "frac_below_1": 0.26568841710896035
+          },
+          "events": 0
+        },
+        {
+          "symbol": "HYG",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/overnight_trend_v1/HYG_2007-04-11_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.5345043522092023,
+            "cagr": 0.05029546528628459,
+            "ann_vol": 0.12026945434553235,
+            "sharpe": 0.46777531061675975,
+            "max_drawdown": -0.24556924208750042,
+            "exposure": 0.8904047294224647,
+            "trades": 46,
+            "entries": 23,
+            "exits": 23,
+            "exposure_days": 1958,
+            "return_per_exposure_day": 0.0002507290398362699
+          },
+          "buy_and_hold": {
+            "total_return": 0.462350536531128,
+            "cagr": 0.04451455303100915,
+            "ann_vol": 0.13350567406711467,
+            "sharpe": 0.3927223648379881,
+            "max_drawdown": -0.34246556510244497,
+            "mean_daily_return": 0.00020805819063066244
+          },
+          "extras": {
+            "cond_sharpe": 0.5073768056563613,
+            "derisk_events": 23,
+            "frac_below_1": 0.10959527057753524
+          },
+          "events": 0
+        }
+      ]
+    },
+    "28": {
+      "status": "rejected",
+      "notes": [
+        "veto also fires: XLV IS: return/exposure day -0.095% below 0"
+      ],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "XLK",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold (hit rate 64%)",
+          "ref": "backtests/old_era/cells/gap_fade_washout_v1/XLK_2000-01-03_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.6649490060640919,
+            "cagr": 0.03243239678805243,
+            "ann_vol": 0.07861744645395301,
+            "sharpe": 0.44440715826656413,
+            "max_drawdown": -0.1867968663501156,
+            "exposure": 0.06484472049689441,
+            "trades": 174,
+            "entries": 87,
+            "exits": 87,
+            "exposure_days": 261,
+            "return_per_exposure_day": 0.0021380842573484075
+          },
+          "buy_and_hold": {
+            "total_return": -0.04663096103989817,
+            "cagr": -0.0029853013587490818,
+            "ann_vol": 0.26788589248226075,
+            "sharpe": 0.12215202540545571,
+            "max_drawdown": -0.8204650666636074,
+            "mean_daily_return": 0.00012985239819149322
+          },
+          "extras": {
+            "cond_sharpe": 1.8906501606224948,
+            "derisk_events": 87,
+            "frac_below_1": 0.9351552795031056
+          },
+          "events": 87
+        },
+        {
+          "symbol": "XLV",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day -0.095% < buy&hold mean 0.033% + 10bps; hit rate 49% < 55%",
+          "ref": "backtests/old_era/cells/gap_fade_washout_v1/XLV_2000-01-03_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": -0.21673842911201147,
+            "cagr": -0.015178220922485774,
+            "ann_vol": 0.05820199860655113,
+            "sharpe": -0.23405316787845318,
+            "max_drawdown": -0.3500616553487199,
+            "exposure": 0.056645962732919254,
+            "trades": 152,
+            "entries": 76,
+            "exits": 76,
+            "exposure_days": 228,
+            "return_per_exposure_day": -0.0009542955941355203
+          },
+          "buy_and_hold": {
+            "total_return": 1.9140881446766347,
+            "cagr": 0.06925652010985694,
+            "ann_vol": 0.1850319412718095,
+            "sharpe": 0.454452954636404,
+            "max_drawdown": -0.3917027470403338,
+            "mean_daily_return": 0.00033368377941699767
+          },
+          "extras": {
+            "cond_sharpe": -0.8110841744724271,
+            "derisk_events": 76,
+            "frac_below_1": 0.9433540372670808
+          },
+          "events": 76
+        },
+        {
+          "symbol": "XLF",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold (hit rate 63%)",
+          "ref": "backtests/old_era/cells/gap_fade_washout_v1/XLF_2000-01-03_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.4004443394512187,
+            "cagr": 0.021309835354714535,
+            "ann_vol": 0.1069858658577408,
+            "sharpe": 0.24953371346066766,
+            "max_drawdown": -0.19101545581721524,
+            "exposure": 0.06037267080745341,
+            "trades": 162,
+            "entries": 81,
+            "exits": 81,
+            "exposure_days": 243,
+            "return_per_exposure_day": 0.0017547477969010034
+          },
+          "buy_and_hold": {
+            "total_return": 0.387408554159711,
+            "cagr": 0.020712022099524274,
+            "ann_vol": 0.3179670899829608,
+            "sharpe": 0.2230054395723278,
+            "max_drawdown": -0.8268653866084804,
+            "mean_daily_return": 0.0002813825026634289
+          },
+          "extras": {
+            "cond_sharpe": 1.1125322236105604,
+            "derisk_events": 81,
+            "frac_below_1": 0.9396273291925465
+          },
+          "events": 81
+        },
+        {
+          "symbol": "EEM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.099% < buy&hold mean 0.059% + 10bps",
+          "ref": "backtests/old_era/cells/gap_fade_washout_v1/EEM_2003-04-14_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.13382023037581092,
+            "cagr": 0.009930138683043266,
+            "ann_vol": 0.06699938352357294,
+            "sharpe": 0.1811517302787983,
+            "max_drawdown": -0.1383228856056894,
+            "exposure": 0.048704339681548546,
+            "trades": 104,
+            "entries": 52,
+            "exits": 52,
+            "exposure_days": 156,
+            "return_per_exposure_day": 0.0009888834140228042
+          },
+          "buy_and_hold": {
+            "total_return": 2.5632871492729405,
+            "cagr": 0.10514063611493762,
+            "ann_vol": 0.3134054317661666,
+            "sharpe": 0.4747404565910016,
+            "max_drawdown": -0.6643428762491872,
+            "mean_daily_return": 0.0005904215784713092
+          },
+          "extras": {
+            "cond_sharpe": 0.9580528474792028,
+            "derisk_events": 52,
+            "frac_below_1": 0.9512956603184515
+          },
+          "events": 52
+        },
+        {
+          "symbol": "HYG",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.117% < buy&hold mean 0.021% + 10bps",
+          "ref": "backtests/old_era/cells/gap_fade_washout_v1/HYG_2007-04-11_2015-12-31_20261014T003454Z.json",
+          "strategy": {
+            "total_return": 0.15345348355243105,
+            "cagr": 0.01649455703554703,
+            "ann_vol": 0.04365706018298809,
+            "sharpe": 0.3969241097380348,
+            "max_drawdown": -0.10830668187376513,
+            "exposure": 0.058663028649386086,
+            "trades": 86,
+            "entries": 43,
+            "exits": 43,
+            "exposure_days": 129,
+            "return_per_exposure_day": 0.0011721871201999592
+          },
+          "buy_and_hold": {
+            "total_return": 0.462350536531128,
+            "cagr": 0.04451455303100915,
+            "ann_vol": 0.13350567406711467,
+            "sharpe": 0.3927223648379881,
+            "max_drawdown": -0.34246556510244497,
+            "mean_daily_return": 0.00020805819063066244
+          },
+          "extras": {
+            "cond_sharpe": 1.87809121147268,
+            "derisk_events": 43,
+            "frac_below_1": 0.9413369713506139
+          },
+          "events": 43
+        }
+      ]
+    },
+    "29": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "XLU",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.046% < buy&hold mean 0.033% + 3bps",
+          "ref": "backtests/old_era/cells/halloween_v1/XLU_2000-01-03_2015-12-31_20261014T003455Z.json",
+          "strategy": {
+            "total_return": 1.1919609612979634,
+            "cagr": 0.05036223346676416,
+            "ann_vol": 0.12393221678218055,
+            "sharpe": 0.4583990685606729,
+            "max_drawdown": -0.27431082224290937,
+            "exposure": 0.49093167701863355,
+            "trades": 32,
+            "entries": 17,
+            "exits": 16,
+            "exposure_days": 1976,
+            "return_per_exposure_day": 0.0004592047250917441
+          },
+          "buy_and_hold": {
+            "total_return": 1.7648748539147996,
+            "cagr": 0.065743581150574,
+            "ann_vol": 0.19369684179630448,
+            "sharpe": 0.42541131683659267,
+            "max_drawdown": -0.5227243402359738,
+            "mean_daily_return": 0.00032698741482402793
+          },
+          "extras": {
+            "cond_sharpe": 0.6602180373956641,
+            "derisk_events": 16,
+            "frac_below_1": 0.5090683229813665
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLP",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.035% < buy&hold mean 0.033% + 3bps; conditional Sharpe 0.59 < buy&hold 0.55 + 0.1",
+          "ref": "backtests/old_era/cells/halloween_v1/XLP_2000-01-03_2015-12-31_20261014T003455Z.json",
+          "strategy": {
+            "total_return": 0.8252446049307314,
+            "cagr": 0.03839113442616515,
+            "ann_vol": 0.1058234325641852,
+            "sharpe": 0.40889571667649943,
+            "max_drawdown": -0.23205125813524263,
+            "exposure": 0.49093167701863355,
+            "trades": 32,
+            "entries": 17,
+            "exits": 16,
+            "exposure_days": 1976,
+            "return_per_exposure_day": 0.0003497621495756345
+          },
+          "buy_and_hold": {
+            "total_return": 2.1281432796318502,
+            "cagr": 0.07401228817556538,
+            "ann_vol": 0.15133844936081167,
+            "sharpe": 0.5475355429265365,
+            "max_drawdown": -0.3588908153632908,
+            "mean_daily_return": 0.00032882214300171495
+          },
+          "extras": {
+            "cond_sharpe": 0.5904803454044778,
+            "derisk_events": 16,
+            "frac_below_1": 0.5090683229813665
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLY",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.067% < buy&hold mean 0.038% + 3bps",
+          "ref": "backtests/old_era/cells/halloween_v1/XLY_2000-01-03_2015-12-31_20261014T003455Z.json",
+          "strategy": {
+            "total_return": 2.0752820776395344,
+            "cagr": 0.07286688547379194,
+            "ann_vol": 0.16039651527526594,
+            "sharpe": 0.5185892305701773,
+            "max_drawdown": -0.4080042448273694,
+            "exposure": 0.49093167701863355,
+            "trades": 32,
+            "entries": 17,
+            "exits": 16,
+            "exposure_days": 1976,
+            "return_per_exposure_day": 0.0006723521933981987
+          },
+          "buy_and_hold": {
+            "total_return": 2.045904405135785,
+            "cagr": 0.07222232286251873,
+            "ann_vol": 0.2321344872479973,
+            "sharpe": 0.4166258932763424,
+            "max_drawdown": -0.5904753432561893,
+            "mean_daily_return": 0.0003837826909124706
+          },
+          "extras": {
+            "cond_sharpe": 0.7449250758734933,
+            "derisk_events": 16,
+            "frac_below_1": 0.5090683229813665
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLI",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/halloween_v1/XLI_2000-01-03_2015-12-31_20261014T003456Z.json",
+          "strategy": {
+            "total_return": 1.8304660820479528,
+            "cagr": 0.06730916118770347,
+            "ann_vol": 0.1488217381901074,
+            "sharpe": 0.5122370246929164,
+            "max_drawdown": -0.41787004435027353,
+            "exposure": 0.49093167701863355,
+            "trades": 32,
+            "entries": 17,
+            "exits": 16,
+            "exposure_days": 1976,
+            "return_per_exposure_day": 0.0006161915558728921
+          },
+          "buy_and_hold": {
+            "total_return": 1.385833115229035,
+            "cagr": 0.055950479474151216,
+            "ann_vol": 0.22039598362167803,
+            "sharpe": 0.3573418064050628,
+            "max_drawdown": -0.6226265706590013,
+            "mean_daily_return": 0.00031252658298329785
+          },
+          "extras": {
+            "cond_sharpe": 0.7361931534037705,
+            "derisk_events": 16,
+            "frac_below_1": 0.5090683229813665
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLB",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/halloween_v1/XLB_2000-01-03_2015-12-31_20261014T003456Z.json",
+          "strategy": {
+            "total_return": 2.419029274934133,
+            "cagr": 0.08000796681635536,
+            "ann_vol": 0.17251522763790972,
+            "sharpe": 0.5324688425898537,
+            "max_drawdown": -0.3275450216784501,
+            "exposure": 0.49093167701863355,
+            "trades": 32,
+            "entries": 17,
+            "exits": 16,
+            "exposure_days": 1976,
+            "return_per_exposure_day": 0.0007425061229750435
+          },
+          "buy_and_hold": {
+            "total_return": 1.3920584785986745,
+            "cagr": 0.05612277432242907,
+            "ann_vol": 0.2532098587614085,
+            "sharpe": 0.34226487892012086,
+            "max_drawdown": -0.598248079469691,
+            "mean_daily_return": 0.0003439081017871206
+          },
+          "extras": {
+            "cond_sharpe": 0.7644518448216144,
+            "derisk_events": 16,
+            "frac_below_1": 0.5090683229813665
+          },
+          "events": 0
+        }
+      ]
+    },
+    "30": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "XLU",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.064% < buy&hold mean 0.033% + 4bps",
+          "ref": "backtests/old_era/cells/earnings_season_v1/XLU_2000-01-03_2015-12-31_20261014T003457Z.json",
+          "strategy": {
+            "total_return": 0.462179186844355,
+            "cagr": 0.024071953565576898,
+            "ann_vol": 0.09496969123135518,
+            "sharpe": 0.29757639418588144,
+            "max_drawdown": -0.32657654191481056,
+            "exposure": 0.1763975155279503,
+            "trades": 128,
+            "entries": 64,
+            "exits": 64,
+            "exposure_days": 710,
+            "return_per_exposure_day": 0.000635756044886721
+          },
+          "buy_and_hold": {
+            "total_return": 1.7648748539147996,
+            "cagr": 0.065743581150574,
+            "ann_vol": 0.19369684179630448,
+            "sharpe": 0.42541131683659267,
+            "max_drawdown": -0.5227243402359738,
+            "mean_daily_return": 0.00032698741482402793
+          },
+          "extras": {
+            "cond_sharpe": 0.7590852164842418,
+            "derisk_events": 64,
+            "frac_below_1": 0.8236024844720496
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLP",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.010% < buy&hold mean 0.033% + 4bps; return/exposure day 0.010% < 3bps absolute; conditional Sharpe 0.24 < buy&hold 0.55 + 0.15",
+          "ref": "backtests/old_era/cells/earnings_season_v1/XLP_2000-01-03_2015-12-31_20261014T003458Z.json",
+          "strategy": {
+            "total_return": 0.039920805782837965,
+            "cagr": 0.0024537956073265033,
+            "ann_vol": 0.06653719526334255,
+            "sharpe": 0.07002160415900195,
+            "max_drawdown": -0.17391300636634888,
+            "exposure": 0.1763975155279503,
+            "trades": 128,
+            "entries": 64,
+            "exits": 64,
+            "exposure_days": 710,
+            "return_per_exposure_day": 0.0001048101979825311
+          },
+          "buy_and_hold": {
+            "total_return": 2.1281432796318502,
+            "cagr": 0.07401228817556538,
+            "ann_vol": 0.15133844936081167,
+            "sharpe": 0.5475355429265365,
+            "max_drawdown": -0.3588908153632908,
+            "mean_daily_return": 0.00032882214300171495
+          },
+          "extras": {
+            "cond_sharpe": 0.23832499691196946,
+            "derisk_events": 64,
+            "frac_below_1": 0.8236024844720496
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLY",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.053% < buy&hold mean 0.038% + 4bps",
+          "ref": "backtests/old_era/cells/earnings_season_v1/XLY_2000-01-03_2015-12-31_20261014T003459Z.json",
+          "strategy": {
+            "total_return": 0.33645629323735093,
+            "cagr": 0.018323727674638413,
+            "ann_vol": 0.10365536025010608,
+            "sharpe": 0.22711557950057892,
+            "max_drawdown": -0.20159879937657765,
+            "exposure": 0.1763975155279503,
+            "trades": 128,
+            "entries": 64,
+            "exits": 64,
+            "exposure_days": 710,
+            "return_per_exposure_day": 0.0005295972083974126
+          },
+          "buy_and_hold": {
+            "total_return": 2.045904405135785,
+            "cagr": 0.07222232286251873,
+            "ann_vol": 0.2321344872479973,
+            "sharpe": 0.4166258932763424,
+            "max_drawdown": -0.5904753432561893,
+            "mean_daily_return": 0.0003837826909124706
+          },
+          "extras": {
+            "cond_sharpe": 0.5868030538906585,
+            "derisk_events": 64,
+            "frac_below_1": 0.8236024844720496
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLI",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.053% < buy&hold mean 0.031% + 4bps",
+          "ref": "backtests/old_era/cells/earnings_season_v1/XLI_2000-01-03_2015-12-31_20261014T003459Z.json",
+          "strategy": {
+            "total_return": 0.35039842093865947,
+            "cagr": 0.018985609395069103,
+            "ann_vol": 0.09889741440414078,
+            "sharpe": 0.23955235231789804,
+            "max_drawdown": -0.23042203646881965,
+            "exposure": 0.1763975155279503,
+            "trades": 128,
+            "entries": 64,
+            "exits": 64,
+            "exposure_days": 710,
+            "return_per_exposure_day": 0.0005329572476030982
+          },
+          "buy_and_hold": {
+            "total_return": 1.385833115229035,
+            "cagr": 0.055950479474151216,
+            "ann_vol": 0.22039598362167803,
+            "sharpe": 0.3573418064050628,
+            "max_drawdown": -0.6226265706590013,
+            "mean_daily_return": 0.00031252658298329785
+          },
+          "extras": {
+            "cond_sharpe": 0.618673029229974,
+            "derisk_events": 64,
+            "frac_below_1": 0.8236024844720496
+          },
+          "events": 0
+        },
+        {
+          "symbol": "XLB",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.024% < buy&hold mean 0.034% + 4bps; return/exposure day 0.024% < 3bps absolute; conditional Sharpe 0.26 < buy&hold 0.34 + 0.15",
+          "ref": "backtests/old_era/cells/earnings_season_v1/XLB_2000-01-03_2015-12-31_20261014T003500Z.json",
+          "strategy": {
+            "total_return": 0.06661664954454127,
+            "cagr": 0.004045899412926213,
+            "ann_vol": 0.1159573563673838,
+            "sharpe": 0.09286538179677149,
+            "max_drawdown": -0.3063749596226819,
+            "exposure": 0.1763975155279503,
+            "trades": 128,
+            "entries": 64,
+            "exits": 64,
+            "exposure_days": 710,
+            "return_per_exposure_day": 0.0002422474138670109
+          },
+          "buy_and_hold": {
+            "total_return": 1.3920584785986745,
+            "cagr": 0.05612277432242907,
+            "ann_vol": 0.2532098587614085,
+            "sharpe": 0.34226487892012086,
+            "max_drawdown": -0.598248079469691,
+            "mean_daily_return": 0.0003439081017871206
+          },
+          "extras": {
+            "cond_sharpe": 0.2621361942286487,
+            "derisk_events": 64,
+            "frac_below_1": 0.8236024844720496
+          },
+          "events": 0
+        }
+      ]
+    }
+  }
+}

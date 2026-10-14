@@ -1,0 +1,37 @@
+{
+  "start": "2002-07-30",
+  "end": "2015-12-31",
+  "days": 3381,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.8956165029344398,
+    "cagr": 0.08246903414402396,
+    "ann_vol": 0.12832311237847252,
+    "sharpe": 0.6817358144613864,
+    "max_drawdown": -0.18919074791282064,
+    "exposure": 0.8970718722271517,
+    "trades": 47,
+    "entries": 24,
+    "exits": 23,
+    "exposure_days": 3033,
+    "return_per_exposure_day": 0.00038698418250854034
+  },
+  "buy_and_hold": {
+    "total_return": 1.511474237982581,
+    "cagr": 0.07104656418364752,
+    "ann_vol": 0.13908889987249262,
+    "sharpe": 0.5630510660019555,
+    "max_drawdown": -0.26585396370637493,
+    "mean_daily_return": 0.0003107704497708184
+  },
+  "strategy_file": "strategies/good_bad_vol_filter_v1.py",
+  "params": {
+    "vol_window": 20,
+    "median_window": 252,
+    "exit_share": 0.7,
+    "reenter_share": 0.5
+  },
+  "symbol": "TLT",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003444Z"
+}

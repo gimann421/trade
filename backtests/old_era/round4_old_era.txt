@@ -1,0 +1,11 @@
+H31: rejected - Round-4 verdict: rejected (3/10 cells, 3/5 ETFs pass both windows; need 4). Hypotheses tested so far: 32. The five ETFs are near-duplicates, so this is close to one test.
+  VGLT      IS  events  72 mean 0.292% late 0.246% hit 60% placebo 0.98 rped 0.098%/0.033% -> supports: passes kill rule
+  SPTL      IS  events 104 mean 0.293% late 0.285% hit 61% placebo 0.99 rped 0.099%/0.032% -> supports: passes kill rule
+  EDV       IS  events  96 mean 0.490% late 0.359% hit 62% placebo 0.95 rped 0.165%/0.045% -> contradicts: placebo percentile 0.95 < 0.95
+  ZROZ      IS  events  74 mean 0.732% late 0.508% hit 61% placebo 0.98 rped 0.246%/0.052% -> supports: passes kill rule
+  TLH       IS  events 108 mean 0.175% late 0.192% hit 61% placebo 0.99 rped 0.059%/0.027% -> contradicts: return/exposure day 0.059% < buy&hold mean 0.027% + 5bps
+H32: supported - Round-4 verdict: supported (3/6 cells pass; all six must). Hypotheses tested so far: 32.
+  vti_iei   IS  events  98 mean 0.777% late 0.286% hit 66% active 1.53%/yr placebos 1.00/1.00 -> supports: passes kill rule
+  vti_vgit  IS  events  64 mean 0.565% late 0.028% hit 62% active 0.86%/yr placebos 1.00/0.99 -> supports: passes kill rule
+  vea_iei   IS  events  89 mean 0.773% late 0.162% hit 64% active 1.53%/yr placebos 0.99/0.99 -> supports: passes kill rule
+wrote backtests/round4_summary.json

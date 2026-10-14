@@ -1,0 +1,252 @@
+{
+  "31": {
+    "status": "rejected",
+    "note": "Round-4 verdict: rejected (3/10 cells, 3/5 ETFs pass both windows; need 4). Hypotheses tested so far: 32. The five ETFs are near-duplicates, so this is close to one test.",
+    "cells": [
+      {
+        "symbol": "VGLT",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/old_era/cells/treasury_month_end_v1/VGLT_2010-01-04_2015-12-31_20261014T003501Z.json",
+        "events": 72,
+        "mean_event": 0.002923701687497075,
+        "mean_event_delayed": 0.002460386870731478,
+        "hit_rate": 0.5972222222222222,
+        "placebo": 0.977,
+        "strategy": {
+          "total_return": 0.22587372687048402,
+          "cagr": 0.03457142902556809,
+          "ann_vol": 0.0478150796410062,
+          "sharpe": 0.7347240649711542,
+          "max_drawdown": -0.03351266806091879,
+          "exposure": 0.14172185430463577,
+          "trades": 143,
+          "entries": 72,
+          "exits": 71,
+          "exposure_days": 214,
+          "return_per_exposure_day": 0.0009836753341111654
+        },
+        "buy_and_hold": {
+          "total_return": 0.5740236271951347,
+          "cagr": 0.0786454061603794,
+          "ann_vol": 0.1289483162952533,
+          "sharpe": 0.6516490880234702,
+          "max_drawdown": -0.17783168798031002,
+          "mean_daily_return": 0.0003334486218887452
+        },
+        "bil_variant": {
+          "cagr": 0.02123736114911856,
+          "sharpe": 0.464995207364734,
+          "max_drawdown": -0.037717915154861004
+        }
+      },
+      {
+        "symbol": "SPTL",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/old_era/cells/treasury_month_end_v1/SPTL_2007-05-30_2015-12-31_20261014T003502Z.json",
+        "events": 104,
+        "mean_event": 0.0029310813262219634,
+        "mean_event_delayed": 0.0028477273168408057,
+        "hit_rate": 0.6057692307692307,
+        "placebo": 0.987,
+        "strategy": {
+          "total_return": 0.34196235236251327,
+          "cagr": 0.034829070991870825,
+          "ann_vol": 0.049908708425409475,
+          "sharpe": 0.7109311064315007,
+          "max_drawdown": -0.12137348865606146,
+          "exposure": 0.14226327944572748,
+          "trades": 207,
+          "entries": 104,
+          "exits": 103,
+          "exposure_days": 308,
+          "return_per_exposure_day": 0.000989715772490533
+        },
+        "buy_and_hold": {
+          "total_return": 0.8588288577492649,
+          "cagr": 0.074827379152697,
+          "ann_vol": 0.13413628463686755,
+          "sharpe": 0.6050753341537645,
+          "max_drawdown": -0.1862384988749053,
+          "mean_daily_return": 0.00032207363987617893
+        },
+        "bil_variant": {
+          "cagr": 0.02672422388714968,
+          "sharpe": 0.5517050692716484,
+          "max_drawdown": -0.12397593383661176
+        }
+      },
+      {
+        "symbol": "EDV",
+        "window": "IS",
+        "verdict": "contradicts",
+        "why": "placebo percentile 0.95 < 0.95",
+        "ref": "backtests/old_era/cells/treasury_month_end_v1/EDV_2008-01-29_2015-12-31_20261014T003503Z.json",
+        "events": 96,
+        "mean_event": 0.0049014351962804,
+        "mean_event_delayed": 0.003590801453698674,
+        "hit_rate": 0.625,
+        "placebo": 0.947,
+        "strategy": {
+          "total_return": 0.5441722171171579,
+          "cagr": 0.05635861766786099,
+          "ann_vol": 0.09531087720417177,
+          "sharpe": 0.6229805780201884,
+          "max_drawdown": -0.21675542082314825,
+          "exposure": 0.14271407110665998,
+          "trades": 191,
+          "entries": 96,
+          "exits": 95,
+          "exposure_days": 285,
+          "return_per_exposure_day": 0.0016510097503260295
+        },
+        "buy_and_hold": {
+          "total_return": 0.8960601069847869,
+          "cagr": 0.08408156102243969,
+          "ann_vol": 0.2539430067852857,
+          "sharpe": 0.44486464102238255,
+          "max_drawdown": -0.41209272802936825,
+          "mean_daily_return": 0.00044829470060984354
+        },
+        "bil_variant": {
+          "cagr": 0.045068189653212354,
+          "sharpe": 0.5112842628717704,
+          "max_drawdown": -0.21714937405409052
+        }
+      },
+      {
+        "symbol": "ZROZ",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/old_era/cells/treasury_month_end_v1/ZROZ_2009-11-04_2015-12-31_20261014T003503Z.json",
+        "events": 74,
+        "mean_event": 0.007319483722447692,
+        "mean_event_delayed": 0.005080354768250901,
+        "hit_rate": 0.6081081081081081,
+        "placebo": 0.98,
+        "strategy": {
+          "total_return": 0.6746558231783863,
+          "cagr": 0.08744164949154776,
+          "ann_vol": 0.09203127242776381,
+          "sharpe": 0.9568537979468829,
+          "max_drawdown": -0.06335064389324574,
+          "exposure": 0.14193548387096774,
+          "trades": 147,
+          "entries": 74,
+          "exits": 73,
+          "exposure_days": 220,
+          "return_per_exposure_day": 0.002462008161186951
+        },
+        "buy_and_hold": {
+          "total_return": 0.8296304320089991,
+          "cagr": 0.1032024224572008,
+          "ann_vol": 0.252711688100291,
+          "sharpe": 0.5149385348083225,
+          "max_drawdown": -0.32277206832466365,
+          "mean_daily_return": 0.0005163928031718318
+        },
+        "bil_variant": {
+          "cagr": 0.07327109349856276,
+          "sharpe": 0.8168449653565765,
+          "max_drawdown": -0.06400061567281956
+        }
+      },
+      {
+        "symbol": "TLH",
+        "window": "IS",
+        "verdict": "contradicts",
+        "why": "return/exposure day 0.059% < buy&hold mean 0.027% + 5bps",
+        "ref": "backtests/old_era/cells/treasury_month_end_v1/TLH_2007-01-11_2015-12-31_20261014T003504Z.json",
+        "events": 108,
+        "mean_event": 0.0017498290802425386,
+        "mean_event_delayed": 0.0019186679203553392,
+        "hit_rate": 0.6111111111111112,
+        "placebo": 0.987,
+        "strategy": {
+          "total_return": 0.20095305273605546,
+          "cagr": 0.0206280602688802,
+          "ann_vol": 0.03617421607521504,
+          "sharpe": 0.5825220356392411,
+          "max_drawdown": -0.09588451672006615,
+          "exposure": 0.1424778761061947,
+          "trades": 215,
+          "entries": 108,
+          "exits": 107,
+          "exposure_days": 322,
+          "return_per_exposure_day": 0.0005868991946155098
+        },
+        "buy_and_hold": {
+          "total_return": 0.762189482435178,
+          "cagr": 0.06521176426421205,
+          "ann_vol": 0.09845649931847644,
+          "sharpe": 0.6908934555413097,
+          "max_drawdown": -0.14272540823608937,
+          "mean_daily_return": 0.0002699323453755666
+        },
+        "bil_variant": {
+          "cagr": 0.014230725026217028,
+          "sharpe": 0.40534648057854306,
+          "max_drawdown": -0.09852582150872313
+        }
+      }
+    ]
+  },
+  "32": {
+    "status": "supported",
+    "note": "Round-4 verdict: supported (3/6 cells pass; all six must). Hypotheses tested so far: 32.",
+    "cells": [
+      {
+        "universe": "vti_iei",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/old_era/cells/pension_tilt_v1/VTI_IEI_2007-01-11_2015-12-31_20261014T003506Z.json",
+        "events": 98,
+        "mean_event": 0.007769707370040101,
+        "mean_event_delayed": 0.0028582696815453324,
+        "hit_rate": 0.6632653061224489,
+        "net_active": 0.015291640460474164,
+        "placebo_shift": 1.0,
+        "placebo_shuffle": 0.999,
+        "strategy_sharpe": 0.6464543941153679,
+        "benchmark_sharpe": 0.5564238653970282
+      },
+      {
+        "universe": "vti_vgit",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/old_era/cells/pension_tilt_v1/VTI_VGIT_2009-11-23_2015-12-31_20261014T003507Z.json",
+        "events": 64,
+        "mean_event": 0.0056479970067695,
+        "mean_event_delayed": 0.0002775150935211053,
+        "hit_rate": 0.625,
+        "net_active": 0.008558520240027073,
+        "placebo_shift": 0.997,
+        "placebo_shuffle": 0.989,
+        "strategy_sharpe": 1.095846535732324,
+        "benchmark_sharpe": 1.0395052774155777
+      },
+      {
+        "universe": "vea_iei",
+        "window": "IS",
+        "verdict": "supports",
+        "why": "passes kill rule",
+        "ref": "backtests/old_era/cells/pension_tilt_v1/VEA_IEI_2007-07-26_2015-12-31_20261014T003508Z.json",
+        "events": 89,
+        "mean_event": 0.007733351812845023,
+        "mean_event_delayed": 0.001615158320349833,
+        "hit_rate": 0.6404494382022472,
+        "net_active": 0.01529099004479364,
+        "placebo_shift": 0.987,
+        "placebo_shuffle": 0.994,
+        "strategy_sharpe": 0.315689725126753,
+        "benchmark_sharpe": 0.22604486671914065
+      }
+    ]
+  }
+}
