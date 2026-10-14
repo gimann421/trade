@@ -1,0 +1,38 @@
+{
+  "start": "2004-11-18",
+  "end": "2015-12-31",
+  "days": 2799,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.6110313469787947,
+    "cagr": 0.04386904333670705,
+    "ann_vol": 0.1467937412543004,
+    "sharpe": 0.3661167089558412,
+    "max_drawdown": -0.42602839905656087,
+    "exposure": 0.7463379778492318,
+    "trades": 157,
+    "entries": 7,
+    "exits": 6,
+    "exposure_days": 2621,
+    "return_per_exposure_day": 0.00022775211872347884
+  },
+  "buy_and_hold": {
+    "total_return": 1.2861648635102494,
+    "cagr": 0.07728652097498245,
+    "ann_vol": 0.1986265822801532,
+    "sharpe": 0.47431532957700057,
+    "max_drawdown": -0.4555501273425696,
+    "mean_daily_return": 0.0003738556858609686
+  },
+  "strategy_file": "strategies/cppi_cushion_v1.py",
+  "params": {
+    "high": 252,
+    "floor": 0.7,
+    "multiplier": 4.0,
+    "gate_sma": 100,
+    "step": 0.25
+  },
+  "symbol": "GLD",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003442Z"
+}

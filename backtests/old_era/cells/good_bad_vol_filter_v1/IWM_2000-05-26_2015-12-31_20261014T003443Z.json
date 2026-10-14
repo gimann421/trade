@@ -1,0 +1,37 @@
+{
+  "start": "2000-05-26",
+  "end": "2015-12-31",
+  "days": 3924,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.1554343766202155,
+    "cagr": 0.05055711009420638,
+    "ann_vol": 0.20579973405653643,
+    "sharpe": 0.3428111815596636,
+    "max_drawdown": -0.5055310135994859,
+    "exposure": 0.8598369011213048,
+    "trades": 75,
+    "entries": 38,
+    "exits": 37,
+    "exposure_days": 3374,
+    "return_per_exposure_day": 0.0003255990790764608
+  },
+  "buy_and_hold": {
+    "total_return": 2.0229092523036143,
+    "cagr": 0.07362592199273843,
+    "ann_vol": 0.2453220696473991,
+    "sharpe": 0.4124692260827042,
+    "max_drawdown": -0.5863998771954861,
+    "mean_daily_return": 0.00040153890558916654
+  },
+  "strategy_file": "strategies/good_bad_vol_filter_v1.py",
+  "params": {
+    "vol_window": 20,
+    "median_window": 252,
+    "exit_share": 0.7,
+    "reenter_share": 0.5
+  },
+  "symbol": "IWM",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003443Z"
+}

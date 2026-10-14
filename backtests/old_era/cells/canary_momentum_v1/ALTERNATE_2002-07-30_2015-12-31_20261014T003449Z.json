@@ -1,0 +1,79 @@
+{
+  "start": "2002-07-30",
+  "end": "2015-12-31",
+  "days": 3381,
+  "cost_bps": 5.0,
+  "cash_return": 0.0,
+  "symbols": [
+    "XLE",
+    "XLK",
+    "XLV",
+    "XLF",
+    "XLU",
+    "XLP",
+    "XLY",
+    "XLI",
+    "XLB",
+    "BIL"
+  ],
+  "signal_only": [
+    "EFA",
+    "IEF"
+  ],
+  "strategy": {
+    "total_return": 1.5733301199260534,
+    "cagr": 0.0729906514262193,
+    "ann_vol": 0.12328170974386979,
+    "sharpe": 0.6332542888307605,
+    "max_drawdown": -0.33236496367076773,
+    "exposure": 0.9994084590357882,
+    "trades": 151,
+    "annual_turnover": 10.976397681318083
+  },
+  "benchmarks": {
+    "equal_weight_hold": {
+      "total_return": 1.9581827757840218,
+      "cagr": 0.08419513383556687,
+      "ann_vol": 0.17509637806126085,
+      "sharpe": 0.5494049649620166,
+      "max_drawdown": -0.4880749317449715,
+      "exposure": 0.9997042295178931,
+      "trades": 1,
+      "annual_turnover": 0.07453416149068323
+    },
+    "equal_weight_monthly": {
+      "total_return": 2.0050646510378405,
+      "cagr": 0.08546652277120592,
+      "ann_vol": 0.16880330794976284,
+      "sharpe": 0.5704008206145161,
+      "max_drawdown": -0.4947505346857304,
+      "exposure": 0.9997042295178941,
+      "trades": 163,
+      "annual_turnover": 0.3536893842961991
+    },
+    "inverse_vol_monthly": {
+      "total_return": 2.372463680716878,
+      "cagr": 0.09483861835614804,
+      "ann_vol": 0.1691628056640904,
+      "sharpe": 0.6203699387712208,
+      "max_drawdown": -0.5000577984104086,
+      "exposure": 0.9801833776989056,
+      "trades": 159,
+      "annual_turnover": 0.7491524228135424
+    }
+  },
+  "strategy_file": "strategies/canary_momentum_v1.py",
+  "params": {
+    "weights": {
+      "21": 12,
+      "63": 4,
+      "126": 2,
+      "252": 1
+    },
+    "cash": "BIL",
+    "max_bad": 2
+  },
+  "symbol": "ALTERNATE",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003449Z"
+}

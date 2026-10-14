@@ -1,0 +1,38 @@
+{
+  "start": "2001-08-27",
+  "end": "2015-12-31",
+  "days": 3609,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.6695034488325151,
+    "cagr": 0.036435444558765795,
+    "ann_vol": 0.13967171651740035,
+    "sharpe": 0.3262489157583465,
+    "max_drawdown": -0.28889741550998593,
+    "exposure": 0.7478525907453588,
+    "trades": 34,
+    "entries": 8,
+    "exits": 7,
+    "exposure_days": 3051,
+    "return_per_exposure_day": 0.00021389551641662582
+  },
+  "buy_and_hold": {
+    "total_return": 0.9607179796511613,
+    "cagr": 0.04813690826547523,
+    "ann_vol": 0.23004923485576745,
+    "sharpe": 0.3192601925015557,
+    "max_drawdown": -0.6103729711819859,
+    "mean_daily_return": 0.0002914506468447933
+  },
+  "strategy_file": "strategies/dd_gated_sma_exit_v1.py",
+  "params": {
+    "sma": 200,
+    "high": 252,
+    "bear": -0.2,
+    "correction": -0.1,
+    "recover": -0.05
+  },
+  "symbol": "EFA",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003441Z"
+}

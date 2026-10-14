@@ -1,0 +1,37 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.5726578140840288,
+    "cagr": 0.028752759375343162,
+    "ann_vol": 0.0627511157880207,
+    "sharpe": 0.48318457941915316,
+    "max_drawdown": -0.14886201662410792,
+    "exposure": 0.09614906832298137,
+    "trades": 220,
+    "entries": 110,
+    "exits": 110,
+    "exposure_days": 387,
+    "return_per_exposure_day": 0.0012513790989676632
+  },
+  "buy_and_hold": {
+    "total_return": 0.867518780646636,
+    "cagr": 0.03988076846672439,
+    "ann_vol": 0.2020690275699205,
+    "sharpe": 0.2944553033871613,
+    "max_drawdown": -0.5518943418645575,
+    "mean_daily_return": 0.00023611228896130797
+  },
+  "strategy_file": "strategies/rsi2_pullback_v1.py",
+  "params": {
+    "rsi_period": 2,
+    "entry_rsi": 10,
+    "trend": 200,
+    "exit_sma": 5
+  },
+  "symbol": "SPY",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003437Z"
+}

@@ -1,0 +1,36 @@
+{
+  "start": "2001-08-27",
+  "end": "2015-12-31",
+  "days": 3609,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.8528990037708379,
+    "cagr": 0.04400568888466583,
+    "ann_vol": 0.2109226573937107,
+    "sharpe": 0.3094368101339985,
+    "max_drawdown": -0.6036616924926614,
+    "exposure": 0.6752563036852314,
+    "trades": 133,
+    "entries": 67,
+    "exits": 66,
+    "exposure_days": 2437,
+    "return_per_exposure_day": 0.0003835535633660725
+  },
+  "buy_and_hold": {
+    "total_return": 0.9607179796511613,
+    "cagr": 0.04813690826547523,
+    "ann_vol": 0.23004923485576745,
+    "sharpe": 0.3192601925015557,
+    "max_drawdown": -0.6103729711819859,
+    "mean_daily_return": 0.0002914506468447933
+  },
+  "strategy_file": "strategies/bollinger_stepaside_v1.py",
+  "params": {
+    "window": 20,
+    "enter_z": 2.0,
+    "reenter_z": 0.0
+  },
+  "symbol": "EFA",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003443Z"
+}

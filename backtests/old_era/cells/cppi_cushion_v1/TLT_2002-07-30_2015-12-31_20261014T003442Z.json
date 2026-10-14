@@ -1,0 +1,38 @@
+{
+  "start": "2002-07-30",
+  "end": "2015-12-31",
+  "days": 3381,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 1.139831923800236,
+    "cagr": 0.058338441586101686,
+    "ann_vol": 0.11854009069757175,
+    "sharpe": 0.5375916900854162,
+    "max_drawdown": -0.24876333125884587,
+    "exposure": 0.8339988169180715,
+    "trades": 114,
+    "entries": 2,
+    "exits": 1,
+    "exposure_days": 3329,
+    "return_per_exposure_day": 0.000256831706214548
+  },
+  "buy_and_hold": {
+    "total_return": 1.511474237982581,
+    "cagr": 0.07104656418364752,
+    "ann_vol": 0.13908889987249262,
+    "sharpe": 0.5630510660019555,
+    "max_drawdown": -0.26585396370637493,
+    "mean_daily_return": 0.0003107704497708184
+  },
+  "strategy_file": "strategies/cppi_cushion_v1.py",
+  "params": {
+    "high": 252,
+    "floor": 0.7,
+    "multiplier": 4.0,
+    "gate_sma": 100,
+    "step": 0.25
+  },
+  "symbol": "TLT",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003442Z"
+}

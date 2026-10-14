@@ -1,0 +1,37 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.6649490060640919,
+    "cagr": 0.03243239678805243,
+    "ann_vol": 0.07861744645395301,
+    "sharpe": 0.44440715826656413,
+    "max_drawdown": -0.1867968663501156,
+    "exposure": 0.06484472049689441,
+    "trades": 174,
+    "entries": 87,
+    "exits": 87,
+    "exposure_days": 261,
+    "return_per_exposure_day": 0.0021380842573484075
+  },
+  "buy_and_hold": {
+    "total_return": -0.04663096103989817,
+    "cagr": -0.0029853013587490818,
+    "ann_vol": 0.26788589248226075,
+    "sharpe": 0.12215202540545571,
+    "max_drawdown": -0.8204650666636074,
+    "mean_daily_return": 0.00012985239819149322
+  },
+  "strategy_file": "strategies/gap_fade_washout_v1.py",
+  "params": {
+    "std_window": 60,
+    "z_max": -2.0,
+    "hold": 3,
+    "warmup": 61
+  },
+  "symbol": "XLK",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003454Z"
+}

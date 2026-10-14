@@ -1,0 +1,1567 @@
+{
+  "reading_notes": [
+    "A veto applies to every cell with a position, including inconclusive cells ('any cell').",
+    "A hypothesis whose cells all pass but whose mean placebo percentile is < 0.95 is left 'testing' (not supported), since the memos only say it is not SUPPORTED.",
+    "H14-16 'de-risk event' = a day-on-day position drop of at least 0.25 inside the window.",
+    "H18 uses the population std (ddof=0) for z50, as H17's memo specifies for z20.",
+    "Exit bars stay flat (no same-bar re-entry) for H18, H19, H21, H22."
+  ],
+  "hypotheses": {
+    "14": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.36 < 1x buy&hold 0.41",
+          "ref": "backtests/old_era/cells/dd_gated_sma_exit_v1/IWM_2000-05-26_2015-12-31_20261014T003441Z.json",
+          "strategy": {
+            "total_return": 1.0076950544794232,
+            "cagr": 0.045777527178118005,
+            "ann_vol": 0.15864153774557835,
+            "sharpe": 0.361568476358598,
+            "max_drawdown": -0.2909078418005918,
+            "exposure": 0.7370030581039755,
+            "trades": 44,
+            "entries": 8,
+            "exits": 7,
+            "exposure_days": 3286,
+            "return_per_exposure_day": 0.0002718118390050457
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 0.39589795973642805,
+            "derisk_events": 22,
+            "frac_below_1": 0.36340468909276247
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.46 < 1x buy&hold 0.56; MaxDD -22.9% not 5pts better than -26.6%",
+          "ref": "backtests/old_era/cells/dd_gated_sma_exit_v1/TLT_2002-07-30_2015-12-31_20261014T003441Z.json",
+          "strategy": {
+            "total_return": 0.9003574324456676,
+            "cagr": 0.04901755202887048,
+            "ann_vol": 0.11833570092240098,
+            "sharpe": 0.463541615527657,
+            "max_drawdown": -0.22933214959152004,
+            "exposure": 0.7852706299911268,
+            "trades": 26,
+            "entries": 4,
+            "exits": 3,
+            "exposure_days": 3153,
+            "return_per_exposure_day": 0.00023341307323202642
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.48050848242027894,
+            "derisk_events": 13,
+            "frac_below_1": 0.36202307009760426
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/dd_gated_sma_exit_v1/GLD_2004-11-18_2015-12-31_20261014T003441Z.json",
+          "strategy": {
+            "total_return": 1.109333822661779,
+            "cagr": 0.06950667926773102,
+            "ann_vol": 0.15302074165004614,
+            "sharpe": 0.5159349620183221,
+            "max_drawdown": -0.344165585486335,
+            "exposure": 0.7391925687745623,
+            "trades": 16,
+            "entries": 5,
+            "exits": 4,
+            "exposure_days": 2499,
+            "return_per_exposure_day": 0.00035089837956915864
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.5466725754089069,
+            "derisk_events": 8,
+            "frac_below_1": 0.4144337263308324
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/dd_gated_sma_exit_v1/XLE_2000-01-03_2015-12-31_20261014T003441Z.json",
+          "strategy": {
+            "total_return": 1.632443997225384,
+            "cagr": 0.06247357519309382,
+            "ann_vol": 0.17427600180927674,
+            "sharpe": 0.43507834797638023,
+            "max_drawdown": -0.33988432704591975,
+            "exposure": 0.6720496894409937,
+            "trades": 65,
+            "entries": 16,
+            "exits": 16,
+            "exposure_days": 3045,
+            "return_per_exposure_day": 0.000397725197057905
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.5019099850015972,
+            "derisk_events": 33,
+            "frac_below_1": 0.4124223602484472
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/dd_gated_sma_exit_v1/EFA_2001-08-27_2015-12-31_20261014T003441Z.json",
+          "strategy": {
+            "total_return": 0.6695034488325151,
+            "cagr": 0.036435444558765795,
+            "ann_vol": 0.13967171651740035,
+            "sharpe": 0.3262489157583465,
+            "max_drawdown": -0.28889741550998593,
+            "exposure": 0.7478525907453588,
+            "trades": 34,
+            "entries": 8,
+            "exits": 7,
+            "exposure_days": 3051,
+            "return_per_exposure_day": 0.00021389551641662582
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 0.3557878844471572,
+            "derisk_events": 17,
+            "frac_below_1": 0.34968135217511775
+          }
+        }
+      ]
+    },
+    "15": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.37 < 1x buy&hold 0.41",
+          "ref": "backtests/old_era/cells/trend_vol_throttle_v1/IWM_2000-05-26_2015-12-31_20261014T003441Z.json",
+          "strategy": {
+            "total_return": 1.0573243733065598,
+            "cagr": 0.04741879208618238,
+            "ann_vol": 0.1583168482400651,
+            "sharpe": 0.3718998003221914,
+            "max_drawdown": -0.3463825857513996,
+            "exposure": 0.7518476044852191,
+            "trades": 106,
+            "entries": 4,
+            "exits": 3,
+            "exposure_days": 3679,
+            "return_per_exposure_day": 0.00024920213035549096
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 0.3842443890483508,
+            "derisk_events": 55,
+            "frac_below_1": 0.34072375127421
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.49 < 1x buy&hold 0.56; MaxDD -22.3% not 5pts better than -26.6%",
+          "ref": "backtests/old_era/cells/trend_vol_throttle_v1/TLT_2002-07-30_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 1.003519515076721,
+            "cagr": 0.053158970269121975,
+            "ann_vol": 0.1197774275332927,
+            "sharpe": 0.49229521967636114,
+            "max_drawdown": -0.2227773648339113,
+            "exposure": 0.7971753918958888,
+            "trades": 49,
+            "entries": 1,
+            "exits": 0,
+            "exposure_days": 3380,
+            "return_per_exposure_day": 0.00023406071634524784
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.4923680875468157,
+            "derisk_events": 24,
+            "frac_below_1": 0.3995859213250518
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/trend_vol_throttle_v1/GLD_2004-11-18_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 1.2141433759352633,
+            "cagr": 0.07418631808448062,
+            "ann_vol": 0.1576472945428395,
+            "sharpe": 0.5330521619207808,
+            "max_drawdown": -0.38807020781637924,
+            "exposure": 0.7794748124330118,
+            "trades": 41,
+            "entries": 3,
+            "exits": 2,
+            "exposure_days": 2741,
+            "return_per_exposure_day": 0.0003405254325331482
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.5390281368532688,
+            "derisk_events": 20,
+            "frac_below_1": 0.36477313326187927
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/trend_vol_throttle_v1/XLE_2000-01-03_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 1.7049533902564273,
+            "cagr": 0.06428259658946645,
+            "ann_vol": 0.17939554907023372,
+            "sharpe": 0.437228691262446,
+            "max_drawdown": -0.3372852326178112,
+            "exposure": 0.7327329192546583,
+            "trades": 77,
+            "entries": 6,
+            "exits": 5,
+            "exposure_days": 3782,
+            "return_per_exposure_day": 0.0003312562918981327
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.4512890196405623,
+            "derisk_events": 40,
+            "frac_below_1": 0.35031055900621116
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/trend_vol_throttle_v1/EFA_2001-08-27_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 1.1601128786421775,
+            "cagr": 0.05524903536259229,
+            "ann_vol": 0.13867323424132624,
+            "sharpe": 0.4572989580875188,
+            "max_drawdown": -0.25619377440555935,
+            "exposure": 0.7714740925464117,
+            "trades": 66,
+            "entries": 5,
+            "exits": 4,
+            "exposure_days": 3415,
+            "return_per_exposure_day": 0.0002659429548086923
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 0.47037519421163604,
+            "derisk_events": 34,
+            "frac_below_1": 0.32086450540315875
+          }
+        }
+      ]
+    },
+    "16": {
+      "status": "rejected",
+      "notes": [
+        "IS: cushion too tight (mean time below weight 1 above 40%, Sharpe below buy&hold on 5 symbols)"
+      ],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.31 < 1x buy&hold 0.41",
+          "ref": "backtests/old_era/cells/cppi_cushion_v1/IWM_2000-05-26_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 0.7672281692952689,
+            "cagr": 0.037244588674391066,
+            "ann_vol": 0.16119332009128629,
+            "sharpe": 0.30754704227688884,
+            "max_drawdown": -0.306694689722238,
+            "exposure": 0.7653542303771662,
+            "trades": 197,
+            "entries": 11,
+            "exits": 10,
+            "exposure_days": 3503,
+            "return_per_exposure_day": 0.0002203671808795111
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 0.32603347138498173,
+            "derisk_events": 101,
+            "frac_below_1": 0.4235474006116208
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.54 < 1x buy&hold 0.56; MaxDD -24.9% not 5pts better than -26.6%",
+          "ref": "backtests/old_era/cells/cppi_cushion_v1/TLT_2002-07-30_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 1.139831923800236,
+            "cagr": 0.058338441586101686,
+            "ann_vol": 0.11854009069757175,
+            "sharpe": 0.5375916900854162,
+            "max_drawdown": -0.24876333125884587,
+            "exposure": 0.8339988169180715,
+            "trades": 114,
+            "entries": 2,
+            "exits": 1,
+            "exposure_days": 3329,
+            "return_per_exposure_day": 0.000256831706214548
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.5418570192283481,
+            "derisk_events": 57,
+            "frac_below_1": 0.43655723158828746
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.37 < 1x buy&hold 0.47; MaxDD -42.6% not 5pts better than -45.6%",
+          "ref": "backtests/old_era/cells/cppi_cushion_v1/GLD_2004-11-18_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 0.6110313469787947,
+            "cagr": 0.04386904333670705,
+            "ann_vol": 0.1467937412543004,
+            "sharpe": 0.3661167089558412,
+            "max_drawdown": -0.42602839905656087,
+            "exposure": 0.7463379778492318,
+            "trades": 157,
+            "entries": 7,
+            "exits": 6,
+            "exposure_days": 2621,
+            "return_per_exposure_day": 0.00022775211872347884
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.3788225039324326,
+            "derisk_events": 81,
+            "frac_below_1": 0.5677027509824938
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.35 < 1x buy&hold 0.38",
+          "ref": "backtests/old_era/cells/cppi_cushion_v1/XLE_2000-01-03_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 1.0457699526219115,
+            "cagr": 0.04583299315545086,
+            "ann_vol": 0.17164026044460928,
+            "sharpe": 0.3471240649622407,
+            "max_drawdown": -0.33859269348837995,
+            "exposure": 0.692360248447205,
+            "trades": 280,
+            "entries": 11,
+            "exits": 11,
+            "exposure_days": 3415,
+            "return_per_exposure_day": 0.0002786624965601799
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.3774059216948456,
+            "derisk_events": 146,
+            "frac_below_1": 0.49788819875776397
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.25 < 1x buy&hold 0.32",
+          "ref": "backtests/old_era/cells/cppi_cushion_v1/EFA_2001-08-27_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 0.4399283399347238,
+            "cagr": 0.02578470922310183,
+            "ann_vol": 0.1408723538483501,
+            "sharpe": 0.2513124621190728,
+            "max_drawdown": -0.3576390427468369,
+            "exposure": 0.7723053477417567,
+            "trades": 145,
+            "entries": 6,
+            "exits": 5,
+            "exposure_days": 3262,
+            "return_per_exposure_day": 0.00015543262474977424
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 0.26466718934926453,
+            "derisk_events": 75,
+            "frac_below_1": 0.39540038791909116
+          }
+        }
+      ]
+    },
+    "17": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.50 < buy&hold 0.41 + 0.10",
+          "ref": "backtests/old_era/cells/bollinger_stepaside_v1/IWM_2000-05-26_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 2.9377507336743434,
+            "cagr": 0.09201084126400372,
+            "ann_vol": 0.2284262653987166,
+            "sharpe": 0.499749371338904,
+            "max_drawdown": -0.5259869792857395,
+            "exposure": 0.7311416921508664,
+            "trades": 133,
+            "entries": 67,
+            "exits": 66,
+            "exposure_days": 2869,
+            "return_per_exposure_day": 0.0006195783098044589
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 0.5954075749015088,
+            "derisk_events": 66,
+            "frac_below_1": 0.26885830784913356
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.44 < buy&hold 0.56 + 0.10; return/exposure day 0.029% < buy&hold mean 0.031% + 1bp",
+          "ref": "backtests/old_era/cells/bollinger_stepaside_v1/TLT_2002-07-30_2015-12-31_20261014T003442Z.json",
+          "strategy": {
+            "total_return": 0.7920376884378064,
+            "cagr": 0.04443884680558674,
+            "ann_vol": 0.11288677966058824,
+            "sharpe": 0.4416402022441245,
+            "max_drawdown": -0.2066522196971431,
+            "exposure": 0.6870748299319728,
+            "trades": 131,
+            "entries": 66,
+            "exits": 65,
+            "exposure_days": 2323,
+            "return_per_exposure_day": 0.0002879433839933422
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.5588094142073353,
+            "derisk_events": 65,
+            "frac_below_1": 0.3129251700680272
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.26 < buy&hold 0.47 + 0.10; return/exposure day 0.024% < buy&hold mean 0.037% + 1bp",
+          "ref": "backtests/old_era/cells/bollinger_stepaside_v1/GLD_2004-11-18_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.3915077145535164,
+            "cagr": 0.030192347080826076,
+            "ann_vol": 0.16474073503381317,
+            "sharpe": 0.26290790089075156,
+            "max_drawdown": -0.39025738881979877,
+            "exposure": 0.707395498392283,
+            "trades": 93,
+            "entries": 47,
+            "exits": 46,
+            "exposure_days": 1980,
+            "return_per_exposure_day": 0.00024296393039159684
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.3275398948796731,
+            "derisk_events": 46,
+            "frac_below_1": 0.29260450160771706
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.38 < buy&hold 0.38 + 0.10",
+          "ref": "backtests/old_era/cells/bollinger_stepaside_v1/XLE_2000-01-03_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 1.7635827924122505,
+            "cagr": 0.06571239295632614,
+            "ann_vol": 0.25733126745731244,
+            "sharpe": 0.3764789635349922,
+            "max_drawdown": -0.5502708737728367,
+            "exposure": 0.698136645962733,
+            "trades": 144,
+            "entries": 73,
+            "exits": 72,
+            "exposure_days": 2810,
+            "return_per_exposure_day": 0.0005506711159850538
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.4611052486778415,
+            "derisk_events": 72,
+            "frac_below_1": 0.3018633540372671
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.31 < buy&hold 0.32 + 0.10; return/exposure day 0.038% < buy&hold mean 0.029% + 1bp",
+          "ref": "backtests/old_era/cells/bollinger_stepaside_v1/EFA_2001-08-27_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.8528990037708379,
+            "cagr": 0.04400568888466583,
+            "ann_vol": 0.2109226573937107,
+            "sharpe": 0.3094368101339985,
+            "max_drawdown": -0.6036616924926614,
+            "exposure": 0.6752563036852314,
+            "trades": 133,
+            "entries": 67,
+            "exits": 66,
+            "exposure_days": 2437,
+            "return_per_exposure_day": 0.0003835535633660725
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 0.3898800308668084,
+            "derisk_events": 66,
+            "frac_below_1": 0.3247436963147686
+          }
+        }
+      ]
+    },
+    "18": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.077% < buy&hold mean 0.040% + 5bps; conditional Sharpe 0.60 < buy&hold 0.41 + 0.25; Sharpe 0.28 < buy&hold 0.41 - 0.10",
+          "ref": "backtests/old_era/cells/mean_reversion_z50_v1/IWM_2000-05-26_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.6723575898444039,
+            "cagr": 0.033575577346586005,
+            "ann_vol": 0.16249053317538734,
+            "sharpe": 0.28451836286003823,
+            "max_drawdown": -0.34545004985401295,
+            "exposure": 0.23751274209989806,
+            "trades": 95,
+            "entries": 48,
+            "exits": 47,
+            "exposure_days": 932,
+            "return_per_exposure_day": 0.0007724153758806617
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 0.6029613306025089,
+            "derisk_events": 47,
+            "frac_below_1": 0.762487257900102
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.013% < buy&hold mean 0.031% + 5bps; conditional Sharpe 0.27 < buy&hold 0.56 + 0.25; Sharpe 0.11 < buy&hold 0.56 - 0.10",
+          "ref": "backtests/old_era/cells/mean_reversion_z50_v1/TLT_2002-07-30_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.0672264147234174,
+            "cagr": 0.004861204630064897,
+            "ann_vol": 0.06585982075237658,
+            "sharpe": 0.10657461397787221,
+            "max_drawdown": -0.1535543710470424,
+            "exposure": 0.22034900916888495,
+            "trades": 72,
+            "entries": 36,
+            "exits": 36,
+            "exposure_days": 745,
+            "return_per_exposure_day": 0.0001264045392289887
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.2703465107503931,
+            "derisk_events": 36,
+            "frac_below_1": 0.7796509908311151
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.053% < buy&hold mean 0.037% + 5bps; conditional Sharpe 0.66 < buy&hold 0.47 + 0.25; Sharpe 0.31 < buy&hold 0.47 - 0.10",
+          "ref": "backtests/old_era/cells/mean_reversion_z50_v1/GLD_2004-11-18_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.36349984506034616,
+            "cagr": 0.028308174220860405,
+            "ann_vol": 0.1069216153101419,
+            "sharpe": 0.3142826372425021,
+            "max_drawdown": -0.30172321543793135,
+            "exposure": 0.2497320471596999,
+            "trades": 64,
+            "entries": 32,
+            "exits": 32,
+            "exposure_days": 699,
+            "return_per_exposure_day": 0.0005339628985789292
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.6559621669294871,
+            "derisk_events": 32,
+            "frac_below_1": 0.7502679528403001
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/mean_reversion_z50_v1/XLE_2000-01-03_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 1.9597998366233051,
+            "cagr": 0.07029900216186524,
+            "ann_vol": 0.19335416068994368,
+            "sharpe": 0.44829426805150263,
+            "max_drawdown": -0.4192080944543106,
+            "exposure": 0.22956521739130434,
+            "trades": 107,
+            "entries": 54,
+            "exits": 53,
+            "exposure_days": 924,
+            "return_per_exposure_day": 0.0014983389885821394
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.954507621694415,
+            "derisk_events": 53,
+            "frac_below_1": 0.7704347826086957
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/mean_reversion_z50_v1/EFA_2001-08-27_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.6569202930183842,
+            "cagr": 0.03588806915620024,
+            "ann_vol": 0.1639326430797285,
+            "sharpe": 0.2964065753225128,
+            "max_drawdown": -0.36731078804412687,
+            "exposure": 0.23302853976170684,
+            "trades": 94,
+            "entries": 47,
+            "exits": 47,
+            "exposure_days": 841,
+            "return_per_exposure_day": 0.0008274535434368477
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 0.6348736478870214,
+            "derisk_events": 47,
+            "frac_below_1": 0.7669714602382931
+          }
+        }
+      ]
+    },
+    "19": {
+      "status": "rejected",
+      "notes": [],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/volume_shock_reversal_v1/IWM_2000-05-26_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 2.744485400113849,
+            "cagr": 0.08848725562968607,
+            "ann_vol": 0.1029150304597917,
+            "sharpe": 0.8752700438753955,
+            "max_drawdown": -0.21255270696919726,
+            "exposure": 0.1580020387359837,
+            "trades": 248,
+            "entries": 124,
+            "exits": 124,
+            "exposure_days": 620,
+            "return_per_exposure_day": 0.002262338781481975
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 2.3188543935427814,
+            "derisk_events": 124,
+            "frac_below_1": 0.8419979612640163
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day -0.022% < buy&hold mean 0.031% + 5bps; conditional Sharpe -0.23 < buy&hold 0.56 + 0.25; Sharpe -0.16 < buy&hold 0.56 - 0.10",
+          "ref": "backtests/old_era/cells/volume_shock_reversal_v1/TLT_2002-07-30_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": -0.12928758554446007,
+            "cagr": -0.010265716923520185,
+            "ann_vol": 0.05409305520553995,
+            "sharpe": -0.16367213744890918,
+            "max_drawdown": -0.21905924728562165,
+            "exposure": 0.1567583555161195,
+            "trades": 212,
+            "entries": 106,
+            "exits": 106,
+            "exposure_days": 530,
+            "return_per_exposure_day": -0.00022412227682827725
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": -0.22884794921477156,
+            "derisk_events": 106,
+            "frac_below_1": 0.8432416444838805
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.032% < buy&hold mean 0.037% + 5bps; conditional Sharpe 0.48 < buy&hold 0.47 + 0.25; Sharpe 0.14 < buy&hold 0.47 - 0.10",
+          "ref": "backtests/old_era/cells/volume_shock_reversal_v1/GLD_2004-11-18_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.09900812320847474,
+            "cagr": 0.008535987182957783,
+            "ann_vol": 0.08680590372295206,
+            "sharpe": 0.14117236217581705,
+            "max_drawdown": -0.2230914846994777,
+            "exposure": 0.15183994283672742,
+            "trades": 170,
+            "entries": 85,
+            "exits": 85,
+            "exposure_days": 425,
+            "return_per_exposure_day": 0.0003202671330324236
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.47519154364317245,
+            "derisk_events": 85,
+            "frac_below_1": 0.8481600571632726
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/volume_shock_reversal_v1/XLE_2000-01-03_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.8094190436700968,
+            "cagr": 0.037825149484605136,
+            "ann_vol": 0.1333154863330872,
+            "sharpe": 0.3449564710966952,
+            "max_drawdown": -0.38918529177500594,
+            "exposure": 0.16024844720496895,
+            "trades": 258,
+            "entries": 129,
+            "exits": 129,
+            "exposure_days": 645,
+            "return_per_exposure_day": 0.00113880804617144
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.9382497218251924,
+            "derisk_events": 129,
+            "frac_below_1": 0.8397515527950311
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/volume_shock_reversal_v1/EFA_2001-08-27_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 0.7734029682989383,
+            "cagr": 0.040813909319180386,
+            "ann_vol": 0.10539770537277049,
+            "sharpe": 0.43146770662209183,
+            "max_drawdown": -0.21146401066477494,
+            "exposure": 0.11776115267387088,
+            "trades": 170,
+            "entries": 85,
+            "exits": 85,
+            "exposure_days": 425,
+            "return_per_exposure_day": 0.0015324166549906305
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 1.342361495154908,
+            "derisk_events": 85,
+            "frac_below_1": 0.8822388473261291
+          }
+        }
+      ]
+    },
+    "20": {
+      "status": "rejected",
+      "notes": [
+        "veto: XLE IS: Sharpe 0.07 more than 0.15 below buy&hold 0.38"
+      ],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.34 < 1x buy&hold 0.41; Sharpe 0.34 < buy&hold 0.41 + 0.05",
+          "ref": "backtests/old_era/cells/good_bad_vol_filter_v1/IWM_2000-05-26_2015-12-31_20261014T003443Z.json",
+          "strategy": {
+            "total_return": 1.1554343766202155,
+            "cagr": 0.05055711009420638,
+            "ann_vol": 0.20579973405653643,
+            "sharpe": 0.3428111815596636,
+            "max_drawdown": -0.5055310135994859,
+            "exposure": 0.8598369011213048,
+            "trades": 75,
+            "entries": 38,
+            "exits": 37,
+            "exposure_days": 3374,
+            "return_per_exposure_day": 0.0003255990790764608
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 0.37593617771562793,
+            "derisk_events": 37,
+            "frac_below_1": 0.1401630988786952
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "supports",
+          "why": "passes kill threshold",
+          "ref": "backtests/old_era/cells/good_bad_vol_filter_v1/TLT_2002-07-30_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": 1.8956165029344398,
+            "cagr": 0.08246903414402396,
+            "ann_vol": 0.12832311237847252,
+            "sharpe": 0.6817358144613864,
+            "max_drawdown": -0.18919074791282064,
+            "exposure": 0.8970718722271517,
+            "trades": 47,
+            "entries": 24,
+            "exits": 23,
+            "exposure_days": 3033,
+            "return_per_exposure_day": 0.00038698418250854034
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.7269256508576962,
+            "derisk_events": 23,
+            "frac_below_1": 0.10292812777284827
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.43 < 1x buy&hold 0.47; MaxDD -51.1% not 5pts better than -45.6%; Sharpe 0.43 < buy&hold 0.47 + 0.05",
+          "ref": "backtests/old_era/cells/good_bad_vol_filter_v1/GLD_2004-11-18_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": 0.9467623429773977,
+            "cagr": 0.061811603448081565,
+            "ann_vol": 0.1741444769706086,
+            "sharpe": 0.4317212400297805,
+            "max_drawdown": -0.510933009478127,
+            "exposure": 0.8681672025723473,
+            "trades": 51,
+            "entries": 26,
+            "exits": 25,
+            "exposure_days": 2430,
+            "return_per_exposure_day": 0.00034364434784817143
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.47030192748431127,
+            "derisk_events": 25,
+            "frac_below_1": 0.13183279742765272
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.07 < 1x buy&hold 0.38; MaxDD -53.7% not 5pts better than -57.4%; Sharpe 0.07 < buy&hold 0.38 + 0.05",
+          "ref": "backtests/old_era/cells/good_bad_vol_filter_v1/XLE_2000-01-03_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": -0.13611938917325783,
+            "cagr": -0.00911911463264714,
+            "ann_vol": 0.22475749663561745,
+            "sharpe": 0.07202149353102279,
+            "max_drawdown": -0.5370298755797458,
+            "exposure": 0.822360248447205,
+            "trades": 89,
+            "entries": 45,
+            "exits": 45,
+            "exposure_days": 3310,
+            "return_per_exposure_day": 7.811126291746242e-05
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.08633038389612296,
+            "derisk_events": 45,
+            "frac_below_1": 0.17763975155279504
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "Sharpe 0.27 < 1x buy&hold 0.32; Sharpe 0.27 < buy&hold 0.32 + 0.05",
+          "ref": "backtests/old_era/cells/good_bad_vol_filter_v1/EFA_2001-08-27_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": 0.5970046787185208,
+            "cagr": 0.03322746826210565,
+            "ann_vol": 0.19468975972973399,
+            "sharpe": 0.26537093653951543,
+            "max_drawdown": -0.5069576528903331,
+            "exposure": 0.8506511499030203,
+            "trades": 59,
+            "entries": 30,
+            "exits": 29,
+            "exposure_days": 3070,
+            "return_per_exposure_day": 0.00024101519955243406
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 0.2933674260880737,
+            "derisk_events": 29,
+            "frac_below_1": 0.14934885009697976
+          }
+        }
+      ]
+    },
+    "21": {
+      "status": "rejected",
+      "notes": [
+        "veto: IWM IS: return/exposure day -0.001% below 0; EFA IS: return/exposure day -0.004% below 0"
+      ],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day -0.001% < 3bps; return/exposure day -0.001% < buy&hold mean 0.040% + 3bps; conditional Sharpe 0.03 < buy&hold 0.41 + 0.10",
+          "ref": "backtests/old_era/cells/squeeze_release_v1/IWM_2000-05-26_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": -0.05659515123892522,
+            "cagr": -0.0037344625071756843,
+            "ann_vol": 0.07901632582595697,
+            "sharpe": -0.007774492285675072,
+            "max_drawdown": -0.3443416832289985,
+            "exposure": 0.23751274209989806,
+            "trades": 120,
+            "entries": 60,
+            "exits": 60,
+            "exposure_days": 932,
+            "return_per_exposure_day": -1.026364008243649e-05
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": 0.03406649436757242,
+            "derisk_events": 60,
+            "frac_below_1": 0.762487257900102
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.020% < 3bps; return/exposure day 0.020% < buy&hold mean 0.031% + 3bps; conditional Sharpe 0.50 < buy&hold 0.56 + 0.10",
+          "ref": "backtests/old_era/cells/squeeze_release_v1/TLT_2002-07-30_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": 0.1638739320906366,
+            "cagr": 0.01137506958807899,
+            "ann_vol": 0.05931516111204046,
+            "sharpe": 0.22035142681013392,
+            "max_drawdown": -0.14083179510856159,
+            "exposure": 0.25643300798580304,
+            "trades": 106,
+            "entries": 53,
+            "exits": 53,
+            "exposure_days": 867,
+            "return_per_exposure_day": 0.00020225865451598275
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.500954572595401,
+            "derisk_events": 53,
+            "frac_below_1": 0.743566992014197
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.009% < 3bps; return/exposure day 0.009% < buy&hold mean 0.037% + 3bps; conditional Sharpe 0.20 < buy&hold 0.47 + 0.10",
+          "ref": "backtests/old_era/cells/squeeze_release_v1/GLD_2004-11-18_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": 0.022991230581877797,
+            "cagr": 0.0020486087559126176,
+            "ann_vol": 0.07020278455356642,
+            "sharpe": 0.06435354289290969,
+            "max_drawdown": -0.18015225285487757,
+            "exposure": 0.20435869953554842,
+            "trades": 76,
+            "entries": 38,
+            "exits": 38,
+            "exposure_days": 572,
+            "return_per_exposure_day": 8.77269698468754e-05
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": 0.19615129660315286,
+            "derisk_events": 38,
+            "frac_below_1": 0.7956413004644516
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.069% < buy&hold mean 0.043% + 3bps",
+          "ref": "backtests/old_era/cells/squeeze_release_v1/XLE_2000-01-03_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": 0.8176195398983923,
+            "cagr": 0.03811900849915184,
+            "ann_vol": 0.09323404685115431,
+            "sharpe": 0.4478577280638604,
+            "max_drawdown": -0.2022957210374421,
+            "exposure": 0.24074534161490682,
+            "trades": 114,
+            "entries": 57,
+            "exits": 57,
+            "exposure_days": 969,
+            "return_per_exposure_day": 0.0006882657760162411
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": 0.9527855600854851,
+            "derisk_events": 57,
+            "frac_below_1": 0.7592546583850932
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day -0.004% < 3bps; return/exposure day -0.004% < buy&hold mean 0.029% + 3bps; conditional Sharpe -0.00 < buy&hold 0.32 + 0.10",
+          "ref": "backtests/old_era/cells/squeeze_release_v1/EFA_2001-08-27_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": -0.07042254088522004,
+            "cagr": -0.005086034451500132,
+            "ann_vol": 0.0726416514952331,
+            "sharpe": -0.03376469845239696,
+            "max_drawdown": -0.32275356960867785,
+            "exposure": 0.2604599612080909,
+            "trades": 130,
+            "entries": 65,
+            "exits": 65,
+            "exposure_days": 940,
+            "return_per_exposure_day": -3.7368621070899826e-05
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": -0.004945500990935167,
+            "derisk_events": 65,
+            "frac_below_1": 0.7395400387919091
+          }
+        }
+      ]
+    },
+    "22": {
+      "status": "rejected",
+      "notes": [
+        "veto: IWM IS: return/exposure day -0.013% below 0; GLD IS: return/exposure day -0.027% below 0; XLE IS: return/exposure day -0.008% below 0"
+      ],
+      "placebo_mean_percentile": null,
+      "cells": [
+        {
+          "symbol": "IWM",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day -0.013% < buy&hold mean 0.040% + 5bps; conditional Sharpe -0.09 < buy&hold 0.41",
+          "ref": "backtests/old_era/cells/vol_peak_rebound_v1/IWM_2000-05-26_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": -0.14405376582597662,
+            "cagr": -0.009939575454013583,
+            "ann_vol": 0.10626118518206723,
+            "sharpe": -0.0404935759292265,
+            "max_drawdown": -0.387882320996886,
+            "exposure": 0.1325178389398573,
+            "trades": 52,
+            "entries": 26,
+            "exits": 26,
+            "exposure_days": 520,
+            "return_per_exposure_day": -0.0001288504382924342
+          },
+          "buy_and_hold": {
+            "total_return": 2.0229092523036143,
+            "cagr": 0.07362592199273843,
+            "ann_vol": 0.2453220696473991,
+            "sharpe": 0.4124692260827042,
+            "max_drawdown": -0.5863998771954861,
+            "mean_daily_return": 0.00040153890558916654
+          },
+          "extras": {
+            "cond_sharpe": -0.08958231652531587,
+            "derisk_events": 26,
+            "frac_below_1": 0.8674821610601428
+          }
+        },
+        {
+          "symbol": "TLT",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.041% < buy&hold mean 0.031% + 5bps",
+          "ref": "backtests/old_era/cells/vol_peak_rebound_v1/TLT_2002-07-30_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": 0.1413732208262941,
+            "cagr": 0.009904538423925358,
+            "ann_vol": 0.05926492706451719,
+            "sharpe": 0.19585578823513333,
+            "max_drawdown": -0.18040436003620175,
+            "exposure": 0.11239278320023662,
+            "trades": 38,
+            "entries": 19,
+            "exits": 19,
+            "exposure_days": 380,
+            "return_per_exposure_day": 0.0004098219341648928
+          },
+          "buy_and_hold": {
+            "total_return": 1.511474237982581,
+            "cagr": 0.07104656418364752,
+            "ann_vol": 0.13908889987249262,
+            "sharpe": 0.5630510660019555,
+            "max_drawdown": -0.26585396370637493,
+            "mean_daily_return": 0.0003107704497708184
+          },
+          "extras": {
+            "cond_sharpe": 0.6195776171742293,
+            "derisk_events": 19,
+            "frac_below_1": 0.8876072167997634
+          }
+        },
+        {
+          "symbol": "GLD",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day -0.027% < buy&hold mean 0.037% + 5bps; conditional Sharpe -0.23 < buy&hold 0.47",
+          "ref": "backtests/old_era/cells/vol_peak_rebound_v1/GLD_2004-11-18_2015-12-31_20261014T003444Z.json",
+          "strategy": {
+            "total_return": -0.08807435213143278,
+            "cagr": -0.008266322704480022,
+            "ann_vol": 0.07583203261409964,
+            "sharpe": -0.07150980733960596,
+            "max_drawdown": -0.2345129686486087,
+            "exposure": 0.07859949982136477,
+            "trades": 22,
+            "entries": 11,
+            "exits": 11,
+            "exposure_days": 220,
+            "return_per_exposure_day": -0.00027377764402401777
+          },
+          "buy_and_hold": {
+            "total_return": 1.2861648635102494,
+            "cagr": 0.07728652097498245,
+            "ann_vol": 0.1986265822801532,
+            "sharpe": 0.47431532957700057,
+            "max_drawdown": -0.4555501273425696,
+            "mean_daily_return": 0.0003738556858609686
+          },
+          "extras": {
+            "cond_sharpe": -0.2313175876356899,
+            "derisk_events": 11,
+            "frac_below_1": 0.9214005001786352
+          }
+        },
+        {
+          "symbol": "XLE",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day -0.008% < buy&hold mean 0.043% + 5bps; conditional Sharpe -0.04 < buy&hold 0.38",
+          "ref": "backtests/old_era/cells/vol_peak_rebound_v1/XLE_2000-01-03_2015-12-31_20261014T003445Z.json",
+          "strategy": {
+            "total_return": -0.1612147005495067,
+            "cagr": -0.01094628892216154,
+            "ann_vol": 0.1280791294089872,
+            "sharpe": -0.021474597134086497,
+            "max_drawdown": -0.45155438195261344,
+            "exposure": 0.12919254658385093,
+            "trades": 52,
+            "entries": 26,
+            "exits": 26,
+            "exposure_days": 520,
+            "return_per_exposure_day": -8.448223453910015e-05
+          },
+          "buy_and_hold": {
+            "total_return": 1.9403871260843304,
+            "cagr": 0.0698581405488945,
+            "ann_vol": 0.28298751979889036,
+            "sharpe": 0.38056461248980944,
+            "max_drawdown": -0.5735939687807421,
+            "mean_daily_return": 0.00042736125322109916
+          },
+          "extras": {
+            "cond_sharpe": -0.042031090501889,
+            "derisk_events": 26,
+            "frac_below_1": 0.8708074534161491
+          }
+        },
+        {
+          "symbol": "EFA",
+          "window": "IS",
+          "verdict": "contradicts",
+          "why": "return/exposure day 0.039% < buy&hold mean 0.029% + 5bps",
+          "ref": "backtests/old_era/cells/vol_peak_rebound_v1/EFA_2001-08-27_2015-12-31_20261014T003445Z.json",
+          "strategy": {
+            "total_return": 0.10092270203038378,
+            "cagr": 0.006736208195936344,
+            "ann_vol": 0.08598111424919717,
+            "sharpe": 0.12104620671120776,
+            "max_drawdown": -0.2680743485601361,
+            "exposure": 0.10529232474369632,
+            "trades": 38,
+            "entries": 19,
+            "exits": 19,
+            "exposure_days": 380,
+            "return_per_exposure_day": 0.0003922446221048858
+          },
+          "buy_and_hold": {
+            "total_return": 0.9607179796511613,
+            "cagr": 0.04813690826547523,
+            "ann_vol": 0.23004923485576745,
+            "sharpe": 0.3192601925015557,
+            "max_drawdown": -0.6103729711819859,
+            "mean_daily_return": 0.0002914506468447933
+          },
+          "extras": {
+            "cond_sharpe": 0.39646735868667854,
+            "derisk_events": 19,
+            "frac_below_1": 0.8947076752563037
+          }
+        }
+      ]
+    }
+  }
+}

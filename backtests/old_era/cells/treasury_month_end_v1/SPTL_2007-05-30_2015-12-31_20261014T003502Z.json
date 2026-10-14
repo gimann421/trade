@@ -1,0 +1,38 @@
+{
+  "start": "2007-05-30",
+  "end": "2015-12-31",
+  "days": 2165,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.34196235236251327,
+    "cagr": 0.034829070991870825,
+    "ann_vol": 0.049908708425409475,
+    "sharpe": 0.7109311064315007,
+    "max_drawdown": -0.12137348865606146,
+    "exposure": 0.14226327944572748,
+    "trades": 207,
+    "entries": 104,
+    "exits": 103,
+    "exposure_days": 308,
+    "return_per_exposure_day": 0.000989715772490533
+  },
+  "buy_and_hold": {
+    "total_return": 0.8588288577492649,
+    "cagr": 0.074827379152697,
+    "ann_vol": 0.13413628463686755,
+    "sharpe": 0.6050753341537645,
+    "max_drawdown": -0.1862384988749053,
+    "mean_daily_return": 0.00032207363987617893
+  },
+  "strategy_file": "strategies/treasury_month_end_v1.py",
+  "params": {
+    "days_before_month_end": [
+      1,
+      2,
+      3
+    ]
+  },
+  "symbol": "SPTL",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003502Z"
+}

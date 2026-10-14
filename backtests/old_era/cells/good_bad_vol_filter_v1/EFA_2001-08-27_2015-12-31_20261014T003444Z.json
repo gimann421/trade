@@ -1,0 +1,37 @@
+{
+  "start": "2001-08-27",
+  "end": "2015-12-31",
+  "days": 3609,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.5970046787185208,
+    "cagr": 0.03322746826210565,
+    "ann_vol": 0.19468975972973399,
+    "sharpe": 0.26537093653951543,
+    "max_drawdown": -0.5069576528903331,
+    "exposure": 0.8506511499030203,
+    "trades": 59,
+    "entries": 30,
+    "exits": 29,
+    "exposure_days": 3070,
+    "return_per_exposure_day": 0.00024101519955243406
+  },
+  "buy_and_hold": {
+    "total_return": 0.9607179796511613,
+    "cagr": 0.04813690826547523,
+    "ann_vol": 0.23004923485576745,
+    "sharpe": 0.3192601925015557,
+    "max_drawdown": -0.6103729711819859,
+    "mean_daily_return": 0.0002914506468447933
+  },
+  "strategy_file": "strategies/good_bad_vol_filter_v1.py",
+  "params": {
+    "vol_window": 20,
+    "median_window": 252,
+    "exit_share": 0.7,
+    "reenter_share": 0.5
+  },
+  "symbol": "EFA",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003444Z"
+}

@@ -1,0 +1,35 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.6015821629217406,
+    "cagr": 0.029927276399811298,
+    "ann_vol": 0.21924921208335382,
+    "sharpe": 0.24411648881290524,
+    "max_drawdown": -0.6472340031855275,
+    "exposure": 0.7652173913043478,
+    "trades": 118,
+    "entries": 60,
+    "exits": 59,
+    "exposure_days": 3080,
+    "return_per_exposure_day": 0.0002775554653819534
+  },
+  "buy_and_hold": {
+    "total_return": 0.387408554159711,
+    "cagr": 0.020712022099524274,
+    "ann_vol": 0.3179670899829608,
+    "sharpe": 0.2230054395723278,
+    "max_drawdown": -0.8268653866084804,
+    "mean_daily_return": 0.0002813825026634289
+  },
+  "strategy_file": "strategies/overnight_trend_v1.py",
+  "params": {
+    "window": 126,
+    "component": "overnight"
+  },
+  "symbol": "XLF",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003454Z"
+}

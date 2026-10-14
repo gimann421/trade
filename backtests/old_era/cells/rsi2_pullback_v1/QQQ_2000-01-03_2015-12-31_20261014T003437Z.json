@@ -1,0 +1,37 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.89752154025568,
+    "cagr": 0.04091893173882566,
+    "ann_vol": 0.09298399843876476,
+    "sharpe": 0.4773281383083824,
+    "max_drawdown": -0.15488535328059805,
+    "exposure": 0.11229813664596273,
+    "trades": 246,
+    "entries": 123,
+    "exits": 123,
+    "exposure_days": 452,
+    "return_per_exposure_day": 0.0015683831335217516
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/rsi2_pullback_v1.py",
+  "params": {
+    "rsi_period": 2,
+    "entry_rsi": 10,
+    "trend": 200,
+    "exit_sma": 5
+  },
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003437Z"
+}

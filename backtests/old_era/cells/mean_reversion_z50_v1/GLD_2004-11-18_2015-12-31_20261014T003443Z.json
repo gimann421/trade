@@ -1,0 +1,37 @@
+{
+  "start": "2004-11-18",
+  "end": "2015-12-31",
+  "days": 2799,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.36349984506034616,
+    "cagr": 0.028308174220860405,
+    "ann_vol": 0.1069216153101419,
+    "sharpe": 0.3142826372425021,
+    "max_drawdown": -0.30172321543793135,
+    "exposure": 0.2497320471596999,
+    "trades": 64,
+    "entries": 32,
+    "exits": 32,
+    "exposure_days": 699,
+    "return_per_exposure_day": 0.0005339628985789292
+  },
+  "buy_and_hold": {
+    "total_return": 1.2861648635102494,
+    "cagr": 0.07728652097498245,
+    "ann_vol": 0.1986265822801532,
+    "sharpe": 0.47431532957700057,
+    "max_drawdown": -0.4555501273425696,
+    "mean_daily_return": 0.0003738556858609686
+  },
+  "strategy_file": "strategies/mean_reversion_z50_v1.py",
+  "params": {
+    "window": 50,
+    "enter_z": -1.5,
+    "exit_z": 0.0,
+    "max_hold": 30
+  },
+  "symbol": "GLD",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003443Z"
+}

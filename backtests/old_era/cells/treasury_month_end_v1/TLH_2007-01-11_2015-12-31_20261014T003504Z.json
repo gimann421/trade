@@ -1,0 +1,38 @@
+{
+  "start": "2007-01-11",
+  "end": "2015-12-31",
+  "days": 2260,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.20095305273605546,
+    "cagr": 0.0206280602688802,
+    "ann_vol": 0.03617421607521504,
+    "sharpe": 0.5825220356392411,
+    "max_drawdown": -0.09588451672006615,
+    "exposure": 0.1424778761061947,
+    "trades": 215,
+    "entries": 108,
+    "exits": 107,
+    "exposure_days": 322,
+    "return_per_exposure_day": 0.0005868991946155098
+  },
+  "buy_and_hold": {
+    "total_return": 0.762189482435178,
+    "cagr": 0.06521176426421205,
+    "ann_vol": 0.09845649931847644,
+    "sharpe": 0.6908934555413097,
+    "max_drawdown": -0.14272540823608937,
+    "mean_daily_return": 0.0002699323453755666
+  },
+  "strategy_file": "strategies/treasury_month_end_v1.py",
+  "params": {
+    "days_before_month_end": [
+      1,
+      2,
+      3
+    ]
+  },
+  "symbol": "TLH",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003504Z"
+}

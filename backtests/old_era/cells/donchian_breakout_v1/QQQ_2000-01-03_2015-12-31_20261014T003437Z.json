@@ -1,0 +1,35 @@
+{
+  "start": "2000-01-03",
+  "end": "2015-12-31",
+  "days": 4025,
+  "cost_bps": 5.0,
+  "strategy": {
+    "total_return": 0.36680113033846284,
+    "cagr": 0.01975615116517626,
+    "ann_vol": 0.13640629126350437,
+    "sharpe": 0.21160956927806016,
+    "max_drawdown": -0.44288273255389543,
+    "exposure": 0.4377639751552795,
+    "trades": 89,
+    "entries": 45,
+    "exits": 45,
+    "exposure_days": 1762,
+    "return_per_exposure_day": 0.0002616550638656431
+  },
+  "buy_and_hold": {
+    "total_return": 0.3480672738192816,
+    "cagr": 0.018875388964596285,
+    "ann_vol": 0.2937316184476324,
+    "sharpe": 0.21002038060493283,
+    "max_drawdown": -0.8296390098636316,
+    "mean_daily_return": 0.00024480010437331217
+  },
+  "strategy_file": "strategies/donchian_breakout_v1.py",
+  "params": {
+    "entry": 63,
+    "exit": 21
+  },
+  "symbol": "QQQ",
+  "git_commit": "003e2be-dirty",
+  "run_at": "20261014T003437Z"
+}
