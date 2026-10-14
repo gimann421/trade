@@ -97,3 +97,22 @@ def test_low_volume_filter_removes_high_volume_names():
     ratio.iloc[:, :10] = 2.0
     _, detail = run({"kind": "lv", "hold": 2, "signal": "rev1"}, scores, ratio)
     assert all(not (set(d["ranked"]) & set(close.columns[:10])) for d in detail)
+
+
+def test_snapshot_tracker_records_picks_and_nav(tmp_path):
+    from core import snapshot_tracker as st
+    open_, close, snap = panel(days=60, n=30)
+    start = close.index[20]
+    session = close.index[27]
+    names = list(close.columns)
+    membership = pd.Series([frozenset(names)], index=pd.DatetimeIndex(["2016-01-04"]))
+    fake_close = lambda symbols, a, b: close.loc[:session]
+    fake_snap = lambda symbols, day: snap.loc[day, [s for s in symbols]]
+    cfg = {"rule": "stock_rev5_h2_band", "strategy_rule": "rev5_h2_band_s", "start": str(start.date()), "initial_cash": 1000}
+    status = st.run_snapshot_rule(cfg, session, membership, tmp_path, fake_close, fake_snap)
+    assert status["state"] == "running" and status["decisions"] == 4
+    assert len(status["holdings"]) == 3 and status["decisions_changed_since_recorded"] == []
+    assert (tmp_path / "decisions" / f"{start.date()}.json").exists() and (tmp_path / "nav.csv").exists()
+    # a rerun reuses the stored snapshots even if the source now returns different prices
+    again = st.run_snapshot_rule(cfg, session, membership, tmp_path, fake_close, lambda s, d: snap.loc[d, list(s)] * 2)
+    assert again["holdings"] == status["holdings"] and again["decisions_changed_since_recorded"] == []

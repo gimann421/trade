@@ -326,6 +326,20 @@ def main(argv=None) -> int:
 
     failures = 0
     for cfg in load_tracked():
+        if cfg.get("kind") == "snapshot":
+            from core import snapshot_tracker as snt
+            try:
+                status = snt.run_snapshot_rule(cfg, session, membership, PAPER_DIR / cfg["rule"])
+            except DataNotReady as exc:
+                print(f"{cfg['rule']}: data not ready ({exc})", file=sys.stderr)
+                failures += 1
+                continue
+            print(cfg["rule"], json.dumps({k: status.get(k) for k in ("state", "asof", "last_decision", "nav", "benchmark_nav", "excess_return")}))
+            if status.get("decisions_changed_since_recorded"):
+                print(f"  WARNING: recomputed picks differ from the recorded decisions: {status['decisions_changed_since_recorded']}", file=sys.stderr)
+            if args.execute and cfg.get("allocation_pct", 0) > 0:
+                print(f"  {cfg['rule']}: snapshot rules are shadow-only; no orders placed", file=sys.stderr)
+            continue
         if cfg.get("kind") == "signal":
             from core import signal_tracker as st
             try:

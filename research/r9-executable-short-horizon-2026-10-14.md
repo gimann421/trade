@@ -85,3 +85,6 @@ What this says:
 
 ### Recommendation
 `rev5_h2_band_s` meets the bar the project set, so under the existing rules it earns a forward shadow record (no orders), which is what measures the real 15:45-to-close behaviour. Adding it to the paper tracker is a separate change that this round did not make.
+
+### Forward record (added 2026-10-14, on the user's go-ahead)
+`rev5_h2_band_s` is tracked as `stock_rev5_h2_band` (shadow only, allocation 0, never places orders) by `core/snapshot_tracker.py`, run from `core.paper_runner run`. Decisions fall on every second session from 2026-10-15, on the **full** point-in-time S&P 500 (not the 300-name sample the backtest used), with picks and the 15:45 prices written once to `paper/stock_rev5_h2_band/decisions/`. The shadow NAV fills at the official close with 5 bps on turnover against an equal-weight benchmark of the members priced on both days of each interval. Because the runner executes after the close, a decision file shows what the rule would have picked from the 15:45 price but cannot prove it was committed before the 15:50 order cut-off; the first-month check is that the runner runs every trading day without gaps. No stopping rules are set (the project's tracking rules are still a draft).

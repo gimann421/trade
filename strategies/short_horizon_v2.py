@@ -66,6 +66,21 @@ def _top(series: pd.Series, n: int) -> list[str]:
     return [t for t, _ in sorted(series.items(), key=lambda kv: (-kv[1], kv[0]))[:n]]
 
 
+def select(rule: dict, row: pd.Series, held: list[str]) -> list[str]:
+    """Names to hold given the ranked scores `row` (NaN already dropped, and low-volume names removed for lv)
+    and the names held after the previous decision."""
+    n = max(1, int(round(FRACTION * len(row)))) if len(row) else 0
+    if not n:
+        return []
+    if rule["kind"] == "band":
+        order = _top(row, len(row))
+        cutoff = set(order[:max(n, int(round(BAND * len(row))))])
+        keep = [t for t in held if t in cutoff]
+        fill = [t for t in order if t not in keep][:max(0, n - len(keep))]
+        return sorted(keep + fill)
+    return _top(row, n)
+
+
 def generate_targets(rule: dict, close: pd.DataFrame, scores: pd.DataFrame, ratio: pd.DataFrame | None,
                      decisions, members_on_fn):
     """Strategy targets (NaN rows = no trade) and per-rebalance detail (date, priced, ranked, picks)."""
@@ -80,15 +95,7 @@ def generate_targets(rule: dict, close: pd.DataFrame, scores: pd.DataFrame, rati
             r = ratio.loc[date, row.index]
             row = row[(r <= 1.0).reindex(row.index).fillna(False)]
         ranked = list(row.index)
-        n = max(1, int(round(FRACTION * len(row)))) if len(row) else 0
-        if rule["kind"] == "band" and n:
-            order = _top(row, len(row))
-            cutoff = set(order[:max(n, int(round(BAND * len(row))))])
-            keep = [t for t in held if t in cutoff]
-            fill = [t for t in order if t not in keep][:max(0, n - len(keep))]
-            picks = sorted(keep + fill)
-        else:
-            picks = _top(row, n) if n else []
+        picks = select(rule, row, held)
         strategy.loc[date] = 0.0
         if picks:
             strategy.loc[date, picks] = 1.0 / len(picks)
