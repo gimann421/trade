@@ -83,3 +83,6 @@ Run 2026-10-15 on the commit that adds this section. Statuses set by `research/r
 
 ### Conclusion
 Nothing improves on `rev5_h3_band40_s`, which stays the lead (not formally supported). The thinness of the edge at 10 bps is not fixed by trading less, by neutralising industry, or by skipping earnings. The shadow record `stock_rev5_h2_band` is unchanged.
+
+## Forward record: second shadow rule (added 2026-10-15 on Garret's go-ahead)
+`stock_rev5_h3_band40` (`rev5_h3_band40_s`, decide every 3rd session from 2026-10-16, 15:45 signal, fill at the close, 5 bps) now runs shadow-only beside `stock_rev5_h2_band`. It is a lead (passes the full bar on the 300-name sample, the 418 unseen names and all 718), not a formally supported rule. No orders are ever sent. No performance conclusions before six months.

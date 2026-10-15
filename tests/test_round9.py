@@ -133,3 +133,16 @@ def test_v3_neighbour_grid():
     held = ["T25"]   # rank 15 of 40: outside the 20% band, inside the 40% band
     assert "T25" not in sh3.select({"kind": "band", "fraction": 0.1, "band": 0.2}, row, held)
     assert "T25" in sh3.select({"kind": "band", "fraction": 0.1, "band": 0.4}, row, held)
+
+
+def test_snapshot_tracker_hold_three(tmp_path):
+    from core import snapshot_tracker as st
+    open_, close, snap = panel(days=60, n=30)
+    start, session = close.index[20], close.index[29]
+    names = list(close.columns)
+    membership = pd.Series([frozenset(names)], index=pd.DatetimeIndex(["2016-01-04"]))
+    cfg = {"rule": "stock_rev5_h3_band40", "strategy_rule": "rev5_h3_band40_s", "start": str(start.date()), "initial_cash": 1000}
+    status = st.run_snapshot_rule(cfg, session, membership, tmp_path, lambda s, a, b: close.loc[:session],
+                                  lambda symbols, day: snap.loc[day, list(symbols)])
+    assert status["decisions"] == 4 and status["state"] == "running"   # sessions 20, 23, 26, 29
+    assert st.decision_sessions(start, session, 3)[1] == close.index[23]

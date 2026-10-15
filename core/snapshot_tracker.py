@@ -1,6 +1,6 @@
 """Forward shadow record for the 15:45-snapshot stock rules of round 9 (strategies/short_horizon_v2.py).
 
-Every 2nd session from the rule's start date, the rule ranks the priced point-in-time S&P 500 members on the
+Every `hold` sessions (2 or 3) from the rule's start date, the rule ranks the priced point-in-time S&P 500 members on the
 15:45 price of that day (the close of the 15:30-15:45 bar) against official closes, picks the names, and the
 shadow portfolio is assumed filled at that session's official close. Each decision is written once to
 paper/<rule>/decisions/<date>.json with the 15:45 prices it used; later runs reuse those files and only fetch
@@ -28,9 +28,19 @@ LOOKBACK_DAYS = 14
 SNAPSHOT_MINUTE = 15 * 60 + 30     # the bar that starts at 15:30 closes at 15:45
 
 
-def decision_sessions(start, end) -> list[pd.Timestamp]:
+def decision_sessions(start, end, hold: int = 2) -> list[pd.Timestamp]:
     days = trading_days(pd.Timestamp(start), pd.Timestamp(end))
-    return list(days[::2]) if len(days) and days[0] == pd.Timestamp(start) else []
+    return list(days[::hold]) if len(days) and days[0] == pd.Timestamp(start) else []
+
+
+def find_rule(strategy_rule: str):
+    """The rule dict and its module: short_horizon_v2 first (the original shadow rule), then short_horizon_v3."""
+    for name in ("short_horizon_v2", "short_horizon_v3"):
+        module = load_module(name)
+        rule = next((r for r in module.RULES if r["id"] == strategy_rule), None)
+        if rule is not None:
+            return rule, module
+    return None, None
 
 
 def fetch_snapshot(symbols, day, client=None, batch: int = 100) -> pd.Series:
@@ -65,14 +75,13 @@ def fetch_snapshot(symbols, day, client=None, batch: int = 100) -> pd.Series:
 
 def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, out_dir, fetch_closes_fn=fetch_closes,
                       fetch_snapshot_fn=fetch_snapshot) -> dict:
-    sh = load_module("short_horizon_v2")
-    rule = next((r for r in sh.RULES if r["id"] == cfg["strategy_rule"]), None)
-    if rule is None or rule["hold"] != 2 or rule["signal"] != "rev5" or rule["kind"] == "lv":
-        raise ValueError(f"{cfg['rule']}: the snapshot tracker supports the rev5 two-session rules only")
+    rule, sh = find_rule(cfg["strategy_rule"])
+    if rule is None or rule["signal"] != "rev5" or rule["kind"] != "band":
+        raise ValueError(f"{cfg['rule']}: the snapshot tracker supports the rev5 band rules only")
     start = pd.Timestamp(cfg["start"])
     status = {"rule": cfg["rule"], "kind": "snapshot", "strategy_rule": cfg["strategy_rule"], "asof": str(session.date()),
               "start": str(start.date())}
-    decisions = decision_sessions(start, session)
+    decisions = decision_sessions(start, session, rule["hold"])
     if not decisions:
         status["state"] = "waiting"
         _write_json(out_dir, "status.json", status)
