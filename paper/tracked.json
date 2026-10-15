@@ -1,5 +1,5 @@
 {
- "note": "Rules tracked by core.paper_runner. start = first month-end decision of the forward record. allocation_pct is the share of account equity placed when run with --execute; 0 means shadow only (nothing is ever sent). The decile rule is set to 50 (half size) as of 2026-10-14; the quintile rule stays shadow-only. Runs only place orders when started with --execute. Entries with kind \"signal\" are single-symbol rules run by core.signal_tracker; they are shadow-only and never place orders. They count only signals that fire at a close on or after start.",
+ "note": "Rules tracked by core.paper_runner. start = first month-end decision of the forward record. allocation_pct is the share of account equity placed when run with --execute; 0 means shadow only (nothing is ever sent). The decile rule is set to 50 (half size) as of 2026-10-14; the quintile rule stays shadow-only. Runs only place orders when started with --execute. Entries with kind \"signal\" are single-symbol rules run by core.signal_tracker; they are shadow-only and never place orders. They count only signals that fire at a close on or after start. Entries with kind \"snapshot\" (round 9) are 15:45-signal stock rules run by core.snapshot_tracker every second session from start; shadow-only, never place orders.",
  "tracked": [
   {
    "rule": "stock_resmom6_1_decile",
@@ -18,6 +18,14 @@
    "kind": "signal",
    "strategy": "gap_fade_washout_v1",
    "symbol": "XLK",
+   "start": "2026-10-15",
+   "initial_cash": 100000,
+   "allocation_pct": 0
+  },
+  {
+   "rule": "stock_rev5_h2_band",
+   "kind": "snapshot",
+   "strategy_rule": "rev5_h2_band_s",
    "start": "2026-10-15",
    "initial_cash": 100000,
    "allocation_pct": 0
