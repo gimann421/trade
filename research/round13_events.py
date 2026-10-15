@@ -303,31 +303,32 @@ def score_spy(snap_trades: pd.DataFrame, snap: pd.DataFrame) -> dict:
     return cells
 
 
-def run():
+def run(only=None):
     panel = Panel()
     ev = earnings_sessions(panel)
     print(f"panel {len(panel.cols)} names, {len(panel.index)} sessions; {len(ev)} earnings reaction sessions, {ev['symbol'].nunique()} symbols", flush=True)
-    results = {}
+    results, diagnostics = {}, {}
 
-    peer = build_peer_fade(panel, ev)
-    results["peer_fade_s"] = {"cells": score(panel, "peer_fade_s", peer), "n_pairs": len(peer), "mean_hold": float(peer["hold"].mean()) if len(peer) else None}
-    print(fmt("peer_fade_s", results["peer_fade_s"]["cells"]), flush=True)
-    diagnostics = {}
-    for leg in ("good", "bad"):
-        sub = peer[peer["leg"] == leg] if len(peer) else peer
-        diagnostics[f"peer_fade_{leg}"] = score(panel, "peer_fade_s", sub)
-        print(fmt("  report only", diagnostics[f"peer_fade_{leg}"], f" {leg}-news"), flush=True)
-    alt = build_peer_fade(panel, ev, alt_exit=True)
-    diagnostics["peer_fade_10"] = score(panel, "peer_fade_s", alt)
-    print(fmt("  report only", diagnostics["peer_fade_10"], " exit<=10"), flush=True)
+    if only != "spy":
+        peer = build_peer_fade(panel, ev)
+        results["peer_fade_s"] = {"cells": score(panel, "peer_fade_s", peer), "n_pairs": len(peer), "mean_hold": float(peer["hold"].mean()) if len(peer) else None}
+        print(fmt("peer_fade_s", results["peer_fade_s"]["cells"]), flush=True)
+        diagnostics = {}
+        for leg in ("good", "bad"):
+            sub = peer[peer["leg"] == leg] if len(peer) else peer
+            diagnostics[f"peer_fade_{leg}"] = score(panel, "peer_fade_s", sub)
+            print(fmt("  report only", diagnostics[f"peer_fade_{leg}"], f" {leg}-news"), flush=True)
+        alt = build_peer_fade(panel, ev, alt_exit=True)
+        diagnostics["peer_fade_10"] = score(panel, "peer_fade_s", alt)
+        print(fmt("  report only", diagnostics["peer_fade_10"], " exit<=10"), flush=True)
 
-    earn = build_earn_premium(panel, ev)
-    results["earn_premium_s"] = {"cells": score(panel, "earn_premium_s", earn)}
-    print(fmt("earn_premium_s", results["earn_premium_s"]["cells"]), flush=True)
+        earn = build_earn_premium(panel, ev)
+        results["earn_premium_s"] = {"cells": score(panel, "earn_premium_s", earn)}
+        print(fmt("earn_premium_s", results["earn_premium_s"]["cells"]), flush=True)
 
-    ins = build_insider(panel)
-    results["insider_cluster_s"] = {"cells": score(panel, "insider_cluster_s", ins)}
-    print(fmt("insider_cluster_s", results["insider_cluster_s"]["cells"]), flush=True)
+        ins = build_insider(panel)
+        results["insider_cluster_s"] = {"cells": score(panel, "insider_cluster_s", ins)}
+        print(fmt("insider_cluster_s", results["insider_cluster_s"]["cells"]), flush=True)
 
     if SPY_PATH.exists():
         spy_snap = pd.read_csv(SPY_PATH, index_col=0, parse_dates=True).dropna()
@@ -363,9 +364,10 @@ def run():
 def main():
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--run", action="store_true")
+    parser.add_argument("--only", choices=["spy"], help="run only the SPY rule (its data arrived after the first run)")
     args = parser.parse_args()
     if args.run:
-        run()
+        run(args.only)
 
 
 if __name__ == "__main__":

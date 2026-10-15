@@ -1,0 +1,516 @@
+{
+ "git_commit": "1b3ddb5-dirty",
+ "run_at": "20261015T160430Z",
+ "universe": "holdout",
+ "data_check": {
+  "tickers": 419,
+  "proxy": "daily close"
+ },
+ "bar": {
+  "net_active": 0.02,
+  "information_ratio": 0.3,
+  "placebo": 0.95
+ },
+ "costs": {
+  "primary": 5.0,
+  "stress": 10.0
+ },
+ "results": {
+  "parent": {
+   "rule": {
+    "id": "rev5_h3_band40_s",
+    "filter": null,
+    "hold": 3,
+    "kind": "band",
+    "band": 0.4,
+    "fraction": 0.1,
+    "role": "parent",
+    "family": "stock"
+   },
+   "full": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 504,
+      "net_active": 0.050620946493487404,
+      "information_ratio": 0.4004967400479124,
+      "placebo": 1.0,
+      "gross_active": 0.08474793757740703,
+      "annual_turnover": 68.99101411101724,
+      "break_even_bps": 12.41655576505536,
+      "stress_net_active": 0.01649395540956778,
+      "noisy_net_active": null,
+      "beta": 1.1799922158474467,
+      "start": "2017-01-03",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "contradicts",
+      "why": [
+       "information ratio 0.28 < 0.3"
+      ],
+      "decisions": 316,
+      "net_active": 0.036839648521834176,
+      "information_ratio": 0.2845019279008922,
+      "placebo": 0.997,
+      "gross_active": 0.0711693085727802,
+      "annual_turnover": 69.42205184220353,
+      "break_even_bps": 10.365571413635216,
+      "stress_net_active": 0.0025099884708881465,
+      "noisy_net_active": null,
+      "beta": 1.320883491127653,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.3549274252949307,
+    "net_active_all": 0.045280623188016234,
+    "mean_ranked_names": 294.98536585365855,
+    "weeks_to_confidence": 1651.141213051024
+   }
+  },
+  "rev5sv_h3_band40_s": {
+   "rule": {
+    "id": "rev5sv_h3_band40_s",
+    "filter": "sv",
+    "hold": 3,
+    "kind": "band",
+    "band": 0.4,
+    "fraction": 0.1,
+    "role": "test",
+    "family": "stock"
+   },
+   "test": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 336,
+      "net_active": 0.05983667150642137,
+      "information_ratio": 0.3759194624966857,
+      "placebo": 0.993,
+      "gross_active": 0.10170817767506549,
+      "annual_turnover": 84.5197922001883,
+      "break_even_bps": 12.14527335909768,
+      "stress_net_active": 0.01796516533777727,
+      "noisy_net_active": null,
+      "beta": 1.170093270638984,
+      "start": "2019-01-02",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 316,
+      "net_active": 0.07695552166897766,
+      "information_ratio": 0.5047622789435511,
+      "placebo": 0.998,
+      "gross_active": 0.117803604909751,
+      "annual_turnover": 82.45889822185815,
+      "break_even_bps": 14.419722489226004,
+      "stress_net_active": 0.03610743842820432,
+      "noisy_net_active": null,
+      "beta": 1.3082738228536688,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.15184344983206835,
+    "net_active_all": 0.022353110309076434,
+    "mean_ranked_names": 122.85853658536585,
+    "weeks_to_confidence": 9021.343313702606
+   },
+   "cov": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 336,
+      "net_active": 0.08703371458141315,
+      "information_ratio": 0.599931318983271,
+      "placebo": 1.0,
+      "gross_active": 0.1216993941444445,
+      "annual_turnover": 70.10813898896279,
+      "break_even_bps": 17.553297047467783,
+      "stress_net_active": 0.05236803501838182,
+      "noisy_net_active": null,
+      "beta": 1.1861250641980148,
+      "start": "2019-01-02",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "contradicts",
+      "why": [
+       "information ratio 0.30 < 0.3"
+      ],
+      "decisions": 316,
+      "net_active": 0.03854777836641801,
+      "information_ratio": 0.29669821749356173,
+      "placebo": 0.998,
+      "gross_active": 0.07283323257747326,
+      "annual_turnover": 69.33364016242199,
+      "break_even_bps": 10.621593654429168,
+      "stress_net_active": 0.00426232415536275,
+      "noisy_net_active": null,
+      "beta": 1.3200723065576263,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.1381372098678258,
+    "net_active_all": 0.018157657917909006,
+    "mean_ranked_names": 245.3,
+    "weeks_to_confidence": 10900.388463865325
+   },
+   "opp": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 336,
+      "net_active": 0.07827667152794593,
+      "information_ratio": 0.49332551642439937,
+      "placebo": 1.0,
+      "gross_active": 0.12278693357005055,
+      "annual_turnover": 89.79730394710934,
+      "break_even_bps": 13.793103875000764,
+      "stress_net_active": 0.03376640948584134,
+      "noisy_net_active": null,
+      "beta": 1.2301899226115312,
+      "start": "2019-01-02",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "contradicts",
+      "why": [
+       "net active -2.39%/yr < 2.0%",
+       "information ratio -0.18 < 0.3",
+       "placebo 0.856 < 0.95",
+       "10 bps net active -6.74% not above 0"
+      ],
+      "decisions": 316,
+      "net_active": -0.023896181714364254,
+      "information_ratio": -0.1782724183824308,
+      "placebo": 0.856,
+      "gross_active": 0.019630622884194645,
+      "annual_turnover": 87.81634093742927,
+      "break_even_bps": 2.2550039068161443,
+      "stress_net_active": -0.06742298631292314,
+      "noisy_net_active": null,
+      "beta": 1.363340297810881,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": -0.10012396493512478,
+    "net_active_all": -0.014007020453892858,
+    "mean_ranked_names": 122.44146341463414,
+    "weeks_to_confidence": null
+   }
+  },
+  "rev5nn_h3_band40_s": {
+   "rule": {
+    "id": "rev5nn_h3_band40_s",
+    "filter": "nn",
+    "hold": 3,
+    "kind": "band",
+    "band": 0.4,
+    "fraction": 0.1,
+    "role": "test",
+    "family": "stock"
+   },
+   "test": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 504,
+      "net_active": 0.0829881058153148,
+      "information_ratio": 0.657353477976823,
+      "placebo": 1.0,
+      "gross_active": 0.12501393580616152,
+      "annual_turnover": 84.78869192487142,
+      "break_even_bps": 14.873464228236505,
+      "stress_net_active": 0.04096227582446807,
+      "noisy_net_active": null,
+      "beta": 1.1323705981968404,
+      "start": "2017-01-03",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 316,
+      "net_active": 0.10181751145639263,
+      "information_ratio": 0.7496931278773914,
+      "placebo": 1.0,
+      "gross_active": 0.14362550607677926,
+      "annual_turnover": 84.37872098108474,
+      "break_even_bps": 17.176799243887178,
+      "stress_net_active": 0.06000951683600599,
+      "noisy_net_active": null,
+      "beta": 1.3142758793229263,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.6944422921109961,
+    "net_active_all": 0.0902845966088562,
+    "mean_ranked_names": 187.68414634146342,
+    "weeks_to_confidence": 431.3114735750572
+   },
+   "cov": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 504,
+      "net_active": 0.07171082161114473,
+      "information_ratio": 0.6100735885182014,
+      "placebo": 1.0,
+      "gross_active": 0.1058931022919463,
+      "annual_turnover": 69.10159330478112,
+      "break_even_bps": 15.489472934938043,
+      "stress_net_active": 0.03752854093034313,
+      "noisy_net_active": null,
+      "beta": 1.1278714867847541,
+      "start": "2017-01-03",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 316,
+      "net_active": 0.059570002309712884,
+      "information_ratio": 0.4517339718911409,
+      "placebo": 1.0,
+      "gross_active": 0.09383187863422526,
+      "annual_turnover": 69.28648438933625,
+      "break_even_bps": 13.69333625302564,
+      "stress_net_active": 0.025308125985200495,
+      "noisy_net_active": null,
+      "beta": 1.3154298247581975,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.5435844017245173,
+    "net_active_all": 0.06700619216359109,
+    "mean_ranked_names": 241.7890243902439,
+    "weeks_to_confidence": 703.929819327586
+   },
+   "opp": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 504,
+      "net_active": 0.07146092849771224,
+      "information_ratio": 0.3778679995176938,
+      "placebo": 0.986,
+      "gross_active": 0.1300674318331433,
+      "annual_turnover": 117.95003861404004,
+      "break_even_bps": 11.096672248872249,
+      "stress_net_active": 0.012854425162281228,
+      "noisy_net_active": null,
+      "beta": 1.1511289534660425,
+      "start": "2017-01-03",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "contradicts",
+      "why": [
+       "net active -2.36%/yr < 2.0%",
+       "information ratio -0.13 < 0.3",
+       "placebo 0.620 < 0.95",
+       "10 bps net active -8.26% not above 0"
+      ],
+      "decisions": 316,
+      "net_active": -0.023649399121087746,
+      "information_ratio": -0.1324882551600711,
+      "placebo": 0.62,
+      "gross_active": 0.03531632566775214,
+      "annual_turnover": 118.69418131799125,
+      "break_even_bps": 2.99464865345268,
+      "stress_net_active": -0.08261512390992763,
+      "noisy_net_active": null,
+      "beta": 1.341435921083269,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.1869929409065886,
+    "net_active_all": 0.034605191090508844,
+    "mean_ranked_names": 54.104878048780485,
+    "weeks_to_confidence": 5948.5745815121245
+   }
+  },
+  "rev5wk_h3_band40_s": {
+   "rule": {
+    "id": "rev5wk_h3_band40_s",
+    "filter": "wk",
+    "hold": 3,
+    "kind": "band",
+    "band": 0.4,
+    "fraction": 0.1,
+    "role": "test",
+    "family": "stock"
+   },
+   "test": {
+    "cells": {
+     "IS": {
+      "verdict": "contradicts",
+      "why": [
+       "information ratio 0.20 < 0.3",
+       "placebo 0.923 < 0.95",
+       "10 bps net active -1.69% not above 0"
+      ],
+      "decisions": 504,
+      "net_active": 0.026873259316806127,
+      "information_ratio": 0.2023040411925001,
+      "placebo": 0.923,
+      "gross_active": 0.07067509323681238,
+      "annual_turnover": 88.34069978319049,
+      "break_even_bps": 8.067595225109045,
+      "stress_net_active": -0.01692857460320013,
+      "noisy_net_active": null,
+      "beta": 1.0764297381794943,
+      "start": "2017-01-03",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 316,
+      "net_active": 0.10886824399684195,
+      "information_ratio": 0.7533203771450163,
+      "placebo": 1.0,
+      "gross_active": 0.1530274247685838,
+      "annual_turnover": 89.0810932837952,
+      "break_even_bps": 17.326796160415686,
+      "stress_net_active": 0.06470906322510009,
+      "noisy_net_active": null,
+      "beta": 1.2993048297008223,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.42660082162957014,
+    "net_active_all": 0.05864673439290005,
+    "mean_ranked_names": 109.5548780487805,
+    "weeks_to_confidence": 1142.930861803379
+   },
+   "cov": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 504,
+      "net_active": 0.08096074072598453,
+      "information_ratio": 0.6976444772438225,
+      "placebo": 1.0,
+      "gross_active": 0.11550917623614895,
+      "annual_turnover": 69.83390296350683,
+      "break_even_bps": 16.716990875341548,
+      "stress_net_active": 0.0464123052158201,
+      "noisy_net_active": null,
+      "beta": 1.129866810577356,
+      "start": "2017-01-03",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 316,
+      "net_active": 0.08967006672496501,
+      "information_ratio": 0.6648692405005502,
+      "placebo": 1.0,
+      "gross_active": 0.12410654633956361,
+      "annual_turnover": 69.63569096950869,
+      "break_even_bps": 18.019633209974128,
+      "stress_net_active": 0.05523358711036641,
+      "noisy_net_active": null,
+      "beta": 1.308653893122914,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.6820229612352038,
+    "net_active_all": 0.08433564900407046,
+    "mean_ranked_names": 219.64268292682928,
+    "weeks_to_confidence": 447.16246641142646
+   },
+   "opp": {
+    "cells": {
+     "IS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 504,
+      "net_active": 0.05763281827843595,
+      "information_ratio": 0.4336515237254594,
+      "placebo": 0.995,
+      "gross_active": 0.10336258659819617,
+      "annual_turnover": 92.19656858269838,
+      "break_even_bps": 11.30145530974977,
+      "stress_net_active": 0.011903049958675728,
+      "noisy_net_active": null,
+      "beta": 1.1510470910893709,
+      "start": "2017-01-03",
+      "end": "2022-12-30"
+     },
+     "OOS": {
+      "verdict": "supports",
+      "why": [
+       "passes the bar and the stress checks"
+      ],
+      "decisions": 316,
+      "net_active": 0.08990489291807482,
+      "information_ratio": 0.5716388380028613,
+      "placebo": 1.0,
+      "gross_active": 0.13487016630574372,
+      "annual_turnover": 90.69327851564928,
+      "break_even_bps": 14.997147370033558,
+      "stress_net_active": 0.04493961953040593,
+      "noisy_net_active": null,
+      "beta": 1.3478978835034452,
+      "start": "2023-01-03",
+      "end": "2026-10-14"
+     }
+    },
+    "information_ratio_all": 0.49112104186380606,
+    "net_active_all": 0.07013841192197098,
+    "mean_ranked_names": 110.08780487804879,
+    "weeks_to_confidence": 862.3553292417764
+   }
+  }
+ }
+}

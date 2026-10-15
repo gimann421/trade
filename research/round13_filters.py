@@ -170,7 +170,7 @@ def run(universe: str, proxy: bool = False):
                 summary = (f"{rule['id']} {label} [{universe} universe, {report['tickers']} tickers{', daily-close proxy' if proxy else ''}] {w} {c['start']}..{c['end']}, 5 bps, 15:45 snapshot fill at the close: "
                            f"{c['decisions']} decisions, net active {c['net_active']:.2%}/yr (gross {c['gross_active']:.2%}), IR {c['information_ratio']:.2f}, "
                            f"placebo {c['placebo']:.3f}, turnover {c['annual_turnover']:.0f}x/yr, break-even {be} bps; 10 bps {c['stress_net_active']:.2%}, "
-                           f"15:30 signal {c['noisy_net_active']:.2%}. {'DAILY-CLOSE PROXY (not executable). ' if proxy else ''}{c['verdict']}: {'; '.join(c['why'])}")
+                           f"15:30 signal {'n/a' if c['noisy_net_active'] is None else format(c['noisy_net_active'], '.2%')}. {'DAILY-CLOSE PROXY (not executable). ' if proxy else ''}{c['verdict']}: {'; '.join(c['why'])}")
                 add_evidence(conn, hid, "backtest", summary, c["verdict"] if variant == "test" else "inconclusive", ref=str(path.relative_to(ROOT)))
     conn.close()
     path.write_text(json.dumps({"git_commit": _git_commit(), "run_at": stamp, "universe": universe, "data_check": report,

@@ -1,0 +1,50 @@
+{
+ "git_commit": "1b3ddb5-dirty",
+ "run_at": "20261015T161011Z",
+ "bar": {
+  "per_trade_bps": 25.0,
+  "t": 2.0,
+  "placebo": 0.95
+ },
+ "results": {
+  "spy_eod_flow_s": {
+   "cells": {
+    "IS": {
+     "trades": 369,
+     "gross_bps": -0.7392400813329273,
+     "net_bps": -10.73924008133293,
+     "stress_bps": -20.739240081332934,
+     "trades_per_year": 61.54212328767124,
+     "t": -6.322207339763845,
+     "placebo": 0.302,
+     "annual_net": -0.06609156371012917,
+     "verdict": "contradicts",
+     "why": [
+      "annual net -6.61% < 2%",
+      "t -6.32 < 2.0",
+      "placebo 0.302 < 0.95",
+      "10 bps per side net -20.7 bps not above 0"
+     ]
+    },
+    "OOS": {
+     "trades": 204,
+     "gross_bps": -3.6656394477771634,
+     "net_bps": -13.665639447777167,
+     "stress_bps": -23.66563944777717,
+     "trades_per_year": 53.91534008683068,
+     "t": -7.129003366099256,
+     "placebo": 0.001,
+     "annual_net": -0.0736787598330915,
+     "verdict": "contradicts",
+     "why": [
+      "annual net -7.37% < 2%",
+      "t -7.13 < 2.0",
+      "placebo 0.001 < 0.95",
+      "10 bps per side net -23.7 bps not above 0"
+     ]
+    }
+   }
+  }
+ },
+ "diagnostics": {}
+}
