@@ -92,3 +92,55 @@ def test_no_top_up_targets_sum_to_one_and_keep_drift():
     drift = drift / drift.sum()
     np.testing.assert_allclose(rows.loc[d4, kept], drift[kept])
     assert all(len(d["picks"]) == 4 for d in detail)
+
+
+def _v5():
+    spec5 = importlib.util.spec_from_file_location("sh5", ROOT / "strategies" / "short_horizon_v5.py")
+    m = importlib.util.module_from_spec(spec5)
+    spec5.loader.exec_module(m)
+    return m
+
+
+def test_v5_vix_share():
+    sh5 = _v5()
+    index = pd.DatetimeIndex(trading_days("2019-01-02", "2020-12-31"))
+    vix = pd.Series(20.0, index)
+    vix.iloc[400] = 40.0
+    gate = sh5.vix_share(vix, index, "gate")
+    scale = sh5.vix_share(vix, index, "scale")
+    assert gate.iloc[300] == 0.0 and gate.iloc[401] == 1.0 and np.isnan(gate.iloc[10])   # decided on the previous close
+    assert gate.iloc[400] == 0.0                                                          # the spike is not yet known
+    assert np.isclose(scale.iloc[300], 0.5) and np.isclose(scale.iloc[401], 1.0)
+
+
+def test_v5_residual_removes_beta():
+    sh5 = _v5()
+    open_, close, s45, s30 = panel(days=120, n=30, seed=9)
+    market = close.pct_change().mean(axis=1)
+    # a name that is exactly 2x the market has a residual of zero when snapshots equal closes
+    close["T00"] = 100 * (1 + 2 * market.fillna(0)).cumprod()
+    snap = close.copy()
+    res = sh5.residual_matrix(close, snap)
+    assert abs(res["T00"].iloc[-1]) < abs(res.drop(columns="T00").iloc[-1]).median()
+
+
+def test_v5_targets_mix_equal_weight():
+    sh5 = _v5()
+    open_, close, s45, s30 = panel()
+    rule = next(r for r in sh5.RULES if r["id"] == "rev5_h3_band40_vixscale_s")
+    sh5.FIRST_DECISION = str(close.index[10].date())
+    scores = sh5.rev5_matrix(close, s45)
+    share = pd.Series(0.5, close.index)
+    strat, detail = sh5.generate_targets(rule, close, scores, list(close.index[10::3]), lambda ds: [list(close.columns)] * len(ds), share=share)
+    row = strat.dropna(how="all").iloc[0]
+    assert np.isclose(row.sum(), 1.0)
+    picks = detail[0]["picks"]
+    assert np.isclose(row[picks[0]], 0.5 / len(picks) + 0.5 / 40)
+
+
+def test_v5_volume_filter_drops_high_volume():
+    sh5 = _v5()
+    vol = pd.DataFrame(100.0, pd.date_range("2020-01-01", periods=80), ["A", "B"])
+    vol.loc[vol.index[-5:], "A"] = 400.0
+    ratio = sh5.volume_ratio(vol, 5)
+    assert ratio["A"].iloc[-1] > sh5.VOLUME_LIMIT >= ratio["B"].iloc[-1]
