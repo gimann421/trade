@@ -66,3 +66,13 @@ python -c "from core.broker import get_paper_client as g; a=g().get_account(); p
    Rules that pass the bar in all three eras (2016-22, 2023+, 2000-15) also get a forward record, as a
    `kind: "signal"` entry (single-symbol, shadow only, `core/signal_tracker.py`). `python research/three_era_screen.py`
    prints the chance those passers are luck and an ALERT line if it reaches 10% (`research/screen-funnel-2026-10-14.md`).
+
+## Paper orders for every passing rule
+
+Each rule in `paper/tracked.json` with `allocation_pct` above 0 has its own sleeve inside the one paper account
+(`core/sleeves.py`): its orders carry a `client_order_id` starting with the rule id, and its shares are rebuilt from the
+filled quantities of those orders, so rules that hold the same stock never touch each other's shares. The shadow record
+stays the official scoreboard. Sleeve sizes add up to 135% of equity (limit 150).
+
+- Month-end stock rules and the XLK signal rule: `python -m core.paper_runner run --execute` after the close (DAY market orders, filled at the next open; the shadow record assumes the close).
+- 15:45 reversal rules: `python -m core.snapshot_orders --execute` on a session, started a few minutes before 15:45. It waits for the 15:30 bar, writes the decision file, and sends market-on-close orders before the 15:50 cut-off. Without `--execute` it is a dry run.

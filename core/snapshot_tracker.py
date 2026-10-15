@@ -43,7 +43,7 @@ def find_rule(strategy_rule: str):
     return None, None
 
 
-def fetch_snapshot(symbols, day, client=None, batch: int = 100) -> pd.Series:
+def fetch_snapshot(symbols, day, client=None, batch: int = 100, feed=None) -> pd.Series:
     """Price at 15:45 New York time on `day` for each symbol that has a 15:30-15:45 bar (adjustment ALL)."""
     from alpaca.data.enums import Adjustment
     from alpaca.data.historical import StockHistoricalDataClient
@@ -61,7 +61,7 @@ def fetch_snapshot(symbols, day, client=None, batch: int = 100) -> pd.Series:
     symbols = sorted(set(symbols))
     for i in range(0, len(symbols), batch):
         request = StockBarsRequest(symbol_or_symbols=symbols[i:i + batch], timeframe=TimeFrame(15, TimeFrameUnit.Minute),
-                                   start=start, end=end, adjustment=Adjustment.ALL)
+                                   start=start, end=end, adjustment=Adjustment.ALL, feed=feed)
         df = client.get_stock_bars(request).df
         if df.empty:
             continue

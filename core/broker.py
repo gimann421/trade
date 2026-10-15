@@ -60,8 +60,12 @@ def account_state(client: TradingClient) -> AccountState:
 
 def submit_order(client: TradingClient, order: ProposedOrder, reasoning: str, strategy: str, *,
                  hypothesis_id: int | None = None, limits: RiskLimits | None = None,
-                 journal_dir: Path = journal.JOURNAL_DIR):
-    """Risk-check, journal, and send a market order. Raises RiskViolation if blocked."""
+                 journal_dir: Path = journal.JOURNAL_DIR, time_in_force: TimeInForce = TimeInForce.DAY,
+                 client_order_id: str | None = None):
+    """Risk-check, journal, and send a market order. Raises RiskViolation if blocked.
+
+    time_in_force=TimeInForce.CLS makes it a market-on-close order (Alpaca's cut-off is 15:50 New York).
+    client_order_id tags the order with the rule that placed it (see core.sleeves)."""
     _check_paper_url(client)
     limits = limits or load_risk_limits()
     common = dict(strategy=strategy, symbol=order.symbol, side=order.side, qty=order.qty,
@@ -73,7 +77,7 @@ def submit_order(client: TradingClient, order: ProposedOrder, reasoning: str, st
         raise RiskViolation(violations)
 
     request = MarketOrderRequest(symbol=order.symbol, qty=order.qty, side=OrderSide(order.side),
-                                 time_in_force=TimeInForce.DAY)
+                                 time_in_force=time_in_force, client_order_id=client_order_id)
     try:
         placed = client.submit_order(request)
     except Exception as exc:
