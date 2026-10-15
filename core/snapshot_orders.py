@@ -74,6 +74,9 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
     due = []
     for cfg in cfgs:
         rule, sh = snt.find_rule(cfg["strategy_rule"])
+        if rule.get("vix"):
+            print(f"{cfg['rule']}: VIX-scaled rules are shadow only; no orders", file=sys.stderr)
+            continue
         sessions = snt.decision_sessions(cfg["start"], today, rule["hold"])
         if sessions and sessions[-1] == today:
             due.append((cfg, rule, sh, sessions))
