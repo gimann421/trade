@@ -13,7 +13,7 @@ the rule would have picked from the 15:45 price, not that it was committed befor
 """
 
 import json
-from datetime import timezone
+from datetime import datetime, timedelta, timezone
 
 import numpy as np
 import pandas as pd
@@ -67,6 +67,7 @@ def fetch_snapshot(symbols, day, client=None, batch: int = 100, feed=None) -> pd
     day = pd.Timestamp(day)
     start = (day + pd.Timedelta(hours=12)).to_pydatetime().replace(tzinfo=timezone.utc)
     end = (day + pd.Timedelta(hours=23)).to_pydatetime().replace(tzinfo=timezone.utc)
+    end = min(end, datetime.now(timezone.utc) - timedelta(minutes=16))      # the free feed refuses the last 15 minutes
     out = {}
     symbols = sorted(set(symbols))
     for i in range(0, len(symbols), batch):
