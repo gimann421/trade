@@ -70,7 +70,7 @@ Passing cells: sample 4 of 10 (base, band40, h3_band, h3_band40); unseen 4 of 10
 
 What this says:
 - **The edge is real and consistent in sign.** Net active at 5 bps is positive in all 20 cell-windows of each universe; the lowest is +1.1% on the sample (`rev7`, out-of-sample), +2.2% on the unseen names and +2.1% on all names. Gross edge is 5% to 14% a year.
-- **The bar fails on cost margin, not on direction.** What flips a cell between pass and fail is almost always the 10 bps stress (net active between -3% and +4%), or an out-of-sample information ratio just under 0.3. The break-even cost of the base is roughly 8 to 10 bps per unit of turnover on all names. If true execution cost is 5 bps the rule earns about 5% a year over the index; at 10 bps, about nothing.
+- **The bar fails on cost margin, not on direction.** What flips a cell between pass and fail is almost always the 10 bps stress (net active between -3% and +4%), or an out-of-sample information ratio just under 0.3. The break-even cost of the base on all names is roughly 10 to 11 bps per unit of turnover (gross edge divided by turnover). If true execution cost is 5 bps the rule earns about 5% a year over the index; at 10 bps, about nothing.
 - **The base is not the best cell.** Wider bands and a 3-session hold, which trade less, are the more robust corner. `rev5_h3_band40_s` is the one to watch as a second shadow record; it was not part of the first pre-registration and this memo does not treat it as supported.
 - **The 5% book is unstable** (+12% in-sample, +2% out-of-sample on the sample; +9% / +6% unseen): it is the highest-variance choice and should not be the default.
 
