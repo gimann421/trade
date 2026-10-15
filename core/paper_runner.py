@@ -319,6 +319,8 @@ def main(argv=None) -> int:
     plan.add_argument("--allocation", type=float, help="percent of account equity (default: the rule's allocation_pct, else 50)")
     run = sub.add_parser("run", help="update every tracked rule")
     run.add_argument("--execute", action="store_true", help="also place paper orders (needs allocation_pct > 0)")
+    run.add_argument("--execute-kinds", default="stock,signal",
+                     help="with --execute, which rule kinds may place orders: stock (month-end rules), signal (single-symbol rules)")
     args = parser.parse_args(argv)
 
     session = last_completed_session()
@@ -357,6 +359,7 @@ def main(argv=None) -> int:
         return 0
 
     failures = 0
+    kinds = set(args.execute_kinds.split(","))
     for cfg in load_tracked():
         if cfg.get("kind") == "snapshot":
             from core import snapshot_tracker as snt
@@ -384,7 +387,7 @@ def main(argv=None) -> int:
             print(cfg["rule"], json.dumps({k: status.get(k) for k in ("state", "asof", "nav", "benchmark_nav", "excess_return", "entries", "in_position")}))
             if status.get("decisions_changed_since_recorded"):
                 print(f"  WARNING: recomputed signals differ from the recorded ones: {status['decisions_changed_since_recorded']}", file=sys.stderr)
-            if args.execute and cfg.get("allocation_pct", 0) > 0 and status.get("state") == "running" \
+            if args.execute and "signal" in kinds and cfg.get("allocation_pct", 0) > 0 and status.get("state") == "running" \
                     and status.get("asof") == str(session.date()):
                 result = execute_signal_orders(cfg, status, float(bars["close"].iloc[-1]), session)
                 print("  orders", json.dumps(result))
@@ -399,7 +402,7 @@ def main(argv=None) -> int:
         print(cfg["rule"], json.dumps(line))
         if status.get("decisions_changed_since_recorded"):
             print(f"  WARNING: recomputed picks differ from the recorded decisions: {status['decisions_changed_since_recorded']}", file=sys.stderr)
-        if args.execute and status["state"] == "running" and cfg.get("allocation_pct", 0) > 0 \
+        if args.execute and "stock" in kinds and status["state"] == "running" and cfg.get("allocation_pct", 0) > 0 \
                 and status["last_decision"] == str(session.date()):
             prices = fetch_closes(status["holdings"], session - pd.Timedelta(days=10), session).iloc[-1].to_dict()
             result = execute_orders(cfg, status, prices, hypothesis_id(cfg["rule"]))
