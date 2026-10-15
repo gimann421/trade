@@ -1,0 +1,91 @@
+{
+ "git_commit": "abd2526-dirty",
+ "results": {
+  "C1_industries49": {
+   "1927-1949": {
+    "net_active": 0.41503023392486665,
+    "gross_active": 0.4638809451140333,
+    "information_ratio": 1.7984491943681098,
+    "placebo": 1.0,
+    "turnover": 99.33293360412412,
+    "present": true,
+    "start": "1927-01-03",
+    "end": "1949-12-31"
+   },
+   "1950-1974": {
+    "net_active": -0.027845401317246467,
+    "gross_active": 0.017234059478468188,
+    "information_ratio": -0.3020015687069941,
+    "placebo": 0.922,
+    "turnover": 91.19702163428497,
+    "present": false,
+    "start": "1950-01-03",
+    "end": "1974-12-31"
+   },
+   "1975-1999": {
+    "net_active": -0.037987073074582295,
+    "gross_active": 0.006707488726654484,
+    "information_ratio": -0.43727289969580285,
+    "placebo": 0.736,
+    "turnover": 90.45795932733368,
+    "present": false,
+    "start": "1975-01-02",
+    "end": "1999-12-31"
+   },
+   "2000-2015": {
+    "net_active": 0.028521211991562264,
+    "gross_active": 0.07447164204976982,
+    "information_ratio": 0.20286727371790142,
+    "placebo": 1.0,
+    "turnover": 93.24608618154402,
+    "present": true,
+    "start": "2000-01-03",
+    "end": "2015-12-31"
+   },
+   "2016-end": {
+    "net_active": 0.014903512621901639,
+    "gross_active": 0.06077631807996989,
+    "information_ratio": 0.11856331004608753,
+    "placebo": 0.988,
+    "turnover": 93.14137648543866,
+    "present": true,
+    "start": "2016-01-04",
+    "end": "2026-08-31"
+   },
+   "broadly_present": false
+  },
+  "C2_sector_funds": {
+   "1999-2007": {
+    "net_active": 0.06842279087640497,
+    "gross_active": 0.11245845939016436,
+    "information_ratio": 0.7689903697894849,
+    "placebo": 1.0,
+    "turnover": 89.24225793351194,
+    "present": true,
+    "start": "1999-01-08",
+    "end": "2007-12-31"
+   },
+   "2008-2015": {
+    "net_active": 0.015844918201490296,
+    "gross_active": 0.05788970616824072,
+    "information_ratio": 0.1822972399726245,
+    "placebo": 0.991,
+    "turnover": 85.04083896677196,
+    "present": true,
+    "start": "2008-01-02",
+    "end": "2015-12-31"
+   },
+   "2016-end": {
+    "net_active": -0.023093601537478598,
+    "gross_active": 0.017883857197519146,
+    "information_ratio": -0.2959445482770407,
+    "placebo": 0.827,
+    "turnover": 82.99411726434475,
+    "present": false,
+    "start": "2016-01-04",
+    "end": "2026-10-14"
+   },
+   "broadly_present": false
+  }
+ }
+}

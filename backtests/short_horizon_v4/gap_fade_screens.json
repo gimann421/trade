@@ -1,0 +1,28 @@
+{
+ "screens": {
+  "all_IS": {
+   "days": 1500,
+   "gross_active_per_year": 0.09622764279993967,
+   "pick_mean_per_year": 0.11585409168958052
+  },
+  "all_OOS": {
+   "days": 948,
+   "gross_active_per_year": 0.16021495406437347,
+   "pick_mean_per_year": 0.19993192931293638
+  },
+  "big_IS": {
+   "days": 830,
+   "gross_active_per_year": -0.24677153608885607,
+   "pick_mean_per_year": -0.16946870542036915
+  },
+  "big_OOS": {
+   "days": 641,
+   "gross_active_per_year": -0.13364004806990487,
+   "pick_mean_per_year": -0.11024564851476343
+  }
+ },
+ "advance": {
+  "all": false,
+  "big": false
+ }
+}

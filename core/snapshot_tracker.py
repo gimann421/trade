@@ -1,6 +1,6 @@
 """Forward shadow record for the 15:45-snapshot stock rules of round 9 (strategies/short_horizon_v2.py).
 
-Every 2nd session from the rule's start date, the rule ranks the priced point-in-time S&P 500 members on the
+Every `hold` sessions (2 or 3) from the rule's start date, the rule ranks the priced point-in-time S&P 500 members on the
 15:45 price of that day (the close of the 15:30-15:45 bar) against official closes, picks the names, and the
 shadow portfolio is assumed filled at that session's official close. Each decision is written once to
 paper/<rule>/decisions/<date>.json with the 15:45 prices it used; later runs reuse those files and only fetch
@@ -28,9 +28,29 @@ LOOKBACK_DAYS = 14
 SNAPSHOT_MINUTE = 15 * 60 + 30     # the bar that starts at 15:30 closes at 15:45
 
 
-def decision_sessions(start, end) -> list[pd.Timestamp]:
+def decision_sessions(start, end, hold: int = 2) -> list[pd.Timestamp]:
     days = trading_days(pd.Timestamp(start), pd.Timestamp(end))
-    return list(days[::2]) if len(days) and days[0] == pd.Timestamp(start) else []
+    return list(days[::hold]) if len(days) and days[0] == pd.Timestamp(start) else []
+
+
+def find_rule(strategy_rule: str):
+    """The rule dict and its module: short_horizon_v2 first (the original shadow rule), then short_horizon_v3."""
+    for name in ("short_horizon_v2", "short_horizon_v3", "short_horizon_v5"):
+        module = load_module(name)
+        rule = next((r for r in module.RULES if r["id"] == strategy_rule), None)
+        if rule is not None:
+            return rule, module
+    return None, None
+
+
+def fetch_vix() -> pd.Series:
+    """VIX closes from FRED (VIXCLS); the value for a session is posted the next morning."""
+    from core.longdata import _get, parse_fred
+    try:
+        text = _get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS", headers=None).decode()
+    except Exception as exc:
+        raise DataNotReady(f"could not fetch VIXCLS: {type(exc).__name__}") from exc
+    return parse_fred(text, "VIXCLS")
 
 
 def fetch_snapshot(symbols, day, client=None, batch: int = 100) -> pd.Series:
@@ -64,15 +84,14 @@ def fetch_snapshot(symbols, day, client=None, batch: int = 100) -> pd.Series:
 
 
 def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, out_dir, fetch_closes_fn=fetch_closes,
-                      fetch_snapshot_fn=fetch_snapshot) -> dict:
-    sh = load_module("short_horizon_v2")
-    rule = next((r for r in sh.RULES if r["id"] == cfg["strategy_rule"]), None)
-    if rule is None or rule["hold"] != 2 or rule["signal"] != "rev5" or rule["kind"] == "lv":
-        raise ValueError(f"{cfg['rule']}: the snapshot tracker supports the rev5 two-session rules only")
+                      fetch_snapshot_fn=fetch_snapshot, fetch_vix_fn=fetch_vix) -> dict:
+    rule, sh = find_rule(cfg["strategy_rule"])
+    if rule is None or rule["signal"] != "rev5" or rule["kind"] != "band":
+        raise ValueError(f"{cfg['rule']}: the snapshot tracker supports the rev5 band rules only")
     start = pd.Timestamp(cfg["start"])
     status = {"rule": cfg["rule"], "kind": "snapshot", "strategy_rule": cfg["strategy_rule"], "asof": str(session.date()),
               "start": str(start.date())}
-    decisions = decision_sessions(start, session)
+    decisions = decision_sessions(start, session, rule["hold"])
     if not decisions:
         status["state"] = "waiting"
         _write_json(out_dir, "status.json", status)
@@ -85,7 +104,11 @@ def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, o
         raise DataNotReady(f"latest bar is {index[-1].date()}, but the last completed session is {session.date()}")
     closes = closes.reindex(index)
 
-    held, picks_by_date, changed = [], {}, []
+    vix_share = None
+    if rule.get("vix"):
+        vix = fetch_vix_fn()
+        vix_share = sh.vix_share(vix, vix.index.union(pd.DatetimeIndex(decisions)), rule["vix"])
+    held, picks_by_date, weights_by_date, changed = [], {}, {}, []
     for date in decisions:
         if date not in index:
             raise DataNotReady(f"no bar for decision date {date.date()}")
@@ -104,9 +127,18 @@ def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, o
         row = -(snap.reindex(priced) / base.reindex(priced) - 1)
         row = row.dropna()
         picks = sh.select(rule, row, held)
+        share = 1.0
+        if vix_share is not None:
+            share = vix_share.get(date, np.nan)
+            share = 1.0 if pd.isna(share) else float(share)     # no VIX history: behave as the plain rule
+        weights = {t: share / len(picks) for t in picks} if picks else {}
+        if share < 1.0 and priced:
+            for t in priced:
+                weights[t] = weights.get(t, 0.0) + (1.0 - share) / len(priced)
         record = {"decision_date": str(date.date()), "rule": cfg["rule"], "members": len(members_on(membership, [date])[0]),
                   "priced": len(priced), "ranked": len(row), "picks": picks,
                   "weight_each": 1.0 / len(picks) if picks else 0.0,
+                  **({"active_share": share, "weights": weights} if vix_share is not None else {}),
                   "snapshot_1545": {t: float(snap[t]) for t in sorted(snap.index)},
                   "closes": {t: float(closes.at[date, t]) for t in picks}}
         if stored is None:
@@ -115,8 +147,11 @@ def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, o
             changed.append({"decision_date": record["decision_date"], "stored_only": sorted(set(stored["picks"]) - set(picks)),
                             "recomputed_only": sorted(set(picks) - set(stored["picks"]))})
             picks = stored["picks"]
+        if stored is not None:
+            weights = stored.get("weights") or ({t: 1.0 / len(picks) for t in picks} if picks else {})
         held = picks
         picks_by_date[date] = picks
+        weights_by_date[date] = weights
 
     close_ff = closes.ffill()
     returns = close_ff.pct_change(fill_method=None)
@@ -128,7 +163,7 @@ def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, o
     for day in index[index.get_loc(first) + 1:]:
         prev = index[index.get_loc(day) - 1]
         if prev in picks_by_date:
-            target = pd.Series(1.0 / len(picks_by_date[prev]), picks_by_date[prev]) if picks_by_date[prev] else pd.Series(dtype=float)
+            target = pd.Series(weights_by_date[prev], dtype=float)
             traded = target.sub(drifted, fill_value=0.0).abs().sum()
             nav *= 1 - traded * COST_BPS / 10_000
             weights = target
