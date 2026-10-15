@@ -238,30 +238,61 @@ def check_plan(orders: list[dict], state, limits) -> list[dict]:
     return checked
 
 
-def execute_orders(cfg: dict, status: dict, closes_by_symbol: dict[str, float], hypothesis_id: int | None) -> list[dict]:
-    """Place the planned orders on the paper account via core.broker (risk-checked and journaled)."""
+def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], allocation_pct: float, label: str,
+                        reasoning, hypothesis_id: int | None = None, time_in_force=None, client=None, stop_check=None) -> dict:
+    """Move the rule's sleeve (its own shares, found through core.sleeves) to an equal-weight book of
+    allocation_pct of account equity, as risk-checked, journaled paper orders tagged with the rule.
+
+    label is the decision date in each order's client_order_id; reasoning(order) gives the journal text.
+    stop_check() is asked before each order; once it returns True the rest are listed as "late" and not sent.
+    Nothing is sent while an earlier order of the rule is still open. Orders that fail the risk check
+    come back as "blocked"; names with no price are listed in "unpriced" and left alone."""
+    from alpaca.trading.enums import TimeInForce
     from core.broker import RiskViolation, account_state, get_paper_client, submit_order
     from core.risk import ProposedOrder
+    from core.sleeves import open_orders, order_tag, rule_orders, sleeve_shares
 
-    client = get_paper_client()
+    client = client or get_paper_client()
+    history = rule_orders(client, rule)
+    pending = open_orders(history)
+    if pending:
+        return {"orders": [], "skipped": f"{len(pending)} earlier order(s) of this rule are still open", "unpriced": []}
+    shares = sleeve_shares(history)
     state = account_state(client)
-    positions = {p.symbol: float(p.qty) for p in client.get_all_positions()}
-    previous = _read_json(PAPER_DIR / cfg["rule"], "managed.json") or {"symbols": []}
-    managed = set(previous["symbols"])
-    orders = plan_orders(status["holdings"], closes_by_symbol, positions, managed,
-                         state.equity * cfg["allocation_pct"] / 100.0)
+    unpriced = sorted(s for s in set(picks) | set(shares) if not prices.get(s))
+    orders = plan_orders(picks, prices, shares, set(shares), state.equity * allocation_pct / 100.0)
     results = []
     for o in orders:
-        reasoning = (f"{cfg['rule']} month-end rebalance decided {status['last_decision']}: "
-                     f"{'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']} (equal-weight top decile by 6-1 residual momentum)")
+        if stop_check and stop_check():
+            results.append(o | {"result": "late"})
+            continue
         try:
-            submit_order(client, ProposedOrder(o["symbol"], o["side"], o["qty"], o["price"]), reasoning, cfg["rule"],
-                         hypothesis_id=hypothesis_id)
+            submit_order(client, ProposedOrder(o["symbol"], o["side"], o["qty"], o["price"]), reasoning(o), rule,
+                         hypothesis_id=hypothesis_id, time_in_force=time_in_force or TimeInForce.DAY,
+                         client_order_id=order_tag(rule, label, o["symbol"], o["side"]))
             results.append(o | {"result": "submitted"})
         except RiskViolation as exc:
             results.append(o | {"result": "blocked", "violations": exc.violations})
-    _write_json(PAPER_DIR / cfg["rule"], "managed.json", {"symbols": sorted(set(status["holdings"]) | managed)})
-    return results
+    return {"orders": results, "unpriced": unpriced, "sleeve_symbols": len(shares), "equity": state.equity}
+
+
+def execute_orders(cfg: dict, status: dict, closes_by_symbol: dict[str, float], hypothesis_id: int | None) -> dict:
+    """Month-end stock rules: the planned orders as DAY market orders placed after the close."""
+    return place_sleeve_orders(
+        cfg["rule"], status["holdings"], closes_by_symbol, cfg["allocation_pct"], status["last_decision"],
+        lambda o: (f"{cfg['rule']} month-end rebalance decided {status['last_decision']}: "
+                   f"{'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']} (equal-weight picks of the rule's residual momentum ranking)"),
+        hypothesis_id)
+
+
+def execute_signal_orders(cfg: dict, status: dict, price: float, session: pd.Timestamp) -> dict:
+    """Single-symbol signal rules: hold the symbol while the rule is in position, else be flat.
+    DAY market orders placed after the close, so they fill at the next open (the shadow record assumes the close)."""
+    picks = [cfg["symbol"]] if status.get("in_position") else []
+    return place_sleeve_orders(
+        cfg["rule"], picks, {cfg["symbol"]: price}, cfg["allocation_pct"], str(session.date()),
+        lambda o: (f"{cfg['rule']} signal as of the {session.date()} close: "
+                   f"{'in position' if status.get('in_position') else 'flat'}, {o['side']} {o['symbol']} to match"))
 
 
 # --- command line -------------------------------------------------------------------------
@@ -288,6 +319,8 @@ def main(argv=None) -> int:
     plan.add_argument("--allocation", type=float, help="percent of account equity (default: the rule's allocation_pct, else 50)")
     run = sub.add_parser("run", help="update every tracked rule")
     run.add_argument("--execute", action="store_true", help="also place paper orders (needs allocation_pct > 0)")
+    run.add_argument("--execute-kinds", default="stock,signal",
+                     help="with --execute, which rule kinds may place orders: stock (month-end rules), signal (single-symbol rules)")
     args = parser.parse_args(argv)
 
     session = last_completed_session()
@@ -307,10 +340,11 @@ def main(argv=None) -> int:
         allocation = args.allocation if args.allocation is not None else (cfg.get("allocation_pct") or 50.0)
         latest = decision_dates(session - pd.Timedelta(days=45), session)[-1]
         status = run_rule({"rule": args.rule, "start": str(latest.date())}, session, membership, fetch_closes, None)
+        from core.sleeves import rule_orders, sleeve_shares
         client = get_paper_client()
         state, limits = account_state(client), load_risk_limits()
-        held = {p.symbol: float(p.qty) for p in client.get_all_positions()}
-        managed = set((_read_json(PAPER_DIR / args.rule, "managed.json") or {"symbols": []})["symbols"])
+        held = sleeve_shares(rule_orders(client, args.rule))
+        managed = set(held)
         prices = fetch_closes(sorted(set(status["holdings"]) | managed), session - pd.Timedelta(days=10), session).iloc[-1].to_dict()
         checked = check_plan(plan_orders(status["holdings"], prices, held, managed, state.equity * allocation / 100), state, limits)
         blocked = [o for o in checked if o["violations"]]
@@ -325,6 +359,7 @@ def main(argv=None) -> int:
         return 0
 
     failures = 0
+    kinds = set(args.execute_kinds.split(","))
     for cfg in load_tracked():
         if cfg.get("kind") == "snapshot":
             from core import snapshot_tracker as snt
@@ -338,7 +373,7 @@ def main(argv=None) -> int:
             if status.get("decisions_changed_since_recorded"):
                 print(f"  WARNING: recomputed picks differ from the recorded decisions: {status['decisions_changed_since_recorded']}", file=sys.stderr)
             if args.execute and cfg.get("allocation_pct", 0) > 0:
-                print(f"  {cfg['rule']}: snapshot rules are shadow-only; no orders placed", file=sys.stderr)
+                print(f"  {cfg['rule']}: snapshot rules place their orders before the close (python -m core.snapshot_orders), not here", file=sys.stderr)
             continue
         if cfg.get("kind") == "signal":
             from core import signal_tracker as st
@@ -352,8 +387,10 @@ def main(argv=None) -> int:
             print(cfg["rule"], json.dumps({k: status.get(k) for k in ("state", "asof", "nav", "benchmark_nav", "excess_return", "entries", "in_position")}))
             if status.get("decisions_changed_since_recorded"):
                 print(f"  WARNING: recomputed signals differ from the recorded ones: {status['decisions_changed_since_recorded']}", file=sys.stderr)
-            if args.execute and cfg.get("allocation_pct", 0) > 0:
-                print(f"  {cfg['rule']}: signal rules are shadow-only; no orders placed", file=sys.stderr)
+            if args.execute and "signal" in kinds and cfg.get("allocation_pct", 0) > 0 and status.get("state") == "running" \
+                    and status.get("asof") == str(session.date()):
+                result = execute_signal_orders(cfg, status, float(bars["close"].iloc[-1]), session)
+                print("  orders", json.dumps(result))
             continue
         try:
             status = run_rule(cfg, session, membership, fetch_closes, PAPER_DIR / cfg["rule"])
@@ -365,11 +402,15 @@ def main(argv=None) -> int:
         print(cfg["rule"], json.dumps(line))
         if status.get("decisions_changed_since_recorded"):
             print(f"  WARNING: recomputed picks differ from the recorded decisions: {status['decisions_changed_since_recorded']}", file=sys.stderr)
-        if args.execute and status["state"] == "running" and cfg.get("allocation_pct", 0) > 0 \
+        if args.execute and "stock" in kinds and status["state"] == "running" and cfg.get("allocation_pct", 0) > 0 \
                 and status["last_decision"] == str(session.date()):
             prices = fetch_closes(status["holdings"], session - pd.Timedelta(days=10), session).iloc[-1].to_dict()
-            for result in execute_orders(cfg, status, prices, hypothesis_id(cfg["rule"])):
-                print("  order", json.dumps(result))
+            result = execute_orders(cfg, status, prices, hypothesis_id(cfg["rule"]))
+            for order in result["orders"]:
+                print("  order", json.dumps(order))
+            for key in ("skipped", "unpriced"):
+                if result.get(key):
+                    print(f"  {key}: {result[key]}", file=sys.stderr)
     return 1 if failures else 0
 
 

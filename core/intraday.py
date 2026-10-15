@@ -81,14 +81,14 @@ def fetch_one(client, symbol: str, asof: str, end: datetime, tries: int = 6) -> 
     return len(out)
 
 
-def download(workers: int = 4) -> dict:
+def download(workers: int = 4, everyone: bool = False) -> dict:
     keys = load_paper_keys()
     from alpaca.data.historical import StockHistoricalDataClient
     client = StockHistoricalDataClient(keys.api_key, keys.secret_key)
     end = datetime.now(timezone.utc) - timedelta(minutes=20)
     manifest_path = INTRADAY_DIR / "manifest.json"
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"done": {}, "missing": {}}
-    chosen = set(sample_tickers())
+    chosen = set(last_member_dates(load_membership())) if everyone else set(sample_tickers())
     todo = [(t, str(a.date())) for t, a in last_member_dates(load_membership()).items()
             if t in chosen and bars_path(t, STOCK_DIR).exists() and not intraday_path(t).exists()]
     print(f"{len(todo)} tickers to fetch", flush=True)
@@ -120,8 +120,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("action", choices=["download"])
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--all", action="store_true", help="every member ticker, not just the round-9 sample")
     args = parser.parse_args()
-    manifest = download(args.workers)
+    manifest = download(args.workers, args.all)
     print(f"{len(manifest['done'])} tickers done, {len(manifest['missing'])} missing")
 
 

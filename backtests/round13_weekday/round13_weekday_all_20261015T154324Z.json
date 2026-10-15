@@ -1,0 +1,45 @@
+{
+ "git_commit": "7dd0e6c-dirty",
+ "run_at": "20261015T154324Z",
+ "universe": "all",
+ "names": 719,
+ "cells": {
+  "IS": {
+   "verdict": "contradicts",
+   "why": [
+    "net active -28.80%/yr < 2.0%",
+    "information ratio -2.96 < 0.3",
+    "placebo 0.000 < 0.95",
+    "10 bps net active -51.01% not above 0"
+   ],
+   "decisions": 1510,
+   "net_active": -0.28800787658188254,
+   "information_ratio": -2.9562552660888106,
+   "placebo": 0.0,
+   "gross_active": -0.0659089411894345,
+   "annual_turnover": 444.94109146232046,
+   "break_even_bps": -1.483774361029098,
+   "stress_net_active": -0.5101068119743306,
+   "start": "2017-01-03",
+   "end": "2022-12-30"
+  },
+  "OOS": {
+   "verdict": "contradicts",
+   "why": [
+    "net active -9.91%/yr < 2.0%",
+    "information ratio -0.81 < 0.3",
+    "10 bps net active -31.62% not above 0"
+   ],
+   "decisions": 949,
+   "net_active": -0.09907974573331513,
+   "information_ratio": -0.8132494058262936,
+   "placebo": 1.0,
+   "gross_active": 0.11805780420674683,
+   "annual_turnover": 435.05502947951726,
+   "break_even_bps": 2.718502724179562,
+   "stress_net_active": -0.3162172956733771,
+   "start": "2023-01-03",
+   "end": "2026-10-14"
+  }
+ }
+}

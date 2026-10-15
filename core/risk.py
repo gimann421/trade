@@ -27,9 +27,11 @@ def load_risk_limits(path: Path = RISK_PATH) -> RiskLimits:
     if missing or unknown:
         raise ConfigError(f"{path.name}: missing={sorted(missing)} unknown={sorted(unknown)}")
     limits = RiskLimits(**raw)
-    for name in ("max_position_pct", "max_gross_exposure_pct", "max_daily_loss_pct"):
+    for name in ("max_position_pct", "max_daily_loss_pct"):
         if not 0 < getattr(limits, name) <= 100:
             raise ConfigError(f"{name} must be in (0, 100]")
+    if not 0 < limits.max_gross_exposure_pct <= 200:      # the paper account has 2x margin overnight
+        raise ConfigError("max_gross_exposure_pct must be in (0, 200]")
     if limits.max_open_positions < 1 or limits.max_order_notional <= 0:
         raise ConfigError("max_open_positions and max_order_notional must be positive")
     return limits

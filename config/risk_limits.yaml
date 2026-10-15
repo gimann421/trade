@@ -2,8 +2,8 @@
 # Tracked in git so every change to a limit shows up in history.
 
 max_position_pct: 5.0         # largest single position
-max_gross_exposure_pct: 60.0  # sum of absolute position values
-max_open_positions: 60        # the 10% residual momentum rule holds about 50 names
+max_gross_exposure_pct: 150.0 # sum of absolute position values; five rule sleeves add up to 135 (paper account has 2x margin overnight)
+max_open_positions: 250       # decile ~50 names, quintile ~100, two reversal rules ~50 each, XLK; many overlap
 max_order_notional: 5000      # USD per order
 max_daily_loss_pct: 2.0       # stop opening new positions past this drawdown for the day
 allow_short: false
