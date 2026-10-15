@@ -146,14 +146,18 @@ def wiki():
     def one(item):
         ticker, title = item
         body = get(f"https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/en.wikipedia/all-access/user/{title}/daily/20150701/{end}", timeout=60)
-        time.sleep(0.2)
+        time.sleep(0.6)
         if body is None:
             return ticker, None
         rows = json.loads(body)["items"]
         return ticker, pd.Series({pd.Timestamp(r["timestamp"][:8]): r["views"] for r in rows}, name=ticker)
 
     series, failed = [], []
-    with ThreadPoolExecutor(3) as pool:
+    done = pd.read_csv(WIKI_DIR / "views.csv", index_col=0, parse_dates=True) if (WIKI_DIR / "views.csv").exists() else None
+    if done is not None:
+        series = [done[c] for c in done.columns]
+        pairs = {k: v for k, v in pairs.items() if k not in done.columns}
+    with ThreadPoolExecutor(1) as pool:
         for ticker, s in pool.map(one, pairs.items()):
             (series.append(s) if s is not None else failed.append(ticker))
     out = pd.concat(series, axis=1).sort_index()
