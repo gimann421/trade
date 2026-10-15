@@ -1,0 +1,240 @@
+{
+ "git_commit": "7dd0e6c-dirty",
+ "run_at": "20261015T154620Z",
+ "bar": {
+  "per_trade_bps": 25.0,
+  "t": 2.0,
+  "placebo": 0.95
+ },
+ "results": {
+  "peer_fade_s": {
+   "cells": {
+    "IS": {
+     "trades": 13326,
+     "gross_bps": -8.26934181517114,
+     "net_bps": -18.269341815171146,
+     "stress_bps": -28.269341815171146,
+     "t": -1.245598084540226,
+     "trades_per_year": 2222.5212328767125,
+     "hit_rate": 0.47823803091700434,
+     "annual_net": -4.060400009490025,
+     "placebo": 0.026,
+     "verdict": "contradicts",
+     "why": [
+      "net -18.3 bps per trade < 25",
+      "t -1.25 < 2.0",
+      "placebo 0.026 < 0.95",
+      "10 bps per side net -28.3 bps not above 0"
+     ]
+    },
+    "OOS": {
+     "trades": 13534,
+     "gross_bps": -15.386886470504203,
+     "net_bps": -25.386886470504212,
+     "stress_bps": -35.386886470504216,
+     "t": -2.1145596851397888,
+     "trades_per_year": 3576.9128075253257,
+     "hit_rate": 0.48189744347569086,
+     "annual_net": -9.080667935953793,
+     "placebo": 0.0,
+     "verdict": "contradicts",
+     "why": [
+      "net -25.4 bps per trade < 25",
+      "t -2.11 < 2.0",
+      "placebo 0.000 < 0.95",
+      "10 bps per side net -35.4 bps not above 0"
+     ]
+    }
+   },
+   "n_pairs": 26883,
+   "mean_hold": 7.455231930960086
+  },
+  "earn_premium_s": {
+   "cells": {
+    "IS": {
+     "trades": 11626,
+     "gross_bps": 18.26300896639886,
+     "net_bps": 8.263008966398857,
+     "stress_bps": -1.7369910336011494,
+     "t": 1.0797246840564898,
+     "trades_per_year": 1938.9938356164384,
+     "hit_rate": 0.5220196112162394,
+     "annual_net": 1.6021923449490743,
+     "placebo": 1.0,
+     "verdict": "contradicts",
+     "why": [
+      "net 8.3 bps per trade < 25",
+      "t 1.08 < 2.0",
+      "10 bps per side net -1.7 bps not above 0"
+     ]
+    },
+    "OOS": {
+     "trades": 7711,
+     "gross_bps": 21.622443421646867,
+     "net_bps": 11.622443421646858,
+     "stress_bps": 1.6224434216468526,
+     "t": 1.0738162338261803,
+     "trades_per_year": 2037.946997105644,
+     "hit_rate": 0.5083646738425626,
+     "annual_net": 2.368592367017546,
+     "placebo": 1.0,
+     "verdict": "contradicts",
+     "why": [
+      "net 11.6 bps per trade < 25",
+      "t 1.07 < 2.0"
+     ]
+    }
+   }
+  },
+  "insider_cluster_s": {
+   "cells": {
+    "IS": {
+     "trades": 273,
+     "gross_bps": 33.81936038566082,
+     "net_bps": 23.819360385660815,
+     "stress_bps": 13.819360385660802,
+     "t": 0.3769736157537681,
+     "trades_per_year": 45.531164383561645,
+     "hit_rate": 0.5421245421245421,
+     "annual_net": 0.1084523213230819,
+     "placebo": 0.725,
+     "verdict": "contradicts",
+     "why": [
+      "net 23.8 bps per trade < 25",
+      "t 0.38 < 2.0",
+      "placebo 0.725 < 0.95"
+     ]
+    },
+    "OOS": {
+     "trades": 159,
+     "gross_bps": 48.51097734144268,
+     "net_bps": 38.51097734144267,
+     "stress_bps": 28.51097734144268,
+     "t": 0.7059306162128212,
+     "trades_per_year": 42.0222503617945,
+     "hit_rate": 0.5220125786163522,
+     "annual_net": 0.1618317931519499,
+     "placebo": 0.743,
+     "verdict": "contradicts",
+     "why": [
+      "t 0.71 < 2.0",
+      "placebo 0.743 < 0.95"
+     ]
+    }
+   }
+  }
+ },
+ "diagnostics": {
+  "peer_fade_good": {
+   "IS": {
+    "trades": 6642,
+    "gross_bps": -4.938930243495827,
+    "net_bps": -14.938930243495829,
+    "stress_bps": -24.938930243495832,
+    "t": -0.5601575929652807,
+    "trades_per_year": 1107.7582191780823,
+    "hit_rate": 0.4385727190605239,
+    "annual_net": -1.6548722762960535,
+    "placebo": 0.206,
+    "verdict": "contradicts",
+    "why": [
+     "net -14.9 bps per trade < 25",
+     "t -0.56 < 2.0",
+     "placebo 0.206 < 0.95",
+     "10 bps per side net -24.9 bps not above 0"
+    ]
+   },
+   "OOS": {
+    "trades": 6434,
+    "gross_bps": -95.72281777188317,
+    "net_bps": -105.72281777188317,
+    "stress_bps": -115.72281777188317,
+    "t": -4.408057763624787,
+    "trades_per_year": 1700.4475397973952,
+    "hit_rate": 0.4291265153870065,
+    "annual_net": -17.977610538064706,
+    "placebo": 0.0,
+    "verdict": "contradicts",
+    "why": [
+     "net -105.7 bps per trade < 25",
+     "t -4.41 < 2.0",
+     "placebo 0.000 < 0.95",
+     "10 bps per side net -115.7 bps not above 0"
+    ]
+   }
+  },
+  "peer_fade_bad": {
+   "IS": {
+    "trades": 6684,
+    "gross_bps": -11.578826204618693,
+    "net_bps": -21.578826204618696,
+    "stress_bps": -31.578826204618696,
+    "t": -1.0163759437009274,
+    "trades_per_year": 1114.7630136986302,
+    "hit_rate": 0.5176540993417116,
+    "annual_net": -2.405527733193971,
+    "placebo": 0.023,
+    "verdict": "contradicts",
+    "why": [
+     "net -21.6 bps per trade < 25",
+     "t -1.02 < 2.0",
+     "placebo 0.023 < 0.95",
+     "10 bps per side net -31.6 bps not above 0"
+    ]
+   },
+   "OOS": {
+    "trades": 7100,
+    "gross_bps": 57.413308176407384,
+    "net_bps": 47.41330817640736,
+    "stress_bps": 37.41330817640738,
+    "t": 2.194401661208729,
+    "trades_per_year": 1876.4652677279305,
+    "hit_rate": 0.5297183098591549,
+    "annual_net": 8.896942602110911,
+    "placebo": 1.0,
+    "verdict": "supports",
+    "why": [
+     "passes the bar and the stress check"
+    ]
+   }
+  },
+  "peer_fade_10": {
+   "IS": {
+    "trades": 13335,
+    "gross_bps": -6.371077745599036,
+    "net_bps": -16.371077745599045,
+    "stress_bps": -26.371077745599045,
+    "t": -1.1341651328722155,
+    "trades_per_year": 2224.0222602739727,
+    "hit_rate": 0.4809898762654668,
+    "annual_net": -3.6409641330888123,
+    "placebo": 0.046,
+    "verdict": "contradicts",
+    "why": [
+     "net -16.4 bps per trade < 25",
+     "t -1.13 < 2.0",
+     "placebo 0.046 < 0.95",
+     "10 bps per side net -26.4 bps not above 0"
+    ]
+   },
+   "OOS": {
+    "trades": 13534,
+    "gross_bps": -14.186699220435502,
+    "net_bps": -24.18669922043551,
+    "stress_bps": -34.18669922043551,
+    "t": -2.4337975245787984,
+    "trades_per_year": 3576.9128075253257,
+    "hit_rate": 0.4801980198019802,
+    "annual_net": -8.651371421333858,
+    "placebo": 0.001,
+    "verdict": "contradicts",
+    "why": [
+     "net -24.2 bps per trade < 25",
+     "t -2.43 < 2.0",
+     "placebo 0.001 < 0.95",
+     "10 bps per side net -34.2 bps not above 0"
+    ]
+   }
+  }
+ }
+}
