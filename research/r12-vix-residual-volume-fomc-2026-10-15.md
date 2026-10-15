@@ -81,3 +81,6 @@ Verdict: rejected. The 2017-2022 window shows a gross +28 bps per event, but net
 
 ### Conclusion
 Nothing here beats `rev5_h3_band40_s`, but the VIX scale is a second supported rule that trades less and has a slightly better information ratio. Evidence is one well-known conditioning variable tested once, so it needs the shadow record, not conclusions, before any use. Nothing has been added to the shadow or paper records; that waits for Garret. Pre-FOMC drift is gone since 2023.
+
+## Forward record: third shadow rule (added 2026-10-15 on Garret's go-ahead)
+`stock_rev5_h3_band40_vixscale` (`rev5_h3_band40_vixscale_s`, decide every 3rd session from 2026-10-16, 15:45 signal, fill at the close, 5 bps) runs shadow-only beside `stock_rev5_h3_band40`, so the two can be compared on the same scoreboard. Each decision file stores the active share (from the previous session's VIX close, fetched from FRED) and the full target weights. No paper slice. No performance conclusions before six months; the two hold mostly the same stocks, so expect a long wait before the gap means much.

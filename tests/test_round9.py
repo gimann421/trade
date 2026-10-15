@@ -146,3 +146,26 @@ def test_snapshot_tracker_hold_three(tmp_path):
                                   lambda symbols, day: snap.loc[day, list(symbols)])
     assert status["decisions"] == 4 and status["state"] == "running"   # sessions 20, 23, 26, 29
     assert st.decision_sessions(start, session, 3)[1] == close.index[23]
+
+
+def test_snapshot_tracker_vixscale_weights(tmp_path):
+    from core import snapshot_tracker as st
+    open_, close, snap = panel(days=60, n=30)
+    start, session = close.index[20], close.index[26]
+    names = list(close.columns)
+    membership = pd.Series([frozenset(names)], index=pd.DatetimeIndex(["2016-01-04"]))
+    vix_index = pd.DatetimeIndex(trading_days("2019-01-02", "2020-12-31"))
+    vix = pd.Series(20.0, vix_index)                      # share = clip(1 - 0.5) = 0.5 once 200 sessions exist
+    vix = vix.reindex(vix.index.union(close.index)).ffill().dropna()
+    cfg = {"rule": "stock_rev5_h3_band40_vixscale", "strategy_rule": "rev5_h3_band40_vixscale_s", "start": str(start.date()), "initial_cash": 1000}
+    fake_vix = lambda: pd.Series(20.0, pd.bdate_range("2019-01-01", session))
+    status = st.run_snapshot_rule(cfg, session, membership, tmp_path, lambda s, a, b: close.loc[:session],
+                                  lambda symbols, day: snap.loc[day, list(symbols)], fake_vix)
+    import json
+    rec = json.loads((tmp_path / "decisions" / f"{start.date()}.json").read_text())
+    assert abs(sum(rec["weights"].values()) - 1.0) < 1e-9
+    assert abs(rec["active_share"] - 0.5) < 1e-9 and status["state"] == "running"
+    # rerun reads the stored weights
+    again = st.run_snapshot_rule(cfg, session, membership, tmp_path, lambda s, a, b: close.loc[:session],
+                                 lambda s, d: snap.loc[d, list(s)] * 2, fake_vix)
+    assert again["holdings"] == status["holdings"]
