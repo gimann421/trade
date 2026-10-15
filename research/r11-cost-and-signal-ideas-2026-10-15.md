@@ -36,4 +36,50 @@ Every rule is also compared with its parent: net active and 10 bps net active, m
 Industry codes and earnings dates exist only for current members, so B1 and B2 act only on part of each date's universe in earlier years (survivorship in the tagging, not in the prices); the 718 names include the 300 whose snapshots the round-9 pass was found on, which is why the raised bar looks at the 418 separately; flat 5 bps; closing-auction competition not modelled.
 
 ## Results
-(to be filled after the runs)
+
+Run 2026-10-15 on the commit that adds this section. Statuses set by `research/round11_ideas.py --finalize`. The parent rows reproduce the round-10 numbers exactly (all names: +7.9% / +4.9% for `rev5_h3_band40_s`).
+
+**Verdict: 0 of 9 pass the raised bar (all 718 names and the 418 unseen). All nine are marked rejected. Hypotheses tested: 120.**
+
+### All 718 names
+
+| Rule | Net active IS / OOS | IR IS / OOS | At 10 bps IS / OOS | 15:30 signal IS / OOS | Turnover IS / OOS | Verdict IS / OOS |
+|---|---|---|---|---|---|---|
+| rev5_h3_band40_s | +7.9% / +4.9% | 0.62 / 0.39 | +4.4% / +1.4% | +7.6% / +5.8% | 71 / 70 | supports/supports |
+| rev5_h2_band_s | +5.7% / +4.6% | 0.42 / 0.35 | +1.0% / -0.1% | +5.2% / +4.7% | 94 / 93 | supports/contradicts |
+| rev5_h3_band40_nt_s | +8.5% / +4.2% | 0.65 / 0.35 | +5.0% / +0.8% | +7.6% / +5.0% | 70 / 69 | supports/supports |
+| rev5_h2_band_nt_s | +5.5% / +3.4% | 0.40 / 0.25 | +1.0% / -1.1% | +5.2% / +4.7% | 92 / 91 | supports/contradicts |
+| blend_h3_band40_s | +4.5% / +2.8% | 0.35 / 0.22 | +1.1% / -0.6% | +4.4% / +3.0% | 70 / 69 | supports/contradicts |
+| rev5n_h3_band40_s | +6.6% / +1.4% | 0.57 / 0.14 | +3.2% / -2.0% | +7.2% / +2.2% | 71 / 69 | supports/contradicts |
+| rev5n_h2_band_s | +5.7% / +6.0% | 0.47 / 0.54 | +1.0% / +1.4% | +6.1% / +5.3% | 93 / 92 | supports/supports |
+| rev5x_h3_band40_s | +7.5% / +3.5% | 0.57 / 0.26 | +3.8% / -0.3% | +8.1% / +4.6% | 75 / 76 | supports/contradicts |
+| rev5x_h2_band_s | +4.9% / +4.4% | 0.35 / 0.32 | -0.1% / -0.6% | +4.2% / +4.9% | 99 / 101 | contradicts/contradicts |
+| l15rev_h2_band_s | -9.2% / -1.5% | -0.90 / -0.15 | -17.7% / -9.9% | n/a / n/a | 170 / 169 | contradicts/contradicts |
+| l15mom_h2_band_s | -5.4% / -7.8% | -0.62 / -0.86 | -14.0% / -16.3% | n/a / n/a | 172 / 170 | contradicts/contradicts |
+
+### The 418 unseen names
+
+| Rule | Net active IS / OOS | IR IS / OOS | At 10 bps IS / OOS | 15:30 signal IS / OOS | Turnover IS / OOS | Verdict IS / OOS |
+|---|---|---|---|---|---|---|
+| rev5_h3_band40_s | +7.9% / +4.8% | 0.61 / 0.37 | +4.4% / +1.3% | +7.4% / +3.2% | 71 / 71 | supports/supports |
+| rev5_h2_band_s | +4.9% / +4.9% | 0.37 / 0.37 | +0.2% / +0.3% | +4.6% / +5.3% | 95 / 94 | supports/supports |
+| rev5_h3_band40_nt_s | +7.3% / +4.1% | 0.55 / 0.33 | +3.9% / +0.7% | +7.7% / -1.2% | 70 / 69 | supports/contradicts |
+| rev5_h2_band_nt_s | +3.9% / +0.2% | 0.28 / 0.02 | -0.6% / -4.3% | +2.7% / +7.1% | 92 / 92 | contradicts/contradicts |
+| blend_h3_band40_s | +4.8% / +0.2% | 0.37 / 0.02 | +1.3% / -3.2% | +5.0% / +1.3% | 70 / 70 | supports/contradicts |
+| rev5n_h3_band40_s | +5.6% / -1.6% | 0.46 / -0.15 | +2.1% / -5.0% | +7.3% / -1.8% | 71 / 69 | supports/contradicts |
+| rev5n_h2_band_s | +4.6% / +4.7% | 0.37 / 0.42 | -0.1% / +0.1% | +5.6% / +5.6% | 93 / 92 | contradicts/supports |
+| rev5x_h3_band40_s | +5.3% / +2.4% | 0.40 / 0.18 | +1.6% / -1.4% | +5.7% / +0.6% | 75 / 77 | supports/contradicts |
+| rev5x_h2_band_s | +3.7% / +6.5% | 0.27 / 0.47 | -1.3% / +1.3% | +3.3% / +5.6% | 100 / 103 | contradicts/supports |
+| l15rev_h2_band_s | -5.9% / +1.0% | -0.60 / 0.09 | -14.4% / -7.5% | n/a / n/a | 171 / 170 | contradicts/contradicts |
+| l15mom_h2_band_s | -6.3% / -6.3% | -0.71 / -0.66 | -14.9% / -14.8% | n/a / n/a | 172 / 170 | contradicts/contradicts |
+
+### What each idea did
+- **A1 do not top up.** Hold 3 is better in the first window and worse in the second; hold 2 is worse in both. Turnover barely moves (70 vs 71, 92 vs 94 trades a year), because the band already keeps most names. Not a cost fix. The hold-3 version passes on all 718 but fails the 15:30 check on the unseen names (second window -1.2%).
+- **A2 blend with the intraday signal.** Worse than the parent in both windows and both universes; adding the second signal dilutes the first.
+- **B1 industry-neutral.** Mixed. Hold 3 collapses in the second window (+1.4% on all names, -1.6% on the unseen names). Hold 2 is the best second-window number of the round (+6.0% all, +4.7% unseen) but the first window fails on the unseen names (10 bps -0.1%), so it does not hold up across both. Not stable enough to count.
+- **B2 skip fresh earnings.** No consistent gain over the parent (hold 3 is lower in both windows, hold 2 is higher in one window on the unseen names only). Excluding names with a recent release does not raise the net result, so the edge is not an earnings-announcement artifact.
+- **B3 last 15 minutes.** Neither direction works. Both signs lose money net of costs (turnover about 170 a year), and both are far from the parent, so this is not a usable signal.
+- **B4 gap fade (screen, no hypothesis).** Gross active +9.6% / +16.0% a year on all names (needs 25% in both windows to advance) and negative on gaps of 2% or more. Stops here.
+
+### Conclusion
+Nothing improves on `rev5_h3_band40_s`, which stays the lead (not formally supported). The thinness of the edge at 10 bps is not fixed by trading less, by neutralising industry, or by skipping earnings. The shadow record `stock_rev5_h2_band` is unchanged.
