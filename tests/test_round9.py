@@ -116,3 +116,20 @@ def test_snapshot_tracker_records_picks_and_nav(tmp_path):
     # a rerun reuses the stored snapshots even if the source now returns different prices
     again = st.run_snapshot_rule(cfg, session, membership, tmp_path, fake_close, lambda s, d: snap.loc[d, list(s)] * 2)
     assert again["holdings"] == status["holdings"] and again["decisions_changed_since_recorded"] == []
+
+
+def test_v3_neighbour_grid():
+    spec3 = importlib.util.spec_from_file_location("sh3", ROOT / "strategies" / "short_horizon_v3.py")
+    sh3 = importlib.util.module_from_spec(spec3)
+    spec3.loader.exec_module(sh3)
+    ids = [r["id"] for r in sh3.RULES]
+    assert len(ids) == 10 and ids[0] == "rev5_h2_band_s" and len(set(ids)) == 10
+    open_, close, snap = panel(n=40)
+    t = 30
+    np.testing.assert_allclose(sh3.score_matrix("rev7", open_, close, snap).iloc[t], -(snap.iloc[t] / close.iloc[t - 7] - 1))
+    row = pd.Series(np.arange(40.0), index=[f"T{i:02d}" for i in range(40)])
+    wide = sh3.select({"kind": "band", "fraction": 0.15, "band": 0.3}, row, [])
+    assert len(wide) == 6
+    held = ["T25"]   # rank 15 of 40: outside the 20% band, inside the 40% band
+    assert "T25" not in sh3.select({"kind": "band", "fraction": 0.1, "band": 0.2}, row, held)
+    assert "T25" in sh3.select({"kind": "band", "fraction": 0.1, "band": 0.4}, row, held)

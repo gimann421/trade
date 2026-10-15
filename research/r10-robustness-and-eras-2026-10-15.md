@@ -7,7 +7,7 @@
 - **What was known when this was written:** round 9 in full. `rev5_h2_band_s` (5-day reversal, decide every 2 sessions, top 10% of names, keep a held name while in the top 30%) passed on the 300-name sample at 15:45 snapshot timing: net active +6.7% / +6.6%, IR 0.43 / 0.45, placebo 1.00 / 1.00, 10 bps +2.0% / +1.9%, 15:30 signal +5.0% / +6.3%. Its close-timed version on the other 419 members: +4.6% / +4.7%, IR 0.34 / 0.35, 10 bps +0.1% / +0.1%. 102 hypotheses tested. No return of any rule below has been computed.
 
 ## Phase 1: neighbours of the passing rule (hypotheses 103-111)
-One factor changes at a time from the base (band 30%, hold 2, book 10%, window 5), then two combinations. The base itself is hypothesis 102 and is not re-registered.
+One factor changes at a time from the base (band 30%, hold 2, book 10%, window 5), then two combinations. The base itself is hypothesis 99 (`rev5_h2_band_s`; hypothesis 102 is the last of round 9) and is not re-registered.
 
 | Id | Band | Hold | Book | Window |
 |---|---|---|---|---|
@@ -31,7 +31,7 @@ The family is the base plus nine neighbours (10 cells). It is **supported as a p
 2. The base passes the full bar on the 419 unseen names (snapshot timing, the real test the close-timed check in round 9 only hinted at).
 3. No neighbour that fails does so with net active below -2% in either window (a cliff next to the base would say the base sits on a spike).
 
-If 2 fails, the base is labelled **fragile**: the round-9 pass is kept in the ledger as supported (it met its bar) but with a note, and the shadow record continues unchanged. If 1 fails but 2 passes, the rule is labelled **narrow**. The ledger records a note on hypothesis 102 with the count either way. Nothing here changes the shadow record.
+If 2 fails, the base is labelled **fragile**: the round-9 pass is kept in the ledger as supported (it met its bar) but with a note, and the shadow record continues unchanged. If 1 fails but 2 passes, the rule is labelled **narrow**. The ledger records a note on hypothesis 99 with the count either way. Nothing here changes the shadow record.
 
 ## Phase 3: does reversal exist across eras? (report-only)
 Round 9 has no pre-2016 stock evidence. Two families check the mechanism on data that reaches further back. Neither is tradable evidence for the stock rule and neither adds a hypothesis to the ledger; both are reported as context with their numbers, whichever way they come out.
