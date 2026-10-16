@@ -1,0 +1,121 @@
+# Round 14: ideas from the second deep-research report (2026-10-16)
+
+Source of the ideas: `research/deep-research-short-medium-horizon-round2-2026-10-15.md` (stored in the project folder;
+Garret asked for the recommended order on 2026-10-16: 3:45 fills first, then the two momentum branches together,
+then announcement days). Hypotheses 134-138; 133 were tested before this round.
+
+**This section is written before any result of these rules was computed.**
+
+## Common set-up
+- Universe and data as in earlier rounds: point-in-time S&P 500 members, Alpaca daily bars, adjusted; 3:30 and 3:45
+  snapshots (`core/intraday.py`) for the fixed random sample of 300 names (test 1 only). Costs 5 bps per unit of
+  turnover unless a test says otherwise. Windows: IS = 2016-2022, OOS = 2023 on (decisions start 2016-12-30 for the
+  daily rules and 2017-01-31 for the monthly rules). The data were downloaded afresh in this session, so counts can
+  differ a little from the earlier memos.
+- Every rule is compared with its parent run in the same session on the same data.
+
+## Test 1: fill the reversal rules at 3:45 instead of at the close (hypotheses 134, 135)
+Parents: `rev5_h2_band_s` and `rev5_h3_band40_s` (decision at the 3:45 price, fill at the official close).
+New rules `rev5_h2_band_f45_s` and `rev5_h3_band40_f45_s`: the **signal is read at the 3:30 price** (the 5-day return to
+3:30, rank and band as in the parent), and the orders are filled at the **3:45 price**, which is the only way to act on
+a signal in practice (the order has to be sent after the snapshot). Holdings are valued at the 3:45 price on every
+later day, so a position earns 3:45-to-3:45 returns; the equal-weight benchmark is built and costed the same way.
+- **Cost of the 3:45 fill:** 5 bps plus 2 bps for crossing the spread, so **7 bps per unit of turnover** (the closing
+  auction is assumed to cost 5 bps as before). Also reported at 5, 9 and 11 bps.
+- **Control (the comparison that isolates the fill time):** the same 3:30 signal filled at the official close, 5 bps
+  (the `noisy` variant of round 9). The effect of the fill time is: net active of the 3:45 rule minus net active of the
+  control. Report-only upper bound: the 3:45 signal filled at 3:45 (not executable).
+- **Bar for "supported":** in both windows (a) the 3:45-fill rule beats its control by **>= 1.0%/yr** net active at
+  7 bps, (b) the 3:45-fill rule's own net active vs its benchmark is above 0, and (c) a block bootstrap (21-day blocks,
+  1,000 draws, seed 0) of the daily difference gives P(difference > 0) >= 0.80. Decision days must number at least 250
+  (IS) and 150 (OOS) for the 2-day rule and 160 / 100 for the 3-day rule.
+- Limits known in advance: 300 sampled names (about 210 members on any date); the snapshot has only 3:30 and 3:45, so at
+  most the last 15 minutes of the end-of-day pattern can be captured; the paper's sample ends in 2019.
+
+## Test 2: short-term momentum for heavily traded names, in the momentum rule (hypothesis 136)
+Parent: `stock_resmom6_1_decile` (monthly, top decile by residual momentum, formation window t-126..t-21, min 105 valid
+days, as in `research/round6_scan.py`). New rule `resmom_sttm_decile`: score = z(res6) + 0.5 x z(res1) x H, where res6
+is the parent score, res1 is the same residual (betas from the formation window) mean over its standard deviation on
+sessions t-20..t, z is the cross-sectional z-score among that month's ranked names, and H = 1 for names whose
+prior-month turnover (sum of volume over the last 21 sessions divided by the latest SEC cover-page share count filed
+by then) is in the top 30% of names with a count, else 0. Names without a share count are not high turnover (score =
+parent). Share counts exist for current index members with one share class; names that have left the index, and
+multi-class names, therefore keep the parent score (a survivorship limit, and the reason for the parent comparison).
+Top decile, equal weight, monthly, 5 bps.
+
+## Test 3: announcement days (hypothesis 138)
+Rule `announce_spy_s`: hold SPY from the close before each FOMC statement day and each employment-report day to the
+close of that day (about 20 days a year), BIL otherwise; 1 bp per side. Employment-report days follow the BLS rule with
+three documented shifts (`research/round14_data.py`); the window stops at 2025-09-30 (the autumn-2025 shutdown moved the
+schedule). **CPI is left out: no free source of its release dates was reachable from this environment**, so this
+tests two of the three announcement types.
+- **Bar for "supported":** in both windows (IS 2016-2022, OOS 2023 to 2025-09-30), the mean SPY return in excess of BIL on
+  announcement days net of costs is >= 8 bps per day, with a t-statistic >= 1.65 (day-level, no clustering needed
+  because the days are far apart), and it exceeds the mean excess return of all other days by >= 6 bps.
+- Placebo: the percentile of the announcement-day mean among 1,000 random sets of the same number of days in the same
+  window (seed 0); must be >= 0.95.
+
+## Test 4: frog-in-the-pan filter on residual momentum (hypothesis 137)
+Parent as in test 2. New rule `resmom_fip_decile`: take the 30% of ranked names with the highest res6; among them hold
+the third with the lowest FIP, where FIP = sign(cumulative residual return over the formation window) x (share of
+formation days with a negative residual return minus share with a positive one); a lower FIP means the gain came in many
+small steps. The book therefore has the same size as the decile. Equal weight, monthly, 5 bps.
+
+## Bar for tests 2 and 4
+The scan bar of `research/r6-factor-scan-2026-10-13.md`: net active vs the equal-weight members >= 2.0%/yr, information
+ratio >= 0.3, selection placebo >= 0.95, in both windows, with at least 48 / 36 rebalances; **and** net active above the
+parent's in both windows (a branch must improve on its parent, as in round 13).
+
+## Results (run 2026-10-16)
+
+**Verdict: 0 of 5 supported. Test 1 (134, 135) rejected, tests 2 and 4 (136, 137) rejected, test 3 (138) rejected.** Nothing is added to
+the shadow or paper records. Hypotheses tested after this round: 138.
+
+### Test 1: 3:45 fills (134, 135), rejected
+Full 300-name sample (296 had snapshots, 99.97% of 3:45 prices within 5% of the close), `backtests/round14_fills/`. Net active vs the
+equal-weight members, per year; "control" = the same 3:30 signal filled at the close at 5 bps.
+
+| Rule | Window | Decisions | 3:45 fill at 7 bps | Control (close, 5 bps) | Gain | Bootstrap P(gain>0) | 3:45 fill at 5 bps | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| 134 `rev5_h2_band_f45_s` | IS | 755 | +3.2% | +5.2% | -1.9% | 0.01 | +5.1% | contradicts |
+| | OOS | 475 | +4.9% | +4.3% | +0.6% | 0.66 | +6.7% | contradicts |
+| 135 `rev5_h3_band40_f45_s` | IS | 504 | +6.5% | +7.5% | -1.1% | 0.04 | +7.9% | contradicts |
+| | OOS | 316 | +4.2% | +5.5% | -1.3% | 0.04 | +5.6% | contradicts |
+
+Report-only: the parents (3:45 signal, close fill) earn +6.9% / +5.1% and +8.4% / +5.1%; the not-executable upper bound (3:45
+signal filled at 3:45, 7 bps) earns +6.3% / +5.2% and +7.5% / +4.0%. Turnover is 94 and 70 times a year, so each extra basis
+point of fill cost takes about 0.9% and 0.7% a year.
+
+Plain English: trading at 3:45 instead of at the close does not capture the late-day bounce for these rules. Before any extra
+spread the two fill times are about equal (3:45 is +2.4% a year better in one window of the 2-day rule, level or slightly
+worse elsewhere). Once 2 bps of spread is charged, the closing fill wins or ties in all four cells. The paper's pattern is
+measured over the last 30 minutes, and our snapshot only reaches the last 15; our signal is also a 5-day loser, not a
+same-day loser. So the closing auction stays the better fill for the reversal rules.
+
+### Test 3: announcement days (138), rejected
+Run on SPY and BIL daily bars, 2016-2025-09-30 (`backtests/round14_announce/`).
+
+| Window | Days | Mean net, bps/day | t | Other days, bps | Placebo | Verdict |
+|---|---|---|---|---|---|---|
+| IS 2016-2022 | 137 | +1.3 | 0.27 | +4.8 | 0.45 | contradicts |
+| OOS 2023-2025-09 | 53 | -5.5 | -0.18 | +8.1 | 0.21 | contradicts |
+
+Report-only split: FOMC days -11.0 (IS, 56 days) and -3.2 (OOS, 22 days) bps net; employment-report days +9.8 (IS, 81 days,
+t 1.0) and -7.1 (OOS, 31 days). No version of the announcement premium shows up in these years; SPY earned more on the
+other days. The published premium (Ai, Bansal and Guo report 16 bps per announcement for 2020-2023) is not here, with
+two caveats: CPI days are missing, and the employment dates come from a rule, not the BLS schedule (a wrong date costs
+noise, not bias).
+
+### Tests 2 and 4: momentum branches (136, 137), both rejected
+Monthly rules on all point-in-time members, scan bar plus "beats the parent" (`backtests/round14_momentum/`). The parent
+reproduces the shadow rule's scores to 4e-16 in every month.
+
+| Rule | Net active IS / OOS | IR IS / OOS | Placebo IS / OOS | Turnover/yr IS / OOS | Overlap with parent | Verdict |
+|---|---|---|---|---|---|---|
+| parent `stock_resmom6_1_decile` | +4.3% / +8.1% | 0.49 / 0.66 | 1.00 / 1.00 | 12.2 / 11.3 | 100% | (supports) |
+| 136 `resmom_sttm_decile` | +3.6% / +7.8% | 0.40 / 0.62 | 1.00 / 1.00 | 11.7 / 10.9 | 89% | contradicts (below the parent in both) |
+| 137 `resmom_fip_decile` | +2.1% / +3.3% | 0.24 / 0.34 | 0.97 / 0.96 | 12.6 / 11.4 | 55% | contradicts (IR 0.24 in IS; below the parent in both) |
+
+Coverage for 136: share counts exist for about 73% of ranked names (median 365 of 502); 110 names a month count as
+heavily traded. Plain English: adding last month's move for the busiest stocks changed 11% of the picks and made both
+windows a little worse; picking the steadiest climbers changed 45% of the picks and made them clearly worse.

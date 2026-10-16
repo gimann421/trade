@@ -1,0 +1,127 @@
+{
+ "git_commit": "49e6ae4-dirty",
+ "run_at": "20261016T134258Z",
+ "data_check": {
+  "tickers": 300,
+  "p1530": {
+   "name_sessions": 662369,
+   "gap_over_5pct": 360,
+   "share_within": 0.99945649630342
+  },
+  "p1545": {
+   "name_sessions": 662236,
+   "gap_over_5pct": 198,
+   "share_within": 0.9997010129319457
+  }
+ },
+ "bar": {
+  "gain": 0.01,
+  "bootstrap": 0.8
+ },
+ "costs": {
+  "close": 5.0,
+  "fill": 7.0
+ },
+ "results": {
+  "rev5_h2_band_f45_s": {
+   "parent": "rev5_h2_band_s",
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": [
+      "fill-time gain -1.92%/yr < 1.0%",
+      "bootstrap P(gain>0) 0.01 < 0.80"
+     ],
+     "decisions": 755,
+     "start": "2017-01-03",
+     "net_active_f45_7bps": 0.03236689780774318,
+     "net_active_by_cost": {
+      "5.0": 0.051023737510947194,
+      "7.0": 0.03236689780774318,
+      "9.0": 0.013710058104539152,
+      "11.0": -0.004946781598664849
+     },
+     "net_active_control_close": 0.051599688676087434,
+     "net_active_parent_3_45_close": 0.0688198034989919,
+     "net_active_upper_bound_sig45_fill45": 0.06269064382583187,
+     "gain_vs_control": -0.019232790868344268,
+     "bootstrap_p": 0.015,
+     "turnover": 94.04133040313573
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "fill-time gain 0.61%/yr < 1.0%",
+      "bootstrap P(gain>0) 0.66 < 0.80"
+     ],
+     "decisions": 475,
+     "start": "2023-01-01",
+     "net_active_f45_7bps": 0.04876982458349281,
+     "net_active_by_cost": {
+      "5.0": 0.06740331116459738,
+      "7.0": 0.04876982458349281,
+      "9.0": 0.030136338002388328,
+      "11.0": 0.011502851421283771
+     },
+     "net_active_control_close": 0.04266425279533273,
+     "net_active_parent_3_45_close": 0.05066698571087842,
+     "net_active_upper_bound_sig45_fill45": 0.05241377354126162,
+     "gain_vs_control": 0.006105571788160118,
+     "bootstrap_p": 0.66,
+     "turnover": 93.97582787685458
+    }
+   }
+  },
+  "rev5_h3_band40_f45_s": {
+   "parent": "rev5_h3_band40_s",
+   "status": "rejected",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": [
+      "fill-time gain -1.08%/yr < 1.0%",
+      "bootstrap P(gain>0) 0.04 < 0.80"
+     ],
+     "decisions": 504,
+     "start": "2017-01-03",
+     "net_active_f45_7bps": 0.06471321654330928,
+     "net_active_by_cost": {
+      "5.0": 0.07861160978172638,
+      "7.0": 0.06471321654330928,
+      "9.0": 0.05081482330489216,
+      "11.0": 0.036916430066475055
+     },
+     "net_active_control_close": 0.07547034425792845,
+     "net_active_parent_3_45_close": 0.08356167844293737,
+     "net_active_upper_bound_sig45_fill45": 0.07496654988914886,
+     "gain_vs_control": -0.010757127714619185,
+     "bootstrap_p": 0.037,
+     "turnover": 70.24909807920123
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "fill-time gain -1.31%/yr < 1.0%",
+      "bootstrap P(gain>0) 0.04 < 0.80"
+     ],
+     "decisions": 316,
+     "start": "2023-01-01",
+     "net_active_f45_7bps": 0.04158448515038714,
+     "net_active_by_cost": {
+      "5.0": 0.05549061953465607,
+      "7.0": 0.04158448515038714,
+      "9.0": 0.02767835076611819,
+      "11.0": 0.013772216381849271
+     },
+     "net_active_control_close": 0.054663215853683826,
+     "net_active_parent_3_45_close": 0.050673167238590076,
+     "net_active_upper_bound_sig45_fill45": 0.040094124181366486,
+     "gain_vs_control": -0.013078730703296704,
+     "bootstrap_p": 0.036,
+     "turnover": 70.33906689267658
+    }
+   }
+  }
+ }
+}
