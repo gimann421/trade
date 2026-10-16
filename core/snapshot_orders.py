@@ -31,6 +31,8 @@ from core.universe import fetch_membership, load_membership, members_on
 NY = "America/New_York"
 SNAPSHOT_READY = time(15, 45, 8)    # the 15:30 bar is complete a few seconds after 15:45
 SUBMIT_BY = time(15, 49, 30)        # market-on-close cut-off is 15:50
+RETRY_EVERY = 8                     # seconds between fetches while the 15:30 bar is not published yet
+RETRY_UNTIL = time(15, 48, 30)      # stop asking then; the orders still need a few seconds to go in
 MIN_COVERAGE = 0.9                  # share of members that must have a 15:30 bar, else the day is skipped
 LOOKBACK_DAYS = 20
 
@@ -113,9 +115,13 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
         print("too late for market-on-close orders; nothing sent", file=sys.stderr)
         return 2
     snap = snapshot_fn(members, today)
+    while len(snap) < MIN_COVERAGE * len(members) and now_fn().time() < RETRY_UNTIL:
+        # 2026-10-16: the feed returned no 15:30 bars at 15:45:24 but had them a minute later
+        sleep_fn(RETRY_EVERY)
+        snap = snapshot_fn(members, today)
     if len(snap) < MIN_COVERAGE * len(members):
         for cfg, *_ in due:
-            journal.record("skip", f"only {len(snap)} of {len(members)} members had a 15:30 bar on {today.date()}; no orders", cfg["rule"])
+            journal.record("skip", f"only {len(snap)} of {len(members)} members had a 15:30 bar on {today.date()} (asked until {now_fn().time()}); no orders", cfg["rule"])
         print(f"snapshot too sparse ({len(snap)} of {len(members)}); nothing sent", file=sys.stderr)
         return 2
 
