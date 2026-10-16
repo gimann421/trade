@@ -66,5 +66,34 @@ The scan bar of `research/r6-factor-scan-2026-10-13.md`: net active vs the equal
 ratio >= 0.3, selection placebo >= 0.95, in both windows, with at least 48 / 36 rebalances; **and** net active above the
 parent's in both windows (a branch must improve on its parent, as in round 13).
 
-## Results
-(to be added)
+## Results (run 2026-10-16)
+
+**Test 1 (3:45 fills): pending, the 3:30 and 3:45 prices for the 300-name sample are still downloading.**
+
+### Test 3: announcement days (138), rejected
+Run on SPY and BIL daily bars, 2016-2025-09-30 (`backtests/round14_announce/`).
+
+| Window | Days | Mean net, bps/day | t | Other days, bps | Placebo | Verdict |
+|---|---|---|---|---|---|---|
+| IS 2016-2022 | 137 | +1.3 | 0.27 | +4.8 | 0.45 | contradicts |
+| OOS 2023-2025-09 | 53 | -5.5 | -0.18 | +8.1 | 0.21 | contradicts |
+
+Report-only split: FOMC days -11.0 (IS, 56 days) and -3.2 (OOS, 22 days) bps net; employment-report days +9.8 (IS, 81 days,
+t 1.0) and -7.1 (OOS, 31 days). No version of the announcement premium shows up in these years; SPY earned more on the
+other days. The published premium (Ai, Bansal and Guo report 16 bps per announcement for 2020-2023) is not here, with
+two caveats: CPI days are missing, and the employment dates come from a rule, not the BLS schedule (a wrong date costs
+noise, not bias).
+
+### Tests 2 and 4: momentum branches (136, 137), both rejected
+Monthly rules on all point-in-time members, scan bar plus "beats the parent" (`backtests/round14_momentum/`). The parent
+reproduces the shadow rule's scores to 4e-16 in every month.
+
+| Rule | Net active IS / OOS | IR IS / OOS | Placebo IS / OOS | Turnover/yr IS / OOS | Overlap with parent | Verdict |
+|---|---|---|---|---|---|---|
+| parent `stock_resmom6_1_decile` | +4.3% / +8.1% | 0.49 / 0.66 | 1.00 / 1.00 | 12.2 / 11.3 | 100% | (supports) |
+| 136 `resmom_sttm_decile` | +3.6% / +7.8% | 0.40 / 0.62 | 1.00 / 1.00 | 11.7 / 10.9 | 89% | contradicts (below the parent in both) |
+| 137 `resmom_fip_decile` | +2.1% / +3.3% | 0.24 / 0.34 | 0.97 / 0.96 | 12.6 / 11.4 | 55% | contradicts (IR 0.24 in IS; below the parent in both) |
+
+Coverage for 136: share counts exist for about 73% of ranked names (median 365 of 502); 110 names a month count as
+heavily traded. Plain English: adding last month's move for the busiest stocks changed 11% of the picks and made both
+windows a little worse; picking the steadiest climbers changed 45% of the picks and made them clearly worse.

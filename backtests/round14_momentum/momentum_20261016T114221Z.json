@@ -1,0 +1,857 @@
+{
+ "git_commit": "afb2af3-dirty",
+ "run_at": "20261016T114221Z",
+ "bar": {
+  "net_active": 0.02,
+  "information_ratio": 0.3,
+  "placebo": 0.95
+ },
+ "coverage": [
+  {
+   "date": "2017-01-31",
+   "ranked": 498,
+   "with_turnover": 290,
+   "high": 87
+  },
+  {
+   "date": "2017-02-28",
+   "ranked": 498,
+   "with_turnover": 290,
+   "high": 87
+  },
+  {
+   "date": "2017-03-31",
+   "ranked": 498,
+   "with_turnover": 295,
+   "high": 89
+  },
+  {
+   "date": "2017-04-28",
+   "ranked": 497,
+   "with_turnover": 296,
+   "high": 89
+  },
+  {
+   "date": "2017-05-31",
+   "ranked": 498,
+   "with_turnover": 296,
+   "high": 89
+  },
+  {
+   "date": "2017-06-30",
+   "ranked": 500,
+   "with_turnover": 298,
+   "high": 90
+  },
+  {
+   "date": "2017-07-31",
+   "ranked": 501,
+   "with_turnover": 302,
+   "high": 91
+  },
+  {
+   "date": "2017-08-31",
+   "ranked": 500,
+   "with_turnover": 302,
+   "high": 91
+  },
+  {
+   "date": "2017-09-29",
+   "ranked": 500,
+   "with_turnover": 303,
+   "high": 91
+  },
+  {
+   "date": "2017-10-31",
+   "ranked": 501,
+   "with_turnover": 304,
+   "high": 92
+  },
+  {
+   "date": "2017-11-30",
+   "ranked": 502,
+   "with_turnover": 305,
+   "high": 92
+  },
+  {
+   "date": "2017-12-29",
+   "ranked": 501,
+   "with_turnover": 305,
+   "high": 92
+  },
+  {
+   "date": "2018-01-31",
+   "ranked": 504,
+   "with_turnover": 306,
+   "high": 92
+  },
+  {
+   "date": "2018-02-28",
+   "ranked": 504,
+   "with_turnover": 306,
+   "high": 92
+  },
+  {
+   "date": "2018-03-29",
+   "ranked": 504,
+   "with_turnover": 307,
+   "high": 93
+  },
+  {
+   "date": "2018-04-30",
+   "ranked": 504,
+   "with_turnover": 308,
+   "high": 93
+  },
+  {
+   "date": "2018-05-31",
+   "ranked": 506,
+   "with_turnover": 309,
+   "high": 93
+  },
+  {
+   "date": "2018-06-29",
+   "ranked": 505,
+   "with_turnover": 311,
+   "high": 94
+  },
+  {
+   "date": "2018-07-31",
+   "ranked": 505,
+   "with_turnover": 311,
+   "high": 94
+  },
+  {
+   "date": "2018-08-31",
+   "ranked": 505,
+   "with_turnover": 312,
+   "high": 94
+  },
+  {
+   "date": "2018-09-28",
+   "ranked": 504,
+   "with_turnover": 312,
+   "high": 94
+  },
+  {
+   "date": "2018-10-31",
+   "ranked": 503,
+   "with_turnover": 314,
+   "high": 95
+  },
+  {
+   "date": "2018-11-30",
+   "ranked": 501,
+   "with_turnover": 315,
+   "high": 95
+  },
+  {
+   "date": "2018-12-31",
+   "ranked": 504,
+   "with_turnover": 317,
+   "high": 96
+  },
+  {
+   "date": "2019-01-31",
+   "ranked": 504,
+   "with_turnover": 316,
+   "high": 95
+  },
+  {
+   "date": "2019-02-28",
+   "ranked": 504,
+   "with_turnover": 319,
+   "high": 96
+  },
+  {
+   "date": "2019-03-29",
+   "ranked": 504,
+   "with_turnover": 321,
+   "high": 97
+  },
+  {
+   "date": "2019-04-30",
+   "ranked": 503,
+   "with_turnover": 321,
+   "high": 97
+  },
+  {
+   "date": "2019-05-31",
+   "ranked": 505,
+   "with_turnover": 324,
+   "high": 98
+  },
+  {
+   "date": "2019-06-28",
+   "ranked": 503,
+   "with_turnover": 326,
+   "high": 98
+  },
+  {
+   "date": "2019-07-31",
+   "ranked": 503,
+   "with_turnover": 327,
+   "high": 99
+  },
+  {
+   "date": "2019-08-30",
+   "ranked": 503,
+   "with_turnover": 330,
+   "high": 99
+  },
+  {
+   "date": "2019-09-30",
+   "ranked": 503,
+   "with_turnover": 332,
+   "high": 100
+  },
+  {
+   "date": "2019-10-31",
+   "ranked": 503,
+   "with_turnover": 333,
+   "high": 100
+  },
+  {
+   "date": "2019-11-29",
+   "ranked": 504,
+   "with_turnover": 335,
+   "high": 101
+  },
+  {
+   "date": "2019-12-31",
+   "ranked": 505,
+   "with_turnover": 343,
+   "high": 103
+  },
+  {
+   "date": "2020-01-31",
+   "ranked": 505,
+   "with_turnover": 343,
+   "high": 103
+  },
+  {
+   "date": "2020-02-28",
+   "ranked": 505,
+   "with_turnover": 343,
+   "high": 103
+  },
+  {
+   "date": "2020-03-31",
+   "ranked": 505,
+   "with_turnover": 344,
+   "high": 104
+  },
+  {
+   "date": "2020-04-30",
+   "ranked": 502,
+   "with_turnover": 345,
+   "high": 104
+  },
+  {
+   "date": "2020-05-29",
+   "ranked": 502,
+   "with_turnover": 348,
+   "high": 105
+  },
+  {
+   "date": "2020-06-30",
+   "ranked": 502,
+   "with_turnover": 350,
+   "high": 105
+  },
+  {
+   "date": "2020-07-31",
+   "ranked": 502,
+   "with_turnover": 350,
+   "high": 105
+  },
+  {
+   "date": "2020-08-31",
+   "ranked": 502,
+   "with_turnover": 350,
+   "high": 105
+  },
+  {
+   "date": "2020-09-30",
+   "ranked": 503,
+   "with_turnover": 352,
+   "high": 106
+  },
+  {
+   "date": "2020-10-30",
+   "ranked": 504,
+   "with_turnover": 354,
+   "high": 107
+  },
+  {
+   "date": "2020-11-30",
+   "ranked": 503,
+   "with_turnover": 354,
+   "high": 107
+  },
+  {
+   "date": "2020-12-31",
+   "ranked": 503,
+   "with_turnover": 355,
+   "high": 107
+  },
+  {
+   "date": "2021-01-29",
+   "ranked": 503,
+   "with_turnover": 356,
+   "high": 107
+  },
+  {
+   "date": "2021-02-26",
+   "ranked": 503,
+   "with_turnover": 357,
+   "high": 108
+  },
+  {
+   "date": "2021-03-31",
+   "ranked": 504,
+   "with_turnover": 358,
+   "high": 108
+  },
+  {
+   "date": "2021-04-30",
+   "ranked": 504,
+   "with_turnover": 359,
+   "high": 108
+  },
+  {
+   "date": "2021-05-28",
+   "ranked": 505,
+   "with_turnover": 362,
+   "high": 109
+  },
+  {
+   "date": "2021-06-30",
+   "ranked": 504,
+   "with_turnover": 362,
+   "high": 109
+  },
+  {
+   "date": "2021-07-30",
+   "ranked": 504,
+   "with_turnover": 363,
+   "high": 109
+  },
+  {
+   "date": "2021-08-31",
+   "ranked": 503,
+   "with_turnover": 364,
+   "high": 110
+  },
+  {
+   "date": "2021-09-30",
+   "ranked": 503,
+   "with_turnover": 365,
+   "high": 110
+  },
+  {
+   "date": "2021-10-29",
+   "ranked": 503,
+   "with_turnover": 365,
+   "high": 110
+  },
+  {
+   "date": "2021-11-30",
+   "ranked": 503,
+   "with_turnover": 365,
+   "high": 110
+  },
+  {
+   "date": "2021-12-31",
+   "ranked": 504,
+   "with_turnover": 366,
+   "high": 110
+  },
+  {
+   "date": "2022-01-31",
+   "ranked": 504,
+   "with_turnover": 367,
+   "high": 111
+  },
+  {
+   "date": "2022-02-28",
+   "ranked": 503,
+   "with_turnover": 368,
+   "high": 111
+  },
+  {
+   "date": "2022-03-31",
+   "ranked": 504,
+   "with_turnover": 368,
+   "high": 111
+  },
+  {
+   "date": "2022-04-29",
+   "ranked": 502,
+   "with_turnover": 369,
+   "high": 111
+  },
+  {
+   "date": "2022-05-31",
+   "ranked": 502,
+   "with_turnover": 370,
+   "high": 111
+  },
+  {
+   "date": "2022-06-30",
+   "ranked": 501,
+   "with_turnover": 374,
+   "high": 113
+  },
+  {
+   "date": "2022-07-29",
+   "ranked": 501,
+   "with_turnover": 374,
+   "high": 113
+  },
+  {
+   "date": "2022-08-31",
+   "ranked": 502,
+   "with_turnover": 375,
+   "high": 113
+  },
+  {
+   "date": "2022-09-30",
+   "ranked": 501,
+   "with_turnover": 377,
+   "high": 114
+  },
+  {
+   "date": "2022-10-31",
+   "ranked": 502,
+   "with_turnover": 381,
+   "high": 115
+  },
+  {
+   "date": "2022-11-30",
+   "ranked": 503,
+   "with_turnover": 383,
+   "high": 115
+  },
+  {
+   "date": "2022-12-30",
+   "ranked": 503,
+   "with_turnover": 385,
+   "high": 116
+  },
+  {
+   "date": "2023-01-31",
+   "ranked": 502,
+   "with_turnover": 385,
+   "high": 116
+  },
+  {
+   "date": "2023-02-28",
+   "ranked": 502,
+   "with_turnover": 386,
+   "high": 116
+  },
+  {
+   "date": "2023-03-31",
+   "ranked": 502,
+   "with_turnover": 388,
+   "high": 117
+  },
+  {
+   "date": "2023-04-28",
+   "ranked": 502,
+   "with_turnover": 388,
+   "high": 117
+  },
+  {
+   "date": "2023-05-31",
+   "ranked": 502,
+   "with_turnover": 390,
+   "high": 117
+  },
+  {
+   "date": "2023-06-30",
+   "ranked": 503,
+   "with_turnover": 390,
+   "high": 117
+  },
+  {
+   "date": "2023-07-31",
+   "ranked": 503,
+   "with_turnover": 391,
+   "high": 118
+  },
+  {
+   "date": "2023-08-31",
+   "ranked": 502,
+   "with_turnover": 392,
+   "high": 118
+  },
+  {
+   "date": "2023-09-29",
+   "ranked": 502,
+   "with_turnover": 393,
+   "high": 118
+  },
+  {
+   "date": "2023-10-31",
+   "ranked": 501,
+   "with_turnover": 394,
+   "high": 119
+  },
+  {
+   "date": "2023-11-30",
+   "ranked": 502,
+   "with_turnover": 395,
+   "high": 119
+  },
+  {
+   "date": "2023-12-29",
+   "ranked": 502,
+   "with_turnover": 398,
+   "high": 120
+  },
+  {
+   "date": "2024-01-31",
+   "ranked": 502,
+   "with_turnover": 398,
+   "high": 120
+  },
+  {
+   "date": "2024-02-29",
+   "ranked": 502,
+   "with_turnover": 398,
+   "high": 120
+  },
+  {
+   "date": "2024-03-28",
+   "ranked": 502,
+   "with_turnover": 402,
+   "high": 121
+  },
+  {
+   "date": "2024-04-30",
+   "ranked": 501,
+   "with_turnover": 402,
+   "high": 121
+  },
+  {
+   "date": "2024-05-31",
+   "ranked": 501,
+   "with_turnover": 403,
+   "high": 121
+  },
+  {
+   "date": "2024-06-28",
+   "ranked": 501,
+   "with_turnover": 405,
+   "high": 122
+  },
+  {
+   "date": "2024-07-31",
+   "ranked": 501,
+   "with_turnover": 406,
+   "high": 122
+  },
+  {
+   "date": "2024-08-30",
+   "ranked": 501,
+   "with_turnover": 406,
+   "high": 122
+  },
+  {
+   "date": "2024-09-30",
+   "ranked": 502,
+   "with_turnover": 407,
+   "high": 123
+  },
+  {
+   "date": "2024-10-31",
+   "ranked": 502,
+   "with_turnover": 408,
+   "high": 123
+  },
+  {
+   "date": "2024-11-29",
+   "ranked": 502,
+   "with_turnover": 410,
+   "high": 123
+  },
+  {
+   "date": "2024-12-31",
+   "ranked": 503,
+   "with_turnover": 412,
+   "high": 124
+  },
+  {
+   "date": "2025-01-31",
+   "ranked": 503,
+   "with_turnover": 412,
+   "high": 124
+  },
+  {
+   "date": "2025-02-28",
+   "ranked": 503,
+   "with_turnover": 412,
+   "high": 124
+  },
+  {
+   "date": "2025-03-31",
+   "ranked": 503,
+   "with_turnover": 414,
+   "high": 125
+  },
+  {
+   "date": "2025-04-30",
+   "ranked": 503,
+   "with_turnover": 414,
+   "high": 125
+  },
+  {
+   "date": "2025-05-30",
+   "ranked": 503,
+   "with_turnover": 414,
+   "high": 125
+  },
+  {
+   "date": "2025-06-30",
+   "ranked": 503,
+   "with_turnover": 415,
+   "high": 125
+  },
+  {
+   "date": "2025-07-31",
+   "ranked": 503,
+   "with_turnover": 415,
+   "high": 125
+  },
+  {
+   "date": "2025-08-29",
+   "ranked": 502,
+   "with_turnover": 416,
+   "high": 125
+  },
+  {
+   "date": "2025-09-30",
+   "ranked": 502,
+   "with_turnover": 417,
+   "high": 126
+  },
+  {
+   "date": "2025-10-31",
+   "ranked": 501,
+   "with_turnover": 417,
+   "high": 126
+  },
+  {
+   "date": "2025-11-28",
+   "ranked": 500,
+   "with_turnover": 419,
+   "high": 126
+  },
+  {
+   "date": "2025-12-31",
+   "ranked": 501,
+   "with_turnover": 422,
+   "high": 127
+  },
+  {
+   "date": "2026-01-30",
+   "ranked": 501,
+   "with_turnover": 423,
+   "high": 127
+  },
+  {
+   "date": "2026-02-27",
+   "ranked": 502,
+   "with_turnover": 425,
+   "high": 128
+  },
+  {
+   "date": "2026-03-31",
+   "ranked": 502,
+   "with_turnover": 428,
+   "high": 129
+  },
+  {
+   "date": "2026-04-30",
+   "ranked": 502,
+   "with_turnover": 429,
+   "high": 129
+  },
+  {
+   "date": "2026-05-29",
+   "ranked": 503,
+   "with_turnover": 432,
+   "high": 130
+  },
+  {
+   "date": "2026-06-30",
+   "ranked": 501,
+   "with_turnover": 434,
+   "high": 131
+  },
+  {
+   "date": "2026-07-31",
+   "ranked": 501,
+   "with_turnover": 434,
+   "high": 131
+  },
+  {
+   "date": "2026-08-31",
+   "ranked": 501,
+   "with_turnover": 437,
+   "high": 132
+  },
+  {
+   "date": "2026-09-30",
+   "ranked": 501,
+   "with_turnover": 437,
+   "high": 132
+  }
+ ],
+ "overlap": {
+  "resmom_sttm_decile": 0.8940338528573823,
+  "resmom_fip_decile": 0.5481079269314563
+ },
+ "parent_score_check_max_abs_diff": 3.608224830031759e-16,
+ "results": {
+  "stock_resmom6_1_decile": {
+   "kind": "parent",
+   "cells": {
+    "IS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 71,
+     "net_active": 0.04303435565994128,
+     "information_ratio": 0.48865248878654133,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.0039138433776119315,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.9009293749291438,
+     "turnover": 12.158642623606774,
+     "cagr": 0.15183329167782555,
+     "benchmark_cagr": 0.10271221052467183,
+     "sharpe": 0.7825491290430832,
+     "benchmark_sharpe": 0.5692302864655557,
+     "max_drawdown": -0.3690534661046876,
+     "delayed_net_active": 0.0428509228437295,
+     "delayed_ir": 0.48729610235201404
+    },
+    "OOS": {
+     "verdict": "supports",
+     "why": "passes the bar",
+     "rebalances": 46,
+     "net_active": 0.080816770034408,
+     "information_ratio": 0.656395755071036,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.006906664847950145,
+     "start": "2023-01-03",
+     "end": "2026-10-15",
+     "beta": 0.9195129112603212,
+     "turnover": 11.291699980027818,
+     "cagr": 0.22664375366201783,
+     "benchmark_cagr": 0.13830965160844766,
+     "sharpe": 1.2396058648151982,
+     "benchmark_sharpe": 0.9971977870436006,
+     "max_drawdown": -0.21867125492566375,
+     "delayed_net_active": 0.07454915317694433,
+     "delayed_ir": 0.6044397505639353
+    }
+   }
+  },
+  "resmom_sttm_decile": {
+   "kind": "new",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "passes the bar but net active 3.56% does not exceed the parent's 4.30%",
+     "rebalances": 71,
+     "net_active": 0.03555051598373517,
+     "information_ratio": 0.39913431108995284,
+     "placebo": 0.999,
+     "gross_active_per_month": 0.0032522944195400487,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.8958691752720842,
+     "turnover": 11.740368148910912,
+     "cagr": 0.14338991005328428,
+     "benchmark_cagr": 0.10271221052467183,
+     "sharpe": 0.7490350957172449,
+     "benchmark_sharpe": 0.5692302864655557,
+     "max_drawdown": -0.3688911797161625,
+     "delayed_net_active": 0.025064326902409312,
+     "delayed_ir": 0.2812903425732364
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "passes the bar but net active 7.80% does not exceed the parent's 8.08%",
+     "rebalances": 46,
+     "net_active": 0.07804069958771288,
+     "information_ratio": 0.6218678619945156,
+     "placebo": 1.0,
+     "gross_active_per_month": 0.006728200995404508,
+     "start": "2023-01-03",
+     "end": "2026-10-15",
+     "beta": 0.8943101068566826,
+     "turnover": 10.915924864780036,
+     "cagr": 0.2234818008741959,
+     "benchmark_cagr": 0.13830965160844766,
+     "sharpe": 1.2316917856671517,
+     "benchmark_sharpe": 0.9971977870436006,
+     "max_drawdown": -0.20735947675680755,
+     "delayed_net_active": 0.0769123294662499,
+     "delayed_ir": 0.6107084916120585
+    }
+   },
+   "status": "rejected"
+  },
+  "resmom_fip_decile": {
+   "kind": "new",
+   "cells": {
+    "IS": {
+     "verdict": "contradicts",
+     "why": "information ratio 0.24 < 0.3",
+     "rebalances": 71,
+     "net_active": 0.02104640586362511,
+     "information_ratio": 0.23966225277882186,
+     "placebo": 0.966,
+     "gross_active_per_month": 0.0021621098160386665,
+     "start": "2017-02-01",
+     "end": "2022-12-30",
+     "beta": 0.8503056598925632,
+     "turnover": 12.597638337963849,
+     "cagr": 0.12942780637381834,
+     "benchmark_cagr": 0.10271221052467183,
+     "sharpe": 0.7156751901216746,
+     "benchmark_sharpe": 0.5692302864655557,
+     "max_drawdown": -0.3536100652161659,
+     "delayed_net_active": 0.01681578199386319,
+     "delayed_ir": 0.1917511376866469
+    },
+    "OOS": {
+     "verdict": "contradicts",
+     "why": "passes the bar but net active 3.35% does not exceed the parent's 8.08%",
+     "rebalances": 46,
+     "net_active": 0.03345635398688499,
+     "information_ratio": 0.33819155886037844,
+     "placebo": 0.962,
+     "gross_active_per_month": 0.0030443142161873347,
+     "start": "2023-01-03",
+     "end": "2026-10-15",
+     "beta": 0.8950419627514555,
+     "turnover": 11.436820896620594,
+     "cagr": 0.17365286241694244,
+     "benchmark_cagr": 0.13830965160844766,
+     "sharpe": 1.0881880583550387,
+     "benchmark_sharpe": 0.9971977870436006,
+     "max_drawdown": -0.2145134030386049,
+     "delayed_net_active": 0.0322784843221268,
+     "delayed_ir": 0.32436850366915376
+    }
+   },
+   "status": "rejected"
+  }
+ }
+}
