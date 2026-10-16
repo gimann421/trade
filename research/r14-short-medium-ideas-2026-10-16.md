@@ -68,7 +68,29 @@ parent's in both windows (a branch must improve on its parent, as in round 13).
 
 ## Results (run 2026-10-16)
 
-**Test 1 (3:45 fills): pending, the 3:30 and 3:45 prices for the 300-name sample are still downloading.**
+**Verdict: 0 of 5 supported. Test 1 (134, 135) rejected, tests 2 and 4 (136, 137) rejected, test 3 (138) rejected.** Nothing is added to
+the shadow or paper records. Hypotheses tested after this round: 138.
+
+### Test 1: 3:45 fills (134, 135), rejected
+Full 300-name sample (296 had snapshots, 99.97% of 3:45 prices within 5% of the close), `backtests/round14_fills/`. Net active vs the
+equal-weight members, per year; "control" = the same 3:30 signal filled at the close at 5 bps.
+
+| Rule | Window | Decisions | 3:45 fill at 7 bps | Control (close, 5 bps) | Gain | Bootstrap P(gain>0) | 3:45 fill at 5 bps | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| 134 `rev5_h2_band_f45_s` | IS | 755 | +3.2% | +5.2% | -1.9% | 0.01 | +5.1% | contradicts |
+| | OOS | 475 | +4.9% | +4.3% | +0.6% | 0.66 | +6.7% | contradicts |
+| 135 `rev5_h3_band40_f45_s` | IS | 504 | +6.5% | +7.5% | -1.1% | 0.04 | +7.9% | contradicts |
+| | OOS | 316 | +4.2% | +5.5% | -1.3% | 0.04 | +5.6% | contradicts |
+
+Report-only: the parents (3:45 signal, close fill) earn +6.9% / +5.1% and +8.4% / +5.1%; the not-executable upper bound (3:45
+signal filled at 3:45, 7 bps) earns +6.3% / +5.2% and +7.5% / +4.0%. Turnover is 94 and 70 times a year, so each extra basis
+point of fill cost takes about 0.9% and 0.7% a year.
+
+Plain English: trading at 3:45 instead of at the close does not capture the late-day bounce for these rules. Before any extra
+spread the two fill times are about equal (3:45 is +2.4% a year better in one window of the 2-day rule, level or slightly
+worse elsewhere). Once 2 bps of spread is charged, the closing fill wins or ties in all four cells. The paper's pattern is
+measured over the last 30 minutes, and our snapshot only reaches the last 15; our signal is also a 5-day loser, not a
+same-day loser. So the closing auction stays the better fill for the reversal rules.
 
 ### Test 3: announcement days (138), rejected
 Run on SPY and BIL daily bars, 2016-2025-09-30 (`backtests/round14_announce/`).
