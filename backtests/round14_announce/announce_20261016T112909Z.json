@@ -1,0 +1,77 @@
+{
+ "git_commit": "afb2af3-dirty",
+ "run_at": "20261016T112909Z",
+ "bar": {
+  "mean_bps": 8.0,
+  "t": 1.65,
+  "gap_bps": 6.0,
+  "placebo": 0.95
+ },
+ "status": "rejected",
+ "cells": {
+  "IS": {
+   "days": 137,
+   "mean_bps_net": 1.3008389150168926,
+   "mean_bps_gross": 3.3008389150168926,
+   "t": 0.27307218223174123,
+   "other_days_mean_bps": 4.771867849552437,
+   "gap_bps": -3.471028934535544,
+   "placebo": 0.446,
+   "verdict": "contradicts",
+   "why": "mean 1.3 bps < 8; t 0.27 < 1.65; gap to other days -3.5 bps < 6; placebo 0.446 < 0.95"
+  },
+  "OOS": {
+   "days": 53,
+   "mean_bps_net": -5.466689792649162,
+   "mean_bps_gross": -3.466689792649162,
+   "t": -0.18261622250709825,
+   "other_days_mean_bps": 8.083023058894925,
+   "gap_bps": -13.549712851544086,
+   "placebo": 0.212,
+   "verdict": "contradicts",
+   "why": "mean -5.5 bps < 8; t -0.18 < 1.65; gap to other days -13.5 bps < 6; placebo 0.212 < 0.95"
+  }
+ },
+ "report_only": {
+  "IS": {
+   "fomc": {
+    "days": 56,
+    "mean_bps_net": -10.952482214531368,
+    "mean_bps_gross": -8.952482214531368,
+    "t": -0.3673148690151891,
+    "other_days_mean_bps": 5.104438312635911,
+    "gap_bps": -16.05692052716728,
+    "placebo": 0.171
+   },
+   "employment": {
+    "days": 81,
+    "mean_bps_net": 9.772270807050258,
+    "mean_bps_gross": 11.772270807050258,
+    "t": 1.0110206592171607,
+    "other_days_mean_bps": 4.314389514082977,
+    "gap_bps": 5.457881292967281,
+    "placebo": 0.709
+   }
+  },
+  "OOS": {
+   "fomc": {
+    "days": 22,
+    "mean_bps_net": -3.2274844040681283,
+    "mean_bps_gross": -1.2274844040681283,
+    "t": -0.05133825140969801,
+    "other_days_mean_bps": 7.471456066482539,
+    "gap_bps": -10.698940470550667,
+    "placebo": 0.332
+   },
+   "employment": {
+    "days": 31,
+    "mean_bps_net": -7.055803294222799,
+    "mean_bps_gross": -5.055803294222799,
+    "t": -0.1805937690472926,
+    "other_days_mean_bps": 7.771255685705904,
+    "gap_bps": -14.827058979928703,
+    "placebo": 0.235
+   }
+  }
+ }
+}
