@@ -1,7 +1,9 @@
 {
- "asof": "2026-10-15",
+ "asof": "2026-10-16",
+ "benchmark_nav": 99656.85083003381,
  "decisions": 1,
  "decisions_changed_since_recorded": [],
+ "excess_return": -0.036351171955603334,
  "first_decision": "2026-10-15",
  "holdings": [
   "AKAM",
@@ -57,8 +59,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-10-15",
+ "nav": 96034.20750895735,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
- "state": "waiting_for_first_interval",
- "strategy_rule": "rev5_h2_band_s"
+ "state": "running",
+ "strategy_rule": "rev5_h2_band_s",
+ "total_return": -0.03965792491042652
 }
