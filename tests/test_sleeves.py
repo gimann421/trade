@@ -184,6 +184,19 @@ def test_late_start_sends_nothing(env):
 def test_sparse_snapshot_sends_nothing(env):
     assert go(env, execute=True, snap=env.snap.iloc[:10]) == 2
     assert env.account.sent == [] and "only 10 of 20" in env.skips[0][1]
+    assert env.clock.now.time() >= so.RETRY_UNTIL                 # it kept asking until the deadline
+
+
+def test_snapshot_published_late_is_waited_for(env):
+    calls = []
+
+    def snapshot(symbols, day):
+        calls.append(env.clock.now)
+        return env.snap.iloc[:0] if len(calls) < 4 else env.snap
+
+    so_run = so.run(True, now_fn=env.clock, sleep_fn=env.clock.sleep, fetch_closes_fn=lambda *a, **k: env.closes,
+                    snapshot_fn=snapshot, membership=env.membership, client=env.account.client, out_root=env.out, tracked=[CFG])
+    assert so_run == 0 and len(calls) == 4 and sorted(o.symbol for o, _ in env.account.sent) == ["T18", "T19"]
 
 
 def test_not_a_decision_day(env):
