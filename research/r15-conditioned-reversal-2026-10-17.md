@@ -42,5 +42,39 @@ earlier memos and the parent here is the comparison that counts.
   screens are still daily-close, not executable.
 - Halving the ranked names makes the book more concentrated (about 25 names in the snapshot sample), so turnover and noise rise.
 
-## Results
-(to be added)
+## Results (run 2026-10-17)
+
+**Verdict: 0 of 3 supported, all three rejected** (`backtests/round15_filters/`). Hypotheses tested after this round: 141. Nothing
+is added to the shadow or paper records. Net active per year vs the equal-weight members, 5 bps, IS 2017-2022 / OOS 2023 on;
+"opposite half" is report-only.
+
+| Evaluation | Rule | Net active IS / OOS | IR IS / OOS | Placebo IS / OOS | 10 bps IS / OOS | Opposite half IS / OOS |
+|---|---|---|---|---|---|---|
+| Screen, all 719 names | parent | +6.2% / +0.3% | 0.47 / 0.02 | 1.00 / 0.94 | +2.7% / -3.1% | |
+| | 139 far from 52-week high | +5.2% / +0.3% | 0.30 / 0.02 | 0.97 / 0.76 | +1.4% / -3.5% | +0.3% / -5.3% |
+| | 140 medium-term losers | +10.7% / -9.5% | 0.65 / -0.68 | 1.00 / 0.12 | +7.2% / -13.1% | +2.0% / +9.4% |
+| | 141 low volatility | +1.8% / -5.6% | 0.20 / -0.62 | 1.00 / 0.86 | -1.9% / -9.4% | +8.8% / +4.9% |
+| Screen, 419 unseen names | parent | +5.2% / -0.8% | 0.40 / -0.07 | 1.00 / 0.79 | +1.8% / -4.2% | |
+| | 139 | +2.6% / -1.3% | 0.16 / -0.08 | 0.77 / 0.49 | -1.2% / -5.1% | -3.2% / -0.8% |
+| | 140 | +10.7% / -7.3% | 0.66 / -0.51 | 1.00 / 0.25 | +7.0% / -11.0% | -0.6% / +11.3% |
+| | 141 | +1.1% / -7.3% | 0.12 / -0.75 | 1.00 / 0.67 | -2.6% / -11.0% | +5.2% / +5.9% |
+| Snapshot, 300 names | parent | +9.9% / +3.0% | 0.69 / 0.21 | 1.00 / 0.95 | +6.4% / -0.4% | |
+| | 139 | +12.1% / +8.0% | 0.61 / 0.37 | 1.00 / 0.98 | +8.2% / +4.2% | +3.0% / -3.3% |
+| | 140 | +12.0% / -9.3% | 0.62 / -0.52 | 1.00 / 0.34 | +8.4% / -13.0% | +1.5% / +9.2% |
+| | 141 | +0.4% / -4.3% | 0.04 / -0.39 | 0.95 / 0.74 | -3.3% / -8.0% | +14.4% / +6.2% |
+
+Why each fails the pre-registered bar:
+- **139, far from the 52-week high:** passes only on the 300-name snapshot sample (12.1% and 8.0%, both above the parent and
+  the bar, 15:30 signal positive). It fails on all 719 names and on the 419 names outside the sample (OOS +0.3% and -1.3%),
+  so the sample result does not generalise. Rejected.
+- **140, medium-term losers:** the best first window of the round (+10.7% to +12.0%, IR 0.62 to 0.66) and the worst second
+  window (-7% to -9%). The opposite half, medium-term winners, flips the other way (+9.4% to +11.3% since 2023, +1.5% to +2.0%
+  before). Rejected.
+- **141, low volatility:** below the parent everywhere; the high-volatility half (opposite) is the better one in both windows
+  in the snapshot sample (+14.4% / +6.2%), the Medhat and Novy-Marx direction. Rejected as registered.
+
+Plain English: none of the three conditions makes the reversal rule reliably better. The two "mirror" results are interesting but
+were not pre-registered: the high-volatility half did as well as or better than the whole rule in both windows on all three evaluations
+(+8.8 / +4.9, +5.2 / +5.9, +14.4 / +6.2), and since 2023 the reversal profit sits in medium-term winners, not losers.
+Treat both as leads, not results: they are the opposite halves of tests that failed, found after the fact, and the winner/loser
+flip around 2023 matches the regime change round 13 saw in its filters. Neither can be confirmed without a second era (Sharadar).
