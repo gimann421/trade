@@ -263,14 +263,15 @@ def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], a
     orders = plan_orders(picks, prices, shares, set(shares), state.equity * allocation_pct / 100.0)
     results = []
     for o in orders:
+        tif = time_in_force() if callable(time_in_force) else time_in_force
         if stop_check and stop_check():
             results.append(o | {"result": "late"})
             continue
         try:
             submit_order(client, ProposedOrder(o["symbol"], o["side"], o["qty"], o["price"]), reasoning(o), rule,
-                         hypothesis_id=hypothesis_id, time_in_force=time_in_force or TimeInForce.DAY,
+                         hypothesis_id=hypothesis_id, time_in_force=tif or TimeInForce.DAY,
                          client_order_id=order_tag(rule, label, o["symbol"], o["side"]))
-            results.append(o | {"result": "submitted"})
+            results.append(o | {"result": "submitted", "tif": str(getattr(tif, "value", tif or "day"))})
         except RiskViolation as exc:
             results.append(o | {"result": "blocked", "violations": exc.violations})
     return {"orders": results, "unpriced": unpriced, "sleeve_symbols": len(shares), "equity": state.equity}
