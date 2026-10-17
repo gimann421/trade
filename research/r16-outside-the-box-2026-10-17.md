@@ -61,8 +61,9 @@ Three rules, one hypothesis each. A pass can still be luck with 144 tests behind
 
 ## Results (run 2026-10-17)
 
-**Verdict so far: tests 2 and 3 (143, 144) rejected. Test 1 (142) not yet run (waiting for permission to send a contact email to the
-SEC, which refuses requests without one).** Hypotheses tested after tests 2 and 3: 143 of the 144 registered; 142 is registered but untested.
+**Verdict: 0 of 3 supported. Test 1 (142), test 2 (143) and test 3 (144) all rejected.** Nothing is added to the shadow or paper records.
+Hypotheses tested after this round: 144. (The SEC refuses requests without a contact email; Garret agreed to use his, kept in the environment
+and not stored in the repo.)
 
 ### Test 2: liquid-ETF reversal (143), rejected
 169 ETFs downloaded (bars start 2016-01-04, so the first ETFs become eligible around January 2017); median 124 eligible on a decision day,
@@ -94,3 +95,26 @@ Same three evaluations as round 15; `backtests/round16_peers/`. Net active per y
 Plain English: asking whether a stock lagged its five most similar stocks last week adds nothing. It does worse than plain reversal in 5 of 6 cells (it
 beats the parent only on the unseen names since 2023, where the parent itself lost) and fails the bar everywhere. The peers' own move on its own
 predicts nothing (negative in 2017 to 2022); the reversal in the rule comes from the stock's own return.
+
+### Test 1: filing-language change (142), rejected
+22,230 10-K and 10-Q filings for all 503 current members downloaded (22,223 usable, 20,198 with a year-earlier match; 7 failed or too short),
+`backtests/round16_filings/`. About 406 names are scored on a typical month end. Net active vs the equal-weight scored names, per year.
+
+| Rule | Window | Net active | IR | Placebo | At 10 bps | Rebalances | Turnover/yr |
+|---|---|---|---|---|---|---|---|
+| **142 20% most similar (cosine)** | IS | +0.2% | 0.04 | 0.65 | -0.1% | 72 | 6.3 |
+| | OOS | -0.2% | -0.05 | 0.53 | -0.4% | 45 | 5.9 |
+| report: Jaccard similarity | IS / OOS | -0.7% / -0.1% | -0.16 / -0.03 | 0.32 / 0.57 | | | |
+| report: 10-K only (about 39 names scored a month) | IS / OOS | -1.5% / -3.2% | -0.23 / -0.39 | 0.00 / 0.00 | | | |
+| report: 20% **least** similar | IS / OOS | -0.4% / +2.5% | -0.11 / 0.69 | 0.46 / 0.98 | | | |
+
+Plain English: the companies that rewrote their reports least did no better than the average company in either period, so the published
+"stable wording wins" pattern is not here for large US companies since 2017. Costs are not the problem (the rule trades only about 6 times a year); the
+signal simply has nothing in it. The least-similar group did well since 2023 (+2.5%, the opposite direction to the paper) but not before; that was not
+pre-registered and is a lead only. Limits: covered names are current members, which is why the benchmark is the covered set; the text parser is rough
+(word counts, tables dropped), so a better parser could in principle find something this one misses.
+
+## Round summary
+All three outside-the-box ideas fail. The two things tried against costs (rare trading, cheap trading) did not produce an edge on their own, and a
+signal from relationships between stocks added nothing to plain reversal. Post-hoc leads, none pre-registered and all needing a second era before they mean
+anything: the 10-day version of ETF reversal since 2023, and the least-similar filings since 2023.
