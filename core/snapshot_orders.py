@@ -30,9 +30,10 @@ from core.universe import fetch_membership, load_membership, members_on
 
 NY = "America/New_York"
 SNAPSHOT_READY = time(15, 45, 8)    # the 15:30 bar is complete a few seconds after 15:45
-SUBMIT_BY = time(15, 49, 30)        # market-on-close cut-off is 15:50
+MOC_BY = time(15, 49, 30)           # market-on-close orders are accepted until 15:50
+MARKET_BY = time(15, 58, 30)        # after the MOC cut-off a plain market order still fills near the close until 16:00
 RETRY_EVERY = 8                     # seconds between fetches while the 15:30 bar is not published yet
-RETRY_UNTIL = time(15, 48, 30)      # stop asking then; the orders still need a few seconds to go in
+RETRY_UNTIL = time(15, 58, 0)       # keep asking for the bar this long; the orders need a few seconds to go in
 MIN_COVERAGE = 0.9                  # share of members that must have a 15:30 bar, else the day is skipped
 LOOKBACK_DAYS = 20
 
@@ -97,7 +98,15 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
         membership = load_membership()
     members = sorted(members_on(membership, [today])[0])
     base_day = trading_days(today - pd.Timedelta(days=LOOKBACK_DAYS), today)[-6]    # five sessions before today
-    closes = fetch_closes_fn(members, today - pd.Timedelta(days=LOOKBACK_DAYS), today - pd.Timedelta(days=1))
+    for attempt in range(3):
+        try:
+            closes = fetch_closes_fn(members, today - pd.Timedelta(days=LOOKBACK_DAYS), today - pd.Timedelta(days=1))
+            break
+        except Exception as exc:                    # a flaky data call before 15:45 is not a reason to skip the day
+            if attempt == 2:
+                raise
+            print(f"daily bars failed ({type(exc).__name__}); retrying", file=sys.stderr)
+            sleep_fn(15)
     if base_day not in closes.index:
         raise DataNotReady(f"no daily bars for {base_day.date()}")
     base = closes.loc[base_day]
@@ -107,12 +116,17 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
         sleep_fn(wait)
 
     def late() -> bool:
-        return now_fn().time() > SUBMIT_BY
+        return now_fn().time() > MARKET_BY
+
+    def order_type():
+        """Market-on-close until 15:49:30; a plain market order (fills near the close) up to 15:58:30."""
+        from alpaca.trading.enums import TimeInForce
+        return TimeInForce.CLS if now_fn().time() <= MOC_BY else TimeInForce.DAY
 
     if late():
         for cfg, *_ in due:
-            journal.record("skip", f"missed the market-on-close cut-off on {today.date()} (it was {now_fn().time()} New York)", cfg["rule"])
-        print("too late for market-on-close orders; nothing sent", file=sys.stderr)
+            journal.record("skip", f"started after {MARKET_BY} on {today.date()} (it was {now_fn().time()} New York); the decision is picked up by the next session's catch-up run", cfg["rule"])
+        print("too late to trade before the close; the next catch-up run places these", file=sys.stderr)
         return 2
     snap = snapshot_fn(members, today)
     while len(snap) < MIN_COVERAGE * len(members) and now_fn().time() < RETRY_UNTIL:
@@ -147,15 +161,90 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
             print(json.dumps(report | {"dry_run": True, "picks_list": picks}))
             continue
         from core.paper_runner import place_sleeve_orders
-        from alpaca.trading.enums import TimeInForce
         prices = {**closes.ffill().iloc[-1].dropna().to_dict(), **snap.to_dict()}
         result = place_sleeve_orders(
             cfg["rule"], picks, prices, cfg["allocation_pct"], str(today.date()),
             lambda o: f"{cfg['rule']} decision {today.date()} (15:45 price): {'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']}",
-            time_in_force=TimeInForce.CLS, client=client, stop_check=late)
+            time_in_force=order_type, client=client, stop_check=late)
+        counts = {k: sum(o["result"] == k for o in result["orders"]) for k in ("submitted", "blocked", "late")}
+        fallback = sum(o.get("tif") == "day" for o in result["orders"])
+        print(json.dumps(report | counts | ({"sent_as_plain_market_orders": fallback} if fallback else {}) | {"clock": str(now_fn().time())[:8]}
+                         | {k: result[k] for k in ("skipped", "unpriced") if result.get(k)}))
+        if counts["blocked"] or counts["late"] or result.get("skipped"):
+            code = 1
+    return code
+
+
+def catch_up(execute: bool, now_fn=ny_now, fetch_closes_fn=fetch_closes, history_snapshot_fn=None, membership=None, client=None,
+             out_root=PAPER_DIR, tracked=None) -> int:
+    """Place the orders of a decision that was missed on the previous session (run it shortly after the open).
+
+    A decision counts as missed when the previous session was a decision session of a rule and none of the rule's
+    orders carries that date. The picks are the stored decision file when there is one (the live run or the evening
+    shadow run wrote it), else they are rebuilt from that day's 15:45 prices. Orders go in as plain market orders,
+    so they fill at the open, one session later than the rule assumes. Order ids carry the decision date, so the
+    same orders can never be sent twice."""
+    from core import snapshot_tracker as snt
+    from core.paper_runner import place_sleeve_orders
+    from core.sleeves import SEP, rule_orders
+    from core.broker import get_paper_client
+    from alpaca.trading.enums import TimeInForce
+
+    today = pd.Timestamp(now_fn().date())
+    if not len(trading_days(today, today)):
+        print(f"{today.date()} is not a session; nothing to do")
+        return 0
+    days = trading_days(today - pd.Timedelta(days=10), today - pd.Timedelta(days=1))
+    prev = days[-1]
+    history_snapshot_fn = history_snapshot_fn or snt.fetch_snapshot
+    code, client = 0, client
+    for cfg in (tracked if tracked is not None else load_tracked()):
+        if cfg.get("kind") != "snapshot" or cfg.get("allocation_pct", 0) <= 0:
+            continue
+        rule, sh = snt.find_rule(cfg["strategy_rule"])
+        if rule.get("vix"):
+            continue
+        sessions = snt.decision_sessions(cfg["start"], prev, rule["hold"])
+        if not sessions or sessions[-1] != prev:
+            continue
+        client = client or get_paper_client()
+        if any(f"{SEP}{prev.date()}{SEP}" in str(o.client_order_id) for o in rule_orders(client, cfg["rule"])):
+            print(json.dumps({"rule": cfg["rule"], "decision": str(prev.date()), "catch_up": "not needed, orders exist"}))
+            continue
+        out_dir = out_root / cfg["rule"]
+        stored = _read_json(out_dir, f"decisions/{prev.date()}.json")
+        if membership is None:
+            fetch_membership()
+            membership = load_membership()
+        members = sorted(members_on(membership, [prev])[0])
+        closes = fetch_closes_fn(members, prev - pd.Timedelta(days=LOOKBACK_DAYS), prev)
+        if prev not in closes.index:
+            raise DataNotReady(f"no daily bars for {prev.date()}")
+        if stored is not None:
+            picks, source, snap = stored["picks"], "stored decision", pd.Series(stored.get("snapshot_1545", {}), dtype=float)
+        else:
+            snap = history_snapshot_fn(members, prev)
+            base_day = trading_days(prev - pd.Timedelta(days=LOOKBACK_DAYS), prev)[-6]
+            previous = _read_json(out_dir, f"decisions/{sessions[-2].date()}.json") if len(sessions) > 1 else None
+            picks, ranked = decide(rule, sh, snap, closes.loc[base_day], previous["picks"] if previous else [])
+            source = "rebuilt from the 15:45 prices"
+            if execute:
+                _write_json(out_dir, f"decisions/{prev.date()}.json", {
+                    "decision_date": str(prev.date()), "rule": cfg["rule"], "members": len(members), "priced": len(snap),
+                    "ranked": ranked, "picks": picks, "weight_each": 1.0 / len(picks) if picks else 0.0,
+                    "snapshot_1545": {t: float(snap[t]) for t in sorted(snap.index)}, "closes": {}, "feed": "history, catch-up"})
+        report = {"rule": cfg["rule"], "decision": str(prev.date()), "catch_up": source, "picks": len(picks)}
+        if not execute:
+            print(json.dumps(report | {"dry_run": True}))
+            continue
+        prices = {**closes.ffill().iloc[-1].dropna().to_dict(), **snap.to_dict()}
+        result = place_sleeve_orders(
+            cfg["rule"], picks, prices, cfg["allocation_pct"], str(prev.date()),
+            lambda o: f"{cfg['rule']} decision {prev.date()} missed at the close, placed at the next open: {'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']}",
+            time_in_force=TimeInForce.DAY, client=client)
         counts = {k: sum(o["result"] == k for o in result["orders"]) for k in ("submitted", "blocked", "late")}
         print(json.dumps(report | counts | {k: result[k] for k in ("skipped", "unpriced") if result.get(k)}))
-        if counts["blocked"] or counts["late"] or result.get("skipped"):
+        if counts["blocked"] or result.get("skipped"):
             code = 1
     return code
 
@@ -164,11 +253,12 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--execute", action="store_true", help="place the orders and write the decision file (default: dry run)")
     parser.add_argument("--rule", help="only this tracked rule, even if its allocation_pct is 0 (dry runs only)")
+    parser.add_argument("--catch-up", action="store_true", help="place yesterday's decision if its orders never went out (run after the open)")
     args = parser.parse_args(argv)
     if args.rule and args.execute:
         parser.error("--rule is for dry runs; set allocation_pct in paper/tracked.json to place orders")
     try:
-        return run(args.execute, args.rule)
+        return catch_up(args.execute) if args.catch_up else run(args.execute, args.rule)
     except DataNotReady as exc:
         print(f"data not ready: {exc}", file=sys.stderr)
         return 2
