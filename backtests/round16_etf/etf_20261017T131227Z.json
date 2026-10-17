@@ -1,0 +1,212 @@
+{
+ "git_commit": "4ce8c61-dirty",
+ "run_at": "20261017T131227Z",
+ "bar": {
+  "net_active": 0.02,
+  "information_ratio": 0.3,
+  "placebo": 0.95
+ },
+ "costs": {
+  "primary": 2.0,
+  "stress": 5.0,
+  "wide": 10.0
+ },
+ "data": {
+  "etfs_downloaded": 169,
+  "of": 169,
+  "first": "2016-01-04",
+  "last": "2026-10-16",
+  "eligible_median": 124.0,
+  "moves_over_30pct_when_eligible": 3
+ },
+ "results": {
+  "primary": {
+   "IS": {
+    "decisions": 503,
+    "net_active": 0.031673339890019796,
+    "information_ratio": 0.30239489139224013,
+    "placebo": 0.994,
+    "gross_active": 0.045269742810942586,
+    "turnover": 68.72071879172061,
+    "break_even_bps": 6.659076385751906,
+    "stress_net_active": 0.011278735508635613,
+    "wide_net_active": -0.022712271793671353,
+    "start": "2017-02-01",
+    "end": "2022-12-30",
+    "ranked_median": 124.0,
+    "cagr": 0.145895669078572,
+    "benchmark_cagr": 0.11564244056944095
+   },
+   "OOS": {
+    "decisions": 317,
+    "net_active": -0.017774562874971252,
+    "information_ratio": -0.2052017178833094,
+    "placebo": 0.391,
+    "gross_active": -0.003922197565247776,
+    "turnover": 69.89007640407668,
+    "break_even_bps": -0.5662856093601061,
+    "stress_net_active": -0.03855311083955648,
+    "wide_net_active": -0.07318402411386517,
+    "start": "2023-01-03",
+    "end": "2026-10-16",
+    "ranked_median": 124.0,
+    "cagr": 0.11881778425052714,
+    "benchmark_cagr": 0.14395151066843925
+   }
+  },
+  "raw5": {
+   "IS": {
+    "decisions": 503,
+    "net_active": -0.03558088544720266,
+    "information_ratio": -0.2783978039041197,
+    "placebo": 0.109,
+    "gross_active": -0.02235326486838867,
+    "turnover": 66.87680708117665,
+    "break_even_bps": -3.3797862185721828,
+    "stress_net_active": -0.05542231631542363,
+    "wide_net_active": -0.08849136776245863,
+    "start": "2017-02-01",
+    "end": "2022-12-30",
+    "ranked_median": 124.0,
+    "cagr": 0.06280111333657534,
+    "benchmark_cagr": 0.11564244056944095
+   },
+   "OOS": {
+    "decisions": 317,
+    "net_active": 0.028279969669478558,
+    "information_ratio": 0.25379351849184956,
+    "placebo": 0.955,
+    "gross_active": 0.04205597507405695,
+    "turnover": 69.50827687835125,
+    "break_even_bps": 6.1056850427889415,
+    "stress_net_active": 0.007615961562610959,
+    "wide_net_active": -0.02682405194883501,
+    "start": "2023-01-03",
+    "end": "2026-10-16",
+    "ranked_median": 124.0,
+    "cagr": 0.1645452387979991,
+    "benchmark_cagr": 0.14395151066843925
+   }
+  },
+  "scaled5_equities": {
+   "IS": {
+    "decisions": 503,
+    "net_active": 0.04678810193775272,
+    "information_ratio": 0.4094051931853375,
+    "placebo": 1.0,
+    "gross_active": 0.060388419420443415,
+    "turnover": 68.73695051603424,
+    "break_even_bps": 8.880442606917166,
+    "stress_net_active": 0.026387625713716698,
+    "wide_net_active": -0.0076131679930100385,
+    "start": "2017-02-01",
+    "end": "2022-12-30",
+    "ranked_median": 98.0,
+    "cagr": 0.17906444377485964,
+    "benchmark_cagr": 0.13507715270599552
+   },
+   "OOS": {
+    "decisions": 317,
+    "net_active": 0.0023928268400875276,
+    "information_ratio": 0.027125270777522234,
+    "placebo": 0.732,
+    "gross_active": 0.016087262599413114,
+    "turnover": 69.11487471745738,
+    "break_even_bps": 2.349459719573779,
+    "stress_net_active": -0.01814882679890085,
+    "wide_net_active": -0.0523849161972148,
+    "start": "2023-01-03",
+    "end": "2026-10-16",
+    "ranked_median": 98.0,
+    "cagr": 0.1653857380096373,
+    "benchmark_cagr": 0.16768435160080686
+   }
+  },
+  "scaled1_h1": {
+   "IS": {
+    "decisions": 1509,
+    "net_active": -0.04150855580352288,
+    "information_ratio": -0.4238251734292856,
+    "placebo": 0.806,
+    "gross_active": 0.01776665813629104,
+    "turnover": 297.1147738861763,
+    "break_even_bps": 0.5994633154535962,
+    "stress_net_active": -0.13042137671324375,
+    "wide_net_active": -0.2786094115627785,
+    "start": "2017-02-01",
+    "end": "2022-12-30",
+    "ranked_median": 124.0,
+    "cagr": 0.06515695616179773,
+    "benchmark_cagr": 0.11564244056944095
+   },
+   "OOS": {
+    "decisions": 951,
+    "net_active": 0.002917027788567622,
+    "information_ratio": 0.03265698442386967,
+    "placebo": 0.994,
+    "gross_active": 0.0640242327682277,
+    "turnover": 306.1642747537597,
+    "break_even_bps": 2.095472466447731,
+    "stress_net_active": -0.0887437796809225,
+    "wide_net_active": -0.24151179213007265,
+    "start": "2023-01-03",
+    "end": "2026-10-16",
+    "ranked_median": 124.0,
+    "cagr": 0.1433382523852793,
+    "benchmark_cagr": 0.14395151066843925
+   }
+  },
+  "scaled10_h3": {
+   "IS": {
+    "decisions": 503,
+    "net_active": 0.021219336596118896,
+    "information_ratio": 0.20190137394231297,
+    "placebo": 0.93,
+    "gross_active": 0.029778326513153264,
+    "turnover": 43.533653772278534,
+    "break_even_bps": 6.958374014178356,
+    "stress_net_active": 0.008380851720567347,
+    "wide_net_active": -0.013016623072018573,
+    "start": "2017-02-01",
+    "end": "2022-12-30",
+    "ranked_median": 124.0,
+    "cagr": 0.1342598885757853,
+    "benchmark_cagr": 0.11564244056944095
+   },
+   "OOS": {
+    "decisions": 317,
+    "net_active": 0.04416292894032755,
+    "information_ratio": 0.49098154857982373,
+    "placebo": 0.993,
+    "gross_active": 0.05301648835146843,
+    "turnover": 44.896046911163715,
+    "break_even_bps": 11.976310518627137,
+    "stress_net_active": 0.03088258982361623,
+    "wide_net_active": 0.00874869129576401,
+    "start": "2023-01-03",
+    "end": "2026-10-16",
+    "ranked_median": 124.0,
+    "cagr": 0.18933048704105815,
+    "benchmark_cagr": 0.14395151066843925
+   }
+  }
+ },
+ "verdict": "rejected",
+ "cells": {
+  "IS": {
+   "verdict": "supports",
+   "why": [
+    "passes the bar"
+   ]
+  },
+  "OOS": {
+   "verdict": "contradicts",
+   "why": [
+    "net active -1.78% < 2.0%",
+    "IR -0.21 < 0.3",
+    "placebo 0.391 < 0.95",
+    "5 bps net active -3.86% not above 0"
+   ]
+  }
+ }
+}

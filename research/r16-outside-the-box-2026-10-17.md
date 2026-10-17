@@ -58,3 +58,39 @@ wording alone (Cohen, Malloy and Nguyen, "Lazy Prices").
 ## Multiple testing
 Three rules, one hypothesis each. A pass can still be luck with 144 tests behind us, so a pass is a lead for a second era
 (Sharadar), not a new shadow rule by itself.
+
+## Results (run 2026-10-17)
+
+**Verdict so far: tests 2 and 3 (143, 144) rejected. Test 1 (142) not yet run (waiting for permission to send a contact email to the
+SEC, which refuses requests without one).** Hypotheses tested after tests 2 and 3: 143 of the 144 registered; 142 is registered but untested.
+
+### Test 2: liquid-ETF reversal (143), rejected
+169 ETFs downloaded (bars start 2016-01-04, so the first ETFs become eligible around January 2017); median 124 eligible on a decision day,
+`backtests/round16_etf/`. Net active vs the equal-weight eligible ETFs, per year, 2 bps unless stated.
+
+| Variant | Window | Net active | IR | Placebo | At 5 bps | At 10 bps | Decisions |
+|---|---|---|---|---|---|---|---|
+| **143 scaled 5-day, 3 sessions (the test)** | IS | +3.2% | 0.30 | 0.99 | +1.1% | -2.3% | 503 |
+| | OOS | -1.8% | -0.21 | 0.39 | -3.9% | -7.3% | 317 |
+| report: raw 5-day return | IS / OOS | -3.6% / +2.8% | -0.28 / 0.25 | 0.11 / 0.95 | | | |
+| report: equities only | IS / OOS | +4.7% / +0.2% | 0.41 / 0.03 | 1.00 / 0.73 | | | |
+| report: 1-day, every session | IS / OOS | -4.2% / +0.3% | | | | | |
+| report: scaled 10-day, 3 sessions | IS / OOS | +2.1% / +4.4% | 0.20 / 0.49 | 0.93 / 0.99 | +0.8% / +3.1% | -1.3% / +0.9% | |
+
+Plain English: the rule made money in 2017 to 2022 (a bit over 3% a year, and above random picks) and then lost money from 2023 on, so it fails the
+both-periods bar. Even in the good period the edge is thin: it turns over about 70 times a year, and 5 bps of cost takes away two thirds of it.
+Cheap ETF trading did not rescue reversal. Post-hoc, not pre-registered: the 10-day version of the same idea looks better since 2023 (+4.4%, positive at 5 bps) and
+weaker before; with 144 tests behind us it is a lead only. The ETF list is also of funds alive today, which flatters a rule that buys losers, so even a pass would have needed that caveat.
+
+### Test 3: statistical peers (144), rejected
+Same three evaluations as round 15; `backtests/round16_peers/`. Net active per year at 5 bps (IS / OOS):
+
+| Panel | Peer-lag rule | Parent (plain reversal) | Peers-only signal (report) |
+|---|---|---|---|
+| All 719 names, close | +2.2% / -1.7% | +6.2% / +0.3% | -7.6% / +0.7% |
+| 419 unseen names | +2.2% / +1.5% | +5.2% / -0.8% | -5.2% / -1.3% |
+| 300-name snapshot, 15:45 | +3.6% / -1.5% | +9.9% / +3.0% | -5.3% / +0.6% |
+
+Plain English: asking whether a stock lagged its five most similar stocks last week adds nothing. It does worse than plain reversal in 5 of 6 cells (it
+beats the parent only on the unseen names since 2023, where the parent itself lost) and fails the bar everywhere. The peers' own move on its own
+predicts nothing (negative in 2017 to 2022); the reversal in the rule comes from the stock's own return.
