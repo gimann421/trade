@@ -1,0 +1,526 @@
+{
+ "git_commit": "f2b26c2-dirty",
+ "run_at": "20261017T182554Z",
+ "etf": {
+  "5": {
+   "IS": {
+    "net_active": 0.031673339890019796,
+    "information_ratio": 0.30239489139224013,
+    "placebo": 0.994,
+    "stress_net_active": 0.011278735508635613,
+    "turnover": 68.72071879172061,
+    "decisions": 503,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.017774562874971252,
+    "information_ratio": -0.2052017178833094,
+    "placebo": 0.391,
+    "stress_net_active": -0.03855311083955648,
+    "turnover": 69.89007640407668,
+    "decisions": 317,
+    "start": "2023-01-03",
+    "end": "2026-10-16"
+   },
+   "OOS_a": {
+    "net_active": -0.035666402217878694,
+    "information_ratio": -0.4349970691950576,
+    "placebo": 0.183,
+    "stress_net_active": -0.05576436462935186,
+    "turnover": 67.53494736285275,
+    "decisions": 168,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.0022292307779007573,
+    "information_ratio": 0.024338348816508273,
+    "placebo": 0.67,
+    "stress_net_active": -0.019310239119117088,
+    "turnover": 72.52320508713774,
+    "decisions": 149,
+    "start": "2025-01-02",
+    "end": "2026-10-16"
+   }
+  },
+  "8": {
+   "IS": {
+    "net_active": 0.03351707498942297,
+    "information_ratio": 0.33495111371494796,
+    "placebo": 0.994,
+    "stress_net_active": 0.018139583425503463,
+    "turnover": 51.997009400171734,
+    "decisions": 503,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.0352810570596907,
+    "information_ratio": 0.39077257339658994,
+    "placebo": 0.982,
+    "stress_net_active": 0.01967921558085301,
+    "turnover": 52.63438811825161,
+    "decisions": 317,
+    "start": "2023-01-03",
+    "end": "2026-10-16"
+   },
+   "OOS_a": {
+    "net_active": -0.008547059259335051,
+    "information_ratio": -0.09513223892709131,
+    "placebo": 0.501,
+    "stress_net_active": -0.02392276990911429,
+    "turnover": 51.79410815720641,
+    "decisions": 168,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.08428264813352347,
+    "information_ratio": 0.9284575281424441,
+    "placebo": 0.997,
+    "stress_net_active": 0.06842798332242002,
+    "turnover": 53.573854800756486,
+    "decisions": 149,
+    "start": "2025-01-02",
+    "end": "2026-10-16"
+   }
+  },
+  "10": {
+   "IS": {
+    "net_active": 0.021219336596118896,
+    "information_ratio": 0.20190137394231297,
+    "placebo": 0.93,
+    "stress_net_active": 0.008380851720567347,
+    "turnover": 43.533653772278534,
+    "decisions": 503,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.04416292894032755,
+    "information_ratio": 0.49098154857982373,
+    "placebo": 0.993,
+    "stress_net_active": 0.03088258982361623,
+    "turnover": 44.896046911163715,
+    "decisions": 317,
+    "start": "2023-01-03",
+    "end": "2026-10-16"
+   },
+   "OOS_a": {
+    "net_active": 0.04961611417196264,
+    "information_ratio": 0.5733543464358976,
+    "placebo": 0.967,
+    "stress_net_active": 0.036570806054949924,
+    "turnover": 44.02609971465129,
+    "decisions": 168,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.03806604923814309,
+    "information_ratio": 0.40620552375732644,
+    "placebo": 0.907,
+    "stress_net_active": 0.024522936041590563,
+    "turnover": 45.868682752253335,
+    "decisions": 149,
+    "start": "2025-01-02",
+    "end": "2026-10-16"
+   }
+  },
+  "12": {
+   "IS": {
+    "net_active": 0.01958085334430105,
+    "information_ratio": 0.19406875416081643,
+    "placebo": 0.925,
+    "stress_net_active": 0.008385740432784332,
+    "turnover": 38.055747225495736,
+    "decisions": 503,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.011119971912874208,
+    "information_ratio": 0.12913948619243507,
+    "placebo": 0.775,
+    "stress_net_active": -0.0003198529203813415,
+    "turnover": 38.760999299644446,
+    "decisions": 317,
+    "start": "2023-01-03",
+    "end": "2026-10-16"
+   },
+   "OOS_a": {
+    "net_active": 0.006271749727221843,
+    "information_ratio": 0.07026993305218851,
+    "placebo": 0.682,
+    "stress_net_active": -0.00497047106145044,
+    "turnover": 38.01580862018311,
+    "decisions": 168,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.016540478677233857,
+    "information_ratio": 0.20037083520149798,
+    "placebo": 0.726,
+    "stress_net_active": 0.004879724600368514,
+    "turnover": 39.59415235329611,
+    "decisions": 149,
+    "start": "2025-01-02",
+    "end": "2026-10-16"
+   }
+  },
+  "15": {
+   "IS": {
+    "net_active": 0.01021007451275544,
+    "information_ratio": 0.10076250877273313,
+    "placebo": 0.783,
+    "stress_net_active": 0.0008831478043879864,
+    "turnover": 31.82845988166482,
+    "decisions": 503,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.035269061137227796,
+    "information_ratio": 0.4185004908855671,
+    "placebo": 0.966,
+    "stress_net_active": 0.025595097750253877,
+    "turnover": 32.87479447870572,
+    "decisions": 317,
+    "start": "2023-01-03",
+    "end": "2026-10-16"
+   },
+   "OOS_a": {
+    "net_active": 0.020949648864040663,
+    "information_ratio": 0.24381801513767187,
+    "placebo": 0.777,
+    "stress_net_active": 0.011602086135698454,
+    "turnover": 31.700281752416238,
+    "decisions": 168,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.05127873811081342,
+    "information_ratio": 0.6217357307646386,
+    "placebo": 0.953,
+    "stress_net_active": 0.04123984570238489,
+    "turnover": 34.18794679184005,
+    "decisions": 149,
+    "start": "2025-01-02",
+    "end": "2026-10-16"
+   }
+  },
+  "20": {
+   "IS": {
+    "net_active": 0.0009931318721456699,
+    "information_ratio": 0.009803242251851977,
+    "placebo": 0.6,
+    "stress_net_active": -0.006356256250338569,
+    "turnover": 25.236664595387442,
+    "decisions": 503,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.030917286494947134,
+    "information_ratio": -0.3436016528666643,
+    "placebo": 0.097,
+    "stress_net_active": -0.03826782380626432,
+    "turnover": 25.13004089318327,
+    "decisions": 317,
+    "start": "2023-01-03",
+    "end": "2026-10-16"
+   },
+   "OOS_a": {
+    "net_active": -0.035356923943171005,
+    "information_ratio": -0.3852913251855898,
+    "placebo": 0.122,
+    "stress_net_active": -0.04252451379378564,
+    "turnover": 24.43370549332432,
+    "decisions": 168,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.02595359384682155,
+    "information_ratio": -0.29479116015875906,
+    "placebo": 0.237,
+    "stress_net_active": -0.033508673753400844,
+    "turnover": 25.9085717856759,
+    "decisions": 149,
+    "start": "2025-01-02",
+    "end": "2026-10-16"
+   }
+  }
+ },
+ "filings": {
+  "cosine_10": {
+   "IS": {
+    "net_active": -0.016707490729696624,
+    "information_ratio": -0.3594152383113802,
+    "placebo": 0.161,
+    "stress_net_active": -0.019277989663574267,
+    "turnover": 6.176928001351644,
+    "decisions": 72,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.017994963807399126,
+    "information_ratio": 0.3238143050117728,
+    "placebo": 0.839,
+    "stress_net_active": 0.01523598889287797,
+    "turnover": 6.51688989934475,
+    "decisions": 45,
+    "start": "2023-01-03",
+    "end": "2026-10-15"
+   },
+   "OOS_a": {
+    "net_active": -0.009437692960364544,
+    "information_ratio": -0.19186150058987878,
+    "placebo": 0.378,
+    "stress_net_active": -0.01219818610319428,
+    "turnover": 6.401234148770373,
+    "decisions": 24,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.048734235453420024,
+    "information_ratio": 0.786716097052857,
+    "placebo": 0.933,
+    "stress_net_active": 0.04597696176794105,
+    "turnover": 6.646486298425859,
+    "decisions": 21,
+    "start": "2025-01-02",
+    "end": "2026-10-15"
+   }
+  },
+  "cosine_20": {
+   "IS": {
+    "net_active": -0.003975219378952546,
+    "information_ratio": -0.1124211924090749,
+    "placebo": 0.455,
+    "stress_net_active": -0.0063329128652503276,
+    "turnover": 5.751317106191905,
+    "decisions": 72,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.02536395178679437,
+    "information_ratio": 0.6925064390069633,
+    "placebo": 0.982,
+    "stress_net_active": 0.02301068288774277,
+    "turnover": 5.705477868405633,
+    "decisions": 45,
+    "start": "2023-01-03",
+    "end": "2026-10-15"
+   },
+   "OOS_a": {
+    "net_active": -0.0208203431726558,
+    "information_ratio": -0.6893805057274349,
+    "placebo": 0.124,
+    "stress_net_active": -0.023191110159090974,
+    "turnover": 5.62178183598129,
+    "decisions": 24,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.077115103727964,
+    "information_ratio": 1.8148235232732,
+    "placebo": 1.0,
+    "stress_net_active": 0.07478144206075736,
+    "turnover": 5.799262261881126,
+    "decisions": 21,
+    "start": "2025-01-02",
+    "end": "2026-10-15"
+   }
+  },
+  "cosine_33": {
+   "IS": {
+    "net_active": 0.010987710669311234,
+    "information_ratio": 0.40050691171983677,
+    "placebo": 0.964,
+    "stress_net_active": 0.009050293026507773,
+    "turnover": 4.910765419203282,
+    "decisions": 72,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.011684345457425922,
+    "information_ratio": 0.47468789603100037,
+    "placebo": 0.936,
+    "stress_net_active": 0.00967038859475948,
+    "turnover": 5.026853795635303,
+    "decisions": 45,
+    "start": "2023-01-03",
+    "end": "2026-10-15"
+   },
+   "OOS_a": {
+    "net_active": -0.0016166413791403303,
+    "information_ratio": -0.07951058715256445,
+    "placebo": 0.53,
+    "stress_net_active": -0.003609237960595833,
+    "turnover": 4.865441026021936,
+    "decisions": 24,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.026588576243042557,
+    "information_ratio": 0.9277748180653935,
+    "placebo": 0.966,
+    "stress_net_active": 0.024550684422412077,
+    "turnover": 5.207722568728854,
+    "decisions": 21,
+    "start": "2025-01-02",
+    "end": "2026-10-15"
+   }
+  },
+  "jaccard_10": {
+   "IS": {
+    "net_active": -0.022210703692427558,
+    "information_ratio": -0.40269919728733683,
+    "placebo": 0.076,
+    "stress_net_active": -0.02490588256321434,
+    "turnover": 6.426287875169908,
+    "decisions": 72,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.06831986744186107,
+    "information_ratio": 1.0584891428515792,
+    "placebo": 1.0,
+    "stress_net_active": 0.06561035243655458,
+    "turnover": 6.417970080915403,
+    "decisions": 45,
+    "start": "2023-01-03",
+    "end": "2026-10-15"
+   },
+   "OOS_a": {
+    "net_active": 0.007966004210382596,
+    "information_ratio": 0.16695020742696787,
+    "placebo": 0.682,
+    "stress_net_active": 0.0053325968273724616,
+    "turnover": 6.147062629131206,
+    "decisions": 24,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.13594852668784807,
+    "information_ratio": 1.7184644455469098,
+    "placebo": 1.0,
+    "stress_net_active": 0.13315373037362915,
+    "turnover": 6.72153155590573,
+    "decisions": 21,
+    "start": "2025-01-02",
+    "end": "2026-10-15"
+   }
+  },
+  "jaccard_20": {
+   "IS": {
+    "net_active": -0.007585141669275544,
+    "information_ratio": -0.2046188517367155,
+    "placebo": 0.31,
+    "stress_net_active": -0.00988535737117439,
+    "turnover": 5.636361537394039,
+    "decisions": 72,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.011189305231629554,
+    "information_ratio": 0.289422182463332,
+    "placebo": 0.864,
+    "stress_net_active": 0.008870014617329822,
+    "turnover": 5.637521298901877,
+    "decisions": 45,
+    "start": "2023-01-03",
+    "end": "2026-10-15"
+   },
+   "OOS_a": {
+    "net_active": -0.004699863711484457,
+    "information_ratio": -0.14884810376553273,
+    "placebo": 0.444,
+    "stress_net_active": -0.007031252143864387,
+    "turnover": 5.543024727870777,
+    "decisions": 24,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.028993686502708203,
+    "information_ratio": 0.6398286258291739,
+    "placebo": 0.912,
+    "stress_net_active": 0.02668795192563227,
+    "turnover": 5.743408081619762,
+    "decisions": 21,
+    "start": "2025-01-02",
+    "end": "2026-10-15"
+   }
+  },
+  "jaccard_33": {
+   "IS": {
+    "net_active": -0.00680054021519198,
+    "information_ratio": -0.2594547995725189,
+    "placebo": 0.293,
+    "stress_net_active": -0.008704421806181091,
+    "turnover": 4.843693315574573,
+    "decisions": 72,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.0043361505350366855,
+    "information_ratio": 0.16651854497954105,
+    "placebo": 0.766,
+    "stress_net_active": 0.002442973722651456,
+    "turnover": 4.785293695072886,
+    "decisions": 45,
+    "start": "2023-01-03",
+    "end": "2026-10-15"
+   },
+   "OOS_a": {
+    "net_active": -0.005898939336364864,
+    "information_ratio": -0.28274034576137735,
+    "placebo": 0.38,
+    "stress_net_active": -0.007791481012800288,
+    "turnover": 4.665331215981776,
+    "decisions": 24,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.015804934274866095,
+    "information_ratio": 0.5125793827448903,
+    "placebo": 0.863,
+    "stress_net_active": 0.013911045769965684,
+    "turnover": 4.919715937268727,
+    "decisions": 21,
+    "start": "2025-01-02",
+    "end": "2026-10-15"
+   }
+  }
+ },
+ "verdicts": {
+  "rev10s_h3_band40_etf": [
+   "spike",
+   [
+    "k=12: OOS net active 1.11%, IR 0.13, 5 bps -0.03% misses the bar"
+   ]
+  ],
+  "filing_changer_q_m": [
+   "spike",
+   [
+    "1 of 6 variants meet the plateau criteria (jaccard_10; need 4)"
+   ]
+  ]
+ }
+}
