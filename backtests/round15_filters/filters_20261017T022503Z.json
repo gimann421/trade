@@ -1,0 +1,867 @@
+{
+ "git_commit": "73c0d14-dirty",
+ "run_at": "20261017T022503Z",
+ "bar": {
+  "net_active": 0.02,
+  "information_ratio": 0.3,
+  "placebo": 0.95
+ },
+ "first_decision": "2017-01-03",
+ "results": {
+  "screen_all": {
+   "parent": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.061582364447963514,
+     "information_ratio": 0.470682523384525,
+     "placebo": 1.0,
+     "gross_active": 0.09574706754745,
+     "turnover": 69.07378211183271,
+     "break_even_bps": 14.01257128865392,
+     "stress_net_active": 0.027417661348477028,
+     "noisy_net_active": null,
+     "ranked_median": 504.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.002537222332307872,
+     "information_ratio": 0.020351075373796528,
+     "placebo": 0.944,
+     "gross_active": 0.0364380242506829,
+     "turnover": 68.58071237210581,
+     "break_even_bps": 5.374212730780956,
+     "stress_net_active": -0.03136357958606715,
+     "noisy_net_active": null,
+     "ranked_median": 504.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F1_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.051938133722516905,
+     "information_ratio": 0.30492678494942993,
+     "placebo": 0.97,
+     "gross_active": 0.09020905543468158,
+     "turnover": 77.28621933718908,
+     "break_even_bps": 11.78558699384656,
+     "stress_net_active": 0.013667212010352245,
+     "noisy_net_active": null,
+     "ranked_median": 240.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.003130024962743254,
+     "information_ratio": 0.018501464058547783,
+     "placebo": 0.764,
+     "gross_active": 0.04090096045272879,
+     "turnover": 76.32097951532684,
+     "break_even_bps": 5.414343055333266,
+     "stress_net_active": -0.034640910527242275,
+     "noisy_net_active": null,
+     "ranked_median": 240.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F1_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.0027826371820872447,
+     "information_ratio": 0.026718788794370295,
+     "placebo": 0.998,
+     "gross_active": 0.04514765428657054,
+     "turnover": 85.47441012182634,
+     "break_even_bps": 5.328412139575504,
+     "stress_net_active": -0.039582379922396084,
+     "noisy_net_active": null,
+     "ranked_median": 261.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.053412963137824856,
+     "information_ratio": -0.5189059519389723,
+     "placebo": 0.398,
+     "gross_active": -0.012721282298338313,
+     "turnover": 82.16247021432885,
+     "break_even_bps": -1.5631306001488379,
+     "stress_net_active": -0.09410464397731139,
+     "noisy_net_active": null,
+     "ranked_median": 261.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F2_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.10743732803922966,
+     "information_ratio": 0.6541168139856118,
+     "placebo": 1.0,
+     "gross_active": 0.1433695438669517,
+     "turnover": 72.6088075683038,
+     "break_even_bps": 19.95000037770295,
+     "stress_net_active": 0.07150511221150767,
+     "noisy_net_active": null,
+     "ranked_median": 253.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.09477345696328177,
+     "information_ratio": -0.6753497193781568,
+     "placebo": 0.123,
+     "gross_active": -0.05896037961963855,
+     "turnover": 72.40526322264219,
+     "break_even_bps": -8.23168294836634,
+     "stress_net_active": -0.13058653430692496,
+     "noisy_net_active": null,
+     "ranked_median": 253.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F2_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.019570208829565255,
+     "information_ratio": 0.14274594579119623,
+     "placebo": 0.996,
+     "gross_active": 0.05596537352705998,
+     "turnover": 73.53470530784918,
+     "break_even_bps": 7.6885726431281105,
+     "stress_net_active": -0.01682495586792943,
+     "noisy_net_active": null,
+     "ranked_median": 248.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.09353245982893445,
+     "information_ratio": 0.6389694017914539,
+     "placebo": 0.999,
+     "gross_active": 0.13076544961434533,
+     "turnover": 75.24508810617752,
+     "break_even_bps": 17.56042831478223,
+     "stress_net_active": 0.05629947004352357,
+     "noisy_net_active": null,
+     "ranked_median": 248.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F3_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.018175209422439637,
+     "information_ratio": 0.20189374826676376,
+     "placebo": 1.0,
+     "gross_active": 0.05523635966265169,
+     "turnover": 74.86667639328384,
+     "break_even_bps": 7.452056844517361,
+     "stress_net_active": -0.018885940817772423,
+     "noisy_net_active": null,
+     "ranked_median": 283.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.05645102473891321,
+     "information_ratio": -0.6180615557356465,
+     "placebo": 0.856,
+     "gross_active": -0.019258193256270838,
+     "turnover": 75.16477150064051,
+     "break_even_bps": -2.5889657346011012,
+     "stress_net_active": -0.09364385622155559,
+     "noisy_net_active": null,
+     "ranked_median": 283.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F3_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.08782145840225446,
+     "information_ratio": 0.4760611582573766,
+     "placebo": 1.0,
+     "gross_active": 0.1236801144892413,
+     "turnover": 72.46168808683342,
+     "break_even_bps": 17.24550331574264,
+     "stress_net_active": 0.05196280231526764,
+     "noisy_net_active": null,
+     "ranked_median": 220.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.04907068384039863,
+     "information_ratio": 0.26767571859363626,
+     "placebo": 0.732,
+     "gross_active": 0.08402570418136611,
+     "turnover": 70.68914921729072,
+     "break_even_bps": 12.019118192714583,
+     "stress_net_active": 0.01411566349943117,
+     "noisy_net_active": null,
+     "ranked_median": 220.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   }
+  },
+  "screen_unseen": {
+   "parent": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.05205222816909973,
+     "information_ratio": 0.3999665580045697,
+     "placebo": 0.998,
+     "gross_active": 0.08646063660099203,
+     "turnover": 69.55466275929948,
+     "break_even_bps": 12.56388199008557,
+     "stress_net_active": 0.017643819737207446,
+     "noisy_net_active": null,
+     "ranked_median": 295.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.00831676853925037,
+     "information_ratio": -0.06658316391340469,
+     "placebo": 0.794,
+     "gross_active": 0.02566313628495659,
+     "turnover": 68.72173871391387,
+     "break_even_bps": 3.7762225082329266,
+     "stress_net_active": -0.042296673363457334,
+     "noisy_net_active": null,
+     "ranked_median": 295.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F1_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.026400016398132657,
+     "information_ratio": 0.15532413485539817,
+     "placebo": 0.769,
+     "gross_active": 0.06495928557951967,
+     "turnover": 77.85638425828891,
+     "break_even_bps": 8.423303521903398,
+     "stress_net_active": -0.012159252783254353,
+     "noisy_net_active": null,
+     "ranked_median": 143.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.012924584911806078,
+     "information_ratio": -0.07802245556238185,
+     "placebo": 0.491,
+     "gross_active": 0.02515381326477141,
+     "turnover": 76.91872541865493,
+     "break_even_bps": 3.302898030023206,
+     "stress_net_active": -0.05100298308838353,
+     "noisy_net_active": null,
+     "ranked_median": 143.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F1_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": -0.03155907732754371,
+     "information_ratio": -0.28805767526240095,
+     "placebo": 0.889,
+     "gross_active": 0.010679216631279687,
+     "turnover": 85.21443381316168,
+     "break_even_bps": 1.2641628757177636,
+     "stress_net_active": -0.07379737128636711,
+     "noisy_net_active": null,
+     "ranked_median": 151.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.007903596787626792,
+     "information_ratio": -0.07539374851534399,
+     "placebo": 0.919,
+     "gross_active": 0.03363466780553398,
+     "turnover": 83.83845825182148,
+     "break_even_bps": 4.048636616739146,
+     "stress_net_active": -0.049441861380787544,
+     "noisy_net_active": null,
+     "ranked_median": 151.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F2_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.10664806915258279,
+     "information_ratio": 0.6576159496488344,
+     "placebo": 1.0,
+     "gross_active": 0.14292321021804746,
+     "turnover": 73.28812802644423,
+     "break_even_bps": 19.69988344912542,
+     "stress_net_active": 0.07037292808711812,
+     "noisy_net_active": null,
+     "ranked_median": 150.5,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.07320362756365535,
+     "information_ratio": -0.5090474744928494,
+     "placebo": 0.246,
+     "gross_active": -0.03670558572274602,
+     "turnover": 73.7580127473186,
+     "break_even_bps": -5.028432194080623,
+     "stress_net_active": -0.10970166940456468,
+     "noisy_net_active": null,
+     "ranked_median": 150.5,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F2_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": -0.0064322278330645214,
+     "information_ratio": -0.04462364179132814,
+     "placebo": 0.85,
+     "gross_active": 0.02998902385378827,
+     "turnover": 73.58034926922046,
+     "break_even_bps": 4.1169677681085295,
+     "stress_net_active": -0.042853479519917324,
+     "noisy_net_active": null,
+     "ranked_median": 143.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.1132877478376746,
+     "information_ratio": 0.7245015580106648,
+     "placebo": 1.0,
+     "gross_active": 0.15098611495929445,
+     "turnover": 76.15866330873965,
+     "break_even_bps": 20.025551036758905,
+     "stress_net_active": 0.07558938071605475,
+     "noisy_net_active": null,
+     "ranked_median": 143.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F3_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.011390619764691962,
+     "information_ratio": 0.11684619148901498,
+     "placebo": 0.996,
+     "gross_active": 0.04864885363923438,
+     "turnover": 75.25431364459972,
+     "break_even_bps": 6.528604362064901,
+     "stress_net_active": -0.025867614109850445,
+     "noisy_net_active": null,
+     "ranked_median": 165.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.07347084324188803,
+     "information_ratio": -0.7510644135425851,
+     "placebo": 0.67,
+     "gross_active": -0.03677569251871328,
+     "turnover": 74.15223051184945,
+     "break_even_bps": -5.010974446752668,
+     "stress_net_active": -0.11016599396506277,
+     "noisy_net_active": null,
+     "ranked_median": 165.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F3_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.05217638923437942,
+     "information_ratio": 0.27918702685031327,
+     "placebo": 0.959,
+     "gross_active": 0.08869550101549803,
+     "turnover": 73.77606945775209,
+     "break_even_bps": 12.143710058873348,
+     "stress_net_active": 0.01565727745326082,
+     "noisy_net_active": null,
+     "ranked_median": 130.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.059020809648738404,
+     "information_ratio": 0.3272263237157626,
+     "placebo": 0.73,
+     "gross_active": 0.09461174748820186,
+     "turnover": 71.94380474442686,
+     "break_even_bps": 13.291550213562475,
+     "stress_net_active": 0.023429871809274895,
+     "noisy_net_active": null,
+     "ranked_median": 130.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   }
+  },
+  "snapshot": {
+   "parent": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.09935585287940409,
+     "information_ratio": 0.6851180372738757,
+     "placebo": 1.0,
+     "gross_active": 0.13431560958736102,
+     "turnover": 70.6761133184626,
+     "break_even_bps": 19.21003208194387,
+     "stress_net_active": 0.06439609617144715,
+     "noisy_net_active": 0.07908387930459414,
+     "ranked_median": 210.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.02984373934836856,
+     "information_ratio": 0.21105301068928056,
+     "placebo": 0.955,
+     "gross_active": 0.06408364867433189,
+     "turnover": 69.2861145350863,
+     "break_even_bps": 9.358034226121438,
+     "stress_net_active": -0.0043961699775947796,
+     "noisy_net_active": 0.033145643895007335,
+     "ranked_median": 210.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F1_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.12075324494294165,
+     "information_ratio": 0.6085654547039385,
+     "placebo": 1.0,
+     "gross_active": 0.15968089843473882,
+     "turnover": 78.61190688614309,
+     "break_even_bps": 20.509956818792933,
+     "stress_net_active": 0.08182559145114446,
+     "noisy_net_active": 0.1388511836022364,
+     "ranked_median": 98.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.07981357182216309,
+     "information_ratio": 0.3663147426902572,
+     "placebo": 0.98,
+     "gross_active": 0.11797641445897288,
+     "turnover": 77.13198115677923,
+     "break_even_bps": 15.456974154380637,
+     "stress_net_active": 0.04165072918535329,
+     "noisy_net_active": 0.05724341231687596,
+     "ranked_median": 98.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F1_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.029918755724396295,
+     "information_ratio": 0.2459162583569452,
+     "placebo": 1.0,
+     "gross_active": 0.07259853984263503,
+     "turnover": 86.1161681390262,
+     "break_even_bps": 8.505026600124115,
+     "stress_net_active": -0.012761028393842442,
+     "noisy_net_active": 0.020286499205803925,
+     "ranked_median": 110.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.032732123108442014,
+     "information_ratio": -0.2767235902574214,
+     "placebo": 0.604,
+     "gross_active": 0.008621463657948157,
+     "turnover": 83.51346941594,
+     "break_even_bps": 1.0424082083437547,
+     "stress_net_active": -0.07408570987483219,
+     "noisy_net_active": -0.05513744436551001,
+     "ranked_median": 110.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F2_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.12023568437664976,
+     "information_ratio": 0.6187590727717398,
+     "placebo": 1.0,
+     "gross_active": 0.15655831902293144,
+     "turnover": 73.40186919511206,
+     "break_even_bps": 21.551068713425263,
+     "stress_net_active": 0.0839130497303681,
+     "noisy_net_active": 0.12148207173175925,
+     "ranked_median": 103.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.09308650634943733,
+     "information_ratio": -0.5205973863972347,
+     "placebo": 0.345,
+     "gross_active": -0.056671745648755906,
+     "turnover": 73.63581728452249,
+     "break_even_bps": -7.7814249713984,
+     "stress_net_active": -0.12950126705011875,
+     "noisy_net_active": -0.05481767018861202,
+     "ranked_median": 103.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F2_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.014984207947854199,
+     "information_ratio": 0.09843318852324108,
+     "placebo": 0.955,
+     "gross_active": 0.05201156075765601,
+     "turnover": 74.81130552215237,
+     "break_even_bps": 7.0233971389777015,
+     "stress_net_active": -0.022043144861947608,
+     "noisy_net_active": 0.027523889119283846,
+     "ranked_median": 104.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.09205669411023061,
+     "information_ratio": 0.5568531532555994,
+     "placebo": 0.983,
+     "gross_active": 0.12977128684424993,
+     "turnover": 76.23548135119827,
+     "break_even_bps": 17.204386609641638,
+     "stress_net_active": 0.05434210137621131,
+     "noisy_net_active": 0.0805341190674739,
+     "ranked_median": 104.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F3_test": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.004325685245335674,
+     "information_ratio": 0.041926595184240266,
+     "placebo": 0.949,
+     "gross_active": 0.04164042102134569,
+     "turnover": 75.38607145456878,
+     "break_even_bps": 5.5796215831865394,
+     "stress_net_active": -0.03298905053067435,
+     "noisy_net_active": -0.0014150577388135864,
+     "ranked_median": 118.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": -0.04281947195275727,
+     "information_ratio": -0.38682225435860557,
+     "placebo": 0.745,
+     "gross_active": -0.0052629519782953285,
+     "turnover": 75.91933583208353,
+     "break_even_bps": -0.7006708797665602,
+     "stress_net_active": -0.0803759919272192,
+     "noisy_net_active": -0.06161203672966326,
+     "ranked_median": 118.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   },
+   "F3_mirror": {
+    "IS": {
+     "decisions": 503,
+     "net_active": 0.14446558572566912,
+     "information_ratio": 0.6753807700023104,
+     "placebo": 1.0,
+     "gross_active": 0.18139503377145164,
+     "turnover": 74.61549599411377,
+     "break_even_bps": 24.559673021185002,
+     "stress_net_active": 0.1075361376798866,
+     "noisy_net_active": 0.13224848484720444,
+     "ranked_median": 90.0,
+     "start": "2017-02-01",
+     "end": "2022-12-30"
+    },
+    "OOS": {
+     "decisions": 317,
+     "net_active": 0.06156557005334627,
+     "information_ratio": 0.26917005578953607,
+     "placebo": 0.826,
+     "gross_active": 0.09715138718215517,
+     "turnover": 71.97793014077745,
+     "break_even_bps": 13.650295963487258,
+     "stress_net_active": 0.02597975292453737,
+     "noisy_net_active": 0.09573168074608851,
+     "ranked_median": 90.0,
+     "start": "2023-01-03",
+     "end": "2026-10-15"
+    }
+   }
+  }
+ },
+ "verdicts": {
+  "rev5hi_h3_band40_s": {
+   "filter": "F1",
+   "status": "rejected",
+   "cells": {
+    "screen_all/IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active 5.19% does not beat the parent's 6.16%"
+     ]
+    },
+    "screen_all/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active 0.31% < 2.0%",
+      "IR 0.02 < 0.3",
+      "placebo 0.764 < 0.95",
+      "10 bps net active -3.46% not above 0"
+     ]
+    },
+    "screen_unseen/IS": {
+     "verdict": "contradicts",
+     "why": [
+      "IR 0.16 < 0.3",
+      "placebo 0.769 < 0.95",
+      "10 bps net active -1.22% not above 0",
+      "net active 2.64% does not beat the parent's 5.21%"
+     ]
+    },
+    "screen_unseen/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -1.29% < 2.0%",
+      "IR -0.08 < 0.3",
+      "placebo 0.491 < 0.95",
+      "10 bps net active -5.10% not above 0",
+      "net active -1.29% does not beat the parent's -0.83%"
+     ]
+    },
+    "snapshot/IS": {
+     "verdict": "supports",
+     "why": [
+      "passes the bar and beats the parent"
+     ]
+    },
+    "snapshot/OOS": {
+     "verdict": "supports",
+     "why": [
+      "passes the bar and beats the parent"
+     ]
+    }
+   }
+  },
+  "rev5lm_h3_band40_s": {
+   "filter": "F2",
+   "status": "rejected",
+   "cells": {
+    "screen_all/IS": {
+     "verdict": "supports",
+     "why": [
+      "passes the bar and beats the parent"
+     ]
+    },
+    "screen_all/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -9.48% < 2.0%",
+      "IR -0.68 < 0.3",
+      "placebo 0.123 < 0.95",
+      "10 bps net active -13.06% not above 0",
+      "net active -9.48% does not beat the parent's 0.25%"
+     ]
+    },
+    "screen_unseen/IS": {
+     "verdict": "supports",
+     "why": [
+      "passes the bar and beats the parent"
+     ]
+    },
+    "screen_unseen/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -7.32% < 2.0%",
+      "IR -0.51 < 0.3",
+      "placebo 0.246 < 0.95",
+      "10 bps net active -10.97% not above 0",
+      "net active -7.32% does not beat the parent's -0.83%"
+     ]
+    },
+    "snapshot/IS": {
+     "verdict": "supports",
+     "why": [
+      "passes the bar and beats the parent"
+     ]
+    },
+    "snapshot/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -9.31% < 2.0%",
+      "IR -0.52 < 0.3",
+      "placebo 0.345 < 0.95",
+      "10 bps net active -12.95% not above 0",
+      "15:30-signal net active -5.48% not above 0",
+      "net active -9.31% does not beat the parent's 2.98%"
+     ]
+    }
+   }
+  },
+  "rev5lv_h3_band40_s": {
+   "filter": "F3",
+   "status": "rejected",
+   "cells": {
+    "screen_all/IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active 1.82% < 2.0%",
+      "IR 0.20 < 0.3",
+      "10 bps net active -1.89% not above 0",
+      "net active 1.82% does not beat the parent's 6.16%"
+     ]
+    },
+    "screen_all/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -5.65% < 2.0%",
+      "IR -0.62 < 0.3",
+      "placebo 0.856 < 0.95",
+      "10 bps net active -9.36% not above 0",
+      "net active -5.65% does not beat the parent's 0.25%"
+     ]
+    },
+    "screen_unseen/IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active 1.14% < 2.0%",
+      "IR 0.12 < 0.3",
+      "10 bps net active -2.59% not above 0",
+      "net active 1.14% does not beat the parent's 5.21%"
+     ]
+    },
+    "screen_unseen/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -7.35% < 2.0%",
+      "IR -0.75 < 0.3",
+      "placebo 0.670 < 0.95",
+      "10 bps net active -11.02% not above 0",
+      "net active -7.35% does not beat the parent's -0.83%"
+     ]
+    },
+    "snapshot/IS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active 0.43% < 2.0%",
+      "IR 0.04 < 0.3",
+      "placebo 0.949 < 0.95",
+      "10 bps net active -3.30% not above 0",
+      "15:30-signal net active -0.14% not above 0",
+      "net active 0.43% does not beat the parent's 9.94%"
+     ]
+    },
+    "snapshot/OOS": {
+     "verdict": "contradicts",
+     "why": [
+      "net active -4.28% < 2.0%",
+      "IR -0.39 < 0.3",
+      "placebo 0.745 < 0.95",
+      "10 bps net active -8.04% not above 0",
+      "15:30-signal net active -6.16% not above 0",
+      "net active -4.28% does not beat the parent's 2.98%"
+     ]
+    }
+   }
+  }
+ },
+ "mirror": {
+  "rev5hi_h3_band40_s": {
+   "screen_all": {
+    "IS": "contradicts",
+    "OOS": "contradicts"
+   },
+   "screen_unseen": {
+    "IS": "contradicts",
+    "OOS": "contradicts"
+   },
+   "snapshot": {
+    "IS": "contradicts",
+    "OOS": "contradicts"
+   }
+  },
+  "rev5lm_h3_band40_s": {
+   "screen_all": {
+    "IS": "contradicts",
+    "OOS": "supports"
+   },
+   "screen_unseen": {
+    "IS": "contradicts",
+    "OOS": "supports"
+   },
+   "snapshot": {
+    "IS": "contradicts",
+    "OOS": "supports"
+   }
+  },
+  "rev5lv_h3_band40_s": {
+   "screen_all": {
+    "IS": "supports",
+    "OOS": "contradicts"
+   },
+   "screen_unseen": {
+    "IS": "contradicts",
+    "OOS": "contradicts"
+   },
+   "snapshot": {
+    "IS": "supports",
+    "OOS": "contradicts"
+   }
+  }
+ }
+}

@@ -175,10 +175,18 @@ def test_previous_picks_are_held_inside_the_band(env):
     assert json.loads((previous / "2026-10-21.json").read_text())["picks"] == ["T17", "T19"]
 
 
-def test_late_start_sends_nothing(env):
+def test_start_after_the_close_order_cutoff_falls_back_to_plain_market_orders(env, capsys):
     env.clock.now = pd.Timestamp("2026-10-21 15:50", tz="America/New_York")
+    assert go(env, execute=True) == 0
+    assert sorted(o.symbol for o, _ in env.account.sent) == ["T18", "T19"]
+    assert all(str(kw["time_in_force"].value) == "day" for _, kw in env.account.sent)
+    assert json.loads(capsys.readouterr().out)["sent_as_plain_market_orders"] == 2
+
+
+def test_start_too_close_to_the_close_sends_nothing_and_leaves_it_to_the_catch_up(env):
+    env.clock.now = pd.Timestamp("2026-10-21 15:59", tz="America/New_York")
     assert go(env, execute=True) == 2
-    assert env.account.sent == [] and "cut-off" in env.skips[0][1]
+    assert env.account.sent == [] and "catch-up" in env.skips[0][1]
 
 
 def test_sparse_snapshot_sends_nothing(env):
@@ -207,3 +215,38 @@ def test_not_a_decision_day(env):
 def test_early_close_days():
     assert so.early_close(pd.Timestamp("2026-11-27")) and so.early_close(pd.Timestamp("2026-12-24"))
     assert not so.early_close(pd.Timestamp("2026-10-21")) and not so.early_close(pd.Timestamp("2026-11-26"))
+
+
+# --- catch-up of a missed decision ---------------------------------------------------------------
+
+def catch(env, execute=True, hour="09:35", day="2026-10-22", history=None):
+    env.clock.now = pd.Timestamp(f"{day} {hour}", tz="America/New_York")
+    closes = pd.DataFrame(100.0, trading_days("2026-10-01", "2026-10-21"), TICKERS)
+    return so.catch_up(execute, now_fn=env.clock, fetch_closes_fn=lambda *a, **k: closes,
+                       history_snapshot_fn=history or (lambda symbols, day: env.snap), membership=env.membership,
+                       client=env.account.client, out_root=env.out, tracked=[CFG])
+
+
+def test_catch_up_places_a_missed_decision_at_the_next_open(env, capsys):
+    assert catch(env) == 0                                         # 2026-10-21 was a decision session and nothing was sent
+    assert sorted(o.symbol for o, _ in env.account.sent) == ["T18", "T19"]
+    assert all(str(kw["time_in_force"].value) == "day" and "__2026-10-21__" in kw["client_order_id"] for _, kw in env.account.sent)
+    assert json.loads((env.out / CFG["rule"] / "decisions" / "2026-10-21.json").read_text())["feed"] == "history, catch-up"
+    sent = len(env.account.sent)
+    assert catch(env) == 0 and len(env.account.sent) == sent       # a second run finds the orders and does nothing
+    assert "not needed" in capsys.readouterr().out
+
+
+def test_catch_up_uses_the_stored_decision_and_ignores_other_days(env):
+    decisions = env.out / CFG["rule"] / "decisions"
+    decisions.mkdir(parents=True)
+    (decisions / "2026-10-21.json").write_text(json.dumps({"picks": ["T01"], "snapshot_1545": {"T01": 50.0}}))
+    assert catch(env) == 0 and [o.symbol for o, _ in env.account.sent] == ["T01"]
+    env2 = env.account.sent.copy()
+    assert catch(env, day="2026-10-23") == 0 and env.account.sent == env2    # 10-22 was not a decision session
+
+
+def test_catch_up_does_nothing_when_the_orders_went_out(env):
+    assert go(env, execute=True) == 0
+    sent = len(env.account.sent)
+    assert catch(env) == 0 and len(env.account.sent) == sent
