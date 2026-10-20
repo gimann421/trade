@@ -1,0 +1,1155 @@
+{
+ "git_commit": "6899a9a-dirty",
+ "run_at": "20261020T174414Z",
+ "coverage": [
+  {
+   "date": "2017-01-31",
+   "priced": 501,
+   "predicted": 153,
+   "payers": 391,
+   "growth_scored": 72
+  },
+  {
+   "date": "2017-02-28",
+   "priced": 501,
+   "predicted": 162,
+   "payers": 393,
+   "growth_scored": 226
+  },
+  {
+   "date": "2017-03-31",
+   "priced": 501,
+   "predicted": 77,
+   "payers": 398,
+   "growth_scored": 371
+  },
+  {
+   "date": "2017-04-28",
+   "priced": 501,
+   "predicted": 165,
+   "payers": 394,
+   "growth_scored": 376
+  },
+  {
+   "date": "2017-05-31",
+   "priced": 502,
+   "predicted": 157,
+   "payers": 395,
+   "growth_scored": 376
+  },
+  {
+   "date": "2017-06-30",
+   "priced": 503,
+   "predicted": 72,
+   "payers": 394,
+   "growth_scored": 378
+  },
+  {
+   "date": "2017-07-31",
+   "priced": 504,
+   "predicted": 182,
+   "payers": 396,
+   "growth_scored": 377
+  },
+  {
+   "date": "2017-08-31",
+   "priced": 504,
+   "predicted": 135,
+   "payers": 397,
+   "growth_scored": 380
+  },
+  {
+   "date": "2017-09-29",
+   "priced": 504,
+   "predicted": 79,
+   "payers": 400,
+   "growth_scored": 377
+  },
+  {
+   "date": "2017-10-31",
+   "priced": 504,
+   "predicted": 184,
+   "payers": 397,
+   "growth_scored": 375
+  },
+  {
+   "date": "2017-11-30",
+   "priced": 505,
+   "predicted": 142,
+   "payers": 397,
+   "growth_scored": 377
+  },
+  {
+   "date": "2017-12-29",
+   "priced": 504,
+   "predicted": 72,
+   "payers": 398,
+   "growth_scored": 379
+  },
+  {
+   "date": "2018-01-31",
+   "priced": 505,
+   "predicted": 162,
+   "payers": 398,
+   "growth_scored": 379
+  },
+  {
+   "date": "2018-02-28",
+   "priced": 505,
+   "predicted": 165,
+   "payers": 399,
+   "growth_scored": 381
+  },
+  {
+   "date": "2018-03-29",
+   "priced": 505,
+   "predicted": 74,
+   "payers": 400,
+   "growth_scored": 378
+  },
+  {
+   "date": "2018-04-30",
+   "priced": 505,
+   "predicted": 181,
+   "payers": 397,
+   "growth_scored": 378
+  },
+  {
+   "date": "2018-05-31",
+   "priced": 506,
+   "predicted": 147,
+   "payers": 397,
+   "growth_scored": 380
+  },
+  {
+   "date": "2018-06-29",
+   "priced": 506,
+   "predicted": 69,
+   "payers": 395,
+   "growth_scored": 379
+  },
+  {
+   "date": "2018-07-31",
+   "priced": 506,
+   "predicted": 187,
+   "payers": 396,
+   "growth_scored": 378
+  },
+  {
+   "date": "2018-08-31",
+   "priced": 506,
+   "predicted": 143,
+   "payers": 395,
+   "growth_scored": 378
+  },
+  {
+   "date": "2018-09-28",
+   "priced": 505,
+   "predicted": 72,
+   "payers": 399,
+   "growth_scored": 377
+  },
+  {
+   "date": "2018-10-31",
+   "priced": 504,
+   "predicted": 190,
+   "payers": 396,
+   "growth_scored": 377
+  },
+  {
+   "date": "2018-11-30",
+   "priced": 503,
+   "predicted": 139,
+   "payers": 393,
+   "growth_scored": 380
+  },
+  {
+   "date": "2018-12-31",
+   "priced": 505,
+   "predicted": 70,
+   "payers": 398,
+   "growth_scored": 382
+  },
+  {
+   "date": "2019-01-31",
+   "priced": 505,
+   "predicted": 159,
+   "payers": 398,
+   "growth_scored": 383
+  },
+  {
+   "date": "2019-02-28",
+   "priced": 505,
+   "predicted": 174,
+   "payers": 399,
+   "growth_scored": 386
+  },
+  {
+   "date": "2019-03-29",
+   "priced": 505,
+   "predicted": 70,
+   "payers": 403,
+   "growth_scored": 388
+  },
+  {
+   "date": "2019-04-30",
+   "priced": 505,
+   "predicted": 188,
+   "payers": 402,
+   "growth_scored": 387
+  },
+  {
+   "date": "2019-05-31",
+   "priced": 505,
+   "predicted": 144,
+   "payers": 405,
+   "growth_scored": 389
+  },
+  {
+   "date": "2019-06-28",
+   "priced": 505,
+   "predicted": 74,
+   "payers": 404,
+   "growth_scored": 386
+  },
+  {
+   "date": "2019-07-31",
+   "priced": 505,
+   "predicted": 183,
+   "payers": 406,
+   "growth_scored": 387
+  },
+  {
+   "date": "2019-08-30",
+   "priced": 505,
+   "predicted": 152,
+   "payers": 405,
+   "growth_scored": 387
+  },
+  {
+   "date": "2019-09-30",
+   "priced": 505,
+   "predicted": 72,
+   "payers": 408,
+   "growth_scored": 386
+  },
+  {
+   "date": "2019-10-31",
+   "priced": 505,
+   "predicted": 187,
+   "payers": 407,
+   "growth_scored": 386
+  },
+  {
+   "date": "2019-11-29",
+   "priced": 505,
+   "predicted": 146,
+   "payers": 405,
+   "growth_scored": 386
+  },
+  {
+   "date": "2019-12-31",
+   "priced": 505,
+   "predicted": 73,
+   "payers": 404,
+   "growth_scored": 384
+  },
+  {
+   "date": "2020-01-31",
+   "priced": 505,
+   "predicted": 163,
+   "payers": 404,
+   "growth_scored": 384
+  },
+  {
+   "date": "2020-02-28",
+   "priced": 505,
+   "predicted": 163,
+   "payers": 406,
+   "growth_scored": 387
+  },
+  {
+   "date": "2020-03-31",
+   "priced": 505,
+   "predicted": 74,
+   "payers": 411,
+   "growth_scored": 388
+  },
+  {
+   "date": "2020-04-30",
+   "priced": 505,
+   "predicted": 183,
+   "payers": 406,
+   "growth_scored": 383
+  },
+  {
+   "date": "2020-05-29",
+   "priced": 505,
+   "predicted": 147,
+   "payers": 408,
+   "growth_scored": 382
+  },
+  {
+   "date": "2020-06-30",
+   "priced": 505,
+   "predicted": 79,
+   "payers": 404,
+   "growth_scored": 373
+  },
+  {
+   "date": "2020-07-31",
+   "priced": 505,
+   "predicted": 173,
+   "payers": 406,
+   "growth_scored": 353
+  },
+  {
+   "date": "2020-08-31",
+   "priced": 505,
+   "predicted": 158,
+   "payers": 402,
+   "growth_scored": 348
+  },
+  {
+   "date": "2020-09-30",
+   "priced": 505,
+   "predicted": 79,
+   "payers": 390,
+   "growth_scored": 350
+  },
+  {
+   "date": "2020-10-30",
+   "priced": 505,
+   "predicted": 172,
+   "payers": 372,
+   "growth_scored": 351
+  },
+  {
+   "date": "2020-11-30",
+   "priced": 505,
+   "predicted": 158,
+   "payers": 373,
+   "growth_scored": 352
+  },
+  {
+   "date": "2020-12-31",
+   "priced": 505,
+   "predicted": 77,
+   "payers": 373,
+   "growth_scored": 352
+  },
+  {
+   "date": "2021-01-29",
+   "priced": 505,
+   "predicted": 159,
+   "payers": 370,
+   "growth_scored": 350
+  },
+  {
+   "date": "2021-02-26",
+   "priced": 505,
+   "predicted": 168,
+   "payers": 371,
+   "growth_scored": 354
+  },
+  {
+   "date": "2021-03-31",
+   "priced": 505,
+   "predicted": 70,
+   "payers": 375,
+   "growth_scored": 352
+  },
+  {
+   "date": "2021-04-30",
+   "priced": 505,
+   "predicted": 160,
+   "payers": 369,
+   "growth_scored": 352
+  },
+  {
+   "date": "2021-05-28",
+   "priced": 505,
+   "predicted": 142,
+   "payers": 370,
+   "growth_scored": 351
+  },
+  {
+   "date": "2021-06-30",
+   "priced": 505,
+   "predicted": 77,
+   "payers": 371,
+   "growth_scored": 348
+  },
+  {
+   "date": "2021-07-30",
+   "priced": 505,
+   "predicted": 152,
+   "payers": 371,
+   "growth_scored": 348
+  },
+  {
+   "date": "2021-08-31",
+   "priced": 505,
+   "predicted": 142,
+   "payers": 375,
+   "growth_scored": 351
+  },
+  {
+   "date": "2021-09-30",
+   "priced": 505,
+   "predicted": 75,
+   "payers": 377,
+   "growth_scored": 349
+  },
+  {
+   "date": "2021-10-29",
+   "priced": 505,
+   "predicted": 152,
+   "payers": 376,
+   "growth_scored": 349
+  },
+  {
+   "date": "2021-11-30",
+   "priced": 505,
+   "predicted": 150,
+   "payers": 379,
+   "growth_scored": 352
+  },
+  {
+   "date": "2021-12-31",
+   "priced": 505,
+   "predicted": 68,
+   "payers": 378,
+   "growth_scored": 349
+  },
+  {
+   "date": "2022-01-31",
+   "priced": 505,
+   "predicted": 145,
+   "payers": 376,
+   "growth_scored": 347
+  },
+  {
+   "date": "2022-02-28",
+   "priced": 504,
+   "predicted": 161,
+   "payers": 375,
+   "growth_scored": 348
+  },
+  {
+   "date": "2022-03-31",
+   "priced": 505,
+   "predicted": 73,
+   "payers": 382,
+   "growth_scored": 350
+  },
+  {
+   "date": "2022-04-29",
+   "priced": 504,
+   "predicted": 160,
+   "payers": 379,
+   "growth_scored": 351
+  },
+  {
+   "date": "2022-05-31",
+   "priced": 504,
+   "predicted": 145,
+   "payers": 381,
+   "growth_scored": 353
+  },
+  {
+   "date": "2022-06-30",
+   "priced": 503,
+   "predicted": 77,
+   "payers": 383,
+   "growth_scored": 356
+  },
+  {
+   "date": "2022-07-29",
+   "priced": 503,
+   "predicted": 164,
+   "payers": 382,
+   "growth_scored": 354
+  },
+  {
+   "date": "2022-08-31",
+   "priced": 503,
+   "predicted": 146,
+   "payers": 384,
+   "growth_scored": 356
+  },
+  {
+   "date": "2022-09-30",
+   "priced": 502,
+   "predicted": 71,
+   "payers": 388,
+   "growth_scored": 360
+  },
+  {
+   "date": "2022-10-31",
+   "priced": 502,
+   "predicted": 166,
+   "payers": 383,
+   "growth_scored": 362
+  },
+  {
+   "date": "2022-11-30",
+   "priced": 503,
+   "predicted": 147,
+   "payers": 388,
+   "growth_scored": 366
+  },
+  {
+   "date": "2022-12-30",
+   "priced": 503,
+   "predicted": 72,
+   "payers": 390,
+   "growth_scored": 368
+  },
+  {
+   "date": "2023-01-31",
+   "priced": 503,
+   "predicted": 153,
+   "payers": 389,
+   "growth_scored": 367
+  },
+  {
+   "date": "2023-02-28",
+   "priced": 503,
+   "predicted": 167,
+   "payers": 390,
+   "growth_scored": 370
+  },
+  {
+   "date": "2023-03-31",
+   "priced": 503,
+   "predicted": 72,
+   "payers": 392,
+   "growth_scored": 369
+  },
+  {
+   "date": "2023-04-28",
+   "priced": 503,
+   "predicted": 170,
+   "payers": 388,
+   "growth_scored": 367
+  },
+  {
+   "date": "2023-05-31",
+   "priced": 503,
+   "predicted": 151,
+   "payers": 388,
+   "growth_scored": 367
+  },
+  {
+   "date": "2023-06-30",
+   "priced": 503,
+   "predicted": 69,
+   "payers": 389,
+   "growth_scored": 369
+  },
+  {
+   "date": "2023-07-31",
+   "priced": 503,
+   "predicted": 169,
+   "payers": 387,
+   "growth_scored": 368
+  },
+  {
+   "date": "2023-08-31",
+   "priced": 503,
+   "predicted": 151,
+   "payers": 387,
+   "growth_scored": 368
+  },
+  {
+   "date": "2023-09-29",
+   "priced": 503,
+   "predicted": 67,
+   "payers": 388,
+   "growth_scored": 368
+  },
+  {
+   "date": "2023-10-31",
+   "priced": 503,
+   "predicted": 175,
+   "payers": 385,
+   "growth_scored": 367
+  },
+  {
+   "date": "2023-11-30",
+   "priced": 503,
+   "predicted": 149,
+   "payers": 389,
+   "growth_scored": 369
+  },
+  {
+   "date": "2023-12-29",
+   "priced": 503,
+   "predicted": 62,
+   "payers": 389,
+   "growth_scored": 368
+  },
+  {
+   "date": "2024-01-31",
+   "priced": 503,
+   "predicted": 162,
+   "payers": 388,
+   "growth_scored": 367
+  },
+  {
+   "date": "2024-02-29",
+   "priced": 503,
+   "predicted": 167,
+   "payers": 391,
+   "growth_scored": 368
+  },
+  {
+   "date": "2024-03-28",
+   "priced": 503,
+   "predicted": 67,
+   "payers": 394,
+   "growth_scored": 368
+  },
+  {
+   "date": "2024-04-30",
+   "priced": 503,
+   "predicted": 174,
+   "payers": 387,
+   "growth_scored": 366
+  },
+  {
+   "date": "2024-05-31",
+   "priced": 503,
+   "predicted": 147,
+   "payers": 389,
+   "growth_scored": 368
+  },
+  {
+   "date": "2024-06-28",
+   "priced": 503,
+   "predicted": 77,
+   "payers": 391,
+   "growth_scored": 367
+  },
+  {
+   "date": "2024-07-31",
+   "priced": 503,
+   "predicted": 179,
+   "payers": 389,
+   "growth_scored": 369
+  },
+  {
+   "date": "2024-08-30",
+   "priced": 503,
+   "predicted": 136,
+   "payers": 389,
+   "growth_scored": 372
+  },
+  {
+   "date": "2024-09-30",
+   "priced": 504,
+   "predicted": 78,
+   "payers": 398,
+   "growth_scored": 375
+  },
+  {
+   "date": "2024-10-31",
+   "priced": 503,
+   "predicted": 189,
+   "payers": 393,
+   "growth_scored": 374
+  },
+  {
+   "date": "2024-11-29",
+   "priced": 503,
+   "predicted": 132,
+   "payers": 393,
+   "growth_scored": 377
+  },
+  {
+   "date": "2024-12-31",
+   "priced": 503,
+   "predicted": 68,
+   "payers": 399,
+   "growth_scored": 380
+  },
+  {
+   "date": "2025-01-31",
+   "priced": 503,
+   "predicted": 140,
+   "payers": 397,
+   "growth_scored": 380
+  },
+  {
+   "date": "2025-02-28",
+   "priced": 503,
+   "predicted": 162,
+   "payers": 398,
+   "growth_scored": 380
+  },
+  {
+   "date": "2025-03-31",
+   "priced": 503,
+   "predicted": 72,
+   "payers": 399,
+   "growth_scored": 381
+  },
+  {
+   "date": "2025-04-30",
+   "priced": 503,
+   "predicted": 162,
+   "payers": 395,
+   "growth_scored": 383
+  },
+  {
+   "date": "2025-05-30",
+   "priced": 503,
+   "predicted": 155,
+   "payers": 395,
+   "growth_scored": 381
+  },
+  {
+   "date": "2025-06-30",
+   "priced": 503,
+   "predicted": 78,
+   "payers": 396,
+   "growth_scored": 384
+  },
+  {
+   "date": "2025-07-31",
+   "priced": 503,
+   "predicted": 161,
+   "payers": 395,
+   "growth_scored": 382
+  },
+  {
+   "date": "2025-08-29",
+   "priced": 503,
+   "predicted": 160,
+   "payers": 396,
+   "growth_scored": 385
+  },
+  {
+   "date": "2025-09-30",
+   "priced": 503,
+   "predicted": 77,
+   "payers": 401,
+   "growth_scored": 386
+  },
+  {
+   "date": "2025-10-31",
+   "priced": 503,
+   "predicted": 161,
+   "payers": 397,
+   "growth_scored": 386
+  },
+  {
+   "date": "2025-11-28",
+   "priced": 503,
+   "predicted": 158,
+   "payers": 396,
+   "growth_scored": 384
+  },
+  {
+   "date": "2025-12-31",
+   "priced": 503,
+   "predicted": 76,
+   "payers": 400,
+   "growth_scored": 384
+  },
+  {
+   "date": "2026-01-30",
+   "priced": 503,
+   "predicted": 144,
+   "payers": 397,
+   "growth_scored": 384
+  },
+  {
+   "date": "2026-02-27",
+   "priced": 503,
+   "predicted": 181,
+   "payers": 398,
+   "growth_scored": 387
+  },
+  {
+   "date": "2026-03-31",
+   "priced": 503,
+   "predicted": 76,
+   "payers": 401,
+   "growth_scored": 386
+  },
+  {
+   "date": "2026-04-30",
+   "priced": 503,
+   "predicted": 167,
+   "payers": 397,
+   "growth_scored": 387
+  },
+  {
+   "date": "2026-05-29",
+   "priced": 503,
+   "predicted": 161,
+   "payers": 397,
+   "growth_scored": 386
+  },
+  {
+   "date": "2026-06-30",
+   "priced": 503,
+   "predicted": 78,
+   "payers": 399,
+   "growth_scored": 385
+  },
+  {
+   "date": "2026-07-31",
+   "priced": 503,
+   "predicted": 152,
+   "payers": 398,
+   "growth_scored": 386
+  },
+  {
+   "date": "2026-08-31",
+   "priced": 503,
+   "predicted": 175,
+   "payers": 396,
+   "growth_scored": 383
+  },
+  {
+   "date": "2026-09-30",
+   "priced": 503,
+   "predicted": 77,
+   "payers": 401,
+   "growth_scored": 383
+  }
+ ],
+ "results": {
+  "pred": {
+   "IS": {
+    "net_active": 0.0061156576656013996,
+    "information_ratio": 0.19653571452507468,
+    "placebo": 0.973,
+    "stress_net_active": -0.005424132795534071,
+    "turnover": 23.81896173420488,
+    "rebalances": 71,
+    "median_picks": 149.0,
+    "median_ranked": 504.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.022963558901528684,
+    "information_ratio": -0.701005617908241,
+    "placebo": 0.19,
+    "stress_net_active": -0.0343728846001819,
+    "turnover": 23.596125495547618,
+    "rebalances": 46,
+    "median_picks": 149.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.010923505458867968,
+    "information_ratio": -0.3687087669301487,
+    "placebo": 0.487,
+    "stress_net_active": -0.02249365919237938,
+    "turnover": 23.84867133296634,
+    "rebalances": 24,
+    "median_picks": 149.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.03639490740867465,
+    "information_ratio": -1.0124906230512865,
+    "placebo": 0.143,
+    "stress_net_active": -0.04762482049955274,
+    "turnover": 23.31439658358273,
+    "rebalances": 22,
+    "median_picks": 149.0,
+    "median_ranked": 504.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "notpred": {
+   "IS": {
+    "net_active": -0.011045207987222846,
+    "information_ratio": -0.9554091702706731,
+    "placebo": 0.01,
+    "stress_net_active": -0.015633253359046445,
+    "turnover": 9.915471555581139,
+    "rebalances": 71,
+    "median_picks": 355.0,
+    "median_ranked": 504.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 5.445368560634254e-06,
+    "information_ratio": 0.000514668307268242,
+    "placebo": 0.862,
+    "stress_net_active": -0.00451479074316144,
+    "turnover": 9.817946321685339,
+    "rebalances": 46,
+    "median_picks": 355.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.0008240641027118374,
+    "information_ratio": -0.0855766708771147,
+    "placebo": 0.801,
+    "stress_net_active": -0.005418021572807436,
+    "turnover": 9.896278806134728,
+    "rebalances": 24,
+    "median_picks": 355.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.0009308092676245911,
+    "information_ratio": 0.08052162968043847,
+    "placebo": 0.78,
+    "stress_net_active": -0.0035071865732007957,
+    "turnover": 9.73056208347736,
+    "rebalances": 22,
+    "median_picks": 355.0,
+    "median_ranked": 504.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "growth": {
+   "IS": {
+    "net_active": 0.00795875394843177,
+    "information_ratio": 0.17117227077719668,
+    "placebo": 0.894,
+    "stress_net_active": 0.006960084458657408,
+    "turnover": 2.7367197914826757,
+    "rebalances": 71,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.01808619649646987,
+    "information_ratio": 0.41102074333037925,
+    "placebo": 0.949,
+    "stress_net_active": 0.01741359242971092,
+    "turnover": 2.122682231759097,
+    "rebalances": 46,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.020494526639857662,
+    "information_ratio": 0.5097948671226451,
+    "placebo": 0.99,
+    "stress_net_active": 0.019776373842142658,
+    "turnover": 2.144669461373546,
+    "rebalances": 24,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.015399570425401701,
+    "information_ratio": 0.321262582547177,
+    "placebo": 0.655,
+    "stress_net_active": 0.014777778498509284,
+    "turnover": 2.0981542556114223,
+    "rebalances": 22,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "cut": {
+   "IS": {
+    "net_active": -0.012783216651141814,
+    "information_ratio": -0.18396569837141052,
+    "placebo": 0.298,
+    "stress_net_active": -0.01375445890102973,
+    "turnover": 2.6818653117097684,
+    "rebalances": 71,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.017389182516789406,
+    "information_ratio": 0.4139485707213813,
+    "placebo": 0.946,
+    "stress_net_active": 0.016691456707412018,
+    "turnover": 2.172925716995954,
+    "rebalances": 46,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.006374604712829599,
+    "information_ratio": -0.16856651790722624,
+    "placebo": 0.701,
+    "stress_net_active": -0.007179460243248974,
+    "turnover": 2.3180749267822898,
+    "rebalances": 24,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.04389900738183104,
+    "information_ratio": 0.9497047111053789,
+    "placebo": 0.948,
+    "stress_net_active": 0.043320790727927175,
+    "turnover": 2.011003709634308,
+    "rebalances": 22,
+    "median_picks": 75.0,
+    "median_ranked": 376.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "payers": {
+   "IS": {
+    "net_active": -0.0012744088913998262,
+    "information_ratio": -0.05811589175474427,
+    "placebo": 0.295,
+    "stress_net_active": -0.0013116425605882642,
+    "turnover": 0.8138481503108138,
+    "rebalances": 71,
+    "median_picks": 395.0,
+    "median_ranked": 504.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.0033362631974065983,
+    "information_ratio": -0.15576083737549545,
+    "placebo": 0.212,
+    "stress_net_active": -0.003333531023511049,
+    "turnover": 0.7720097504500977,
+    "rebalances": 46,
+    "median_picks": 395.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.01345931865390536,
+    "information_ratio": -0.7173839510749207,
+    "placebo": 0.0,
+    "stress_net_active": -0.01346199650726279,
+    "turnover": 0.7137195726583911,
+    "rebalances": 24,
+    "median_picks": 395.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.007956567556287576,
+    "information_ratio": 0.33095377287967026,
+    "placebo": 0.937,
+    "stress_net_active": 0.007965334916140892,
+    "turnover": 0.8370356821199565,
+    "rebalances": 22,
+    "median_picks": 395.0,
+    "median_ranked": 504.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "nonpayers": {
+   "IS": {
+    "net_active": 0.011936363619717814,
+    "information_ratio": 0.16376303477230597,
+    "placebo": 0.885,
+    "stress_net_active": 0.0115655804307221,
+    "turnover": 1.4809471899253632,
+    "rebalances": 71,
+    "median_picks": 108.0,
+    "median_ranked": 504.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.009339829666221374,
+    "information_ratio": 0.1193422381873752,
+    "placebo": 0.738,
+    "stress_net_active": 0.009002336529454777,
+    "turnover": 1.4524603717743987,
+    "rebalances": 46,
+    "median_picks": 108.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.04537073084038748,
+    "information_ratio": 0.7047996308406645,
+    "placebo": 0.998,
+    "stress_net_active": 0.045056361228855125,
+    "turnover": 1.337103089008227,
+    "rebalances": 24,
+    "median_picks": 108.0,
+    "median_ranked": 504.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.03085464231029281,
+    "information_ratio": -0.33793384935026666,
+    "placebo": 0.059,
+    "stress_net_active": -0.031217931024098523,
+    "turnover": 1.5811478294379941,
+    "rebalances": 22,
+    "median_picks": 108.0,
+    "median_ranked": 504.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  }
+ },
+ "verdicts": {
+  "divmonth_predicted": [
+   "IS net active 0.61% < 2.0%",
+   "IS IR 0.20 < 0.3",
+   "IS 10 bps -0.54% not above 0",
+   "OOS net active -2.30% < 2.0%",
+   "OOS IR -0.70 < 0.3",
+   "OOS placebo 0.190 < 0.95",
+   "OOS 10 bps -3.44% not above 0"
+  ],
+  "divgrowth_quintile": [
+   "IS net active 0.80% < 2.0%",
+   "IS IR 0.17 < 0.3",
+   "IS placebo 0.894 < 0.95",
+   "OOS net active 1.81% < 2.0%",
+   "OOS placebo 0.949 < 0.95"
+  ],
+  "payers_tilt": [
+   "IS net active -0.13% < 2.0%",
+   "IS IR -0.06 < 0.3",
+   "IS placebo 0.295 < 0.95",
+   "IS 10 bps -0.13% not above 0",
+   "OOS net active -0.33% < 2.0%",
+   "OOS IR -0.16 < 0.3",
+   "OOS placebo 0.212 < 0.95",
+   "OOS 10 bps -0.33% not above 0"
+  ]
+ }
+}

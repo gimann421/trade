@@ -205,6 +205,8 @@ def _read_json(out_dir, name):
 def plan_orders(picks: list[str], prices: dict[str, float], positions: dict[str, float], managed: set[str],
                 budget: float) -> list[dict]:
     """Whole-share orders that move the managed positions to an equal-weight book of `budget` dollars.
+    Each pick is sized to the nearest whole share, but never below one share, so names priced above the
+    per-name budget are still held (slightly overweight) instead of silently dropping out.
 
     positions: symbol -> shares currently held in the account. Only symbols in `managed` (names the
     rule has held or holds) are touched; anything else in the account is left alone. Sells first.
@@ -215,7 +217,7 @@ def plan_orders(picks: list[str], prices: dict[str, float], positions: dict[str,
         price = prices.get(symbol)
         if not price or price <= 0:
             continue
-        target = math.floor(each / price) if symbol in picks else 0
+        target = max(1, math.floor(each / price + 0.5)) if symbol in picks else 0
         delta = target - int(round(positions.get(symbol, 0.0)))
         if delta:
             orders.append({"symbol": symbol, "side": "buy" if delta > 0 else "sell", "qty": abs(delta), "price": float(price)})
