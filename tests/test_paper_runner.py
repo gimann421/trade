@@ -32,12 +32,17 @@ def test_plan_orders_whole_shares_sells_first_and_ignores_unmanaged():
                             positions={"AAA": 10, "OLD": 7, "OTHER": 99}, managed={"AAA", "OLD"}, budget=2000.0)
     assert orders == [
         {"symbol": "OLD", "side": "sell", "qty": 7, "price": 10.0},
-        {"symbol": "AAA", "side": "buy", "qty": 23, "price": 30.0},   # floor(1000 / 30) = 33 minus 10 held
-        {"symbol": "BBB", "side": "buy", "qty": 2, "price": 400.0},
+        {"symbol": "AAA", "side": "buy", "qty": 23, "price": 30.0},   # round(1000 / 30) = 33 minus 10 held
+        {"symbol": "BBB", "side": "buy", "qty": 3, "price": 400.0},
     ]
     assert pr.plan_orders([], {"OLD": 10.0}, {"OLD": 7}, {"OLD"}, 1000.0) == [
         {"symbol": "OLD", "side": "sell", "qty": 7, "price": 10.0}]
     assert pr.plan_orders(["AAA"], {"AAA": 30.0}, {"AAA": 33}, set(), 1000.0) == []  # already at target
+
+
+def test_plan_orders_rounds_to_nearest_share_with_one_share_minimum():
+    orders = pr.plan_orders(["CHEAP", "MID", "DEAR"], {"CHEAP": 30.0, "MID": 400.0, "DEAR": 1300.0}, {}, set(), 3000.0)
+    assert {o["symbol"]: o["qty"] for o in orders} == {"CHEAP": 33, "MID": 3, "DEAR": 1}   # 33.3, 2.5 up, 0.77 -> min 1
 
 
 def panel(last="2020-09-30", n=30, seed=5):
