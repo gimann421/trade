@@ -70,8 +70,10 @@ def daily_eval(label, close, units, shares, sh, fs, membership, decisions, dirty
     score[sh.CASH] = np.nan
     score = score.reindex(columns=full.columns)
     results = {}
-    for unit, (rule, share) in units.items():
-        targets, detail = sh.generate_targets(rule, full, score, decisions, members_fn, share=share)
+    for unit, spec in units.items():
+        rule, share = spec[:2]
+        unit_score = score if len(spec) < 3 else spec[2].reindex(index=index, columns=full.columns)
+        targets, detail = sh.generate_targets(rule, full, unit_score, decisions, members_fn, share=share)
         run5, run10 = (cleaned(simulate(close_ff, targets, bps), dirty) for bps in (5.0, 10.0))
         windows = holding_windows(detail, index)
         cells = {}
