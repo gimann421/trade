@@ -1,0 +1,1366 @@
+{
+ "git_commit": "c813e05-dirty",
+ "run_at": "20261020T180425Z",
+ "coverage": [
+  {
+   "date": "2017-01-31",
+   "priced": 501,
+   "gp": 86,
+   "acc": 177,
+   "ag": 248,
+   "all3": 63
+  },
+  {
+   "date": "2017-02-28",
+   "priced": 501,
+   "gp": 90,
+   "acc": 184,
+   "ag": 259,
+   "all3": 65
+  },
+  {
+   "date": "2017-03-31",
+   "priced": 501,
+   "gp": 85,
+   "acc": 184,
+   "ag": 234,
+   "all3": 65
+  },
+  {
+   "date": "2017-04-28",
+   "priced": 501,
+   "gp": 83,
+   "acc": 185,
+   "ag": 233,
+   "all3": 65
+  },
+  {
+   "date": "2017-05-31",
+   "priced": 502,
+   "gp": 83,
+   "acc": 185,
+   "ag": 232,
+   "all3": 65
+  },
+  {
+   "date": "2017-06-30",
+   "priced": 503,
+   "gp": 84,
+   "acc": 187,
+   "ag": 234,
+   "all3": 66
+  },
+  {
+   "date": "2017-07-31",
+   "priced": 504,
+   "gp": 86,
+   "acc": 189,
+   "ag": 236,
+   "all3": 68
+  },
+  {
+   "date": "2017-08-31",
+   "priced": 504,
+   "gp": 87,
+   "acc": 190,
+   "ag": 238,
+   "all3": 68
+  },
+  {
+   "date": "2017-09-29",
+   "priced": 504,
+   "gp": 85,
+   "acc": 189,
+   "ag": 236,
+   "all3": 67
+  },
+  {
+   "date": "2017-10-31",
+   "priced": 504,
+   "gp": 86,
+   "acc": 190,
+   "ag": 237,
+   "all3": 68
+  },
+  {
+   "date": "2017-11-30",
+   "priced": 505,
+   "gp": 88,
+   "acc": 192,
+   "ag": 238,
+   "all3": 70
+  },
+  {
+   "date": "2017-12-29",
+   "priced": 504,
+   "gp": 89,
+   "acc": 194,
+   "ag": 239,
+   "all3": 71
+  },
+  {
+   "date": "2018-01-31",
+   "priced": 505,
+   "gp": 85,
+   "acc": 195,
+   "ag": 236,
+   "all3": 71
+  },
+  {
+   "date": "2018-02-28",
+   "priced": 505,
+   "gp": 95,
+   "acc": 218,
+   "ag": 261,
+   "all3": 80
+  },
+  {
+   "date": "2018-03-29",
+   "priced": 505,
+   "gp": 101,
+   "acc": 223,
+   "ag": 267,
+   "all3": 85
+  },
+  {
+   "date": "2018-04-30",
+   "priced": 505,
+   "gp": 99,
+   "acc": 225,
+   "ag": 256,
+   "all3": 86
+  },
+  {
+   "date": "2018-05-31",
+   "priced": 506,
+   "gp": 98,
+   "acc": 225,
+   "ag": 255,
+   "all3": 86
+  },
+  {
+   "date": "2018-06-29",
+   "priced": 506,
+   "gp": 101,
+   "acc": 228,
+   "ag": 258,
+   "all3": 89
+  },
+  {
+   "date": "2018-07-31",
+   "priced": 506,
+   "gp": 98,
+   "acc": 229,
+   "ag": 258,
+   "all3": 88
+  },
+  {
+   "date": "2018-08-31",
+   "priced": 506,
+   "gp": 102,
+   "acc": 233,
+   "ag": 263,
+   "all3": 91
+  },
+  {
+   "date": "2018-09-28",
+   "priced": 505,
+   "gp": 103,
+   "acc": 234,
+   "ag": 264,
+   "all3": 92
+  },
+  {
+   "date": "2018-10-31",
+   "priced": 504,
+   "gp": 104,
+   "acc": 236,
+   "ag": 265,
+   "all3": 94
+  },
+  {
+   "date": "2018-11-30",
+   "priced": 503,
+   "gp": 103,
+   "acc": 237,
+   "ag": 267,
+   "all3": 94
+  },
+  {
+   "date": "2018-12-31",
+   "priced": 505,
+   "gp": 104,
+   "acc": 238,
+   "ag": 268,
+   "all3": 95
+  },
+  {
+   "date": "2019-01-31",
+   "priced": 505,
+   "gp": 104,
+   "acc": 239,
+   "ag": 268,
+   "all3": 95
+  },
+  {
+   "date": "2019-02-28",
+   "priced": 505,
+   "gp": 111,
+   "acc": 261,
+   "ag": 296,
+   "all3": 102
+  },
+  {
+   "date": "2019-03-29",
+   "priced": 505,
+   "gp": 109,
+   "acc": 263,
+   "ag": 302,
+   "all3": 101
+  },
+  {
+   "date": "2019-04-30",
+   "priced": 505,
+   "gp": 108,
+   "acc": 263,
+   "ag": 299,
+   "all3": 100
+  },
+  {
+   "date": "2019-05-31",
+   "priced": 505,
+   "gp": 108,
+   "acc": 263,
+   "ag": 299,
+   "all3": 100
+  },
+  {
+   "date": "2019-06-28",
+   "priced": 505,
+   "gp": 108,
+   "acc": 266,
+   "ag": 302,
+   "all3": 100
+  },
+  {
+   "date": "2019-07-31",
+   "priced": 505,
+   "gp": 109,
+   "acc": 268,
+   "ag": 304,
+   "all3": 101
+  },
+  {
+   "date": "2019-08-30",
+   "priced": 505,
+   "gp": 112,
+   "acc": 271,
+   "ag": 309,
+   "all3": 104
+  },
+  {
+   "date": "2019-09-30",
+   "priced": 505,
+   "gp": 114,
+   "acc": 272,
+   "ag": 310,
+   "all3": 106
+  },
+  {
+   "date": "2019-10-31",
+   "priced": 505,
+   "gp": 116,
+   "acc": 276,
+   "ag": 314,
+   "all3": 108
+  },
+  {
+   "date": "2019-11-29",
+   "priced": 505,
+   "gp": 121,
+   "acc": 280,
+   "ag": 319,
+   "all3": 112
+  },
+  {
+   "date": "2019-12-31",
+   "priced": 505,
+   "gp": 125,
+   "acc": 286,
+   "ag": 327,
+   "all3": 115
+  },
+  {
+   "date": "2020-01-31",
+   "priced": 505,
+   "gp": 126,
+   "acc": 287,
+   "ag": 328,
+   "all3": 116
+  },
+  {
+   "date": "2020-02-28",
+   "priced": 505,
+   "gp": 127,
+   "acc": 302,
+   "ag": 348,
+   "all3": 116
+  },
+  {
+   "date": "2020-03-31",
+   "priced": 505,
+   "gp": 126,
+   "acc": 303,
+   "ag": 347,
+   "all3": 115
+  },
+  {
+   "date": "2020-04-30",
+   "priced": 505,
+   "gp": 127,
+   "acc": 305,
+   "ag": 350,
+   "all3": 116
+  },
+  {
+   "date": "2020-05-29",
+   "priced": 505,
+   "gp": 130,
+   "acc": 308,
+   "ag": 353,
+   "all3": 119
+  },
+  {
+   "date": "2020-06-30",
+   "priced": 505,
+   "gp": 132,
+   "acc": 311,
+   "ag": 356,
+   "all3": 121
+  },
+  {
+   "date": "2020-07-31",
+   "priced": 505,
+   "gp": 132,
+   "acc": 311,
+   "ag": 356,
+   "all3": 121
+  },
+  {
+   "date": "2020-08-31",
+   "priced": 505,
+   "gp": 133,
+   "acc": 312,
+   "ag": 357,
+   "all3": 122
+  },
+  {
+   "date": "2020-09-30",
+   "priced": 505,
+   "gp": 133,
+   "acc": 312,
+   "ag": 356,
+   "all3": 123
+  },
+  {
+   "date": "2020-10-30",
+   "priced": 505,
+   "gp": 132,
+   "acc": 312,
+   "ag": 356,
+   "all3": 122
+  },
+  {
+   "date": "2020-11-30",
+   "priced": 505,
+   "gp": 132,
+   "acc": 312,
+   "ag": 356,
+   "all3": 122
+  },
+  {
+   "date": "2020-12-31",
+   "priced": 505,
+   "gp": 133,
+   "acc": 313,
+   "ag": 357,
+   "all3": 123
+  },
+  {
+   "date": "2021-01-29",
+   "priced": 505,
+   "gp": 134,
+   "acc": 314,
+   "ag": 357,
+   "all3": 124
+  },
+  {
+   "date": "2021-02-26",
+   "priced": 505,
+   "gp": 135,
+   "acc": 317,
+   "ag": 363,
+   "all3": 124
+  },
+  {
+   "date": "2021-03-31",
+   "priced": 505,
+   "gp": 137,
+   "acc": 320,
+   "ag": 365,
+   "all3": 125
+  },
+  {
+   "date": "2021-04-30",
+   "priced": 505,
+   "gp": 138,
+   "acc": 321,
+   "ag": 366,
+   "all3": 126
+  },
+  {
+   "date": "2021-05-28",
+   "priced": 505,
+   "gp": 138,
+   "acc": 321,
+   "ag": 365,
+   "all3": 126
+  },
+  {
+   "date": "2021-06-30",
+   "priced": 505,
+   "gp": 138,
+   "acc": 321,
+   "ag": 365,
+   "all3": 126
+  },
+  {
+   "date": "2021-07-30",
+   "priced": 505,
+   "gp": 138,
+   "acc": 322,
+   "ag": 366,
+   "all3": 126
+  },
+  {
+   "date": "2021-08-31",
+   "priced": 505,
+   "gp": 139,
+   "acc": 322,
+   "ag": 367,
+   "all3": 126
+  },
+  {
+   "date": "2021-09-30",
+   "priced": 505,
+   "gp": 139,
+   "acc": 323,
+   "ag": 368,
+   "all3": 126
+  },
+  {
+   "date": "2021-10-29",
+   "priced": 505,
+   "gp": 139,
+   "acc": 323,
+   "ag": 368,
+   "all3": 126
+  },
+  {
+   "date": "2021-11-30",
+   "priced": 505,
+   "gp": 137,
+   "acc": 322,
+   "ag": 367,
+   "all3": 125
+  },
+  {
+   "date": "2021-12-31",
+   "priced": 505,
+   "gp": 137,
+   "acc": 323,
+   "ag": 368,
+   "all3": 125
+  },
+  {
+   "date": "2022-01-31",
+   "priced": 505,
+   "gp": 137,
+   "acc": 324,
+   "ag": 369,
+   "all3": 125
+  },
+  {
+   "date": "2022-02-28",
+   "priced": 504,
+   "gp": 134,
+   "acc": 325,
+   "ag": 376,
+   "all3": 122
+  },
+  {
+   "date": "2022-03-31",
+   "priced": 505,
+   "gp": 133,
+   "acc": 324,
+   "ag": 377,
+   "all3": 121
+  },
+  {
+   "date": "2022-04-29",
+   "priced": 504,
+   "gp": 131,
+   "acc": 325,
+   "ag": 373,
+   "all3": 121
+  },
+  {
+   "date": "2022-05-31",
+   "priced": 504,
+   "gp": 131,
+   "acc": 325,
+   "ag": 374,
+   "all3": 121
+  },
+  {
+   "date": "2022-06-30",
+   "priced": 503,
+   "gp": 133,
+   "acc": 330,
+   "ag": 379,
+   "all3": 123
+  },
+  {
+   "date": "2022-07-29",
+   "priced": 503,
+   "gp": 133,
+   "acc": 330,
+   "ag": 379,
+   "all3": 123
+  },
+  {
+   "date": "2022-08-31",
+   "priced": 503,
+   "gp": 133,
+   "acc": 331,
+   "ag": 380,
+   "all3": 123
+  },
+  {
+   "date": "2022-09-30",
+   "priced": 502,
+   "gp": 134,
+   "acc": 334,
+   "ag": 383,
+   "all3": 124
+  },
+  {
+   "date": "2022-10-31",
+   "priced": 502,
+   "gp": 134,
+   "acc": 336,
+   "ag": 386,
+   "all3": 124
+  },
+  {
+   "date": "2022-11-30",
+   "priced": 503,
+   "gp": 135,
+   "acc": 337,
+   "ag": 388,
+   "all3": 125
+  },
+  {
+   "date": "2022-12-30",
+   "priced": 503,
+   "gp": 136,
+   "acc": 339,
+   "ag": 390,
+   "all3": 126
+  },
+  {
+   "date": "2023-01-31",
+   "priced": 503,
+   "gp": 135,
+   "acc": 338,
+   "ag": 387,
+   "all3": 126
+  },
+  {
+   "date": "2023-02-28",
+   "priced": 503,
+   "gp": 135,
+   "acc": 337,
+   "ag": 389,
+   "all3": 125
+  },
+  {
+   "date": "2023-03-31",
+   "priced": 503,
+   "gp": 136,
+   "acc": 341,
+   "ag": 393,
+   "all3": 126
+  },
+  {
+   "date": "2023-04-28",
+   "priced": 503,
+   "gp": 136,
+   "acc": 340,
+   "ag": 386,
+   "all3": 126
+  },
+  {
+   "date": "2023-05-31",
+   "priced": 503,
+   "gp": 138,
+   "acc": 342,
+   "ag": 388,
+   "all3": 128
+  },
+  {
+   "date": "2023-06-30",
+   "priced": 503,
+   "gp": 139,
+   "acc": 342,
+   "ag": 388,
+   "all3": 129
+  },
+  {
+   "date": "2023-07-31",
+   "priced": 503,
+   "gp": 139,
+   "acc": 342,
+   "ag": 388,
+   "all3": 129
+  },
+  {
+   "date": "2023-08-31",
+   "priced": 503,
+   "gp": 140,
+   "acc": 343,
+   "ag": 389,
+   "all3": 130
+  },
+  {
+   "date": "2023-09-29",
+   "priced": 503,
+   "gp": 140,
+   "acc": 345,
+   "ag": 391,
+   "all3": 130
+  },
+  {
+   "date": "2023-10-31",
+   "priced": 503,
+   "gp": 141,
+   "acc": 346,
+   "ag": 392,
+   "all3": 131
+  },
+  {
+   "date": "2023-11-30",
+   "priced": 503,
+   "gp": 141,
+   "acc": 346,
+   "ag": 392,
+   "all3": 131
+  },
+  {
+   "date": "2023-12-29",
+   "priced": 503,
+   "gp": 143,
+   "acc": 349,
+   "ag": 395,
+   "all3": 133
+  },
+  {
+   "date": "2024-01-31",
+   "priced": 503,
+   "gp": 143,
+   "acc": 349,
+   "ag": 394,
+   "all3": 133
+  },
+  {
+   "date": "2024-02-29",
+   "priced": 503,
+   "gp": 144,
+   "acc": 355,
+   "ag": 401,
+   "all3": 134
+  },
+  {
+   "date": "2024-03-28",
+   "priced": 503,
+   "gp": 148,
+   "acc": 361,
+   "ag": 407,
+   "all3": 138
+  },
+  {
+   "date": "2024-04-30",
+   "priced": 503,
+   "gp": 146,
+   "acc": 361,
+   "ag": 396,
+   "all3": 138
+  },
+  {
+   "date": "2024-05-31",
+   "priced": 503,
+   "gp": 145,
+   "acc": 361,
+   "ag": 396,
+   "all3": 137
+  },
+  {
+   "date": "2024-06-28",
+   "priced": 503,
+   "gp": 147,
+   "acc": 365,
+   "ag": 400,
+   "all3": 139
+  },
+  {
+   "date": "2024-07-31",
+   "priced": 503,
+   "gp": 147,
+   "acc": 365,
+   "ag": 400,
+   "all3": 139
+  },
+  {
+   "date": "2024-08-30",
+   "priced": 503,
+   "gp": 147,
+   "acc": 365,
+   "ag": 399,
+   "all3": 139
+  },
+  {
+   "date": "2024-09-30",
+   "priced": 504,
+   "gp": 148,
+   "acc": 367,
+   "ag": 401,
+   "all3": 140
+  },
+  {
+   "date": "2024-10-31",
+   "priced": 503,
+   "gp": 148,
+   "acc": 367,
+   "ag": 401,
+   "all3": 140
+  },
+  {
+   "date": "2024-11-29",
+   "priced": 503,
+   "gp": 148,
+   "acc": 368,
+   "ag": 402,
+   "all3": 140
+  },
+  {
+   "date": "2024-12-31",
+   "priced": 503,
+   "gp": 150,
+   "acc": 373,
+   "ag": 407,
+   "all3": 142
+  },
+  {
+   "date": "2025-01-31",
+   "priced": 503,
+   "gp": 150,
+   "acc": 373,
+   "ag": 407,
+   "all3": 142
+  },
+  {
+   "date": "2025-02-28",
+   "priced": 503,
+   "gp": 153,
+   "acc": 377,
+   "ag": 417,
+   "all3": 142
+  },
+  {
+   "date": "2025-03-31",
+   "priced": 503,
+   "gp": 154,
+   "acc": 379,
+   "ag": 420,
+   "all3": 142
+  },
+  {
+   "date": "2025-04-30",
+   "priced": 503,
+   "gp": 155,
+   "acc": 380,
+   "ag": 421,
+   "all3": 143
+  },
+  {
+   "date": "2025-05-30",
+   "priced": 503,
+   "gp": 155,
+   "acc": 381,
+   "ag": 422,
+   "all3": 143
+  },
+  {
+   "date": "2025-06-30",
+   "priced": 503,
+   "gp": 155,
+   "acc": 381,
+   "ag": 422,
+   "all3": 143
+  },
+  {
+   "date": "2025-07-31",
+   "priced": 503,
+   "gp": 157,
+   "acc": 384,
+   "ag": 425,
+   "all3": 145
+  },
+  {
+   "date": "2025-08-29",
+   "priced": 503,
+   "gp": 157,
+   "acc": 381,
+   "ag": 426,
+   "all3": 145
+  },
+  {
+   "date": "2025-09-30",
+   "priced": 503,
+   "gp": 158,
+   "acc": 384,
+   "ag": 429,
+   "all3": 146
+  },
+  {
+   "date": "2025-10-31",
+   "priced": 503,
+   "gp": 158,
+   "acc": 384,
+   "ag": 429,
+   "all3": 146
+  },
+  {
+   "date": "2025-11-28",
+   "priced": 503,
+   "gp": 159,
+   "acc": 387,
+   "ag": 432,
+   "all3": 147
+  },
+  {
+   "date": "2025-12-31",
+   "priced": 503,
+   "gp": 162,
+   "acc": 390,
+   "ag": 436,
+   "all3": 149
+  },
+  {
+   "date": "2026-01-30",
+   "priced": 503,
+   "gp": 162,
+   "acc": 391,
+   "ag": 437,
+   "all3": 149
+  },
+  {
+   "date": "2026-02-27",
+   "priced": 503,
+   "gp": 166,
+   "acc": 403,
+   "ag": 452,
+   "all3": 153
+  },
+  {
+   "date": "2026-03-31",
+   "priced": 503,
+   "gp": 167,
+   "acc": 407,
+   "ag": 456,
+   "all3": 154
+  },
+  {
+   "date": "2026-04-30",
+   "priced": 503,
+   "gp": 167,
+   "acc": 408,
+   "ag": 457,
+   "all3": 154
+  },
+  {
+   "date": "2026-05-29",
+   "priced": 503,
+   "gp": 168,
+   "acc": 410,
+   "ag": 459,
+   "all3": 155
+  },
+  {
+   "date": "2026-06-30",
+   "priced": 503,
+   "gp": 170,
+   "acc": 413,
+   "ag": 462,
+   "all3": 157
+  },
+  {
+   "date": "2026-07-31",
+   "priced": 503,
+   "gp": 170,
+   "acc": 414,
+   "ag": 463,
+   "all3": 157
+  },
+  {
+   "date": "2026-08-31",
+   "priced": 503,
+   "gp": 170,
+   "acc": 416,
+   "ag": 466,
+   "all3": 156
+  },
+  {
+   "date": "2026-09-30",
+   "priced": 503,
+   "gp": 169,
+   "acc": 415,
+   "ag": 465,
+   "all3": 155
+  }
+ ],
+ "results": {
+  "gp": {
+   "IS": {
+    "net_active": 0.029074234036694558,
+    "information_ratio": 0.4522892252872898,
+    "placebo": 0.958,
+    "stress_net_active": 0.028868002006908276,
+    "turnover": 1.3109059844285518,
+    "rebalances": 71,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.07812940317597757,
+    "information_ratio": -1.0102750543789718,
+    "placebo": 0.001,
+    "stress_net_active": -0.07824802954874893,
+    "turnover": 1.113726239938729,
+    "rebalances": 46,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.003850382719081396,
+    "information_ratio": -0.07250828340400274,
+    "placebo": 0.479,
+    "stress_net_active": -0.004030883025980646,
+    "turnover": 1.131469404400818,
+    "rebalances": 24,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.16099177710789284,
+    "information_ratio": -1.6544390462154785,
+    "placebo": 0.0,
+    "stress_net_active": -0.16104137966970372,
+    "turnover": 1.0939327542499098,
+    "rebalances": 22,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "gp_low": {
+   "IS": {
+    "net_active": -0.03409650715516899,
+    "information_ratio": -0.4179383507657985,
+    "placebo": 0.032,
+    "stress_net_active": -0.03445243422114733,
+    "turnover": 1.6102960568126694,
+    "rebalances": 71,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.021811700363228236,
+    "information_ratio": -0.3504540870668109,
+    "placebo": 0.216,
+    "stress_net_active": -0.022150867064946147,
+    "turnover": 1.5548068978318743,
+    "rebalances": 46,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.05881546378411456,
+    "information_ratio": -1.0644783684066992,
+    "placebo": 0.033,
+    "stress_net_active": -0.05918218625013647,
+    "turnover": 1.5039137226461343,
+    "rebalances": 24,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.01946805349740496,
+    "information_ratio": 0.28143176817743604,
+    "placebo": 0.662,
+    "stress_net_active": 0.019159626781643953,
+    "turnover": 1.6115810621501885,
+    "rebalances": 22,
+    "median_picks": 27.0,
+    "median_ranked": 135.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "acc": {
+   "IS": {
+    "net_active": 0.02781384137381784,
+    "information_ratio": 0.5131645344662918,
+    "placebo": 0.991,
+    "stress_net_active": 0.02711590176135332,
+    "turnover": 2.189585714592725,
+    "rebalances": 71,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.03196345119205232,
+    "information_ratio": 0.6042102708626274,
+    "placebo": 0.972,
+    "stress_net_active": 0.0312838101051466,
+    "turnover": 2.1533054404653047,
+    "rebalances": 46,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.03736740917219397,
+    "information_ratio": 0.9096118897036749,
+    "placebo": 0.971,
+    "stress_net_active": 0.03672757026172976,
+    "turnover": 1.9809818977920612,
+    "rebalances": 24,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.025935035845316513,
+    "information_ratio": 0.4078281327258746,
+    "placebo": 0.818,
+    "stress_net_active": 0.02521099321935829,
+    "turnover": 2.3455419258474564,
+    "rebalances": 22,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "acc_high": {
+   "IS": {
+    "net_active": 0.002861817057744541,
+    "information_ratio": 0.0571705839482419,
+    "placebo": 0.517,
+    "stress_net_active": 0.0022490644808844705,
+    "turnover": 2.0192116433838097,
+    "rebalances": 71,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.020831739219175256,
+    "information_ratio": 0.5054978389452685,
+    "placebo": 0.92,
+    "stress_net_active": 0.020217708819688315,
+    "turnover": 2.0220840656277606,
+    "rebalances": 46,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.036251832292708876,
+    "information_ratio": 0.9736938188362665,
+    "placebo": 0.98,
+    "stress_net_active": 0.035549015977692534,
+    "turnover": 2.10693670689628,
+    "rebalances": 24,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.0036297687238110946,
+    "information_ratio": 0.08020500304835451,
+    "placebo": 0.548,
+    "stress_net_active": 0.003114783945648048,
+    "turnover": 1.9274262302571008,
+    "rebalances": 22,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "ag": {
+   "IS": {
+    "net_active": 0.018082975706318453,
+    "information_ratio": 0.4166726585325864,
+    "placebo": 0.944,
+    "stress_net_active": 0.017287516826821805,
+    "turnover": 2.4216454190428705,
+    "rebalances": 71,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.010864757300703921,
+    "information_ratio": 0.2692143094847437,
+    "placebo": 0.787,
+    "stress_net_active": 0.010104133239414607,
+    "turnover": 2.3044843988168275,
+    "rebalances": 46,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.03244454695652562,
+    "information_ratio": -0.9613608968353492,
+    "placebo": 0.031,
+    "stress_net_active": -0.0331914476871329,
+    "turnover": 2.2002027167751805,
+    "rebalances": 24,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.0591786922721022,
+    "information_ratio": 1.2729704598467713,
+    "placebo": 0.995,
+    "stress_net_active": 0.058402759073029824,
+    "turnover": 2.4208164085610635,
+    "rebalances": 22,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "ag_high": {
+   "IS": {
+    "net_active": 0.0024979640561565057,
+    "information_ratio": 0.04240939541466586,
+    "placebo": 0.596,
+    "stress_net_active": 0.0017306977135189215,
+    "turnover": 2.3652603453247547,
+    "rebalances": 71,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.022919037208870986,
+    "information_ratio": 0.37434225658467607,
+    "placebo": 0.939,
+    "stress_net_active": 0.022127025611873997,
+    "turnover": 2.3672594702321725,
+    "rebalances": 46,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.04175767411165149,
+    "information_ratio": 0.8969813788899047,
+    "placebo": 0.99,
+    "stress_net_active": 0.04094702757218412,
+    "turnover": 2.3276943344953738,
+    "rebalances": 24,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.0019034911528802746,
+    "information_ratio": 0.02562507538993469,
+    "placebo": 0.521,
+    "stress_net_active": 0.0011322678694835856,
+    "turnover": 2.411396577209668,
+    "rebalances": 22,
+    "median_picks": 74.0,
+    "median_ranked": 368.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "qual": {
+   "IS": {
+    "net_active": 0.04850484237541676,
+    "information_ratio": 0.825539200323286,
+    "placebo": 0.993,
+    "stress_net_active": 0.04767701277370882,
+    "turnover": 2.516776920040699,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.028297813101167406,
+    "information_ratio": -0.45121752855272246,
+    "placebo": 0.196,
+    "stress_net_active": -0.02909218473001862,
+    "turnover": 2.48324156984925,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.01769658436079889,
+    "information_ratio": -0.353071332235556,
+    "placebo": 0.314,
+    "stress_net_active": -0.018483792772749717,
+    "turnover": 2.3501911278634546,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.04012407271820069,
+    "information_ratio": -0.5397467554366379,
+    "placebo": 0.235,
+    "stress_net_active": -0.04092643531346079,
+    "turnover": 2.631666729575625,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "qual_low": {
+   "IS": {
+    "net_active": -0.06365669165613307,
+    "information_ratio": -1.125946794884023,
+    "placebo": 0.001,
+    "stress_net_active": -0.06459147806591647,
+    "turnover": 2.7306905361916476,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.005731504316151602,
+    "information_ratio": -0.08069497682335654,
+    "placebo": 0.436,
+    "stress_net_active": -0.0066087479933544906,
+    "turnover": 2.6489856665525995,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.026785637305637607,
+    "information_ratio": 0.46814704296662124,
+    "placebo": 0.823,
+    "stress_net_active": 0.025866136365348076,
+    "turnover": 2.614776184540848,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.04200618230312536,
+    "information_ratio": -0.5012710087864951,
+    "placebo": 0.191,
+    "stress_net_active": -0.04283628565572936,
+    "turnover": 2.687148244263487,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 124.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  }
+ },
+ "verdicts": {
+  "gp_assets_quintile": [
+   "OOS net active -7.81% < 2.0%",
+   "OOS IR -1.01 < 0.3",
+   "OOS placebo 0.001 < 0.95",
+   "OOS 10 bps -7.82% not above 0"
+  ],
+  "lowaccruals_quintile": [],
+  "lowassetgrowth_quintile": [
+   "IS net active 1.81% < 2.0%",
+   "IS placebo 0.944 < 0.95",
+   "OOS net active 1.09% < 2.0%",
+   "OOS IR 0.27 < 0.3",
+   "OOS placebo 0.787 < 0.95"
+  ],
+  "quality_composite_quintile": [
+   "OOS net active -2.83% < 2.0%",
+   "OOS IR -0.45 < 0.3",
+   "OOS placebo 0.196 < 0.95",
+   "OOS 10 bps -2.91% not above 0"
+  ]
+ }
+}
