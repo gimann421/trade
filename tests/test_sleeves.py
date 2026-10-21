@@ -233,8 +233,7 @@ def test_catch_up_places_a_missed_decision_at_the_next_open(env, capsys):
     assert all(str(kw["time_in_force"].value) == "day" and "__2026-10-21__" in kw["client_order_id"] for _, kw in env.account.sent)
     assert json.loads((env.out / CFG["rule"] / "decisions" / "2026-10-21.json").read_text())["feed"] == "history, catch-up"
     sent = len(env.account.sent)
-    assert catch(env) == 0 and len(env.account.sent) == sent       # a second run finds the orders and does nothing
-    assert "not needed" in capsys.readouterr().out
+    assert catch(env) == 0 and len(env.account.sent) == sent       # a second run finds the sleeve at target and does nothing
 
 
 def test_catch_up_uses_the_stored_decision_and_ignores_other_days(env):
@@ -250,3 +249,37 @@ def test_catch_up_does_nothing_when_the_orders_went_out(env):
     assert go(env, execute=True) == 0
     sent = len(env.account.sent)
     assert catch(env) == 0 and len(env.account.sent) == sent
+
+
+# --- refused orders do not stop the run ------------------------------------------------------------
+
+def test_a_refused_order_is_logged_and_the_rest_still_go(monkeypatch):
+    account = FakeAccount(monkeypatch)
+    fake = __import__("core.broker", fromlist=["x"]).submit_order
+
+    def submit(client, order, reasoning, strategy, **kw):
+        if order.symbol == "BBB":
+            raise RuntimeError("potential wash trade detected. use complex orders")
+        return fake(client, order, reasoning, strategy, **kw)
+
+    monkeypatch.setattr("core.broker.submit_order", submit)
+    prices = {"AAA": 10.0, "BBB": 10.0, "CCC": 10.0}
+    out = pr.place_sleeve_orders("r", ["AAA", "BBB", "CCC"], prices, 5.0, "d", lambda o: "t", client=account.client)
+    assert [(o["symbol"], o["result"]) for o in out["orders"]] == [("AAA", "submitted"), ("BBB", "deferred"), ("CCC", "submitted")]
+    # the next run only has the refused one left to send
+    out = pr.place_sleeve_orders("r", ["AAA", "BBB", "CCC"], prices, 5.0, "d", lambda o: "t", client=account.client)
+    assert [(o["symbol"], o["result"]) for o in out["orders"]] == [("BBB", "deferred")]
+
+
+def test_opposite_open_order_of_another_rule_defers_without_calling_the_broker(monkeypatch):
+    account = FakeAccount(monkeypatch)
+    account.orders = [account.order("other__d__AAA__sell", "AAA", "sell", 1, status="accepted", filled=0)]
+    out = pr.place_sleeve_orders("r", ["AAA", "BBB"], {"AAA": 10.0, "BBB": 10.0}, 5.0, "d", lambda o: "t", client=account.client)
+    assert [(o["symbol"], o["result"]) for o in out["orders"]] == [("AAA", "deferred"), ("BBB", "submitted")]
+    assert [o.symbol for o, _ in account.sent] == ["BBB"]
+
+
+def test_catch_up_finishes_a_partly_sent_decision(env):
+    sentinel = FakeAccount.order("stock_rev5_h2_band__2026-10-21__T19__buy", "T19", "buy", 154)
+    env.account.orders.append(sentinel)
+    assert catch(env) == 0 and [o.symbol for o, _ in env.account.sent] == ["T18"]

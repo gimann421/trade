@@ -248,11 +248,19 @@ def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], a
     label is the decision date in each order's client_order_id; reasoning(order) gives the journal text.
     stop_check() is asked before each order; once it returns True the rest are listed as "late" and not sent.
     Nothing is sent while an earlier order of the rule is still open. Orders that fail the risk check
-    come back as "blocked"; names with no price are listed in "unpriced" and left alone."""
+    come back as "blocked"; names with no price are listed in "unpriced" and left alone.
+
+    One bad order never ends the run. Alpaca rejects an order as a possible wash trade while another open order
+    (usually another rule's slice) sits on the opposite side of the same symbol; such orders are not sent and come
+    back as "deferred". Any other order the broker refuses comes back as "error" with the message. Because the
+    plan is rebuilt from the sleeve's filled shares, the next run (the 09:36 catch-up) sends whatever is still
+    missing, and an order id that was already used gets a "retryN" suffix so it can be sent again."""
     from alpaca.trading.enums import TimeInForce
     from core.broker import RiskViolation, account_state, get_paper_client, submit_order
     from core.risk import ProposedOrder
-    from core.sleeves import open_orders, order_tag, rule_orders, sleeve_shares
+    from alpaca.trading.enums import QueryOrderStatus
+    from alpaca.trading.requests import GetOrdersRequest
+    from core.sleeves import SEP, _side, open_orders, order_tag, rule_orders, sleeve_shares
 
     client = client or get_paper_client()
     history = rule_orders(client, rule)
@@ -260,6 +268,13 @@ def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], a
     if pending:
         return {"orders": [], "skipped": f"{len(pending)} earlier order(s) of this rule are still open", "unpriced": []}
     shares = sleeve_shares(history)
+    used_ids = {str(o.client_order_id) for o in history}
+    try:
+        other_open = {}
+        for o in open_orders(client.get_orders(GetOrdersRequest(status=QueryOrderStatus.OPEN, limit=500))):
+            other_open.setdefault(o.symbol, set()).add(_side(o))
+    except Exception:
+        other_open = {}                       # the broker's own wash check still applies; it is handled per order below
     state = account_state(client)
     unpriced = sorted(s for s in set(picks) | set(shares) if not prices.get(s))
     orders = plan_orders(picks, prices, shares, set(shares), state.equity * allocation_pct / 100.0)
@@ -269,13 +284,26 @@ def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], a
         if stop_check and stop_check():
             results.append(o | {"result": "late"})
             continue
+        opposite = "sell" if o["side"] == "buy" else "buy"
+        if opposite in other_open.get(o["symbol"], ()):
+            results.append(o | {"result": "deferred", "reason": f"another open order is on the {opposite} side of {o['symbol']} (wash-trade rule)"})
+            continue
+        tag = order_tag(rule, label, o["symbol"], o["side"])
+        attempt = 1
+        while tag in used_ids:
+            attempt += 1
+            tag = order_tag(rule, label, o["symbol"], o["side"]) + f"{SEP}retry{attempt}"
         try:
             submit_order(client, ProposedOrder(o["symbol"], o["side"], o["qty"], o["price"]), reasoning(o), rule,
-                         hypothesis_id=hypothesis_id, time_in_force=tif or TimeInForce.DAY,
-                         client_order_id=order_tag(rule, label, o["symbol"], o["side"]))
+                         hypothesis_id=hypothesis_id, time_in_force=tif or TimeInForce.DAY, client_order_id=tag)
+            used_ids.add(tag)
             results.append(o | {"result": "submitted", "tif": str(getattr(tif, "value", tif or "day"))})
         except RiskViolation as exc:
             results.append(o | {"result": "blocked", "violations": exc.violations})
+        except Exception as exc:              # a refused order (wash trade, halted name, ...) must not stop the rest
+            reason = f"{type(exc).__name__}: {exc}"
+            kind = "deferred" if "wash" in reason.lower() else "error"
+            results.append(o | {"result": kind, "reason": reason})
     return {"orders": results, "unpriced": unpriced, "sleeve_symbols": len(shares), "equity": state.equity}
 
 
