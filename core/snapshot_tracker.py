@@ -12,6 +12,7 @@ Limit: the daily runner executes after the close and reads the 15:45 bar from hi
 the rule would have picked from the 15:45 price, not that it was committed before the 15:50 order cut-off.
 """
 
+import io
 import json
 from datetime import datetime, timedelta, timezone
 
@@ -43,14 +44,31 @@ def find_rule(strategy_rule: str):
     return None, None
 
 
+CBOE_VIX_URL = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
+
+
+def parse_cboe_vix(text: str) -> pd.Series:
+    frame = pd.read_csv(io.StringIO(text))
+    return pd.Series(frame["CLOSE"].astype(float).to_numpy(), pd.to_datetime(frame["DATE"], format="%m/%d/%Y"), name="VIXCLS").dropna()
+
+
 def fetch_vix() -> pd.Series:
-    """VIX closes from FRED (VIXCLS); the value for a session is posted the next morning."""
+    """VIX closes: FRED VIXCLS first (posted the next morning), Cboe's own history file if FRED fails or is down.
+    Both carry the same official closes."""
+    import urllib.request
+
     from core.longdata import _get, parse_fred
+    errors = []
     try:
-        text = _get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS", headers=None).decode()
+        return parse_fred(_get("https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS", headers=None).decode(), "VIXCLS")
     except Exception as exc:
-        raise DataNotReady(f"could not fetch VIXCLS: {type(exc).__name__}") from exc
-    return parse_fred(text, "VIXCLS")
+        errors.append(f"FRED {type(exc).__name__}")
+    try:
+        text = urllib.request.urlopen(urllib.request.Request(CBOE_VIX_URL, headers={"User-Agent": "trade-research"}), timeout=60).read().decode()
+        return parse_cboe_vix(text)
+    except Exception as exc:
+        errors.append(f"Cboe {type(exc).__name__}")
+    raise DataNotReady("could not fetch the VIX close: " + ", ".join(errors))
 
 
 def fetch_snapshot(symbols, day, client=None, batch: int = 100, feed=None) -> pd.Series:

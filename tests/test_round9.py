@@ -169,3 +169,10 @@ def test_snapshot_tracker_vixscale_weights(tmp_path):
     again = st.run_snapshot_rule(cfg, session, membership, tmp_path, lambda s, a, b: close.loc[:session],
                                  lambda s, d: snap.loc[d, list(s)] * 2, fake_vix)
     assert again["holdings"] == status["holdings"]
+
+
+def test_parse_cboe_vix():
+    from core import snapshot_tracker as st
+    text = "DATE,OPEN,HIGH,LOW,CLOSE\n10/19/2026,18.37,18.93,17.39,18.44\n10/20/2026,18.42,19.13,17.25,17.31\n"
+    vix = st.parse_cboe_vix(text)
+    assert list(vix.index) == [pd.Timestamp("2026-10-19"), pd.Timestamp("2026-10-20")] and vix.iloc[-1] == 17.31
