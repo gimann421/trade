@@ -166,11 +166,11 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
             cfg["rule"], picks, prices, cfg["allocation_pct"], str(today.date()),
             lambda o: f"{cfg['rule']} decision {today.date()} (15:45 price): {'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']}",
             time_in_force=order_type, client=client, stop_check=late)
-        counts = {k: sum(o["result"] == k for o in result["orders"]) for k in ("submitted", "blocked", "late")}
+        counts = {k: sum(o["result"] == k for o in result["orders"]) for k in ("submitted", "blocked", "late", "deferred", "error")}
         fallback = sum(o.get("tif") == "day" for o in result["orders"])
         print(json.dumps(report | counts | ({"sent_as_plain_market_orders": fallback} if fallback else {}) | {"clock": str(now_fn().time())[:8]}
                          | {k: result[k] for k in ("skipped", "unpriced") if result.get(k)}))
-        if counts["blocked"] or counts["late"] or result.get("skipped"):
+        if counts["blocked"] or counts["late"] or counts["deferred"] or counts["error"] or result.get("skipped"):
             code = 1
     return code
 
@@ -179,14 +179,13 @@ def catch_up(execute: bool, now_fn=ny_now, fetch_closes_fn=fetch_closes, history
              out_root=PAPER_DIR, tracked=None) -> int:
     """Place the orders of a decision that was missed on the previous session (run it shortly after the open).
 
-    A decision counts as missed when the previous session was a decision session of a rule and none of the rule's
-    orders carries that date. The picks are the stored decision file when there is one (the live run or the evening
+    A decision counts as missed when the previous session was a decision session of a rule and the rule's sleeve
+    does not yet match it (orders that never went out, or were refused, e.g. as wash trades). The picks are the stored decision file when there is one (the live run or the evening
     shadow run wrote it), else they are rebuilt from that day's 15:45 prices. Orders go in as plain market orders,
     so they fill at the open, one session later than the rule assumes. Order ids carry the decision date, so the
     same orders can never be sent twice."""
     from core import snapshot_tracker as snt
     from core.paper_runner import place_sleeve_orders
-    from core.sleeves import SEP, rule_orders
     from core.broker import get_paper_client
     from alpaca.trading.enums import TimeInForce
 
@@ -208,9 +207,6 @@ def catch_up(execute: bool, now_fn=ny_now, fetch_closes_fn=fetch_closes, history
         if not sessions or sessions[-1] != prev:
             continue
         client = client or get_paper_client()
-        if any(f"{SEP}{prev.date()}{SEP}" in str(o.client_order_id) for o in rule_orders(client, cfg["rule"])):
-            print(json.dumps({"rule": cfg["rule"], "decision": str(prev.date()), "catch_up": "not needed, orders exist"}))
-            continue
         out_dir = out_root / cfg["rule"]
         stored = _read_json(out_dir, f"decisions/{prev.date()}.json")
         if membership is None:
@@ -242,9 +238,9 @@ def catch_up(execute: bool, now_fn=ny_now, fetch_closes_fn=fetch_closes, history
             cfg["rule"], picks, prices, cfg["allocation_pct"], str(prev.date()),
             lambda o: f"{cfg['rule']} decision {prev.date()} missed at the close, placed at the next open: {'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']}",
             time_in_force=TimeInForce.DAY, client=client)
-        counts = {k: sum(o["result"] == k for o in result["orders"]) for k in ("submitted", "blocked", "late")}
+        counts = {k: sum(o["result"] == k for o in result["orders"]) for k in ("submitted", "blocked", "late", "deferred", "error")}
         print(json.dumps(report | counts | {k: result[k] for k in ("skipped", "unpriced") if result.get(k)}))
-        if counts["blocked"] or result.get("skipped"):
+        if counts["blocked"] or counts["deferred"] or counts["error"] or result.get("skipped"):
             code = 1
     return code
 
