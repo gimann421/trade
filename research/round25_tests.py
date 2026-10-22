@@ -44,10 +44,10 @@ def register(conn):
     return {rid: ids[f"Round 25: {rid}"] for rid in HYP}
 
 
-def annual_tables():
+def annual_tables(facts=None):
     """symbol -> DataFrame(end, gp, assets, ni, cfo, avail) of first-filed annual 10-K values, one row per fiscal year end with all of
     assets, ni, cfo (gp may be NaN: it is required only by the profitability tests)."""
-    facts = load_facts()
+    facts = load_facts() if facts is None else facts
     facts = facts[facts["form"].fillna("").str.startswith("10-K")].sort_values("filed")
     dur = (facts["end"] - facts["start"]).dt.days
     flow = facts[dur.between(350, 380)]

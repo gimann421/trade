@@ -423,6 +423,18 @@ def main(argv=None) -> int:
                 result = execute_signal_orders(cfg, status, float(bars["close"].iloc[-1]), session)
                 print("  orders", json.dumps(result))
             continue
+        if cfg.get("kind") == "accruals":
+            from core import accruals_tracker as at
+            try:
+                status = at.run_accruals_rule(cfg, session, membership, fetch_closes, PAPER_DIR / cfg["rule"])
+            except DataNotReady as exc:
+                print(f"{cfg['rule']}: data not ready ({exc})", file=sys.stderr)
+                failures += 1
+                continue
+            print(cfg["rule"], json.dumps({k: status.get(k) for k in ("state", "asof", "last_decision", "nav", "benchmark_nav", "excess_return")}))
+            if args.execute and cfg.get("allocation_pct", 0) > 0:
+                print(f"  {cfg['rule']}: shadow only, no order placement is implemented for this rule", file=sys.stderr)
+            continue
         try:
             status = run_rule(cfg, session, membership, fetch_closes, PAPER_DIR / cfg["rule"])
         except DataNotReady as exc:
