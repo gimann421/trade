@@ -1,9 +1,9 @@
 {
- "asof": "2026-10-21",
- "benchmark_nav": 100689.60127334892,
+ "asof": "2026-10-22",
+ "benchmark_nav": 101539.25496541921,
  "decisions": 3,
  "decisions_changed_since_recorded": [],
- "excess_return": -0.01799432252102595,
+ "excess_return": -0.0757517794918795,
  "first_decision": "2026-10-15",
  "holdings": [
   "ADM",
@@ -59,10 +59,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-10-21",
- "nav": 98877.76011352277,
+ "nav": 93847.47571350905,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.011222398864772276
+ "total_return": -0.06152524286490957
 }
