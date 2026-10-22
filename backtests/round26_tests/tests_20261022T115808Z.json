@@ -1,0 +1,1545 @@
+{
+ "git_commit": "8930ee0-dirty",
+ "run_at": "20261022T115808Z",
+ "coverage": [
+  {
+   "date": "2017-01-31",
+   "priced": 501,
+   "cfo": 197,
+   "droa": 219,
+   "lowcapex": 171,
+   "fcf": 136,
+   "acc": 176
+  },
+  {
+   "date": "2017-02-28",
+   "priced": 501,
+   "cfo": 207,
+   "droa": 230,
+   "lowcapex": 180,
+   "fcf": 143,
+   "acc": 184
+  },
+  {
+   "date": "2017-03-31",
+   "priced": 501,
+   "cfo": 206,
+   "droa": 210,
+   "lowcapex": 161,
+   "fcf": 141,
+   "acc": 184
+  },
+  {
+   "date": "2017-04-28",
+   "priced": 501,
+   "cfo": 206,
+   "droa": 210,
+   "lowcapex": 160,
+   "fcf": 140,
+   "acc": 185
+  },
+  {
+   "date": "2017-05-31",
+   "priced": 502,
+   "cfo": 206,
+   "droa": 209,
+   "lowcapex": 159,
+   "fcf": 140,
+   "acc": 185
+  },
+  {
+   "date": "2017-06-30",
+   "priced": 503,
+   "cfo": 208,
+   "droa": 211,
+   "lowcapex": 161,
+   "fcf": 142,
+   "acc": 187
+  },
+  {
+   "date": "2017-07-31",
+   "priced": 504,
+   "cfo": 210,
+   "droa": 213,
+   "lowcapex": 162,
+   "fcf": 143,
+   "acc": 189
+  },
+  {
+   "date": "2017-08-31",
+   "priced": 504,
+   "cfo": 212,
+   "droa": 214,
+   "lowcapex": 164,
+   "fcf": 145,
+   "acc": 190
+  },
+  {
+   "date": "2017-09-29",
+   "priced": 504,
+   "cfo": 211,
+   "droa": 212,
+   "lowcapex": 163,
+   "fcf": 144,
+   "acc": 189
+  },
+  {
+   "date": "2017-10-31",
+   "priced": 504,
+   "cfo": 212,
+   "droa": 213,
+   "lowcapex": 164,
+   "fcf": 145,
+   "acc": 190
+  },
+  {
+   "date": "2017-11-30",
+   "priced": 505,
+   "cfo": 214,
+   "droa": 214,
+   "lowcapex": 165,
+   "fcf": 147,
+   "acc": 192
+  },
+  {
+   "date": "2017-12-29",
+   "priced": 504,
+   "cfo": 216,
+   "droa": 215,
+   "lowcapex": 166,
+   "fcf": 149,
+   "acc": 194
+  },
+  {
+   "date": "2018-01-31",
+   "priced": 505,
+   "cfo": 217,
+   "droa": 212,
+   "lowcapex": 164,
+   "fcf": 150,
+   "acc": 195
+  },
+  {
+   "date": "2018-02-28",
+   "priced": 505,
+   "cfo": 242,
+   "droa": 235,
+   "lowcapex": 180,
+   "fcf": 166,
+   "acc": 218
+  },
+  {
+   "date": "2018-03-29",
+   "priced": 505,
+   "cfo": 248,
+   "droa": 240,
+   "lowcapex": 184,
+   "fcf": 170,
+   "acc": 223
+  },
+  {
+   "date": "2018-04-30",
+   "priced": 505,
+   "cfo": 247,
+   "droa": 232,
+   "lowcapex": 178,
+   "fcf": 171,
+   "acc": 224
+  },
+  {
+   "date": "2018-05-31",
+   "priced": 506,
+   "cfo": 247,
+   "droa": 231,
+   "lowcapex": 177,
+   "fcf": 171,
+   "acc": 224
+  },
+  {
+   "date": "2018-06-29",
+   "priced": 506,
+   "cfo": 250,
+   "droa": 234,
+   "lowcapex": 180,
+   "fcf": 174,
+   "acc": 227
+  },
+  {
+   "date": "2018-07-31",
+   "priced": 506,
+   "cfo": 252,
+   "droa": 233,
+   "lowcapex": 180,
+   "fcf": 175,
+   "acc": 228
+  },
+  {
+   "date": "2018-08-31",
+   "priced": 506,
+   "cfo": 257,
+   "droa": 237,
+   "lowcapex": 185,
+   "fcf": 180,
+   "acc": 232
+  },
+  {
+   "date": "2018-09-28",
+   "priced": 505,
+   "cfo": 258,
+   "droa": 238,
+   "lowcapex": 186,
+   "fcf": 181,
+   "acc": 233
+  },
+  {
+   "date": "2018-10-31",
+   "priced": 504,
+   "cfo": 259,
+   "droa": 240,
+   "lowcapex": 186,
+   "fcf": 181,
+   "acc": 235
+  },
+  {
+   "date": "2018-11-30",
+   "priced": 503,
+   "cfo": 261,
+   "droa": 240,
+   "lowcapex": 187,
+   "fcf": 183,
+   "acc": 236
+  },
+  {
+   "date": "2018-12-31",
+   "priced": 505,
+   "cfo": 262,
+   "droa": 241,
+   "lowcapex": 188,
+   "fcf": 184,
+   "acc": 237
+  },
+  {
+   "date": "2019-01-31",
+   "priced": 505,
+   "cfo": 262,
+   "droa": 242,
+   "lowcapex": 188,
+   "fcf": 184,
+   "acc": 238
+  },
+  {
+   "date": "2019-02-28",
+   "priced": 505,
+   "cfo": 289,
+   "droa": 261,
+   "lowcapex": 205,
+   "fcf": 200,
+   "acc": 260
+  },
+  {
+   "date": "2019-03-29",
+   "priced": 505,
+   "cfo": 294,
+   "droa": 264,
+   "lowcapex": 209,
+   "fcf": 203,
+   "acc": 262
+  },
+  {
+   "date": "2019-04-30",
+   "priced": 505,
+   "cfo": 292,
+   "droa": 261,
+   "lowcapex": 206,
+   "fcf": 202,
+   "acc": 261
+  },
+  {
+   "date": "2019-05-31",
+   "priced": 505,
+   "cfo": 291,
+   "droa": 260,
+   "lowcapex": 206,
+   "fcf": 202,
+   "acc": 260
+  },
+  {
+   "date": "2019-06-28",
+   "priced": 505,
+   "cfo": 294,
+   "droa": 262,
+   "lowcapex": 208,
+   "fcf": 204,
+   "acc": 263
+  },
+  {
+   "date": "2019-07-31",
+   "priced": 505,
+   "cfo": 296,
+   "droa": 263,
+   "lowcapex": 210,
+   "fcf": 206,
+   "acc": 265
+  },
+  {
+   "date": "2019-08-30",
+   "priced": 505,
+   "cfo": 301,
+   "droa": 265,
+   "lowcapex": 214,
+   "fcf": 210,
+   "acc": 268
+  },
+  {
+   "date": "2019-09-30",
+   "priced": 505,
+   "cfo": 302,
+   "droa": 265,
+   "lowcapex": 215,
+   "fcf": 211,
+   "acc": 269
+  },
+  {
+   "date": "2019-10-31",
+   "priced": 505,
+   "cfo": 306,
+   "droa": 269,
+   "lowcapex": 218,
+   "fcf": 214,
+   "acc": 273
+  },
+  {
+   "date": "2019-11-29",
+   "priced": 505,
+   "cfo": 309,
+   "droa": 273,
+   "lowcapex": 223,
+   "fcf": 217,
+   "acc": 276
+  },
+  {
+   "date": "2019-12-31",
+   "priced": 505,
+   "cfo": 316,
+   "droa": 278,
+   "lowcapex": 229,
+   "fcf": 223,
+   "acc": 282
+  },
+  {
+   "date": "2020-01-31",
+   "priced": 505,
+   "cfo": 317,
+   "droa": 279,
+   "lowcapex": 230,
+   "fcf": 224,
+   "acc": 283
+  },
+  {
+   "date": "2020-02-28",
+   "priced": 505,
+   "cfo": 337,
+   "droa": 295,
+   "lowcapex": 243,
+   "fcf": 237,
+   "acc": 299
+  },
+  {
+   "date": "2020-03-31",
+   "priced": 505,
+   "cfo": 337,
+   "droa": 296,
+   "lowcapex": 241,
+   "fcf": 236,
+   "acc": 300
+  },
+  {
+   "date": "2020-04-30",
+   "priced": 505,
+   "cfo": 339,
+   "droa": 298,
+   "lowcapex": 243,
+   "fcf": 238,
+   "acc": 302
+  },
+  {
+   "date": "2020-05-29",
+   "priced": 505,
+   "cfo": 342,
+   "droa": 301,
+   "lowcapex": 246,
+   "fcf": 241,
+   "acc": 305
+  },
+  {
+   "date": "2020-06-30",
+   "priced": 505,
+   "cfo": 345,
+   "droa": 304,
+   "lowcapex": 249,
+   "fcf": 244,
+   "acc": 308
+  },
+  {
+   "date": "2020-07-31",
+   "priced": 505,
+   "cfo": 345,
+   "droa": 305,
+   "lowcapex": 249,
+   "fcf": 244,
+   "acc": 308
+  },
+  {
+   "date": "2020-08-31",
+   "priced": 505,
+   "cfo": 346,
+   "droa": 307,
+   "lowcapex": 249,
+   "fcf": 244,
+   "acc": 309
+  },
+  {
+   "date": "2020-09-30",
+   "priced": 505,
+   "cfo": 345,
+   "droa": 308,
+   "lowcapex": 249,
+   "fcf": 244,
+   "acc": 309
+  },
+  {
+   "date": "2020-10-30",
+   "priced": 505,
+   "cfo": 345,
+   "droa": 308,
+   "lowcapex": 249,
+   "fcf": 244,
+   "acc": 309
+  },
+  {
+   "date": "2020-11-30",
+   "priced": 505,
+   "cfo": 346,
+   "droa": 310,
+   "lowcapex": 250,
+   "fcf": 245,
+   "acc": 310
+  },
+  {
+   "date": "2020-12-31",
+   "priced": 505,
+   "cfo": 347,
+   "droa": 312,
+   "lowcapex": 251,
+   "fcf": 246,
+   "acc": 311
+  },
+  {
+   "date": "2021-01-29",
+   "priced": 505,
+   "cfo": 347,
+   "droa": 313,
+   "lowcapex": 251,
+   "fcf": 246,
+   "acc": 312
+  },
+  {
+   "date": "2021-02-26",
+   "priced": 505,
+   "cfo": 355,
+   "droa": 321,
+   "lowcapex": 249,
+   "fcf": 244,
+   "acc": 316
+  },
+  {
+   "date": "2021-03-31",
+   "priced": 505,
+   "cfo": 360,
+   "droa": 324,
+   "lowcapex": 253,
+   "fcf": 249,
+   "acc": 320
+  },
+  {
+   "date": "2021-04-30",
+   "priced": 505,
+   "cfo": 361,
+   "droa": 326,
+   "lowcapex": 254,
+   "fcf": 250,
+   "acc": 321
+  },
+  {
+   "date": "2021-05-28",
+   "priced": 505,
+   "cfo": 360,
+   "droa": 326,
+   "lowcapex": 253,
+   "fcf": 249,
+   "acc": 321
+  },
+  {
+   "date": "2021-06-30",
+   "priced": 505,
+   "cfo": 360,
+   "droa": 326,
+   "lowcapex": 253,
+   "fcf": 249,
+   "acc": 321
+  },
+  {
+   "date": "2021-07-30",
+   "priced": 505,
+   "cfo": 361,
+   "droa": 327,
+   "lowcapex": 254,
+   "fcf": 250,
+   "acc": 322
+  },
+  {
+   "date": "2021-08-31",
+   "priced": 505,
+   "cfo": 362,
+   "droa": 327,
+   "lowcapex": 255,
+   "fcf": 251,
+   "acc": 322
+  },
+  {
+   "date": "2021-09-30",
+   "priced": 505,
+   "cfo": 363,
+   "droa": 328,
+   "lowcapex": 256,
+   "fcf": 252,
+   "acc": 323
+  },
+  {
+   "date": "2021-10-29",
+   "priced": 505,
+   "cfo": 363,
+   "droa": 328,
+   "lowcapex": 256,
+   "fcf": 252,
+   "acc": 323
+  },
+  {
+   "date": "2021-11-30",
+   "priced": 505,
+   "cfo": 362,
+   "droa": 327,
+   "lowcapex": 255,
+   "fcf": 251,
+   "acc": 322
+  },
+  {
+   "date": "2021-12-31",
+   "priced": 505,
+   "cfo": 363,
+   "droa": 328,
+   "lowcapex": 256,
+   "fcf": 252,
+   "acc": 323
+  },
+  {
+   "date": "2022-01-31",
+   "priced": 505,
+   "cfo": 364,
+   "droa": 329,
+   "lowcapex": 255,
+   "fcf": 251,
+   "acc": 324
+  },
+  {
+   "date": "2022-02-28",
+   "priced": 504,
+   "cfo": 369,
+   "droa": 333,
+   "lowcapex": 259,
+   "fcf": 253,
+   "acc": 326
+  },
+  {
+   "date": "2022-03-31",
+   "priced": 505,
+   "cfo": 369,
+   "droa": 332,
+   "lowcapex": 259,
+   "fcf": 253,
+   "acc": 325
+  },
+  {
+   "date": "2022-04-29",
+   "priced": 504,
+   "cfo": 366,
+   "droa": 330,
+   "lowcapex": 256,
+   "fcf": 251,
+   "acc": 325
+  },
+  {
+   "date": "2022-05-31",
+   "priced": 504,
+   "cfo": 367,
+   "droa": 330,
+   "lowcapex": 257,
+   "fcf": 252,
+   "acc": 325
+  },
+  {
+   "date": "2022-06-30",
+   "priced": 503,
+   "cfo": 372,
+   "droa": 335,
+   "lowcapex": 261,
+   "fcf": 256,
+   "acc": 330
+  },
+  {
+   "date": "2022-07-29",
+   "priced": 503,
+   "cfo": 372,
+   "droa": 335,
+   "lowcapex": 261,
+   "fcf": 256,
+   "acc": 330
+  },
+  {
+   "date": "2022-08-31",
+   "priced": 503,
+   "cfo": 373,
+   "droa": 336,
+   "lowcapex": 261,
+   "fcf": 256,
+   "acc": 331
+  },
+  {
+   "date": "2022-09-30",
+   "priced": 502,
+   "cfo": 376,
+   "droa": 339,
+   "lowcapex": 263,
+   "fcf": 258,
+   "acc": 334
+  },
+  {
+   "date": "2022-10-31",
+   "priced": 502,
+   "cfo": 379,
+   "droa": 341,
+   "lowcapex": 266,
+   "fcf": 261,
+   "acc": 336
+  },
+  {
+   "date": "2022-11-30",
+   "priced": 503,
+   "cfo": 380,
+   "droa": 343,
+   "lowcapex": 267,
+   "fcf": 261,
+   "acc": 337
+  },
+  {
+   "date": "2022-12-30",
+   "priced": 503,
+   "cfo": 382,
+   "droa": 345,
+   "lowcapex": 269,
+   "fcf": 263,
+   "acc": 339
+  },
+  {
+   "date": "2023-01-31",
+   "priced": 503,
+   "cfo": 379,
+   "droa": 344,
+   "lowcapex": 267,
+   "fcf": 261,
+   "acc": 338
+  },
+  {
+   "date": "2023-02-28",
+   "priced": 503,
+   "cfo": 379,
+   "droa": 346,
+   "lowcapex": 269,
+   "fcf": 262,
+   "acc": 337
+  },
+  {
+   "date": "2023-03-31",
+   "priced": 503,
+   "cfo": 383,
+   "droa": 350,
+   "lowcapex": 273,
+   "fcf": 266,
+   "acc": 341
+  },
+  {
+   "date": "2023-04-28",
+   "priced": 503,
+   "cfo": 377,
+   "droa": 347,
+   "lowcapex": 271,
+   "fcf": 265,
+   "acc": 339
+  },
+  {
+   "date": "2023-05-31",
+   "priced": 503,
+   "cfo": 379,
+   "droa": 349,
+   "lowcapex": 273,
+   "fcf": 267,
+   "acc": 341
+  },
+  {
+   "date": "2023-06-30",
+   "priced": 503,
+   "cfo": 379,
+   "droa": 349,
+   "lowcapex": 272,
+   "fcf": 266,
+   "acc": 341
+  },
+  {
+   "date": "2023-07-31",
+   "priced": 503,
+   "cfo": 379,
+   "droa": 349,
+   "lowcapex": 272,
+   "fcf": 266,
+   "acc": 341
+  },
+  {
+   "date": "2023-08-31",
+   "priced": 503,
+   "cfo": 380,
+   "droa": 350,
+   "lowcapex": 273,
+   "fcf": 267,
+   "acc": 342
+  },
+  {
+   "date": "2023-09-29",
+   "priced": 503,
+   "cfo": 382,
+   "droa": 352,
+   "lowcapex": 275,
+   "fcf": 269,
+   "acc": 344
+  },
+  {
+   "date": "2023-10-31",
+   "priced": 503,
+   "cfo": 383,
+   "droa": 353,
+   "lowcapex": 276,
+   "fcf": 270,
+   "acc": 345
+  },
+  {
+   "date": "2023-11-30",
+   "priced": 503,
+   "cfo": 383,
+   "droa": 353,
+   "lowcapex": 276,
+   "fcf": 270,
+   "acc": 345
+  },
+  {
+   "date": "2023-12-29",
+   "priced": 503,
+   "cfo": 386,
+   "droa": 356,
+   "lowcapex": 279,
+   "fcf": 273,
+   "acc": 348
+  },
+  {
+   "date": "2024-01-31",
+   "priced": 503,
+   "cfo": 386,
+   "droa": 355,
+   "lowcapex": 277,
+   "fcf": 272,
+   "acc": 348
+  },
+  {
+   "date": "2024-02-29",
+   "priced": 503,
+   "cfo": 392,
+   "droa": 362,
+   "lowcapex": 270,
+   "fcf": 265,
+   "acc": 354
+  },
+  {
+   "date": "2024-03-28",
+   "priced": 503,
+   "cfo": 398,
+   "droa": 368,
+   "lowcapex": 275,
+   "fcf": 270,
+   "acc": 360
+  },
+  {
+   "date": "2024-04-30",
+   "priced": 503,
+   "cfo": 390,
+   "droa": 363,
+   "lowcapex": 269,
+   "fcf": 266,
+   "acc": 359
+  },
+  {
+   "date": "2024-05-31",
+   "priced": 503,
+   "cfo": 390,
+   "droa": 363,
+   "lowcapex": 269,
+   "fcf": 266,
+   "acc": 359
+  },
+  {
+   "date": "2024-06-28",
+   "priced": 503,
+   "cfo": 394,
+   "droa": 367,
+   "lowcapex": 272,
+   "fcf": 269,
+   "acc": 363
+  },
+  {
+   "date": "2024-07-31",
+   "priced": 503,
+   "cfo": 394,
+   "droa": 367,
+   "lowcapex": 272,
+   "fcf": 269,
+   "acc": 363
+  },
+  {
+   "date": "2024-08-30",
+   "priced": 503,
+   "cfo": 393,
+   "droa": 367,
+   "lowcapex": 271,
+   "fcf": 268,
+   "acc": 363
+  },
+  {
+   "date": "2024-09-30",
+   "priced": 504,
+   "cfo": 395,
+   "droa": 369,
+   "lowcapex": 272,
+   "fcf": 269,
+   "acc": 365
+  },
+  {
+   "date": "2024-10-31",
+   "priced": 503,
+   "cfo": 395,
+   "droa": 369,
+   "lowcapex": 271,
+   "fcf": 268,
+   "acc": 365
+  },
+  {
+   "date": "2024-11-29",
+   "priced": 503,
+   "cfo": 396,
+   "droa": 370,
+   "lowcapex": 270,
+   "fcf": 267,
+   "acc": 366
+  },
+  {
+   "date": "2024-12-31",
+   "priced": 503,
+   "cfo": 400,
+   "droa": 374,
+   "lowcapex": 272,
+   "fcf": 269,
+   "acc": 370
+  },
+  {
+   "date": "2025-01-31",
+   "priced": 503,
+   "cfo": 400,
+   "droa": 374,
+   "lowcapex": 272,
+   "fcf": 269,
+   "acc": 370
+  },
+  {
+   "date": "2025-02-28",
+   "priced": 503,
+   "cfo": 409,
+   "droa": 381,
+   "lowcapex": 278,
+   "fcf": 273,
+   "acc": 375
+  },
+  {
+   "date": "2025-03-31",
+   "priced": 503,
+   "cfo": 412,
+   "droa": 385,
+   "lowcapex": 282,
+   "fcf": 277,
+   "acc": 378
+  },
+  {
+   "date": "2025-04-30",
+   "priced": 503,
+   "cfo": 413,
+   "droa": 386,
+   "lowcapex": 283,
+   "fcf": 278,
+   "acc": 379
+  },
+  {
+   "date": "2025-05-30",
+   "priced": 503,
+   "cfo": 414,
+   "droa": 387,
+   "lowcapex": 283,
+   "fcf": 278,
+   "acc": 380
+  },
+  {
+   "date": "2025-06-30",
+   "priced": 503,
+   "cfo": 414,
+   "droa": 387,
+   "lowcapex": 283,
+   "fcf": 278,
+   "acc": 380
+  },
+  {
+   "date": "2025-07-31",
+   "priced": 503,
+   "cfo": 417,
+   "droa": 390,
+   "lowcapex": 286,
+   "fcf": 281,
+   "acc": 383
+  },
+  {
+   "date": "2025-08-29",
+   "priced": 503,
+   "cfo": 416,
+   "droa": 389,
+   "lowcapex": 286,
+   "fcf": 279,
+   "acc": 380
+  },
+  {
+   "date": "2025-09-30",
+   "priced": 503,
+   "cfo": 419,
+   "droa": 392,
+   "lowcapex": 287,
+   "fcf": 280,
+   "acc": 383
+  },
+  {
+   "date": "2025-10-31",
+   "priced": 503,
+   "cfo": 419,
+   "droa": 392,
+   "lowcapex": 287,
+   "fcf": 280,
+   "acc": 383
+  },
+  {
+   "date": "2025-11-28",
+   "priced": 503,
+   "cfo": 422,
+   "droa": 395,
+   "lowcapex": 290,
+   "fcf": 283,
+   "acc": 386
+  },
+  {
+   "date": "2025-12-31",
+   "priced": 503,
+   "cfo": 426,
+   "droa": 398,
+   "lowcapex": 293,
+   "fcf": 286,
+   "acc": 389
+  },
+  {
+   "date": "2026-01-30",
+   "priced": 503,
+   "cfo": 427,
+   "droa": 399,
+   "lowcapex": 294,
+   "fcf": 287,
+   "acc": 390
+  },
+  {
+   "date": "2026-02-27",
+   "priced": 503,
+   "cfo": 442,
+   "droa": 412,
+   "lowcapex": 299,
+   "fcf": 292,
+   "acc": 403
+  },
+  {
+   "date": "2026-03-31",
+   "priced": 503,
+   "cfo": 446,
+   "droa": 416,
+   "lowcapex": 302,
+   "fcf": 295,
+   "acc": 407
+  },
+  {
+   "date": "2026-04-30",
+   "priced": 503,
+   "cfo": 447,
+   "droa": 417,
+   "lowcapex": 303,
+   "fcf": 296,
+   "acc": 408
+  },
+  {
+   "date": "2026-05-29",
+   "priced": 503,
+   "cfo": 449,
+   "droa": 419,
+   "lowcapex": 304,
+   "fcf": 297,
+   "acc": 410
+  },
+  {
+   "date": "2026-06-30",
+   "priced": 503,
+   "cfo": 452,
+   "droa": 422,
+   "lowcapex": 307,
+   "fcf": 300,
+   "acc": 413
+  },
+  {
+   "date": "2026-07-31",
+   "priced": 503,
+   "cfo": 453,
+   "droa": 423,
+   "lowcapex": 308,
+   "fcf": 301,
+   "acc": 414
+  },
+  {
+   "date": "2026-08-31",
+   "priced": 503,
+   "cfo": 456,
+   "droa": 425,
+   "lowcapex": 309,
+   "fcf": 302,
+   "acc": 416
+  },
+  {
+   "date": "2026-09-30",
+   "priced": 503,
+   "cfo": 455,
+   "droa": 424,
+   "lowcapex": 308,
+   "fcf": 301,
+   "acc": 415
+  }
+ ],
+ "results": {
+  "cfo": {
+   "IS": {
+    "net_active": 0.03245780161335747,
+    "information_ratio": 0.4295508005855634,
+    "placebo": 0.995,
+    "stress_net_active": 0.03211927809169065,
+    "turnover": 1.4766818850221919,
+    "rebalances": 71,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.010515842993370456,
+    "information_ratio": -0.18698719841750447,
+    "placebo": 0.212,
+    "stress_net_active": -0.01085559784460143,
+    "turnover": 1.4680376895999425,
+    "rebalances": 46,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.009100413630237197,
+    "information_ratio": 0.14999202017644292,
+    "placebo": 0.66,
+    "stress_net_active": 0.008728978856849885,
+    "turnover": 1.447699543231127,
+    "rebalances": 24,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.032398867049039444,
+    "information_ratio": -0.6369004962753015,
+    "placebo": 0.092,
+    "stress_net_active": -0.03270328118710935,
+    "turnover": 1.490726021771377,
+    "rebalances": 22,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "droa": {
+   "IS": {
+    "net_active": -0.006045600977224664,
+    "information_ratio": -0.1051747022420012,
+    "placebo": 0.36,
+    "stress_net_active": -0.007028303119667415,
+    "turnover": 2.805955836084628,
+    "rebalances": 71,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.05405879741943143,
+    "information_ratio": 0.9661954588843108,
+    "placebo": 1.0,
+    "stress_net_active": 0.05311230969654891,
+    "turnover": 2.6854925484577326,
+    "rebalances": 46,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.04122443793347085,
+    "information_ratio": 0.9497816209864083,
+    "placebo": 0.987,
+    "stress_net_active": 0.040268172831243496,
+    "turnover": 2.6184932770197435,
+    "rebalances": 24,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.06837623844599189,
+    "information_ratio": 1.0162809619777484,
+    "placebo": 0.993,
+    "stress_net_active": 0.0674406579329563,
+    "turnover": 2.7602339579285546,
+    "rebalances": 22,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "lowcapex": {
+   "IS": {
+    "net_active": 0.004668093687373769,
+    "information_ratio": 0.09488430492159178,
+    "placebo": 0.584,
+    "stress_net_active": 0.004455274906348062,
+    "turnover": 1.287263584874498,
+    "rebalances": 71,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.013487815201176086,
+    "information_ratio": 0.21145341665716608,
+    "placebo": 0.78,
+    "stress_net_active": 0.013318169375190918,
+    "turnover": 1.159806614831282,
+    "rebalances": 46,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.07202774472998494,
+    "information_ratio": 1.5840543015450257,
+    "placebo": 1.0,
+    "stress_net_active": 0.071803995182839,
+    "turnover": 1.1886762263284132,
+    "rebalances": 24,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.051816728406517375,
+    "information_ratio": -0.6539488341232456,
+    "placebo": 0.051,
+    "stress_net_active": -0.05192601852578537,
+    "turnover": 1.1276009593389267,
+    "rebalances": 22,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "fcf": {
+   "IS": {
+    "net_active": 0.02985780486500192,
+    "information_ratio": 0.45367966084063577,
+    "placebo": 0.984,
+    "stress_net_active": 0.029474701382514127,
+    "turnover": 1.589578104389368,
+    "rebalances": 71,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.025416877513610582,
+    "information_ratio": -0.4469813706357805,
+    "placebo": 0.061,
+    "stress_net_active": -0.02580152477959251,
+    "turnover": 1.5949846835613608,
+    "rebalances": 46,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.0032395657337751737,
+    "information_ratio": 0.060266330642041066,
+    "placebo": 0.483,
+    "stress_net_active": 0.002829427076169675,
+    "turnover": 1.559354376333073,
+    "rebalances": 24,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.05738473198069426,
+    "information_ratio": -0.9542005254747701,
+    "placebo": 0.03,
+    "stress_net_active": -0.05774094218313169,
+    "turnover": 1.6347322707360286,
+    "rebalances": 22,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "acc": {
+   "IS": {
+    "net_active": 0.02815432049992,
+    "information_ratio": 0.5292156905772316,
+    "placebo": 0.995,
+    "stress_net_active": 0.027450890630023705,
+    "turnover": 2.206350614537127,
+    "rebalances": 71,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.03202443146182652,
+    "information_ratio": 0.606087454763678,
+    "placebo": 0.978,
+    "stress_net_active": 0.0313479198081188,
+    "turnover": 2.1493987722923555,
+    "rebalances": 46,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.037721571404624024,
+    "information_ratio": 0.9216994109799586,
+    "placebo": 0.975,
+    "stress_net_active": 0.03708498327750711,
+    "turnover": 1.9763322226294928,
+    "rebalances": 24,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.025668955347861306,
+    "information_ratio": 0.40364677089974726,
+    "placebo": 0.845,
+    "stress_net_active": 0.02494790678226784,
+    "turnover": 2.3424641232495937,
+    "rebalances": 22,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "cfo_low": {
+   "IS": {
+    "net_active": -0.018650030044487533,
+    "information_ratio": -0.25117015350922,
+    "placebo": 0.026,
+    "stress_net_active": -0.019020574216722107,
+    "turnover": 1.540723186157695,
+    "rebalances": 71,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.04156671092122383,
+    "information_ratio": 0.8321319678121104,
+    "placebo": 0.998,
+    "stress_net_active": 0.041217074390463564,
+    "turnover": 1.487801048658545,
+    "rebalances": 46,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.025394690849927074,
+    "information_ratio": 0.48945577774079274,
+    "placebo": 0.949,
+    "stress_net_active": 0.025053191761892045,
+    "turnover": 1.3878281725265957,
+    "rebalances": 24,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.05960749775631488,
+    "information_ratio": 1.2486591398693692,
+    "placebo": 0.991,
+    "stress_net_active": 0.05924878345611445,
+    "turnover": 1.5993263460324079,
+    "rebalances": 22,
+    "median_picks": 73.0,
+    "median_ranked": 363.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "droa_low": {
+   "IS": {
+    "net_active": -0.006893213675866715,
+    "information_ratio": -0.1397120138116951,
+    "placebo": 0.337,
+    "stress_net_active": -0.007858641783730936,
+    "turnover": 2.771407766927557,
+    "rebalances": 71,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.016597280010730183,
+    "information_ratio": -0.34397787247440287,
+    "placebo": 0.123,
+    "stress_net_active": -0.017441522815718584,
+    "turnover": 2.481002712669506,
+    "rebalances": 46,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.023126462885651355,
+    "information_ratio": -0.5320384826276167,
+    "placebo": 0.121,
+    "stress_net_active": -0.023996942252035754,
+    "turnover": 2.4469218053338526,
+    "rebalances": 24,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.009313613781373685,
+    "information_ratio": -0.1753084766212178,
+    "placebo": 0.338,
+    "stress_net_active": -0.010128588244538085,
+    "turnover": 2.5190218581861674,
+    "rebalances": 22,
+    "median_picks": 66.0,
+    "median_ranked": 328.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "lowcapex_low": {
+   "IS": {
+    "net_active": -0.019136808444381235,
+    "information_ratio": -0.37008679623176655,
+    "placebo": 0.077,
+    "stress_net_active": -0.019456368164264982,
+    "turnover": 1.5007454625905692,
+    "rebalances": 71,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.0036715254409527094,
+    "information_ratio": -0.07488187353757011,
+    "placebo": 0.428,
+    "stress_net_active": -0.0038938242462295946,
+    "turnover": 1.2651125734147466,
+    "rebalances": 46,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.00789579073412552,
+    "information_ratio": 0.17658841894944052,
+    "placebo": 0.623,
+    "stress_net_active": 0.007651011797324753,
+    "turnover": 1.230735005638036,
+    "rebalances": 24,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.01657550926292886,
+    "information_ratio": -0.3099560390387492,
+    "placebo": 0.302,
+    "stress_net_active": -0.01677273023259469,
+    "turnover": 1.3034626601345438,
+    "rebalances": 22,
+    "median_picks": 51.0,
+    "median_ranked": 256.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "fcf_low": {
+   "IS": {
+    "net_active": -0.017432985429938878,
+    "information_ratio": -0.22387123601689854,
+    "placebo": 0.076,
+    "stress_net_active": -0.01781195382519146,
+    "turnover": 1.581307929918953,
+    "rebalances": 71,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.03038931404087503,
+    "information_ratio": 0.5184038788816167,
+    "placebo": 0.949,
+    "stress_net_active": 0.029979786624897014,
+    "turnover": 1.6447449835535235,
+    "rebalances": 46,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.018372954453617193,
+    "information_ratio": -0.35662092153451297,
+    "placebo": 0.219,
+    "stress_net_active": -0.018706974103562504,
+    "turnover": 1.4071163610127,
+    "rebalances": 24,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.08478633356139746,
+    "information_ratio": 1.293810425113769,
+    "placebo": 0.999,
+    "stress_net_active": 0.0842925730375341,
+    "turnover": 1.9098329135879528,
+    "rebalances": 22,
+    "median_picks": 50.0,
+    "median_ranked": 251.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  }
+ },
+ "corr_with_accruals": {
+  "cfo": 0.19082789085250734,
+  "droa": 0.14914367203803883,
+  "lowcapex": 0.03438224073322565,
+  "fcf": 0.18057972501383018
+ },
+ "verdicts": {
+  "cfo_assets_quintile": [
+   "OOS net active -1.05% < 2.0%",
+   "OOS IR -0.19 < 0.3",
+   "OOS placebo 0.212 < 0.95",
+   "OOS 10 bps -1.09% not above 0"
+  ],
+  "droa_quintile": [
+   "IS net active -0.60% < 2.0%",
+   "IS IR -0.11 < 0.3",
+   "IS placebo 0.360 < 0.95",
+   "IS 10 bps -0.70% not above 0"
+  ],
+  "lowcapex_quintile": [
+   "IS net active 0.47% < 2.0%",
+   "IS IR 0.09 < 0.3",
+   "IS placebo 0.584 < 0.95",
+   "OOS net active 1.35% < 2.0%",
+   "OOS IR 0.21 < 0.3",
+   "OOS placebo 0.780 < 0.95"
+  ],
+  "fcf_assets_quintile": [
+   "OOS net active -2.54% < 2.0%",
+   "OOS IR -0.45 < 0.3",
+   "OOS placebo 0.061 < 0.95",
+   "OOS 10 bps -2.58% not above 0"
+  ]
+ }
+}

@@ -150,14 +150,14 @@ def test_dry_run_sends_and_writes_nothing(env, capsys):
     assert env.account.sent == [] and not list(env.out.rglob("*.json"))
 
 
-def test_execute_waits_for_the_bar_writes_the_decision_and_sends_close_orders(env):
+def test_execute_waits_for_the_bar_writes_the_decision_and_sends_day_market_orders_at_1555(env):
     assert go(env, execute=True) == 0
-    assert env.clock.slept and env.clock.now.time() >= so.SNAPSHOT_READY
+    assert env.clock.slept and env.clock.now.time() >= so.PLACE_AT       # orders wait for 15:55
     decision = json.loads((env.out / CFG["rule"] / "decisions" / "2026-10-21.json").read_text())
     assert decision["picks"] == ["T18", "T19"] and decision["snapshot_1545"]["T19"] == 81.0
     assert sorted(o.symbol for o, _ in env.account.sent) == ["T18", "T19"]
     for order, kw in env.account.sent:
-        assert str(kw["time_in_force"].value) == "cls" and kw["client_order_id"].startswith("stock_rev5_h2_band__2026-10-21__")
+        assert str(kw["time_in_force"].value) == "day" and kw["client_order_id"].startswith("stock_rev5_h2_band__2026-10-21__")
         assert order.qty == int(12_500 // 82) or order.qty == int(12_500 // 81)      # 25% of equity over two names
     # running it again changes nothing: stored decision, sleeve already at target
     sent = len(env.account.sent)
@@ -175,12 +175,12 @@ def test_previous_picks_are_held_inside_the_band(env):
     assert json.loads((previous / "2026-10-21.json").read_text())["picks"] == ["T17", "T19"]
 
 
-def test_start_after_the_close_order_cutoff_falls_back_to_plain_market_orders(env, capsys):
-    env.clock.now = pd.Timestamp("2026-10-21 15:50", tz="America/New_York")
+def test_start_after_1555_sends_at_once(env, capsys):
+    env.clock.now = pd.Timestamp("2026-10-21 15:57", tz="America/New_York")
     assert go(env, execute=True) == 0
     assert sorted(o.symbol for o, _ in env.account.sent) == ["T18", "T19"]
     assert all(str(kw["time_in_force"].value) == "day" for _, kw in env.account.sent)
-    assert json.loads(capsys.readouterr().out)["sent_as_plain_market_orders"] == 2
+    assert env.clock.now.time() < so.MARKET_BY
 
 
 def test_start_too_close_to_the_close_sends_nothing_and_leaves_it_to_the_catch_up(env):
