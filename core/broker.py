@@ -64,7 +64,7 @@ def submit_order(client: TradingClient, order: ProposedOrder, reasoning: str, st
                  client_order_id: str | None = None):
     """Risk-check, journal, and send a market order. Raises RiskViolation if blocked.
 
-    time_in_force=TimeInForce.CLS makes it a market-on-close order (Alpaca's cut-off is 15:50 New York).
+    time_in_force=TimeInForce.CLS makes it a market-on-close order (Alpaca's cut-off is 15:50 New York; its paper engine fills these only partly, so the 15:45 rules use DAY).
     client_order_id tags the order with the rule that placed it (see core.sleeves)."""
     _check_paper_url(client)
     limits = limits or load_risk_limits()
