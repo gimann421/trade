@@ -45,6 +45,14 @@
    "start": "2026-10-16",
    "initial_cash": 100000,
    "allocation_pct": 25
+  },
+  {
+   "rule": "stock_lowaccruals_quintile",
+   "kind": "accruals",
+   "strategy_rule": "lowaccruals_quintile",
+   "start": "2026-10-30",
+   "initial_cash": 100000,
+   "allocation_pct": 0
   }
  ]
 }
