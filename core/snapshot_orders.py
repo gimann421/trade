@@ -1,10 +1,11 @@
-"""Paper orders for the 15:45-snapshot stock rules (core.snapshot_tracker), placed as market-on-close orders.
+"""Paper orders for the 15:45-snapshot stock rules (core.snapshot_tracker), placed as plain market orders just before the close.
 
 Runs on a decision session of a tracked "snapshot" rule with allocation_pct > 0. It loads what it needs
 early, waits for the 15:30-15:45 bar to close, ranks the point-in-time S&P 500 members on that 15:45 price
 (the same selection code as the shadow record), writes the rule's decision file, and sends the orders that
-move the rule's sleeve to the picks (core.sleeves) as market-on-close orders. Alpaca takes those until 15:50
-New York time, so nothing is sent after SUBMIT_BY, and a day with no usable 15:45 data sends nothing.
+move the rule's sleeve to the picks (core.sleeves) as plain DAY market orders sent at 15:55 New York time, which
+fill within seconds. (Market-on-close orders were tried first; Alpaca's paper engine left most of them unfilled
+or part-filled, see README.) Nothing is sent after MARKET_BY, and a day with no usable 15:45 data sends nothing.
 
     python -m core.snapshot_orders              # dry run: today's picks and the orders, nothing sent or written
     python -m core.snapshot_orders --execute    # place the orders (paper account, risk limits, journal)
@@ -30,8 +31,8 @@ from core.universe import fetch_membership, load_membership, members_on
 
 NY = "America/New_York"
 SNAPSHOT_READY = time(15, 45, 8)    # the 15:30 bar is complete a few seconds after 15:45
-MOC_BY = time(15, 49, 30)           # market-on-close orders are accepted until 15:50
-MARKET_BY = time(15, 58, 30)        # after the MOC cut-off a plain market order still fills near the close until 16:00
+PLACE_AT = time(15, 55)             # plain market orders go in now, so they fill within seconds, minutes before the close
+MARKET_BY = time(15, 58, 30)        # nothing is sent after this; the next open's catch-up places what is left
 RETRY_EVERY = 8                     # seconds between fetches while the 15:30 bar is not published yet
 RETRY_UNTIL = time(15, 58, 0)       # keep asking for the bar this long; the orders need a few seconds to go in
 MIN_COVERAGE = 0.9                  # share of members that must have a 15:30 bar, else the day is skipped
@@ -118,11 +119,6 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
     def late() -> bool:
         return now_fn().time() > MARKET_BY
 
-    def order_type():
-        """Market-on-close until 15:49:30; a plain market order (fills near the close) up to 15:58:30."""
-        from alpaca.trading.enums import TimeInForce
-        return TimeInForce.CLS if now_fn().time() <= MOC_BY else TimeInForce.DAY
-
     if late():
         for cfg, *_ in due:
             journal.record("skip", f"started after {MARKET_BY} on {today.date()} (it was {now_fn().time()} New York); the decision is picked up by the next session's catch-up run", cfg["rule"])
@@ -160,15 +156,18 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
         if not execute:
             print(json.dumps(report | {"dry_run": True, "picks_list": picks}))
             continue
+        from alpaca.trading.enums import TimeInForce
         from core.paper_runner import place_sleeve_orders
         prices = {**closes.ffill().iloc[-1].dropna().to_dict(), **snap.to_dict()}
+        wait = (pd.Timestamp.combine(today.date(), PLACE_AT).tz_localize(NY) - now_fn()).total_seconds()
+        if wait > 0:
+            sleep_fn(wait)
         result = place_sleeve_orders(
             cfg["rule"], picks, prices, cfg["allocation_pct"], str(today.date()),
             lambda o: f"{cfg['rule']} decision {today.date()} (15:45 price): {'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']}",
-            time_in_force=order_type, client=client, stop_check=late)
+            time_in_force=TimeInForce.DAY, client=client, stop_check=late)
         counts = {k: sum(o["result"] == k for o in result["orders"]) for k in ("submitted", "blocked", "late", "deferred", "error")}
-        fallback = sum(o.get("tif") == "day" for o in result["orders"])
-        print(json.dumps(report | counts | ({"sent_as_plain_market_orders": fallback} if fallback else {}) | {"clock": str(now_fn().time())[:8]}
+        print(json.dumps(report | counts | {"clock": str(now_fn().time())[:8]}
                          | {k: result[k] for k in ("skipped", "unpriced") if result.get(k)}))
         if counts["blocked"] or counts["late"] or counts["deferred"] or counts["error"] or result.get("skipped"):
             code = 1
