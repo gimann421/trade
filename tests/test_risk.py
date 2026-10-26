@@ -62,3 +62,11 @@ def test_bad_inputs():
     assert check_order(ProposedOrder("SPY", "hold", 1, 1), state(), LIMITS)
     assert check_order(buy(qty=0), state(), LIMITS)
     assert check_order(buy(), state(equity=0), LIMITS)
+
+
+def test_selling_all_held_shares_is_not_a_short_when_the_estimated_price_is_above_the_mark():
+    from core.risk import AccountState, ProposedOrder, check_order, load_risk_limits
+    state = AccountState(100_000.0, 100_000.0, {"AKAM": 587.0}, {"AKAM": 6.0})
+    assert check_order(ProposedOrder("AKAM", "sell", 6, 98.73), state, load_risk_limits()) == []
+    over = check_order(ProposedOrder("AKAM", "sell", 7, 98.73), state, load_risk_limits())
+    assert any("short" in v for v in over)
