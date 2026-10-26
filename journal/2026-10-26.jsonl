@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-26T13:43:08+00:00", "action": "submitted", "strategy": "stock_rev5_h2_band", "hypothesis_id": null, "symbol": "GM", "side": "buy", "qty": 1, "price": 75.73, "reasoning": "stock_rev5_h2_band decision 2026-10-23 missed at the close, placed at the next open: hold GM", "risk_violations": [], "order_id": "19d72772-0b9f-4755-bd6f-cc852e03b5bd", "extra": {}}
