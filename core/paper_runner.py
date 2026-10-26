@@ -229,14 +229,16 @@ def check_plan(orders: list[dict], state, limits) -> list[dict]:
     Each order comes back with the list of limits it would break (empty = it may go)."""
     from core.risk import AccountState, ProposedOrder, check_order
 
-    positions = dict(state.positions)
+    positions, shares = dict(state.positions), dict(getattr(state, "shares", {}))
     checked = []
     for o in orders:
         order = ProposedOrder(o["symbol"], o["side"], o["qty"], o["price"])
-        violations = check_order(order, AccountState(state.equity, state.day_start_equity, dict(positions)), limits)
+        violations = check_order(order, AccountState(state.equity, state.day_start_equity, dict(positions), dict(shares)), limits)
         checked.append(o | {"violations": violations})
         if not violations:
             positions[o["symbol"]] = positions.get(o["symbol"], 0.0) + order.signed_notional
+            if o["symbol"] in shares:
+                shares[o["symbol"]] += o["qty"] if o["side"] == "buy" else -o["qty"]
     return checked
 
 

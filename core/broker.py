@@ -54,8 +54,10 @@ def get_paper_client(keys: PaperKeys | None = None, verify_account: bool = True)
 
 def account_state(client: TradingClient) -> AccountState:
     account = client.get_account()
-    positions = {p.symbol: float(p.market_value) for p in client.get_all_positions()}
-    return AccountState(float(account.equity), float(account.last_equity), positions)
+    held = client.get_all_positions()
+    positions = {p.symbol: float(p.market_value) for p in held}
+    shares = {p.symbol: float(p.qty) for p in held}
+    return AccountState(float(account.equity), float(account.last_equity), positions, shares)
 
 
 def submit_order(client: TradingClient, order: ProposedOrder, reasoning: str, strategy: str, *,

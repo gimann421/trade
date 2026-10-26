@@ -1,6 +1,6 @@
 """Load and validate config/risk_limits.yaml, and check proposed orders against it."""
 
-from dataclasses import dataclass, fields
+from dataclasses import dataclass, field, fields
 from pathlib import Path
 
 import yaml
@@ -42,6 +42,7 @@ class AccountState:
     equity: float
     day_start_equity: float           # Alpaca's last_equity: equity at the previous close
     positions: dict[str, float]       # symbol -> signed market value (negative = short)
+    shares: dict[str, float] = field(default_factory=dict)   # symbol -> signed shares held, when known
 
 
 @dataclass(frozen=True)
@@ -76,6 +77,9 @@ def check_order(order: ProposedOrder, state: AccountState, limits: RiskLimits) -
     violations = []
     current = state.positions.get(order.symbol, 0.0)
     new = current + order.signed_notional
+    held = state.shares.get(order.symbol)
+    if order.side == "sell" and held is not None and 0 < order.qty <= held + 1e-9 and new < 0:
+        new = 0.0          # selling shares we hold never shorts; the gap is only the estimated price vs the mark
     reducing = abs(new) < abs(current) and new * current >= 0
 
     if new < 0 and not limits.allow_short:
