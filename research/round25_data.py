@@ -39,11 +39,12 @@ def _one(symbol: str, cik: int, tag: str):
     return None
 
 
-def fetch(workers: int = 6) -> pd.DataFrame:
-    OUT.mkdir(parents=True, exist_ok=True)
+def fetch(workers: int = 6, tags=None, out=None) -> pd.DataFrame:
+    tags, out = TAGS if tags is None else tags, OUT if out is None else out
+    out.mkdir(parents=True, exist_ok=True)
     members = sorted(load_constituents().items())
-    jobs = [(s, c, t) for s, c in members for t in TAGS]
-    rows, missing = [], {t: 0 for t in TAGS}
+    jobs = [(s, c, t) for s, c in members for t in tags]
+    rows, missing = [], {t: 0 for t in tags}
     with ThreadPoolExecutor(workers) as pool:
         for n, (job, result) in enumerate(zip(jobs, pool.map(lambda j: _one(*j), jobs)), 1):
             if result is None:
@@ -53,7 +54,7 @@ def fetch(workers: int = 6) -> pd.DataFrame:
             if n % 200 == 0:
                 print(n, len(rows), missing, flush=True)
     frame = pd.DataFrame(rows)
-    frame.to_csv(OUT / "facts.csv", index=False)
+    frame.to_csv(out / "facts.csv", index=False)
     print(frame.groupby("tag").symbol.nunique().to_dict(), "of", len(members))
     return frame
 
