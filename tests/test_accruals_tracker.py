@@ -38,3 +38,27 @@ def test_run_writes_decisions_once_and_nav(tmp_path):
     assert first["picks"] == status["holdings"] or len(first["picks"]) == 6
     again = at.run_accruals_rule(cfg, pd.Timestamp("2025-08-29"), membership, lambda *a, **k: closes, tmp_path, facts=pd.DataFrame())
     assert again["nav"] == status["nav"]                      # recorded decisions are reused; no new data needed
+
+
+def rnd_facts(symbols, filed="2025-03-01", end="2024-12-31"):
+    rows = []
+    for i, s in enumerate(symbols):
+        for tag, val in (("Assets", 1000.0), ("ResearchAndDevelopmentExpense", 10.0 + 5 * i)):
+            rows.append({"symbol": s, "cik": i, "tag": tag, "start": None if tag == "Assets" else "2024-01-01", "end": end, "val": val,
+                         "fy": 2024, "fp": "FY", "form": "10-K", "filed": filed})
+    return pd.DataFrame(rows).astype({"start": "datetime64[ns]", "end": "datetime64[ns]", "filed": "datetime64[ns]"})
+
+
+def test_rnd_rule_picks_the_highest_rnd_over_assets_and_records_the_caveat(tmp_path):
+    names = [f"S{i:02d}" for i in range(30)]
+    tables = at.build_tables(rnd_facts(names), at.RND_RULE)
+    scored, picks = at.score_decision(pd.Timestamp("2025-06-30"), names, tables, at.RND_RULE)
+    assert len(scored) == 30 and picks == [f"S{i:02d}" for i in range(24, 30)]
+    assert at.score_decision(pd.Timestamp("2025-02-28"), names, tables, at.RND_RULE) == ([], [])
+    index = trading_days("2025-01-02", "2025-08-29")
+    rng = np.random.default_rng(2)
+    closes = pd.DataFrame(100 * np.cumprod(1 + rng.normal(0.0004, 0.01, (len(index), 30)), axis=0), index, names)
+    membership = pd.Series([frozenset(names)], index=[pd.Timestamp("2020-01-01")])
+    cfg = {"rule": "stock_rnd_quintile", "strategy_rule": "rnd_quintile", "start": "2025-06-30", "initial_cash": 100000}
+    status = at.run_accruals_rule(cfg, pd.Timestamp("2025-08-29"), membership, lambda *a, **k: closes, tmp_path, facts=rnd_facts(names))
+    assert status["state"] == "running" and len(status["holdings"]) == 6 and "technology" in status["caveat"]

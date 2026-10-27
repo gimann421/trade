@@ -53,6 +53,14 @@
    "start": "2026-10-30",
    "initial_cash": 100000,
    "allocation_pct": 0
+  },
+  {
+   "rule": "stock_rnd_quintile",
+   "kind": "accruals",
+   "strategy_rule": "rnd_quintile",
+   "start": "2026-10-30",
+   "initial_cash": 100000,
+   "allocation_pct": 0
   }
  ]
 }
