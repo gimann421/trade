@@ -1,9 +1,9 @@
 {
- "asof": "2026-10-26",
- "benchmark_nav": 101415.99073909664,
+ "asof": "2026-10-27",
+ "benchmark_nav": 101535.78450008691,
  "decisions": 3,
  "decisions_changed_since_recorded": [],
- "excess_return": -0.012835153293114243,
+ "excess_return": 0.010660478313502475,
  "first_decision": "2026-10-16",
  "holdings": [
   "AMAT",
@@ -59,10 +59,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-10-26",
- "nav": 100114.30095158728,
+ "nav": 102618.20452879455,
  "rule": "stock_rev5_h3_band40",
  "start": "2026-10-16",
  "state": "running",
  "strategy_rule": "rev5_h3_band40_s",
- "total_return": 0.0011430095158728726
+ "total_return": 0.026182045287945543
 }

@@ -1,8 +1,9 @@
 {
- "asof": "2026-10-26",
+ "asof": "2026-10-27",
  "first_decision": "2026-10-30",
  "membership_last_row": "2026-08-18",
  "rule": "stock_lowaccruals_quintile",
  "start": "2026-10-30",
- "state": "waiting"
+ "state": "waiting",
+ "strategy_rule": "lowaccruals_quintile"
 }
