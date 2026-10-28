@@ -1,5 +1,5 @@
 {
- "asof": "2026-10-27",
+ "asof": "2026-10-28",
  "caveat": "Picks are almost all technology, health-care and chemicals names (SIC 28, 35-38, 73); outside them the 2017-22 backtest edge was +0.6%. Universe is current S&P 500 members with an R&D tag (survivorship). 190 hypotheses tested.",
  "first_decision": "2026-10-30",
  "membership_last_row": "2026-08-18",
