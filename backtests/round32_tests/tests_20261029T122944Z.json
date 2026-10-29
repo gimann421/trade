@@ -1,0 +1,927 @@
+{
+ "git_commit": "850fa89-dirty",
+ "run_at": "20261029T122944Z",
+ "coverage": [
+  {
+   "date": "2017-01-31",
+   "priced": 501,
+   "both": 69
+  },
+  {
+   "date": "2017-02-28",
+   "priced": 501,
+   "both": 71
+  },
+  {
+   "date": "2017-03-31",
+   "priced": 501,
+   "both": 71
+  },
+  {
+   "date": "2017-04-28",
+   "priced": 501,
+   "both": 71
+  },
+  {
+   "date": "2017-05-31",
+   "priced": 502,
+   "both": 71
+  },
+  {
+   "date": "2017-06-30",
+   "priced": 503,
+   "both": 72
+  },
+  {
+   "date": "2017-07-31",
+   "priced": 504,
+   "both": 74
+  },
+  {
+   "date": "2017-08-31",
+   "priced": 504,
+   "both": 74
+  },
+  {
+   "date": "2017-09-29",
+   "priced": 504,
+   "both": 74
+  },
+  {
+   "date": "2017-10-31",
+   "priced": 504,
+   "both": 75
+  },
+  {
+   "date": "2017-11-30",
+   "priced": 505,
+   "both": 77
+  },
+  {
+   "date": "2017-12-29",
+   "priced": 504,
+   "both": 79
+  },
+  {
+   "date": "2018-01-31",
+   "priced": 505,
+   "both": 80
+  },
+  {
+   "date": "2018-02-28",
+   "priced": 505,
+   "both": 87
+  },
+  {
+   "date": "2018-03-29",
+   "priced": 505,
+   "both": 87
+  },
+  {
+   "date": "2018-04-30",
+   "priced": 505,
+   "both": 87
+  },
+  {
+   "date": "2018-05-31",
+   "priced": 506,
+   "both": 87
+  },
+  {
+   "date": "2018-06-29",
+   "priced": 506,
+   "both": 89
+  },
+  {
+   "date": "2018-07-31",
+   "priced": 506,
+   "both": 89
+  },
+  {
+   "date": "2018-08-31",
+   "priced": 506,
+   "both": 92
+  },
+  {
+   "date": "2018-09-28",
+   "priced": 505,
+   "both": 93
+  },
+  {
+   "date": "2018-10-31",
+   "priced": 504,
+   "both": 94
+  },
+  {
+   "date": "2018-11-30",
+   "priced": 503,
+   "both": 95
+  },
+  {
+   "date": "2018-12-31",
+   "priced": 505,
+   "both": 96
+  },
+  {
+   "date": "2019-01-31",
+   "priced": 505,
+   "both": 97
+  },
+  {
+   "date": "2019-02-28",
+   "priced": 505,
+   "both": 106
+  },
+  {
+   "date": "2019-03-29",
+   "priced": 505,
+   "both": 106
+  },
+  {
+   "date": "2019-04-30",
+   "priced": 505,
+   "both": 105
+  },
+  {
+   "date": "2019-05-31",
+   "priced": 505,
+   "both": 105
+  },
+  {
+   "date": "2019-06-28",
+   "priced": 505,
+   "both": 107
+  },
+  {
+   "date": "2019-07-31",
+   "priced": 505,
+   "both": 107
+  },
+  {
+   "date": "2019-08-30",
+   "priced": 505,
+   "both": 109
+  },
+  {
+   "date": "2019-09-30",
+   "priced": 505,
+   "both": 110
+  },
+  {
+   "date": "2019-10-31",
+   "priced": 505,
+   "both": 111
+  },
+  {
+   "date": "2019-11-29",
+   "priced": 505,
+   "both": 115
+  },
+  {
+   "date": "2019-12-31",
+   "priced": 505,
+   "both": 117
+  },
+  {
+   "date": "2020-01-31",
+   "priced": 505,
+   "both": 118
+  },
+  {
+   "date": "2020-02-28",
+   "priced": 505,
+   "both": 119
+  },
+  {
+   "date": "2020-03-31",
+   "priced": 505,
+   "both": 117
+  },
+  {
+   "date": "2020-04-30",
+   "priced": 505,
+   "both": 118
+  },
+  {
+   "date": "2020-05-29",
+   "priced": 505,
+   "both": 120
+  },
+  {
+   "date": "2020-06-30",
+   "priced": 505,
+   "both": 120
+  },
+  {
+   "date": "2020-07-31",
+   "priced": 505,
+   "both": 120
+  },
+  {
+   "date": "2020-08-31",
+   "priced": 505,
+   "both": 120
+  },
+  {
+   "date": "2020-09-30",
+   "priced": 505,
+   "both": 120
+  },
+  {
+   "date": "2020-10-30",
+   "priced": 505,
+   "both": 120
+  },
+  {
+   "date": "2020-11-30",
+   "priced": 505,
+   "both": 120
+  },
+  {
+   "date": "2020-12-31",
+   "priced": 505,
+   "both": 121
+  },
+  {
+   "date": "2021-01-29",
+   "priced": 505,
+   "both": 122
+  },
+  {
+   "date": "2021-02-26",
+   "priced": 505,
+   "both": 123
+  },
+  {
+   "date": "2021-03-31",
+   "priced": 505,
+   "both": 124
+  },
+  {
+   "date": "2021-04-30",
+   "priced": 505,
+   "both": 125
+  },
+  {
+   "date": "2021-05-28",
+   "priced": 505,
+   "both": 124
+  },
+  {
+   "date": "2021-06-30",
+   "priced": 505,
+   "both": 124
+  },
+  {
+   "date": "2021-07-30",
+   "priced": 505,
+   "both": 125
+  },
+  {
+   "date": "2021-08-31",
+   "priced": 505,
+   "both": 125
+  },
+  {
+   "date": "2021-09-30",
+   "priced": 505,
+   "both": 125
+  },
+  {
+   "date": "2021-10-29",
+   "priced": 505,
+   "both": 125
+  },
+  {
+   "date": "2021-11-30",
+   "priced": 505,
+   "both": 125
+  },
+  {
+   "date": "2021-12-31",
+   "priced": 505,
+   "both": 126
+  },
+  {
+   "date": "2022-01-31",
+   "priced": 505,
+   "both": 126
+  },
+  {
+   "date": "2022-02-28",
+   "priced": 504,
+   "both": 126
+  },
+  {
+   "date": "2022-03-31",
+   "priced": 505,
+   "both": 126
+  },
+  {
+   "date": "2022-04-29",
+   "priced": 504,
+   "both": 126
+  },
+  {
+   "date": "2022-05-31",
+   "priced": 504,
+   "both": 126
+  },
+  {
+   "date": "2022-06-30",
+   "priced": 503,
+   "both": 128
+  },
+  {
+   "date": "2022-07-29",
+   "priced": 503,
+   "both": 128
+  },
+  {
+   "date": "2022-08-31",
+   "priced": 503,
+   "both": 129
+  },
+  {
+   "date": "2022-09-30",
+   "priced": 502,
+   "both": 129
+  },
+  {
+   "date": "2022-10-31",
+   "priced": 502,
+   "both": 129
+  },
+  {
+   "date": "2022-11-30",
+   "priced": 503,
+   "both": 129
+  },
+  {
+   "date": "2022-12-30",
+   "priced": 503,
+   "both": 131
+  },
+  {
+   "date": "2023-01-31",
+   "priced": 503,
+   "both": 130
+  },
+  {
+   "date": "2023-02-28",
+   "priced": 503,
+   "both": 130
+  },
+  {
+   "date": "2023-03-31",
+   "priced": 503,
+   "both": 133
+  },
+  {
+   "date": "2023-04-28",
+   "priced": 503,
+   "both": 133
+  },
+  {
+   "date": "2023-05-31",
+   "priced": 503,
+   "both": 135
+  },
+  {
+   "date": "2023-06-30",
+   "priced": 503,
+   "both": 136
+  },
+  {
+   "date": "2023-07-31",
+   "priced": 503,
+   "both": 136
+  },
+  {
+   "date": "2023-08-31",
+   "priced": 503,
+   "both": 136
+  },
+  {
+   "date": "2023-09-29",
+   "priced": 503,
+   "both": 137
+  },
+  {
+   "date": "2023-10-31",
+   "priced": 503,
+   "both": 137
+  },
+  {
+   "date": "2023-11-30",
+   "priced": 503,
+   "both": 137
+  },
+  {
+   "date": "2023-12-29",
+   "priced": 503,
+   "both": 139
+  },
+  {
+   "date": "2024-01-31",
+   "priced": 503,
+   "both": 139
+  },
+  {
+   "date": "2024-02-29",
+   "priced": 503,
+   "both": 139
+  },
+  {
+   "date": "2024-03-28",
+   "priced": 503,
+   "both": 142
+  },
+  {
+   "date": "2024-04-30",
+   "priced": 503,
+   "both": 142
+  },
+  {
+   "date": "2024-05-31",
+   "priced": 503,
+   "both": 141
+  },
+  {
+   "date": "2024-06-28",
+   "priced": 503,
+   "both": 143
+  },
+  {
+   "date": "2024-07-31",
+   "priced": 503,
+   "both": 143
+  },
+  {
+   "date": "2024-08-30",
+   "priced": 503,
+   "both": 143
+  },
+  {
+   "date": "2024-09-30",
+   "priced": 504,
+   "both": 144
+  },
+  {
+   "date": "2024-10-31",
+   "priced": 503,
+   "both": 144
+  },
+  {
+   "date": "2024-11-29",
+   "priced": 503,
+   "both": 144
+  },
+  {
+   "date": "2024-12-31",
+   "priced": 503,
+   "both": 148
+  },
+  {
+   "date": "2025-01-31",
+   "priced": 503,
+   "both": 148
+  },
+  {
+   "date": "2025-02-28",
+   "priced": 503,
+   "both": 153
+  },
+  {
+   "date": "2025-03-31",
+   "priced": 503,
+   "both": 153
+  },
+  {
+   "date": "2025-04-30",
+   "priced": 503,
+   "both": 154
+  },
+  {
+   "date": "2025-05-30",
+   "priced": 503,
+   "both": 155
+  },
+  {
+   "date": "2025-06-30",
+   "priced": 503,
+   "both": 155
+  },
+  {
+   "date": "2025-07-31",
+   "priced": 503,
+   "both": 158
+  },
+  {
+   "date": "2025-08-29",
+   "priced": 503,
+   "both": 157
+  },
+  {
+   "date": "2025-09-30",
+   "priced": 503,
+   "both": 159
+  },
+  {
+   "date": "2025-10-31",
+   "priced": 503,
+   "both": 159
+  },
+  {
+   "date": "2025-11-28",
+   "priced": 503,
+   "both": 160
+  },
+  {
+   "date": "2025-12-31",
+   "priced": 503,
+   "both": 159
+  },
+  {
+   "date": "2026-01-30",
+   "priced": 503,
+   "both": 159
+  },
+  {
+   "date": "2026-02-27",
+   "priced": 503,
+   "both": 163
+  },
+  {
+   "date": "2026-03-31",
+   "priced": 503,
+   "both": 166
+  },
+  {
+   "date": "2026-04-30",
+   "priced": 503,
+   "both": 166
+  },
+  {
+   "date": "2026-05-29",
+   "priced": 503,
+   "both": 167
+  },
+  {
+   "date": "2026-06-30",
+   "priced": 503,
+   "both": 169
+  },
+  {
+   "date": "2026-07-31",
+   "priced": 503,
+   "both": 169
+  },
+  {
+   "date": "2026-08-31",
+   "priced": 503,
+   "both": 170
+  },
+  {
+   "date": "2026-09-30",
+   "priced": 503,
+   "both": 169
+  }
+ ],
+ "results": {
+  "combo": {
+   "IS": {
+    "net_active": 0.012866672737434056,
+    "information_ratio": 0.12866721698984954,
+    "placebo": 0.651,
+    "stress_net_active": 0.012291958757389013,
+    "turnover": 1.9650874534485379,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.12641432866477362,
+    "information_ratio": 1.1703395359453381,
+    "placebo": 1.0,
+    "stress_net_active": 0.1257615900662845,
+    "turnover": 2.2143243003588458,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.09392483268400431,
+    "information_ratio": 1.0295811279212568,
+    "placebo": 0.996,
+    "stress_net_active": 0.09322713346266014,
+    "turnover": 2.1775935308699776,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.16265816640332073,
+    "information_ratio": 1.3100665230526554,
+    "placebo": 0.999,
+    "stress_net_active": 0.16205558387743882,
+    "turnover": 2.255299514321983,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "cond": {
+   "IS": {
+    "net_active": 0.014033943839928079,
+    "information_ratio": 0.1476697102253508,
+    "placebo": 0.688,
+    "stress_net_active": 0.013484627249975654,
+    "turnover": 1.9142926732633003,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.11721362158779407,
+    "information_ratio": 1.1016982795132613,
+    "placebo": 1.0,
+    "stress_net_active": 0.116672459897192,
+    "turnover": 1.9911704845847236,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.06936798151270927,
+    "information_ratio": 0.7500094256170923,
+    "placebo": 0.978,
+    "stress_net_active": 0.06877824061130555,
+    "turnover": 1.9616768909891074,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.1705880911826664,
+    "information_ratio": 1.4211301337638427,
+    "placebo": 1.0,
+    "stress_net_active": 0.17010112230055863,
+    "turnover": 2.024072226773611,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "accrnd": {
+   "IS": {
+    "net_active": 0.042631793824496694,
+    "information_ratio": 0.6006100601636126,
+    "placebo": 0.981,
+    "stress_net_active": 0.04193369263259891,
+    "turnover": 2.211861877154,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.05616226987401964,
+    "information_ratio": 0.7096931778595588,
+    "placebo": 0.969,
+    "stress_net_active": 0.0554291137301432,
+    "turnover": 2.3751593911334914,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.061156092017031496,
+    "information_ratio": 1.0368365330126952,
+    "placebo": 0.955,
+    "stress_net_active": 0.06044284232621158,
+    "turnover": 2.2086944698215105,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.050591383838926425,
+    "information_ratio": 0.5223092570937361,
+    "placebo": 0.865,
+    "stress_net_active": 0.04983602094075137,
+    "turnover": 2.5608602589081895,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "parent_rnd": {
+   "IS": {
+    "net_active": 0.04613225806920868,
+    "information_ratio": 0.41451357627616675,
+    "placebo": 0.98,
+    "stress_net_active": 0.045923215468415844,
+    "turnover": 1.233744694944148,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.17811809027426015,
+    "information_ratio": 1.5890138575442758,
+    "placebo": 1.0,
+    "stress_net_active": 0.17777768372154007,
+    "turnover": 1.5896602088207306,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.15662144932854613,
+    "information_ratio": 1.4393281217258656,
+    "placebo": 1.0,
+    "stress_net_active": 0.1563050196611562,
+    "turnover": 1.4150544229614697,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.20209878750703447,
+    "information_ratio": 1.7460921891493442,
+    "placebo": 1.0,
+    "stress_net_active": 0.20173163340667938,
+    "turnover": 1.7844426632681725,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "parent_acc": {
+   "IS": {
+    "net_active": 0.042631793824496694,
+    "information_ratio": 0.6006100601636126,
+    "placebo": 0.981,
+    "stress_net_active": 0.04193369263259891,
+    "turnover": 2.211861877154,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.05616226987401964,
+    "information_ratio": 0.7096931778595588,
+    "placebo": 0.969,
+    "stress_net_active": 0.0554291137301432,
+    "turnover": 2.3751593911334914,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.061156092017031496,
+    "information_ratio": 1.0368365330126952,
+    "placebo": 0.955,
+    "stress_net_active": 0.06044284232621158,
+    "turnover": 2.2086944698215105,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.050591383838926425,
+    "information_ratio": 0.5223092570937361,
+    "placebo": 0.865,
+    "stress_net_active": 0.04983602094075137,
+    "turnover": 2.5608602589081895,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "combo_low": {
+   "IS": {
+    "net_active": -0.06094521444516688,
+    "information_ratio": -0.8484913311799742,
+    "placebo": 0.003,
+    "stress_net_active": -0.06157100917614359,
+    "turnover": 2.0672489553118663,
+    "rebalances": 71,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.05986420183395331,
+    "information_ratio": -0.7343063155896677,
+    "placebo": 0.021,
+    "stress_net_active": -0.06042087094606063,
+    "turnover": 2.022185327595249,
+    "rebalances": 46,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.05307619115914112,
+    "information_ratio": -0.8088431882620005,
+    "placebo": 0.062,
+    "stress_net_active": -0.05375912079592919,
+    "turnover": 2.1480543617578096,
+    "rebalances": 24,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.06743660485341046,
+    "information_ratio": -0.7003385829106541,
+    "placebo": 0.087,
+    "stress_net_active": -0.06785242333576283,
+    "turnover": 1.8817714272627926,
+    "rebalances": 22,
+    "median_picks": 25.0,
+    "median_ranked": 125.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  }
+ },
+ "corr_with_parents": {
+  "combo": {
+   "rnd": 0.8176176690650877,
+   "acc": 0.6014524107020208
+  },
+  "cond": {
+   "rnd": 0.8312558056273097,
+   "acc": 0.47526098318636173
+  },
+  "accrnd": {
+   "rnd": 0.32651607509237346,
+   "acc": 1.0
+  }
+ },
+ "verdicts": {
+  "combo_rank_quintile": [
+   "IS net active 1.29% < 2.0%",
+   "IS IR 0.13 < 0.3",
+   "IS placebo 0.651 < 0.95",
+   "IS IR 0.13 not above the better parent's 0.60",
+   "OOS IR 1.17 not above the better parent's 1.59"
+  ],
+  "rnd_in_lowacc_half": [
+   "IS net active 1.40% < 2.0%",
+   "IS IR 0.15 < 0.3",
+   "IS placebo 0.688 < 0.95",
+   "IS IR 0.15 not above the better parent's 0.60",
+   "OOS IR 1.10 not above the better parent's 1.59"
+  ],
+  "lowacc_in_rnd_names": [
+   "IS IR 0.60 not above the better parent's 0.60",
+   "OOS IR 0.71 not above the better parent's 1.59"
+  ]
+ }
+}
