@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-16T19:45:24+00:00", "action": "skip", "strategy": "stock_rev5_h3_band40", "hypothesis_id": null, "symbol": null, "side": null, "qty": null, "price": null, "reasoning": "only 0 of 503 members had a 15:30 bar on 2026-10-16; no orders", "risk_violations": [], "order_id": null, "extra": {}}

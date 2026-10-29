@@ -1,9 +1,17 @@
 {
- "asof": "2026-10-13",
+ "asof": "2026-10-28",
+ "benchmark_nav": 100299.322585727,
+ "days": 10,
+ "decisions_changed_since_recorded": [],
+ "entries": 0,
+ "excess_return": -0.002984293193716847,
+ "in_position": false,
  "kind": "signal",
+ "nav": 100000.0,
  "rule": "etf_gapfade_xlk",
  "start": "2026-10-15",
- "state": "waiting",
+ "state": "running",
  "strategy": "gap_fade_washout_v1",
- "symbol": "XLK"
+ "symbol": "XLK",
+ "total_return": 0.0
 }
