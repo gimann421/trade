@@ -81,7 +81,7 @@ def value_tables(annual, base, shares, raw, adj_close):
             if pd.isna(n_use) or pos >= len(px) or (px.index[pos] - r["avail"]).days > 5 or px.index[pos] not in adj.index:
                 continue
             rows.append({"end": end, "avail": r["avail"], "book": r["assets"] - b.at[end, "liab"], "ni": r["ni"], "cfo": r["cfo"],
-                         "rev": revf.get((symbol, end), np.nan), "mv0": n_use * px.iloc[pos], "adj0": adj.loc[px.index[pos]]})
+                         "rev": revf.get((symbol, end), np.nan), "assets": r["assets"], "mv0": n_use * px.iloc[pos], "adj0": adj.loc[px.index[pos]]})
         if rows:
             out[symbol] = pd.DataFrame(rows).set_index("end").sort_index()
     return out
