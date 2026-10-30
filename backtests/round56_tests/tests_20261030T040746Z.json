@@ -1,0 +1,1139 @@
+{
+ "git_commit": "30a996f-dirty",
+ "run_at": "20261030T040746Z",
+ "coverage": [
+  {
+   "date": "2017-01-31",
+   "priced": 475,
+   "acc": 230,
+   "rnd": 139,
+   "sp": 109
+  },
+  {
+   "date": "2017-02-28",
+   "priced": 476,
+   "acc": 234,
+   "rnd": 137,
+   "sp": 133
+  },
+  {
+   "date": "2017-03-31",
+   "priced": 477,
+   "acc": 224,
+   "rnd": 142,
+   "sp": 141
+  },
+  {
+   "date": "2017-04-28",
+   "priced": 480,
+   "acc": 225,
+   "rnd": 143,
+   "sp": 143
+  },
+  {
+   "date": "2017-05-31",
+   "priced": 483,
+   "acc": 227,
+   "rnd": 144,
+   "sp": 146
+  },
+  {
+   "date": "2017-06-30",
+   "priced": 485,
+   "acc": 228,
+   "rnd": 144,
+   "sp": 146
+  },
+  {
+   "date": "2017-07-31",
+   "priced": 486,
+   "acc": 228,
+   "rnd": 145,
+   "sp": 147
+  },
+  {
+   "date": "2017-08-31",
+   "priced": 487,
+   "acc": 229,
+   "rnd": 145,
+   "sp": 150
+  },
+  {
+   "date": "2017-09-29",
+   "priced": 487,
+   "acc": 230,
+   "rnd": 146,
+   "sp": 154
+  },
+  {
+   "date": "2017-10-31",
+   "priced": 492,
+   "acc": 230,
+   "rnd": 147,
+   "sp": 155
+  },
+  {
+   "date": "2017-11-30",
+   "priced": 494,
+   "acc": 234,
+   "rnd": 148,
+   "sp": 159
+  },
+  {
+   "date": "2017-12-29",
+   "priced": 496,
+   "acc": 235,
+   "rnd": 148,
+   "sp": 162
+  },
+  {
+   "date": "2018-01-31",
+   "priced": 498,
+   "acc": 235,
+   "rnd": 148,
+   "sp": 161
+  },
+  {
+   "date": "2018-02-28",
+   "priced": 500,
+   "acc": 257,
+   "rnd": 149,
+   "sp": 175
+  },
+  {
+   "date": "2018-03-29",
+   "priced": 501,
+   "acc": 315,
+   "rnd": 153,
+   "sp": 219
+  },
+  {
+   "date": "2018-04-30",
+   "priced": 502,
+   "acc": 312,
+   "rnd": 152,
+   "sp": 207
+  },
+  {
+   "date": "2018-05-31",
+   "priced": 507,
+   "acc": 318,
+   "rnd": 152,
+   "sp": 212
+  },
+  {
+   "date": "2018-06-29",
+   "priced": 508,
+   "acc": 321,
+   "rnd": 152,
+   "sp": 216
+  },
+  {
+   "date": "2018-07-31",
+   "priced": 509,
+   "acc": 323,
+   "rnd": 152,
+   "sp": 218
+  },
+  {
+   "date": "2018-08-31",
+   "priced": 512,
+   "acc": 325,
+   "rnd": 153,
+   "sp": 222
+  },
+  {
+   "date": "2018-09-28",
+   "priced": 515,
+   "acc": 327,
+   "rnd": 153,
+   "sp": 223
+  },
+  {
+   "date": "2018-10-31",
+   "priced": 517,
+   "acc": 333,
+   "rnd": 154,
+   "sp": 228
+  },
+  {
+   "date": "2018-11-30",
+   "priced": 519,
+   "acc": 337,
+   "rnd": 155,
+   "sp": 233
+  },
+  {
+   "date": "2018-12-31",
+   "priced": 519,
+   "acc": 339,
+   "rnd": 155,
+   "sp": 233
+  },
+  {
+   "date": "2019-01-31",
+   "priced": 519,
+   "acc": 340,
+   "rnd": 155,
+   "sp": 234
+  },
+  {
+   "date": "2019-02-28",
+   "priced": 519,
+   "acc": 378,
+   "rnd": 156,
+   "sp": 265
+  },
+  {
+   "date": "2019-03-29",
+   "priced": 521,
+   "acc": 427,
+   "rnd": 158,
+   "sp": 300
+  },
+  {
+   "date": "2019-04-30",
+   "priced": 522,
+   "acc": 426,
+   "rnd": 158,
+   "sp": 295
+  },
+  {
+   "date": "2019-05-31",
+   "priced": 524,
+   "acc": 427,
+   "rnd": 158,
+   "sp": 295
+  },
+  {
+   "date": "2019-06-28",
+   "priced": 525,
+   "acc": 427,
+   "rnd": 158,
+   "sp": 296
+  },
+  {
+   "date": "2019-07-31",
+   "priced": 526,
+   "acc": 427,
+   "rnd": 158,
+   "sp": 296
+  },
+  {
+   "date": "2019-08-30",
+   "priced": 526,
+   "acc": 427,
+   "rnd": 158,
+   "sp": 295
+  },
+  {
+   "date": "2019-09-30",
+   "priced": 527,
+   "acc": 427,
+   "rnd": 158,
+   "sp": 295
+  },
+  {
+   "date": "2019-10-31",
+   "priced": 529,
+   "acc": 428,
+   "rnd": 158,
+   "sp": 296
+  },
+  {
+   "date": "2019-11-29",
+   "priced": 529,
+   "acc": 429,
+   "rnd": 158,
+   "sp": 299
+  },
+  {
+   "date": "2019-12-31",
+   "priced": 529,
+   "acc": 430,
+   "rnd": 158,
+   "sp": 300
+  },
+  {
+   "date": "2020-01-31",
+   "priced": 531,
+   "acc": 430,
+   "rnd": 158,
+   "sp": 300
+  },
+  {
+   "date": "2020-02-28",
+   "priced": 533,
+   "acc": 442,
+   "rnd": 157,
+   "sp": 309
+  },
+  {
+   "date": "2020-03-31",
+   "priced": 533,
+   "acc": 460,
+   "rnd": 157,
+   "sp": 323
+  },
+  {
+   "date": "2020-04-30",
+   "priced": 535,
+   "acc": 464,
+   "rnd": 157,
+   "sp": 325
+  },
+  {
+   "date": "2020-05-29",
+   "priced": 535,
+   "acc": 465,
+   "rnd": 158,
+   "sp": 325
+  },
+  {
+   "date": "2020-06-30",
+   "priced": 536,
+   "acc": 465,
+   "rnd": 158,
+   "sp": 325
+  },
+  {
+   "date": "2020-07-31",
+   "priced": 536,
+   "acc": 466,
+   "rnd": 158,
+   "sp": 326
+  },
+  {
+   "date": "2020-08-31",
+   "priced": 538,
+   "acc": 468,
+   "rnd": 158,
+   "sp": 328
+  },
+  {
+   "date": "2020-09-30",
+   "priced": 541,
+   "acc": 469,
+   "rnd": 159,
+   "sp": 330
+  },
+  {
+   "date": "2020-10-30",
+   "priced": 544,
+   "acc": 469,
+   "rnd": 159,
+   "sp": 331
+  },
+  {
+   "date": "2020-11-30",
+   "priced": 544,
+   "acc": 470,
+   "rnd": 159,
+   "sp": 332
+  },
+  {
+   "date": "2020-12-31",
+   "priced": 547,
+   "acc": 472,
+   "rnd": 159,
+   "sp": 334
+  },
+  {
+   "date": "2021-01-29",
+   "priced": 548,
+   "acc": 472,
+   "rnd": 159,
+   "sp": 333
+  },
+  {
+   "date": "2021-02-26",
+   "priced": 548,
+   "acc": 475,
+   "rnd": 161,
+   "sp": 340
+  },
+  {
+   "date": "2021-03-31",
+   "priced": 550,
+   "acc": 479,
+   "rnd": 167,
+   "sp": 345
+  },
+  {
+   "date": "2021-04-30",
+   "priced": 553,
+   "acc": 482,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2021-05-28",
+   "priced": 554,
+   "acc": 483,
+   "rnd": 168,
+   "sp": 347
+  },
+  {
+   "date": "2021-06-30",
+   "priced": 561,
+   "acc": 483,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2021-07-30",
+   "priced": 563,
+   "acc": 484,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2021-08-31",
+   "priced": 564,
+   "acc": 484,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2021-09-30",
+   "priced": 566,
+   "acc": 484,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2021-10-29",
+   "priced": 572,
+   "acc": 486,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2021-11-30",
+   "priced": 572,
+   "acc": 486,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2021-12-31",
+   "priced": 573,
+   "acc": 486,
+   "rnd": 168,
+   "sp": 345
+  },
+  {
+   "date": "2022-01-31",
+   "priced": 573,
+   "acc": 487,
+   "rnd": 168,
+   "sp": 346
+  },
+  {
+   "date": "2022-02-28",
+   "priced": 573,
+   "acc": 491,
+   "rnd": 168,
+   "sp": 355
+  },
+  {
+   "date": "2022-03-31",
+   "priced": 573,
+   "acc": 511,
+   "rnd": 177,
+   "sp": 376
+  },
+  {
+   "date": "2022-04-29",
+   "priced": 574,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 373
+  },
+  {
+   "date": "2022-05-31",
+   "priced": 574,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 373
+  },
+  {
+   "date": "2022-06-30",
+   "priced": 574,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 373
+  },
+  {
+   "date": "2022-07-29",
+   "priced": 574,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 373
+  },
+  {
+   "date": "2022-08-31",
+   "priced": 574,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 373
+  },
+  {
+   "date": "2022-09-30",
+   "priced": 574,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 372
+  },
+  {
+   "date": "2022-10-31",
+   "priced": 574,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 372
+  },
+  {
+   "date": "2022-11-30",
+   "priced": 575,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 372
+  },
+  {
+   "date": "2022-12-30",
+   "priced": 576,
+   "acc": 510,
+   "rnd": 178,
+   "sp": 372
+  },
+  {
+   "date": "2023-01-31",
+   "priced": 576,
+   "acc": 509,
+   "rnd": 178,
+   "sp": 372
+  },
+  {
+   "date": "2023-02-28",
+   "priced": 576,
+   "acc": 515,
+   "rnd": 177,
+   "sp": 380
+  },
+  {
+   "date": "2023-03-31",
+   "priced": 577,
+   "acc": 518,
+   "rnd": 181,
+   "sp": 390
+  },
+  {
+   "date": "2023-04-28",
+   "priced": 578,
+   "acc": 510,
+   "rnd": 181,
+   "sp": 382
+  },
+  {
+   "date": "2023-05-31",
+   "priced": 579,
+   "acc": 513,
+   "rnd": 182,
+   "sp": 385
+  },
+  {
+   "date": "2023-06-30",
+   "priced": 582,
+   "acc": 512,
+   "rnd": 182,
+   "sp": 384
+  },
+  {
+   "date": "2023-07-31",
+   "priced": 583,
+   "acc": 512,
+   "rnd": 182,
+   "sp": 384
+  },
+  {
+   "date": "2023-08-31",
+   "priced": 584,
+   "acc": 512,
+   "rnd": 182,
+   "sp": 384
+  },
+  {
+   "date": "2023-09-29",
+   "priced": 584,
+   "acc": 512,
+   "rnd": 182,
+   "sp": 384
+  },
+  {
+   "date": "2023-10-31",
+   "priced": 585,
+   "acc": 512,
+   "rnd": 182,
+   "sp": 384
+  },
+  {
+   "date": "2023-11-30",
+   "priced": 585,
+   "acc": 512,
+   "rnd": 182,
+   "sp": 384
+  },
+  {
+   "date": "2023-12-29",
+   "priced": 586,
+   "acc": 513,
+   "rnd": 182,
+   "sp": 385
+  },
+  {
+   "date": "2024-01-31",
+   "priced": 586,
+   "acc": 514,
+   "rnd": 182,
+   "sp": 385
+  },
+  {
+   "date": "2024-02-29",
+   "priced": 586,
+   "acc": 517,
+   "rnd": 182,
+   "sp": 390
+  },
+  {
+   "date": "2024-03-28",
+   "priced": 586,
+   "acc": 521,
+   "rnd": 182,
+   "sp": 395
+  },
+  {
+   "date": "2024-04-30",
+   "priced": 586,
+   "acc": 513,
+   "rnd": 181,
+   "sp": 382
+  },
+  {
+   "date": "2024-05-31",
+   "priced": 586,
+   "acc": 514,
+   "rnd": 181,
+   "sp": 383
+  },
+  {
+   "date": "2024-06-28",
+   "priced": 588,
+   "acc": 515,
+   "rnd": 182,
+   "sp": 383
+  },
+  {
+   "date": "2024-07-31",
+   "priced": 589,
+   "acc": 515,
+   "rnd": 182,
+   "sp": 383
+  },
+  {
+   "date": "2024-08-30",
+   "priced": 589,
+   "acc": 516,
+   "rnd": 183,
+   "sp": 384
+  },
+  {
+   "date": "2024-09-30",
+   "priced": 590,
+   "acc": 516,
+   "rnd": 183,
+   "sp": 383
+  },
+  {
+   "date": "2024-10-31",
+   "priced": 591,
+   "acc": 516,
+   "rnd": 183,
+   "sp": 383
+  },
+  {
+   "date": "2024-11-29",
+   "priced": 592,
+   "acc": 517,
+   "rnd": 183,
+   "sp": 384
+  },
+  {
+   "date": "2024-12-31",
+   "priced": 592,
+   "acc": 518,
+   "rnd": 183,
+   "sp": 385
+  },
+  {
+   "date": "2025-01-31",
+   "priced": 592,
+   "acc": 518,
+   "rnd": 183,
+   "sp": 385
+  },
+  {
+   "date": "2025-02-28",
+   "priced": 594,
+   "acc": 528,
+   "rnd": 185,
+   "sp": 395
+  },
+  {
+   "date": "2025-03-31",
+   "priced": 594,
+   "acc": 532,
+   "rnd": 185,
+   "sp": 399
+  },
+  {
+   "date": "2025-04-30",
+   "priced": 594,
+   "acc": 533,
+   "rnd": 185,
+   "sp": 400
+  },
+  {
+   "date": "2025-05-30",
+   "priced": 594,
+   "acc": 533,
+   "rnd": 185,
+   "sp": 400
+  },
+  {
+   "date": "2025-06-30",
+   "priced": 595,
+   "acc": 533,
+   "rnd": 185,
+   "sp": 400
+  },
+  {
+   "date": "2025-07-31",
+   "priced": 595,
+   "acc": 534,
+   "rnd": 185,
+   "sp": 401
+  },
+  {
+   "date": "2025-08-29",
+   "priced": 595,
+   "acc": 535,
+   "rnd": 185,
+   "sp": 401
+  },
+  {
+   "date": "2025-09-30",
+   "priced": 595,
+   "acc": 534,
+   "rnd": 184,
+   "sp": 399
+  },
+  {
+   "date": "2025-10-31",
+   "priced": 595,
+   "acc": 534,
+   "rnd": 184,
+   "sp": 399
+  },
+  {
+   "date": "2025-11-28",
+   "priced": 595,
+   "acc": 534,
+   "rnd": 184,
+   "sp": 398
+  },
+  {
+   "date": "2025-12-31",
+   "priced": 596,
+   "acc": 534,
+   "rnd": 184,
+   "sp": 398
+  },
+  {
+   "date": "2026-01-30",
+   "priced": 596,
+   "acc": 534,
+   "rnd": 184,
+   "sp": 398
+  },
+  {
+   "date": "2026-02-27",
+   "priced": 596,
+   "acc": 546,
+   "rnd": 185,
+   "sp": 406
+  },
+  {
+   "date": "2026-03-31",
+   "priced": 596,
+   "acc": 554,
+   "rnd": 186,
+   "sp": 411
+  },
+  {
+   "date": "2026-04-30",
+   "priced": 597,
+   "acc": 554,
+   "rnd": 186,
+   "sp": 412
+  },
+  {
+   "date": "2026-05-29",
+   "priced": 596,
+   "acc": 553,
+   "rnd": 186,
+   "sp": 411
+  },
+  {
+   "date": "2026-06-30",
+   "priced": 597,
+   "acc": 553,
+   "rnd": 186,
+   "sp": 411
+  },
+  {
+   "date": "2026-07-31",
+   "priced": 598,
+   "acc": 553,
+   "rnd": 186,
+   "sp": 411
+  },
+  {
+   "date": "2026-08-31",
+   "priced": 598,
+   "acc": 554,
+   "rnd": 187,
+   "sp": 413
+  },
+  {
+   "date": "2026-09-30",
+   "priced": 597,
+   "acc": 553,
+   "rnd": 187,
+   "sp": 412
+  }
+ ],
+ "results": {
+  "acc": {
+   "IS": {
+    "net_active": 0.770421560542445,
+    "information_ratio": 0.4480010938068665,
+    "placebo": 1.0,
+    "stress_net_active": 0.7696375448510185,
+    "turnover": 2.8477073192339515,
+    "rebalances": 71,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.032196684026426,
+    "information_ratio": 0.30621746571990255,
+    "placebo": 0.791,
+    "stress_net_active": 0.031585393076702224,
+    "turnover": 2.2493087700114205,
+    "rebalances": 46,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.003741747087404216,
+    "information_ratio": -0.029635514042204346,
+    "placebo": 0.79,
+    "stress_net_active": -0.004327371521582873,
+    "turnover": 2.2024802330670306,
+    "rebalances": 24,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.07228800051340999,
+    "information_ratio": 0.9646558351605665,
+    "placebo": 0.99,
+    "stress_net_active": 0.07164807713967805,
+    "turnover": 2.301548604558273,
+    "rebalances": 22,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "rnd": {
+   "IS": {
+    "net_active": 0.14485186982022663,
+    "information_ratio": 1.1734988743202843,
+    "placebo": 1.0,
+    "stress_net_active": 0.144562875606329,
+    "turnover": 1.6492012088932726,
+    "rebalances": 71,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.06428867834187874,
+    "information_ratio": -0.24321638635467824,
+    "placebo": 0.746,
+    "stress_net_active": -0.06436873226662644,
+    "turnover": 1.3731780590561713,
+    "rebalances": 46,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.1633350168212719,
+    "information_ratio": -0.46898860340895177,
+    "placebo": 0.718,
+    "stress_net_active": -0.16340957991141533,
+    "turnover": 1.4092725671225452,
+    "rebalances": 24,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.04620301480624435,
+    "information_ratio": 0.4123774506363997,
+    "placebo": 0.817,
+    "stress_net_active": 0.046116835550449105,
+    "turnover": 1.3329126300576832,
+    "rebalances": 22,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "sp": {
+   "IS": {
+    "net_active": 1.035321480982441,
+    "information_ratio": 0.4625633983363083,
+    "placebo": 1.0,
+    "stress_net_active": 1.034554586508901,
+    "turnover": 3.051226277230803,
+    "rebalances": 71,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.30101834053567944,
+    "information_ratio": 0.6660677805434956,
+    "placebo": 1.0,
+    "stress_net_active": 0.3001547100027954,
+    "turnover": 2.817955374904758,
+    "rebalances": 46,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.48430617555175454,
+    "information_ratio": 0.7845971545196083,
+    "placebo": 1.0,
+    "stress_net_active": 0.483393659882579,
+    "turnover": 2.9291496945262625,
+    "rebalances": 24,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.09655057791774674,
+    "information_ratio": 1.142984972515957,
+    "placebo": 1.0,
+    "stress_net_active": 0.09574148147023685,
+    "turnover": 2.6939119339047672,
+    "rebalances": 22,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "acc_high": {
+   "IS": {
+    "net_active": -0.20117786244550878,
+    "information_ratio": -0.44748099665769026,
+    "placebo": 0.025,
+    "stress_net_active": -0.20170044809441354,
+    "turnover": 2.32484723419018,
+    "rebalances": 71,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.008732196195212342,
+    "information_ratio": -0.08873509739479188,
+    "placebo": 0.756,
+    "stress_net_active": -0.009260326886471269,
+    "turnover": 2.0829882530816928,
+    "rebalances": 46,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.00997616237503167,
+    "information_ratio": -0.08020841263098463,
+    "placebo": 0.789,
+    "stress_net_active": -0.010625004564122947,
+    "turnover": 2.3289157428922747,
+    "rebalances": 24,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.007344482812391657,
+    "information_ratio": -0.1288377414440714,
+    "placebo": 0.419,
+    "stress_net_active": -0.007737953121624291,
+    "turnover": 1.808642475559666,
+    "rebalances": 22,
+    "median_picks": 97.0,
+    "median_ranked": 486.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "rnd_high": {
+   "IS": {
+    "net_active": -0.040492805750787966,
+    "information_ratio": -0.4309929583002789,
+    "placebo": 0.063,
+    "stress_net_active": -0.04060022302124367,
+    "turnover": 1.28604732200945,
+    "rebalances": 71,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.1331376300855236,
+    "information_ratio": -0.5167787375328066,
+    "placebo": 0.264,
+    "stress_net_active": -0.1331986800688016,
+    "turnover": 1.335170176116785,
+    "rebalances": 46,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.1806763665165587,
+    "information_ratio": -0.5220007329565608,
+    "placebo": 0.662,
+    "stress_net_active": -0.18073682457608486,
+    "turnover": 1.3810625058882224,
+    "rebalances": 24,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.08010552855579106,
+    "information_ratio": -0.9654597473589756,
+    "placebo": 0.098,
+    "stress_net_active": -0.08016723886289892,
+    "turnover": 1.2839747326828694,
+    "rebalances": 22,
+    "median_picks": 34.0,
+    "median_ranked": 168.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "sp_high": {
+   "IS": {
+    "net_active": -0.2743275641848565,
+    "information_ratio": -0.4379925108948598,
+    "placebo": 0.074,
+    "stress_net_active": -0.2747007216693552,
+    "turnover": 2.2637522991491545,
+    "rebalances": 71,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.11041427851233926,
+    "information_ratio": -0.8428230061050698,
+    "placebo": 0.005,
+    "stress_net_active": -0.11091517651451568,
+    "turnover": 2.092490313489643,
+    "rebalances": 46,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.1374217123152621,
+    "information_ratio": -0.8342174724073544,
+    "placebo": 0.06,
+    "stress_net_active": -0.1378629850527322,
+    "turnover": 1.9866638311153293,
+    "rebalances": 24,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.08028598569218973,
+    "information_ratio": -1.0309491405211815,
+    "placebo": 0.006,
+    "stress_net_active": -0.08085339898966083,
+    "turnover": 2.2105456338272105,
+    "rebalances": 22,
+    "median_picks": 69.0,
+    "median_ranked": 346.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  }
+ },
+ "verdicts": {
+  "smallcap_lowaccruals": [
+   "OOS placebo 0.791 < 0.95"
+  ],
+  "smallcap_rnd": [
+   "OOS net active -6.43% < 2.0%",
+   "OOS IR -0.24 < 0.3",
+   "OOS placebo 0.746 < 0.95",
+   "OOS 10 bps -6.44% not above 0"
+  ],
+  "smallcap_salesprice": []
+ }
+}
