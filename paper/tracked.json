@@ -1,5 +1,5 @@
 {
- "note": "Rules tracked by core.paper_runner. start = first decision of the forward record. allocation_pct is the share of account equity this rule's own sleeve may hold when orders are placed; 0 means shadow only. Every rule here has a sleeve (see core/sleeves.py): orders are tagged with the rule id, and the shadow record stays the official scoreboard. Month-end stock rules and signal rules place orders when `python -m core.paper_runner run --execute` runs after the close (DAY market orders, filled at the next open); snapshot rules place market-on-close orders from `python -m core.snapshot_orders --execute` at 15:45. Entries with kind \"signal\" are single-symbol rules run by core.signal_tracker; kind \"snapshot\" are 15:45-signal stock rules run by core.snapshot_tracker. Sleeve sizes (2026-10-15): the decile rule stays at 50 as decided on 2026-10-14; the others are sized so the total (135) stays under max_gross_exposure_pct; the XLK sleeve is 5 because max_position_pct is 5.",
+ "note": "Rules tracked by core.paper_runner. start = first decision of the forward record. allocation_pct is the share of account equity this rule's own sleeve may hold when orders are placed; 0 means shadow only. Every rule here has a sleeve (see core/sleeves.py): orders are tagged with the rule id, and the shadow record stays the official scoreboard. Month-end stock rules and signal rules place orders when `python -m core.paper_runner run --execute` runs after the close (DAY market orders, filled at the next open); snapshot rules place market-on-close orders from `python -m core.snapshot_orders --execute` at 15:45. Entries with kind \"signal\" are single-symbol rules run by core.signal_tracker; kind \"snapshot\" are 15:45-signal stock rules run by core.snapshot_tracker. Sleeve sizes (2026-10-15): the decile rule stays at 50 as decided on 2026-10-14; the others are sized so the total (135) stays under max_gross_exposure_pct; the XLK sleeve is 5 because max_position_pct is 5. Sales/price sleeve 10 (added 2026-11-01 with Garret's OK, first decision 2026-11-30) brings the total to 145; the debt-issuance record is shadow only.",
  "tracked": [
   {
    "rule": "stock_rev5_h3_band40_vixscale",
@@ -59,6 +59,23 @@
    "kind": "accruals",
    "strategy_rule": "rnd_quintile",
    "start": "2026-10-30",
+   "initial_cash": 100000,
+   "allocation_pct": 0
+  },
+  {
+   "rule": "stock_salesprice_quintile",
+   "kind": "accruals",
+   "strategy_rule": "salesprice_quintile",
+   "start": "2026-11-01",
+   "initial_cash": 100000,
+   "allocation_pct": 10,
+   "pick_note": "equal-weight top 20% of members by revenue over market value"
+  },
+  {
+   "rule": "stock_debtissuance_quintile",
+   "kind": "accruals",
+   "strategy_rule": "debtissuance_quintile",
+   "start": "2026-11-01",
    "initial_cash": 100000,
    "allocation_pct": 0
   }
