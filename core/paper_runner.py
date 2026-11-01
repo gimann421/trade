@@ -64,8 +64,8 @@ def decision_dates(start, end) -> list[pd.Timestamp]:
 
 # --- data ---------------------------------------------------------------------------------
 
-def fetch_closes(symbols, start, end, client=None, batch: int = 100) -> pd.DataFrame:
-    """Adjusted daily closes for the symbols, one column each (symbols without bars are absent)."""
+def fetch_closes(symbols, start, end, client=None, batch: int = 100, raw: bool = False) -> pd.DataFrame:
+    """Adjusted daily closes for the symbols, one column each (symbols without bars are absent); raw=True gives the unadjusted closes."""
     from alpaca.data.enums import Adjustment
     from alpaca.data.historical import StockHistoricalDataClient
     from alpaca.data.requests import StockBarsRequest
@@ -83,7 +83,7 @@ def fetch_closes(symbols, start, end, client=None, batch: int = 100) -> pd.DataF
         request = StockBarsRequest(symbol_or_symbols=symbols[i:i + batch], timeframe=TimeFrame.Day,
                                    start=pd.Timestamp(start).to_pydatetime().replace(tzinfo=timezone.utc),
                                    end=request_end.to_pydatetime().replace(tzinfo=timezone.utc),
-                                   adjustment=Adjustment.ALL)
+                                   adjustment=Adjustment.RAW if raw else Adjustment.ALL)
         df = client.get_stock_bars(request).df
         if not df.empty:
             frames.append(df["close"].unstack("symbol") if isinstance(df.index, pd.MultiIndex) else df[["close"]])
@@ -309,12 +309,15 @@ def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], a
     return {"orders": results, "unpriced": unpriced, "sleeve_symbols": len(shares), "equity": state.equity}
 
 
+PICK_NOTE = "equal-weight picks of the rule's residual momentum ranking"
+
+
 def execute_orders(cfg: dict, status: dict, closes_by_symbol: dict[str, float], hypothesis_id: int | None) -> dict:
     """Month-end stock rules: the planned orders as DAY market orders placed after the close."""
     return place_sleeve_orders(
         cfg["rule"], status["holdings"], closes_by_symbol, cfg["allocation_pct"], status["last_decision"],
         lambda o: (f"{cfg['rule']} month-end rebalance decided {status['last_decision']}: "
-                   f"{'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']} (equal-weight picks of the rule's residual momentum ranking)"),
+                   f"{'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']} ({cfg.get('pick_note', PICK_NOTE)})"),
         hypothesis_id)
 
 
@@ -434,8 +437,15 @@ def main(argv=None) -> int:
                 failures += 1
                 continue
             print(cfg["rule"], json.dumps({k: status.get(k) for k in ("state", "asof", "last_decision", "nav", "benchmark_nav", "excess_return")}))
-            if args.execute and cfg.get("allocation_pct", 0) > 0:
-                print(f"  {cfg['rule']}: shadow only, no order placement is implemented for this rule", file=sys.stderr)
+            if args.execute and "stock" in kinds and status.get("state") == "running" and cfg.get("allocation_pct", 0) > 0 \
+                    and status.get("last_decision") == str(session.date()):
+                prices = fetch_closes(status["holdings"], session - pd.Timedelta(days=10), session, raw=True).iloc[-1].to_dict()
+                result = execute_orders(cfg, status, prices, None)
+                for order in result["orders"]:
+                    print("  order", json.dumps(order))
+                for key in ("skipped", "unpriced"):
+                    if result.get(key):
+                        print(f"  {key}: {result[key]}", file=sys.stderr)
             continue
         try:
             status = run_rule(cfg, session, membership, fetch_closes, PAPER_DIR / cfg["rule"])
