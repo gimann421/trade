@@ -158,7 +158,7 @@ def test_execute_waits_for_the_bar_writes_the_decision_and_sends_day_market_orde
     assert sorted(o.symbol for o, _ in env.account.sent) == ["T18", "T19"]
     for order, kw in env.account.sent:
         assert str(kw["time_in_force"].value) == "day" and kw["client_order_id"].startswith("stock_rev5_h2_band__2026-10-21__")
-        assert order.qty == int(12_500 // 82) or order.qty == int(12_500 // 81)      # 25% of equity over two names
+        assert order.qty == int(5_000 // order.price)      # 25% over two names is $12,500 each, cut to the 5% position cap
     # running it again changes nothing: stored decision, sleeve already at target
     sent = len(env.account.sent)
     assert go(env, execute=True) == 0 and len(env.account.sent) == sent
@@ -280,6 +280,20 @@ def test_opposite_open_order_of_another_rule_defers_without_calling_the_broker(m
 
 
 def test_catch_up_finishes_a_partly_sent_decision(env):
-    sentinel = FakeAccount.order("stock_rev5_h2_band__2026-10-21__T19__buy", "T19", "buy", 154)
+    sentinel = FakeAccount.order("stock_rev5_h2_band__2026-10-21__T19__buy", "T19", "buy", 61)
     env.account.orders.append(sentinel)
     assert catch(env) == 0 and [o.symbol for o, _ in env.account.sent] == ["T18"]
+
+
+def test_planned_orders_fit_the_order_and_position_caps(monkeypatch):
+    # 2026-11-02: 5% of $99,963 is $4,998, but the XLK order was sized to 29 shares = $5,052 and the risk check blocked it
+    account = FakeAccount(monkeypatch, equity=99_963.0)
+    out = pr.place_sleeve_orders("xlk", ["XLK"], {"XLK": 174.22}, 5.0, "2026-11-02", lambda o: "t", client=account.client)
+    assert [(o["qty"], o["result"]) for o in out["orders"]] == [(28, "submitted")]
+    # another rule already holds $2,000 of the name: this rule may add only what fits under the 5% cap
+    account = FakeAccount(monkeypatch, equity=100_000.0)
+    account.client.get_all_positions = lambda: [SimpleNamespace(symbol="AAA", market_value="2000", qty="20")]
+    out = pr.place_sleeve_orders("r", ["AAA"], {"AAA": 100.0}, 10.0, "d", lambda o: "t", client=account.client)
+    assert [o["qty"] for o in out["orders"]] == [30]               # cap 5000 - 2000 = 3000
+    # one order never exceeds the per-order cap
+    assert [o["qty"] for o in pr.plan_orders(["B"], {"B": 10.0}, {}, set(), 100_000, max_order=5000)] == [500]
