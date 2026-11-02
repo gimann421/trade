@@ -1,9 +1,9 @@
 {
- "asof": "2026-10-30",
- "benchmark_nav": 99950.0,
+ "asof": "2026-11-02",
+ "benchmark_nav": 100700.94662664186,
  "decisions": 1,
  "decisions_changed_since_recorded": [],
- "excess_return": 0.0,
+ "excess_return": -0.022304926977200545,
  "first_decision": "2026-10-30",
  "holdings": [
   "AES",
@@ -64,8 +64,8 @@
   "UAL",
   "TECH",
   "VTRS",
-  "AAPL",
   "NOW",
+  "AAPL",
   "DOC",
   "SMCI",
   "JNJ",
@@ -74,8 +74,8 @@
   "HSIC",
   "BDX",
   "WDAY",
-  "FCX",
   "NDSN",
+  "FCX",
   "AIZ",
   "STT",
   "VRTX",
@@ -86,8 +86,8 @@
   "CRM",
   "SWK",
   "KO",
-  "NVDA",
   "MTD",
+  "NVDA",
   "PM",
   "MSFT",
   "BIIB",
@@ -104,15 +104,15 @@
   "GPC",
   "PFG",
   "EMR",
-  "WTW",
-  "XOM"
+  "XOM",
+  "WTW"
  ],
  "last_decision": "2026-10-30",
  "members_without_bars": [],
  "membership_last_row": "2026-08-18",
- "nav": 99950.0,
+ "nav": 98454.81936559964,
  "rule": "stock_resmom6_1_quintile",
  "start": "2026-10-30",
  "state": "running",
- "total_return": -0.0004999999999999449
+ "total_return": -0.01545180634400356
 }

@@ -1,7 +1,7 @@
 {
- "asof": "2026-10-30",
- "benchmark_nav": 101667.15283706006,
- "decisions": 6,
+ "asof": "2026-11-02",
+ "benchmark_nav": 102427.96801192847,
+ "decisions": 7,
  "decisions_changed_since_recorded": [
   {
    "decision_date": "2026-10-21",
@@ -11,56 +11,65 @@
    "stored_only": [
     "HWM"
    ]
+  },
+  {
+   "decision_date": "2026-10-27",
+   "recomputed_only": [
+    "WELL"
+   ],
+   "stored_only": [
+    "LVS"
+   ]
   }
  ],
- "excess_return": -0.033679983503083655,
+ "excess_return": -0.03316996600456934,
  "first_decision": "2026-10-15",
  "holdings": [
   "ADBE",
   "ADM",
   "ADP",
+  "AKAM",
+  "AMD",
+  "APP",
   "BA",
   "BAX",
   "BG",
-  "BKNG",
-  "BRO",
   "CAT",
-  "CBRE",
   "CHRW",
+  "CIEN",
+  "COHR",
   "COIN",
   "CRM",
   "CSGP",
   "CTSH",
-  "CTVA",
-  "DASH",
-  "DECK",
-  "DG",
-  "EXPE",
+  "DDOG",
+  "DELL",
   "FFIV",
-  "FICO",
   "FTNT",
-  "GDDY",
-  "GL",
   "GOOG",
   "GOOGL",
-  "GPC",
   "HOOD",
-  "HSY",
+  "HPE",
+  "HPQ",
   "HUBB",
+  "INTC",
   "LII",
-  "MCK",
+  "LITE",
   "META",
   "MPC",
+  "MRVL",
   "NFLX",
   "NOW",
+  "NTAP",
   "ODFL",
+  "PANW",
   "PCAR",
+  "PLTR",
   "PSX",
   "RDDT",
   "SCHW",
-  "T",
+  "SNDK",
   "TER",
-  "TMUS",
   "TTWO",
   "UHS",
   "VLO",
@@ -68,11 +77,11 @@
   "XYL"
  ],
  "kind": "snapshot",
- "last_decision": "2026-10-29",
- "nav": 98243.00480670239,
+ "last_decision": "2026-11-02",
+ "nav": 99030.43579505569,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.017569951932976058
+ "total_return": -0.009695642049443176
 }

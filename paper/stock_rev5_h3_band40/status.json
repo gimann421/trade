@@ -1,6 +1,6 @@
 {
- "asof": "2026-10-30",
- "benchmark_nav": 102017.17067948765,
+ "asof": "2026-11-02",
+ "benchmark_nav": 102780.62064230595,
  "decisions": 4,
  "decisions_changed_since_recorded": [
   {
@@ -13,7 +13,7 @@
    ]
   }
  ],
- "excess_return": 0.016273805069714875,
+ "excess_return": 0.01884379534172842,
  "first_decision": "2026-10-16",
  "holdings": [
   "ADBE",
@@ -69,10 +69,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-10-29",
- "nav": 103677.37822888946,
+ "nav": 104717.39762278539,
  "rule": "stock_rev5_h3_band40",
  "start": "2026-10-16",
  "state": "running",
  "strategy_rule": "rev5_h3_band40_s",
- "total_return": 0.036773782288894497
+ "total_return": 0.0471739762278538
 }
