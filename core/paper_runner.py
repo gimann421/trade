@@ -203,13 +203,17 @@ def _read_json(out_dir, name):
 # --- orders (only used with --execute) ----------------------------------------------------
 
 def plan_orders(picks: list[str], prices: dict[str, float], positions: dict[str, float], managed: set[str],
-                budget: float) -> list[dict]:
+                budget: float, position_cap: dict[str, float] | None = None, max_order: float | None = None) -> list[dict]:
     """Whole-share orders that move the managed positions to an equal-weight book of `budget` dollars.
     Each pick is sized to the nearest whole share, but never below one share, so names priced above the
     per-name budget are still held (slightly overweight) instead of silently dropping out.
 
     positions: symbol -> shares currently held in the account. Only symbols in `managed` (names the
     rule has held or holds) are touched; anything else in the account is left alone. Sells first.
+
+    position_cap (symbol -> dollars) keeps the rule's holding in a name inside the risk limit's per-position cap
+    (the caller subtracts what other rules hold in the same name); max_order is the per-order dollar cap. Both
+    round the share count down, so a planned order always passes the risk check it will meet.
     """
     each = budget / len(picks) if picks else 0.0
     orders = []
@@ -218,7 +222,11 @@ def plan_orders(picks: list[str], prices: dict[str, float], positions: dict[str,
         if not price or price <= 0:
             continue
         target = max(1, math.floor(each / price + 0.5)) if symbol in picks else 0
+        if position_cap is not None and symbol in position_cap:
+            target = min(target, max(0, math.floor(position_cap[symbol] / price)))
         delta = target - int(round(positions.get(symbol, 0.0)))
+        if max_order is not None and delta > 0:
+            delta = min(delta, math.floor(max_order / price))
         if delta:
             orders.append({"symbol": symbol, "side": "buy" if delta > 0 else "sell", "qty": abs(delta), "price": float(price)})
     return sorted(orders, key=lambda o: (o["side"] != "sell", o["symbol"]))
@@ -279,7 +287,13 @@ def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], a
         other_open = {}                       # the broker's own wash check still applies; it is handled per order below
     state = account_state(client)
     unpriced = sorted(s for s in set(picks) | set(shares) if not prices.get(s))
-    orders = plan_orders(picks, prices, shares, set(shares), state.equity * allocation_pct / 100.0)
+    from core.risk import load_risk_limits
+    limits = load_risk_limits()
+    position_cap = {s: max(0.0, state.equity * limits.max_position_pct / 100
+                           - max(0.0, state.positions.get(s, 0.0) - shares.get(s, 0.0) * (prices.get(s) or 0.0)))
+                    for s in set(picks) | set(shares)}
+    orders = plan_orders(picks, prices, shares, set(shares), state.equity * allocation_pct / 100.0,
+                         position_cap=position_cap, max_order=limits.max_order_notional)
     results = []
     for o in orders:
         tif = time_in_force() if callable(time_in_force) else time_in_force
