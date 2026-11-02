@@ -18,10 +18,10 @@ Round 25-62 setup exactly: current S&P 500 members, monthly decisions from 2017-
 Net active >= 2.0%/yr, IR >= 0.3, placebo >= 0.95 (1000 draws, seed 0), net active > 0 at 10 bps. Reported, not judged: mirrors; correlation with the three passes (low accruals, R&D, sales/price); tech/health share. Correlation above 0.7 with an existing pass is the same bet.
 
 ## Multiple testing
-Four rules, no variants. Total tested after this round: 281 (if round 63 reports 275-277). The bar is not loosened; with this many tests a pass is read as a lead needing the forward record, as for the earlier passes.
+Four rules, no variants. Total tested after this round: 281 . The bar is not loosened; with this many tests a pass is read as a lead needing the forward record, as for the earlier passes.
 
 ## Results
-**Verdict: all four rejected (hypotheses 278-281; ledger rows 275-278 here because round 63 was not yet merged, renumber if needed).** Tests after this round: 281 if round 63 tests 275-277. Run 2026-11-02, `backtests/round64_tests/`. Reference rules reproduce roughly (low accruals +3.0/+3.4, R&D +4.6/+14.6, sales/price +4.6/+3.8 against +2.8/+3.2, +5.5/+15.8, +4.5/+3.3 before; small drift from refetched data).
+**Verdict: all four rejected (hypotheses 278-281, ledger ids 278-281).** Tests after this round: 281. Run 2026-11-02, `backtests/round64_tests/`. Reference rules reproduce roughly (low accruals +3.0/+3.4, R&D +4.6/+14.6, sales/price +4.6/+3.8 against +2.8/+3.2, +5.5/+15.8, +4.5/+3.3 before; small drift from refetched data).
 
 | Rule | IS | OOS | Verdict |
 |---|---|---|---|
