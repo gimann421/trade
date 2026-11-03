@@ -1,9 +1,19 @@
 {
- "asof": "2026-11-02",
- "benchmark_nav": 100700.94662664186,
+ "asof": "2026-11-03",
+ "benchmark_nav": 100439.57272735136,
  "decisions": 1,
- "decisions_changed_since_recorded": [],
- "excess_return": -0.03181533592186614,
+ "decisions_changed_since_recorded": [
+  {
+   "decision_date": "2026-10-30",
+   "recomputed_only": [
+    "MET"
+   ],
+   "stored_only": [
+    "SJM"
+   ]
+  }
+ ],
+ "excess_return": -0.021252912656292255,
  "first_decision": "2026-10-30",
  "holdings": [
   "AES",
@@ -55,14 +65,14 @@
   "LH",
   "INTC",
   "PRU",
-  "SJM"
+  "MET"
  ],
  "last_decision": "2026-10-30",
  "members_without_bars": [],
  "membership_last_row": "2026-08-18",
- "nav": 97497.11218206534,
+ "nav": 98304.93926094165,
  "rule": "stock_resmom6_1_decile",
  "start": "2026-10-30",
  "state": "running",
- "total_return": -0.025028878179346625
+ "total_return": -0.016950607390583516
 }

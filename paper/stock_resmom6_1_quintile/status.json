@@ -1,9 +1,9 @@
 {
- "asof": "2026-11-02",
- "benchmark_nav": 100700.94662664186,
+ "asof": "2026-11-03",
+ "benchmark_nav": 100439.57272735136,
  "decisions": 1,
  "decisions_changed_since_recorded": [],
- "excess_return": -0.022304926977200545,
+ "excess_return": -0.016062116808940874,
  "first_decision": "2026-10-30",
  "holdings": [
   "AES",
@@ -55,8 +55,8 @@
   "LH",
   "INTC",
   "PRU",
-  "SJM",
   "MET",
+  "SJM",
   "TGT",
   "ADP",
   "TER",
@@ -110,9 +110,9 @@
  "last_decision": "2026-10-30",
  "members_without_bars": [],
  "membership_last_row": "2026-08-18",
- "nav": 98454.81936559964,
+ "nav": 98826.30057796453,
  "rule": "stock_resmom6_1_quintile",
  "start": "2026-10-30",
  "state": "running",
- "total_return": -0.01545180634400356
+ "total_return": -0.01173699422035468
 }
