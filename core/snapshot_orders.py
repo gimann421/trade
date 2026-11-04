@@ -39,6 +39,12 @@ MIN_COVERAGE = 0.9                  # share of members that must have a 15:30 ba
 LOOKBACK_DAYS = 20
 
 
+def log(message: str, now_fn=None) -> None:
+    """Progress line with the New York time, flushed at once: the run sleeps for minutes and must never be silent."""
+    stamp = str((now_fn or ny_now)().time())[:8]
+    print(f"[{stamp} NY] {message}", file=sys.stderr, flush=True)
+
+
 def ny_now() -> pd.Timestamp:
     return pd.Timestamp(datetime.now(timezone.utc)).tz_convert(NY)
 
@@ -93,6 +99,7 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
         print("early close: no orders", file=sys.stderr)
         return 2
 
+    log(f"decision day for {', '.join(c['rule'] for c, *_ in due)}; loading members and daily bars", now_fn)
     # everything that does not depend on the 15:45 price is loaded first
     if membership is None:
         fetch_membership()
@@ -114,6 +121,7 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
 
     wait = (pd.Timestamp.combine(today.date(), SNAPSHOT_READY).tz_localize(NY) - now_fn()).total_seconds()
     if wait > 0:
+        log(f"loaded {len(members)} members; waiting {wait:.0f}s for the 15:30 bar (until {SNAPSHOT_READY})", now_fn)
         sleep_fn(wait)
 
     def late() -> bool:
@@ -125,10 +133,12 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
         print("too late to trade before the close; the next catch-up run places these", file=sys.stderr)
         return 2
     snap = snapshot_fn(members, today)
+    log(f"15:30 bars for {len(snap)} of {len(members)} members", now_fn)
     while len(snap) < MIN_COVERAGE * len(members) and now_fn().time() < RETRY_UNTIL:
         # 2026-10-16: the feed returned no 15:30 bars at 15:45:24 but had them a minute later
         sleep_fn(RETRY_EVERY)
         snap = snapshot_fn(members, today)
+        log(f"retry: 15:30 bars for {len(snap)} of {len(members)} members", now_fn)
     if len(snap) < MIN_COVERAGE * len(members):
         for cfg, *_ in due:
             journal.record("skip", f"only {len(snap)} of {len(members)} members had a 15:30 bar on {today.date()} (asked until {now_fn().time()}); no orders", cfg["rule"])
@@ -161,7 +171,10 @@ def run(execute: bool, only: str | None = None, now_fn=ny_now, sleep_fn=clock.sl
         prices = {**closes.ffill().iloc[-1].dropna().to_dict(), **snap.to_dict()}
         wait = (pd.Timestamp.combine(today.date(), PLACE_AT).tz_localize(NY) - now_fn()).total_seconds()
         if wait > 0:
+            log(f"{cfg['rule']}: decision written ({len(picks)} picks); waiting {wait:.0f}s to place the orders at {PLACE_AT}. "
+                f"This silence is normal; do not stop the run before {MARKET_BY}", now_fn)
             sleep_fn(wait)
+        log(f"{cfg['rule']}: placing orders", now_fn)
         result = place_sleeve_orders(
             cfg["rule"], picks, prices, cfg["allocation_pct"], str(today.date()),
             lambda o: f"{cfg['rule']} decision {today.date()} (15:45 price): {'hold' if o['side'] == 'buy' else 'exit'} {o['symbol']}",
