@@ -22,3 +22,7 @@
 - SQLite triggers block UPDATE/DELETE, but anyone with file access can drop them; the hash chain detects this on verify, and the chain head should be anchored externally (M7).
 - No risk gate, order lifecycle, accounting or adapters yet; the order state machine is defined as data only.
 - Audit chain verify is O(n) per call; add checkpoints once volume warrants.
+
+## Owner authorization log
+- 2026-11-05, Garret: paper trading is fine. Recorded in `config/permissions.yaml` as `paper_broker_order`, pinned to `https://paper-api.alpaca.markets` (`nexus/paper_guard.py`). Live trading, broker_write and money movement stay forbidden. The order adapter itself arrives in Milestone 4; Milestone 2 (data foundation) is next.
+- 2026-11-05, Garret: NEXUS stays in the trade repo.

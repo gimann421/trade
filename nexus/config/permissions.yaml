@@ -11,3 +11,10 @@ allowed_capabilities:
   - simulate_order
   - record_hypothetical_trade
   - read_only_portfolio
+  - paper_broker_order
+# Explicit owner authorization (not a loosening of the live ban: live_trading/broker_write stay false).
+# Paper orders only, Alpaca paper endpoint only. Keys come from the environment, never from here.
+paper_broker_authorization:
+  granted_by: Garret
+  granted_at: "2026-11-05T02:05:05Z"
+  endpoint: https://paper-api.alpaca.markets
