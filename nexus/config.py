@@ -10,6 +10,7 @@ import yaml
 from . import permissions
 from .domain.enums import CapabilityTier
 from .errors import ConfigError
+from .paper_guard import PAPER_ENDPOINT
 from .secrets import scan_text_for_secrets
 
 CONFIG_DIR = Path(__file__).parent / "config"
@@ -75,6 +76,10 @@ def load_permissions(config_dir: Path = CONFIG_DIR) -> Permissions:
         if cap in permissions.LAUNCH_FORBIDDEN:
             raise ConfigError(f"permissions.yaml: capability '{name}' is forbidden at launch")
         caps.add(cap)
+    if permissions.Capability.PAPER_BROKER_ORDER in caps:
+        auth = raw.get("paper_broker_authorization") or {}
+        if not (auth.get("granted_by") and auth.get("granted_at") and auth.get("endpoint") == PAPER_ENDPOINT):
+            raise ConfigError("paper_broker_order requires a recorded owner authorization pinned to the paper endpoint")
     return Permissions(stage=raw["stage"], max_tier=tier, allowed=frozenset(caps))
 
 

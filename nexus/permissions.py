@@ -30,6 +30,9 @@ class Capability(str, Enum):
     EDIT_RISK_LIMITS = "edit_risk_limits"
     EDIT_PROMOTION_CRITERIA = "edit_promotion_criteria"
     LABEL_SIMULATED_AS_ACTUAL_FILL = "label_simulated_as_actual_fill"
+    # Owner-authorized (Garret, 2026-11-05): paper-broker orders ONLY, pinned to the Alpaca paper endpoint
+    # (see nexus/paper_guard.py). Denied unless permissions.yaml lists it AND records the authorization.
+    PAPER_BROKER_ORDER = "paper_broker_order"
     # Allowed at launch
     RESEARCH = "research"
     BACKTEST = "backtest"
