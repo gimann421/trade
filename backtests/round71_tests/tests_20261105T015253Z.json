@@ -1,0 +1,1327 @@
+{
+ "git_commit": "201f79c-dirty",
+ "run_at": "20261105T015253Z",
+ "coverage": [
+  {
+   "date": "2017-01-31",
+   "priced": 501,
+   "covered": 51,
+   "pipeline_scored": 10,
+   "no_recall": 41,
+   "recall": 10
+  },
+  {
+   "date": "2017-02-28",
+   "priced": 501,
+   "covered": 51,
+   "pipeline_scored": 10,
+   "no_recall": 41,
+   "recall": 10
+  },
+  {
+   "date": "2017-03-31",
+   "priced": 501,
+   "covered": 51,
+   "pipeline_scored": 10,
+   "no_recall": 40,
+   "recall": 11
+  },
+  {
+   "date": "2017-04-28",
+   "priced": 501,
+   "covered": 51,
+   "pipeline_scored": 10,
+   "no_recall": 39,
+   "recall": 12
+  },
+  {
+   "date": "2017-05-31",
+   "priced": 502,
+   "covered": 51,
+   "pipeline_scored": 10,
+   "no_recall": 39,
+   "recall": 12
+  },
+  {
+   "date": "2017-06-30",
+   "priced": 503,
+   "covered": 52,
+   "pipeline_scored": 10,
+   "no_recall": 40,
+   "recall": 12
+  },
+  {
+   "date": "2017-07-31",
+   "priced": 504,
+   "covered": 53,
+   "pipeline_scored": 11,
+   "no_recall": 39,
+   "recall": 14
+  },
+  {
+   "date": "2017-08-31",
+   "priced": 504,
+   "covered": 53,
+   "pipeline_scored": 11,
+   "no_recall": 39,
+   "recall": 14
+  },
+  {
+   "date": "2017-09-29",
+   "priced": 504,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2017-10-31",
+   "priced": 504,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2017-11-30",
+   "priced": 505,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2017-12-29",
+   "priced": 504,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-01-31",
+   "priced": 505,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-02-28",
+   "priced": 505,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-03-29",
+   "priced": 505,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-04-30",
+   "priced": 505,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-05-31",
+   "priced": 506,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-06-29",
+   "priced": 506,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-07-31",
+   "priced": 506,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 37,
+   "recall": 14
+  },
+  {
+   "date": "2018-08-31",
+   "priced": 506,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 38,
+   "recall": 13
+  },
+  {
+   "date": "2018-09-28",
+   "priced": 505,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 38,
+   "recall": 13
+  },
+  {
+   "date": "2018-10-31",
+   "priced": 504,
+   "covered": 51,
+   "pipeline_scored": 11,
+   "no_recall": 38,
+   "recall": 13
+  },
+  {
+   "date": "2018-11-30",
+   "priced": 503,
+   "covered": 53,
+   "pipeline_scored": 11,
+   "no_recall": 40,
+   "recall": 13
+  },
+  {
+   "date": "2018-12-31",
+   "priced": 505,
+   "covered": 53,
+   "pipeline_scored": 11,
+   "no_recall": 40,
+   "recall": 13
+  },
+  {
+   "date": "2019-01-31",
+   "priced": 505,
+   "covered": 53,
+   "pipeline_scored": 11,
+   "no_recall": 40,
+   "recall": 13
+  },
+  {
+   "date": "2019-02-28",
+   "priced": 505,
+   "covered": 53,
+   "pipeline_scored": 11,
+   "no_recall": 40,
+   "recall": 13
+  },
+  {
+   "date": "2019-03-29",
+   "priced": 505,
+   "covered": 53,
+   "pipeline_scored": 11,
+   "no_recall": 41,
+   "recall": 12
+  },
+  {
+   "date": "2019-04-30",
+   "priced": 505,
+   "covered": 54,
+   "pipeline_scored": 11,
+   "no_recall": 43,
+   "recall": 11
+  },
+  {
+   "date": "2019-05-31",
+   "priced": 505,
+   "covered": 54,
+   "pipeline_scored": 11,
+   "no_recall": 43,
+   "recall": 11
+  },
+  {
+   "date": "2019-06-28",
+   "priced": 505,
+   "covered": 56,
+   "pipeline_scored": 11,
+   "no_recall": 45,
+   "recall": 11
+  },
+  {
+   "date": "2019-07-31",
+   "priced": 505,
+   "covered": 56,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 10
+  },
+  {
+   "date": "2019-08-30",
+   "priced": 505,
+   "covered": 56,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 10
+  },
+  {
+   "date": "2019-09-30",
+   "priced": 505,
+   "covered": 56,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 10
+  },
+  {
+   "date": "2019-10-31",
+   "priced": 505,
+   "covered": 56,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 10
+  },
+  {
+   "date": "2019-11-29",
+   "priced": 505,
+   "covered": 56,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 10
+  },
+  {
+   "date": "2019-12-31",
+   "priced": 505,
+   "covered": 57,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 11
+  },
+  {
+   "date": "2020-01-31",
+   "priced": 505,
+   "covered": 57,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 11
+  },
+  {
+   "date": "2020-02-28",
+   "priced": 505,
+   "covered": 57,
+   "pipeline_scored": 11,
+   "no_recall": 46,
+   "recall": 11
+  },
+  {
+   "date": "2020-03-31",
+   "priced": 505,
+   "covered": 58,
+   "pipeline_scored": 11,
+   "no_recall": 47,
+   "recall": 11
+  },
+  {
+   "date": "2020-04-30",
+   "priced": 505,
+   "covered": 58,
+   "pipeline_scored": 11,
+   "no_recall": 47,
+   "recall": 11
+  },
+  {
+   "date": "2020-05-29",
+   "priced": 505,
+   "covered": 60,
+   "pipeline_scored": 12,
+   "no_recall": 48,
+   "recall": 12
+  },
+  {
+   "date": "2020-06-30",
+   "priced": 505,
+   "covered": 61,
+   "pipeline_scored": 12,
+   "no_recall": 49,
+   "recall": 12
+  },
+  {
+   "date": "2020-07-31",
+   "priced": 505,
+   "covered": 61,
+   "pipeline_scored": 12,
+   "no_recall": 49,
+   "recall": 12
+  },
+  {
+   "date": "2020-08-31",
+   "priced": 505,
+   "covered": 61,
+   "pipeline_scored": 12,
+   "no_recall": 49,
+   "recall": 12
+  },
+  {
+   "date": "2020-09-30",
+   "priced": 505,
+   "covered": 62,
+   "pipeline_scored": 12,
+   "no_recall": 50,
+   "recall": 12
+  },
+  {
+   "date": "2020-10-30",
+   "priced": 505,
+   "covered": 62,
+   "pipeline_scored": 12,
+   "no_recall": 50,
+   "recall": 12
+  },
+  {
+   "date": "2020-11-30",
+   "priced": 505,
+   "covered": 63,
+   "pipeline_scored": 13,
+   "no_recall": 51,
+   "recall": 12
+  },
+  {
+   "date": "2020-12-31",
+   "priced": 505,
+   "covered": 63,
+   "pipeline_scored": 13,
+   "no_recall": 51,
+   "recall": 12
+  },
+  {
+   "date": "2021-01-29",
+   "priced": 505,
+   "covered": 64,
+   "pipeline_scored": 13,
+   "no_recall": 52,
+   "recall": 12
+  },
+  {
+   "date": "2021-02-26",
+   "priced": 505,
+   "covered": 64,
+   "pipeline_scored": 13,
+   "no_recall": 52,
+   "recall": 12
+  },
+  {
+   "date": "2021-03-31",
+   "priced": 505,
+   "covered": 64,
+   "pipeline_scored": 12,
+   "no_recall": 51,
+   "recall": 13
+  },
+  {
+   "date": "2021-04-30",
+   "priced": 505,
+   "covered": 64,
+   "pipeline_scored": 12,
+   "no_recall": 51,
+   "recall": 13
+  },
+  {
+   "date": "2021-05-28",
+   "priced": 505,
+   "covered": 64,
+   "pipeline_scored": 12,
+   "no_recall": 51,
+   "recall": 13
+  },
+  {
+   "date": "2021-06-30",
+   "priced": 505,
+   "covered": 64,
+   "pipeline_scored": 12,
+   "no_recall": 51,
+   "recall": 13
+  },
+  {
+   "date": "2021-07-30",
+   "priced": 505,
+   "covered": 65,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 13
+  },
+  {
+   "date": "2021-08-31",
+   "priced": 505,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2021-09-30",
+   "priced": 505,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2021-10-29",
+   "priced": 505,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2021-11-30",
+   "priced": 505,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2021-12-31",
+   "priced": 505,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2022-01-31",
+   "priced": 505,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 14
+  },
+  {
+   "date": "2022-02-28",
+   "priced": 504,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2022-03-31",
+   "priced": 505,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2022-04-29",
+   "priced": 504,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 54,
+   "recall": 12
+  },
+  {
+   "date": "2022-05-31",
+   "priced": 504,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2022-06-30",
+   "priced": 503,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 13
+  },
+  {
+   "date": "2022-07-29",
+   "priced": 503,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 14
+  },
+  {
+   "date": "2022-08-31",
+   "priced": 503,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 14
+  },
+  {
+   "date": "2022-09-30",
+   "priced": 502,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 14
+  },
+  {
+   "date": "2022-10-31",
+   "priced": 502,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 14
+  },
+  {
+   "date": "2022-11-30",
+   "priced": 503,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 14
+  },
+  {
+   "date": "2022-12-30",
+   "priced": 503,
+   "covered": 66,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 14
+  },
+  {
+   "date": "2023-01-31",
+   "priced": 503,
+   "covered": 67,
+   "pipeline_scored": 12,
+   "no_recall": 53,
+   "recall": 14
+  },
+  {
+   "date": "2023-02-28",
+   "priced": 503,
+   "covered": 67,
+   "pipeline_scored": 12,
+   "no_recall": 52,
+   "recall": 15
+  },
+  {
+   "date": "2023-03-31",
+   "priced": 503,
+   "covered": 68,
+   "pipeline_scored": 12,
+   "no_recall": 54,
+   "recall": 14
+  },
+  {
+   "date": "2023-04-28",
+   "priced": 503,
+   "covered": 68,
+   "pipeline_scored": 11,
+   "no_recall": 54,
+   "recall": 14
+  },
+  {
+   "date": "2023-05-31",
+   "priced": 503,
+   "covered": 69,
+   "pipeline_scored": 11,
+   "no_recall": 55,
+   "recall": 14
+  },
+  {
+   "date": "2023-06-30",
+   "priced": 503,
+   "covered": 69,
+   "pipeline_scored": 11,
+   "no_recall": 55,
+   "recall": 14
+  },
+  {
+   "date": "2023-07-31",
+   "priced": 503,
+   "covered": 69,
+   "pipeline_scored": 11,
+   "no_recall": 55,
+   "recall": 14
+  },
+  {
+   "date": "2023-08-31",
+   "priced": 503,
+   "covered": 70,
+   "pipeline_scored": 11,
+   "no_recall": 55,
+   "recall": 15
+  },
+  {
+   "date": "2023-09-29",
+   "priced": 503,
+   "covered": 70,
+   "pipeline_scored": 11,
+   "no_recall": 55,
+   "recall": 15
+  },
+  {
+   "date": "2023-10-31",
+   "priced": 503,
+   "covered": 71,
+   "pipeline_scored": 11,
+   "no_recall": 56,
+   "recall": 15
+  },
+  {
+   "date": "2023-11-30",
+   "priced": 503,
+   "covered": 71,
+   "pipeline_scored": 11,
+   "no_recall": 54,
+   "recall": 17
+  },
+  {
+   "date": "2023-12-29",
+   "priced": 503,
+   "covered": 71,
+   "pipeline_scored": 11,
+   "no_recall": 54,
+   "recall": 17
+  },
+  {
+   "date": "2024-01-31",
+   "priced": 503,
+   "covered": 71,
+   "pipeline_scored": 11,
+   "no_recall": 55,
+   "recall": 16
+  },
+  {
+   "date": "2024-02-29",
+   "priced": 503,
+   "covered": 71,
+   "pipeline_scored": 12,
+   "no_recall": 55,
+   "recall": 16
+  },
+  {
+   "date": "2024-03-28",
+   "priced": 503,
+   "covered": 71,
+   "pipeline_scored": 12,
+   "no_recall": 55,
+   "recall": 16
+  },
+  {
+   "date": "2024-04-30",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 56,
+   "recall": 16
+  },
+  {
+   "date": "2024-05-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 56,
+   "recall": 16
+  },
+  {
+   "date": "2024-06-28",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 56,
+   "recall": 16
+  },
+  {
+   "date": "2024-07-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 56,
+   "recall": 16
+  },
+  {
+   "date": "2024-08-30",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 56,
+   "recall": 16
+  },
+  {
+   "date": "2024-09-30",
+   "priced": 504,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 56,
+   "recall": 16
+  },
+  {
+   "date": "2024-10-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 55,
+   "recall": 17
+  },
+  {
+   "date": "2024-11-29",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 55,
+   "recall": 17
+  },
+  {
+   "date": "2024-12-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 55,
+   "recall": 17
+  },
+  {
+   "date": "2025-01-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 56,
+   "recall": 16
+  },
+  {
+   "date": "2025-02-28",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 12,
+   "no_recall": 55,
+   "recall": 17
+  },
+  {
+   "date": "2025-03-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2025-04-30",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2025-05-30",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2025-06-30",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2025-07-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2025-08-29",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2025-09-30",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2025-10-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 53,
+   "recall": 19
+  },
+  {
+   "date": "2025-11-28",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 53,
+   "recall": 19
+  },
+  {
+   "date": "2025-12-31",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2026-01-30",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2026-02-27",
+   "priced": 503,
+   "covered": 72,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 18
+  },
+  {
+   "date": "2026-03-31",
+   "priced": 503,
+   "covered": 73,
+   "pipeline_scored": 14,
+   "no_recall": 55,
+   "recall": 18
+  },
+  {
+   "date": "2026-04-30",
+   "priced": 503,
+   "covered": 73,
+   "pipeline_scored": 13,
+   "no_recall": 55,
+   "recall": 18
+  },
+  {
+   "date": "2026-05-29",
+   "priced": 503,
+   "covered": 73,
+   "pipeline_scored": 13,
+   "no_recall": 54,
+   "recall": 19
+  },
+  {
+   "date": "2026-06-30",
+   "priced": 503,
+   "covered": 73,
+   "pipeline_scored": 13,
+   "no_recall": 55,
+   "recall": 18
+  },
+  {
+   "date": "2026-07-31",
+   "priced": 503,
+   "covered": 73,
+   "pipeline_scored": 13,
+   "no_recall": 55,
+   "recall": 18
+  },
+  {
+   "date": "2026-08-31",
+   "priced": 503,
+   "covered": 73,
+   "pipeline_scored": 13,
+   "no_recall": 53,
+   "recall": 20
+  },
+  {
+   "date": "2026-09-30",
+   "priced": 503,
+   "covered": 73,
+   "pipeline_scored": 13,
+   "no_recall": 53,
+   "recall": 20
+  }
+ ],
+ "results": {
+  "pl": {
+   "IS": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "pl_low": {
+   "IS": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.0,
+    "information_ratio": NaN,
+    "placebo": 0.0,
+    "stress_net_active": 0.0,
+    "turnover": 0.0,
+    "rebalances": 0,
+    "median_picks": 0.0,
+    "median_ranked": 0.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "nr": {
+   "IS": {
+    "net_active": -0.0005368479257714693,
+    "information_ratio": -0.029172360406133406,
+    "placebo": 0.485,
+    "stress_net_active": -0.000588072800804452,
+    "turnover": 0.7379012131730158,
+    "rebalances": 71,
+    "median_picks": 52.0,
+    "median_ranked": 66.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.003801386153856351,
+    "information_ratio": 0.1522306232661675,
+    "placebo": 0.614,
+    "stress_net_active": 0.0037350183808900653,
+    "turnover": 0.8303340888608984,
+    "rebalances": 46,
+    "median_picks": 52.0,
+    "median_ranked": 66.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": -0.01049079829618954,
+    "information_ratio": -0.5347465910098722,
+    "placebo": 0.177,
+    "stress_net_active": -0.010542309972537389,
+    "turnover": 0.7662240631116732,
+    "rebalances": 24,
+    "median_picks": 52.0,
+    "median_ranked": 66.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.019745111918129776,
+    "information_ratio": 0.6620945912645272,
+    "placebo": 0.874,
+    "stress_net_active": 0.019662171344046908,
+    "turnover": 0.9018523842522563,
+    "rebalances": 22,
+    "median_picks": 52.0,
+    "median_ranked": 66.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "rc": {
+   "IS": {
+    "net_active": -0.0005815700415083621,
+    "information_ratio": -0.008305148772827585,
+    "placebo": 0.465,
+    "stress_net_active": -0.0007152923655384291,
+    "turnover": 0.9028961111671927,
+    "rebalances": 71,
+    "median_picks": 14.0,
+    "median_ranked": 66.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": -0.008910038061897833,
+    "information_ratio": -0.11198231023082622,
+    "placebo": 0.408,
+    "stress_net_active": -0.009080100617866946,
+    "turnover": 1.037723654866557,
+    "rebalances": 46,
+    "median_picks": 14.0,
+    "median_ranked": 66.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.03318207978108179,
+    "information_ratio": 0.47450965228668657,
+    "placebo": 0.802,
+    "stress_net_active": 0.03299386083687594,
+    "turnover": 1.039638598827664,
+    "rebalances": 24,
+    "median_picks": 14.0,
+    "median_ranked": 66.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": -0.055866133966732866,
+    "information_ratio": -0.627120542973367,
+    "placebo": 0.149,
+    "stress_net_active": -0.056015942062935684,
+    "turnover": 1.0355874284921662,
+    "rebalances": 22,
+    "median_picks": 14.0,
+    "median_ranked": 66.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "acc": {
+   "IS": {
+    "net_active": 0.02781384137381784,
+    "information_ratio": 0.5131645344662918,
+    "placebo": 0.991,
+    "stress_net_active": 0.02711590176135332,
+    "turnover": 2.189585714592725,
+    "rebalances": 71,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.03196345119205232,
+    "information_ratio": 0.6042102708626274,
+    "placebo": 0.972,
+    "stress_net_active": 0.0312838101051466,
+    "turnover": 2.1533054404653047,
+    "rebalances": 46,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.03736740917219397,
+    "information_ratio": 0.9096118897036749,
+    "placebo": 0.971,
+    "stress_net_active": 0.03672757026172976,
+    "turnover": 1.9809818977920612,
+    "rebalances": 24,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.025935035845316513,
+    "information_ratio": 0.4078281327258746,
+    "placebo": 0.818,
+    "stress_net_active": 0.02521099321935829,
+    "turnover": 2.3455419258474564,
+    "rebalances": 22,
+    "median_picks": 65.0,
+    "median_ranked": 323.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "rnd": {
+   "IS": {
+    "net_active": 0.05464723855722424,
+    "information_ratio": 0.5245277873210833,
+    "placebo": 0.996,
+    "stress_net_active": 0.05445046922150778,
+    "turnover": 1.0860770989728752,
+    "rebalances": 71,
+    "median_picks": 29.0,
+    "median_ranked": 145.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.15777590261048616,
+    "information_ratio": 1.4310182568278618,
+    "placebo": 1.0,
+    "stress_net_active": 0.15745889177318878,
+    "turnover": 1.4893345570170153,
+    "rebalances": 46,
+    "median_picks": 29.0,
+    "median_ranked": 145.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.1160945053703077,
+    "information_ratio": 1.139313470939255,
+    "placebo": 1.0,
+    "stress_net_active": 0.11582999895544227,
+    "turnover": 1.2582449752942055,
+    "rebalances": 24,
+    "median_picks": 29.0,
+    "median_ranked": 145.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.20427381686508525,
+    "information_ratio": 1.7175726054581504,
+    "placebo": 1.0,
+    "stress_net_active": 0.2038982344276526,
+    "turnover": 1.7471278237389052,
+    "rebalances": 22,
+    "median_picks": 29.0,
+    "median_ranked": 145.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  },
+  "sp": {
+   "IS": {
+    "net_active": 0.04542798608080666,
+    "information_ratio": 0.5949853662152923,
+    "placebo": 0.998,
+    "stress_net_active": 0.044895817343302495,
+    "turnover": 2.0015778780033524,
+    "rebalances": 71,
+    "median_picks": 45.0,
+    "median_ranked": 225.0,
+    "start": "2017-02-01",
+    "end": "2022-12-30"
+   },
+   "OOS": {
+    "net_active": 0.03265147781924752,
+    "information_ratio": 0.5307346204190256,
+    "placebo": 0.967,
+    "stress_net_active": 0.032176268634238975,
+    "turnover": 1.7706075390193958,
+    "rebalances": 46,
+    "median_picks": 45.0,
+    "median_ranked": 225.0,
+    "start": "2023-01-03",
+    "end": "2026-10-19"
+   },
+   "OOS_a": {
+    "net_active": 0.010105317923014482,
+    "information_ratio": 0.1810703076071966,
+    "placebo": 0.711,
+    "stress_net_active": 0.009682178853874927,
+    "turnover": 1.5838755952852794,
+    "rebalances": 24,
+    "median_picks": 45.0,
+    "median_ranked": 225.0,
+    "start": "2023-01-03",
+    "end": "2024-12-31"
+   },
+   "OOS_b": {
+    "net_active": 0.05780297174793413,
+    "information_ratio": 0.8582121634241626,
+    "placebo": 0.976,
+    "stress_net_active": 0.05726967545588953,
+    "turnover": 1.9789173962516764,
+    "rebalances": 22,
+    "median_picks": 45.0,
+    "median_ranked": 225.0,
+    "start": "2025-01-02",
+    "end": "2026-10-19"
+   }
+  }
+ },
+ "corr": {
+  "pl": {
+   "acc": NaN,
+   "rnd": NaN,
+   "sp": NaN
+  },
+  "nr": {
+   "acc": -0.025284748680953515,
+   "rnd": 0.02508116021690642,
+   "sp": 0.19455178811532842
+  }
+ },
+ "verdicts": {
+  "pipelinesoon_quintile": [
+   "IS only 0 rebalances",
+   "IS net active 0.00% < 2.0%",
+   "IS placebo 0.000 < 0.95",
+   "IS 10 bps 0.00% not above 0",
+   "OOS only 0 rebalances",
+   "OOS net active 0.00% < 2.0%",
+   "OOS placebo 0.000 < 0.95",
+   "OOS 10 bps 0.00% not above 0"
+  ],
+  "norecall_basket": [
+   "IS net active -0.05% < 2.0%",
+   "IS IR -0.03 < 0.3",
+   "IS placebo 0.485 < 0.95",
+   "IS 10 bps -0.06% not above 0",
+   "OOS net active 0.38% < 2.0%",
+   "OOS IR 0.15 < 0.3",
+   "OOS placebo 0.614 < 0.95"
+  ]
+ }
+}
