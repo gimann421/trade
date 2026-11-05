@@ -1,0 +1,152 @@
+<title>Trade Control Room</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky tab bar, one tab visible at a time, cards in an auto-fit grid; every chart is inline SVG drawn from one scale */
+:root{--bg:#f3f5f7;--panel:#fff;--ink:#14202b;--mute:#5d6b78;--line:#dde3e8;--accent:#0b6e8a;--good:#12805c;--warn:#b26a00;--bad:#c0392b;--s1:#0b6e8a;--s2:#9aa7b2;--wash:#e8f1f4;
+--sans:"Schibsted Grotesk",system-ui,sans-serif;--mono:"JetBrains Mono",ui-monospace,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e151b;--panel:#16202a;--ink:#e6edf2;--mute:#8d9ba8;--line:#27333e;--accent:#4cb8d6;--good:#3ec796;--warn:#e0a03a;--bad:#ef7766;--s1:#4cb8d6;--s2:#6c7b88;--wash:#1b2a34;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0e151b;--panel:#16202a;--ink:#e6edf2;--mute:#8d9ba8;--line:#27333e;--accent:#4cb8d6;--good:#3ec796;--warn:#e0a03a;--bad:#ef7766;--s1:#4cb8d6;--s2:#6c7b88;--wash:#1b2a34;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:15px/1.45 var(--sans);padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:20}
+.wrap{max-width:1040px;margin:0 auto;padding-block:14px 40px}
+header{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+h1{font-size:22px;margin:0;letter-spacing:-.01em}
+.fresh{font:12px var(--mono);color:var(--mute);display:flex;gap:8px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
+.dot.old{background:var(--warn)}.dot.stale{background:var(--bad)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);display:flex;gap:6px;overflow-x:auto;padding:8px 0;margin-bottom:12px;border-bottom:1px solid var(--line)}
+nav a{flex:none;padding:7px 12px;border-radius:8px;color:var(--mute);text-decoration:none;font-weight:600;font-size:14px}
+nav a[aria-current=page]{background:var(--accent);color:var(--bg)}
+nav a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h2{font-size:16px;margin:22px 0 4px}
+.say{color:var(--mute);margin:0 0 12px;max-width:68ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:12px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.tile,.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0}
+.tile .k{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.tile .v{font:600 22px var(--mono);margin-top:2px;font-variant-numeric:tabular-nums}
+.tile .s{font-size:12px;color:var(--mute)}
+.card h3{margin:0 0 2px;font-size:15px;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.sub{font-size:12px;color:var(--mute)}
+.pill{display:inline-block;font:600 11px var(--mono);padding:2px 7px;border-radius:99px;background:var(--wash);color:var(--accent);white-space:nowrap}
+.pill.good{color:var(--good)}.pill.warn{color:var(--warn)}.pill.bad{color:var(--bad)}.pill.mute{color:var(--mute)}
+.pos{color:var(--good)}.neg{color:var(--bad)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px solid var(--line);font-size:14px}
+.row:last-child{border:0}.row>span:first-child{min-width:0;overflow-wrap:anywhere}
+.scroll{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.05em;text-align:left}
+td,th{padding:6px 8px 6px 0;border-bottom:1px solid var(--line);vertical-align:top}
+svg{display:block;width:100%;height:auto}
+svg text{fill:var(--mute);font:10px var(--mono)}
+.legend{display:flex;gap:12px;font-size:12px;color:var(--mute);margin-top:4px;flex-wrap:wrap}
+.legend i{display:inline-block;width:10px;height:3px;margin-right:5px;vertical-align:middle}
+.attn{border-left:4px solid var(--warn)}
+.empty{color:var(--mute);font-style:italic}
+section[hidden]{display:none}
+.bar{height:8px;border-radius:4px;background:var(--wash);overflow:hidden;display:flex}
+.bar b{display:block;height:100%}
+</style>
+<div class="wrap">
+<header><h1>Trade Control Room</h1><div class="fresh"><span class="dot" id="dot"></span><span id="fresh"></span></div></header>
+<nav id="nav"></nav>
+<section id="overview"></section><section id="rules" hidden></section><section id="account" hidden></section>
+<section id="search" hidden></section><section id="setups" hidden></section><section id="schedule" hidden></section><section id="agents" hidden></section>
+</div>
+<script>
+const D=/*DATA*/null;
+const TABS=[["overview","Overview"],["rules","Rules"],["account","Account"],["search","Rule search"],["setups","New setups"],["schedule","Schedule"],["agents","Agents"]];
+const NAMES={stock_rev5_h2_band:"Reversal, 2-day hold",stock_rev5_h3_band40:"Reversal, 3-day hold",stock_rev5_h3_band40_vixscale:"Reversal, 3-day, volatility-scaled",stock_resmom6_1_decile:"Momentum, top 10%",stock_resmom6_1_quintile:"Momentum, top 20%",etf_gapfade_xlk:"XLK gap-fade",stock_lowaccruals_quintile:"Low accruals",stock_rnd_quintile:"R&D intensity",stock_salesprice_quintile:"Sales to price (cheapest)",stock_debtissuance_quintile:"Highest net debt issuers"};
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const pct=(x,d=1)=>x==null?"–":(x>=0?"+":"")+(x*100).toFixed(d)+"%";
+const usd=(x,d=0)=>x==null?"–":(x<0?"-":"")+"$"+Math.abs(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const cls=x=>x==null?"":x>=0?"pos":"neg";
+const ago=t=>{if(!t)return"–";const m=(Date.now()-new Date(t))/6e4;if(m<0)return"in "+dur(-m);return dur(m)+" ago"};
+const dur=m=>m<2?"moments":m<90?Math.round(m)+" min":m<2880?Math.round(m/60)+" h":Math.round(m/1440)+" d";
+const when=t=>{if(!t)return"–";const m=(new Date(t)-Date.now())/6e4;return m>0?"in "+dur(m):ago(t)};
+
+function chart(series,{h=150,fmt=v=>v.toFixed(1),base=null}={}){
+  const w=600,L=44,R=8,T=8,B=20;const dates=[...new Set(series.flatMap(s=>s.pts.map(p=>p[0])))].sort();
+  const vals=series.flatMap(s=>s.pts.map(p=>p[1]));if(!vals.length||dates.length<1)return'<div class="empty">Not enough history yet.</div>';
+  let lo=Math.min(...vals,base??1e18),hi=Math.max(...vals,base??-1e18);if(hi-lo<1e-9){hi+=1;lo-=1}const pad=(hi-lo)*.08;lo-=pad;hi+=pad;
+  const X=d=>L+(dates.length<2?.5:dates.indexOf(d)/(dates.length-1))*(w-L-R),Y=v=>T+(hi-v)/(hi-lo)*(h-T-B);
+  let g="";for(let i=0;i<=3;i++){const v=lo+(hi-lo)*i/3;g+=`<line x1="${L}" x2="${w-R}" y1="${Y(v)}" y2="${Y(v)}" stroke="var(--line)"/><text x="${L-5}" y="${Y(v)+3}" text-anchor="end">${fmt(v)}</text>`}
+  if(base!=null)g+=`<line x1="${L}" x2="${w-R}" y1="${Y(base)}" y2="${Y(base)}" stroke="var(--mute)" stroke-dasharray="3 3"/>`;
+  g+=`<text x="${L}" y="${h-4}">${dates[0].slice(5)}</text><text x="${w-R}" y="${h-4}" text-anchor="end">${dates[dates.length-1].slice(5)}</text>`;
+  for(const s of series){if(!s.pts.length)continue;const d=s.pts.map((p,i)=>(i?"L":"M")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join("");
+    if(s.area)g+=`<path d="${d}L${X(s.pts[s.pts.length-1][0])} ${h-B}L${X(s.pts[0][0])} ${h-B}Z" fill="${s.color}" opacity=".12"/>`;
+    g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2"/>`;const e=s.pts[s.pts.length-1];g+=`<circle cx="${X(e[0])}" cy="${Y(e[1])}" r="3.5" fill="${s.color}"/>`}
+  return`<svg viewBox="0 0 ${w} ${h}" role="img">${g}</svg>`}
+const norm=(nav,i)=>nav.map(r=>[r[0],r[i]/1000]); // every record starts from $100,000, so 100 = the starting level
+const legend=a=>`<div class="legend">${a.map(([c,n])=>`<span><i style="background:${c}"></i>${n}</span>`).join("")}</div>`;
+const say=t=>`<p class="say">${t}</p>`;
+
+function overview(){const a=D.account,rs=D.rules,S=D.search;const live=rs.filter(r=>r.nav.length);
+  const day=a.ok?a.equity-a.last_equity:null;const bt=D.live.threads||[];const att=[];
+  bt.filter(t=>t.state==="blocked").forEach(t=>att.push(`Waiting on you: ${esc(t.title)}`));
+  if(a.ok&&a.gross>148)att.push(`Gross exposure ${a.gross}% (limit 150%)`);
+  rs.filter(r=>r.state==="running"&&r.asof&&(Date.now()-new Date(r.asof))/864e5>4).forEach(r=>att.push(`${NAMES[r.rule]||r.rule}: record last updated ${r.asof}`));
+  (D.live.routines||[]).filter(r=>r.last_status&&r.last_status!=="ok").forEach(r=>att.push(`Routine problem: ${esc(r.name)}`));
+  let h=`<div class="tiles">
+  <div class="tile"><div class="k">Paper account</div><div class="v">${a.ok?usd(a.equity):"–"}</div><div class="s ${cls(day)}">${a.ok?usd(day)+" since last close":"broker unreachable"}</div></div>
+  <div class="tile"><div class="k">Open positions</div><div class="v">${a.ok?a.positions.length:"–"}</div><div class="s">${a.ok?a.gross+"% of equity invested":""}</div></div>
+  <div class="tile"><div class="k">Ideas tested</div><div class="v">${S.total}</div><div class="s">${S.strict.length} passed the strict bar · ${S.by_status.rejected||0} rejected</div></div>
+  <div class="tile"><div class="k">Records running</div><div class="v">${live.length} / ${rs.length}</div><div class="s">${rs.filter(r=>r.alloc>0).length} also place paper orders</div></div></div>`;
+  h+=`<h2>Needs attention</h2>`+(att.length?`<div class="card attn">${att.map(x=>`<div class="row"><span>${x}</span></div>`).join("")}</div>`:`<div class="card"><span class="pos">All clear.</span> <span class="sub">No blocked threads, stale records or failed routines found at the last update.</span></div>`);
+  h+=`<h2>Paper account equity</h2>${say("The practice brokerage account that holds our small test orders. The line is its total value at each close over the last month.")}<div class="card">${chart([{name:"Equity",color:"var(--s1)",area:1,pts:a.history||[]}],{fmt:v=>"$"+(v/1000).toFixed(1)+"k"})}</div>`;
+  h+=`<h2>Every record vs. its benchmark</h2>${say("Return is what the rule's pretend portfolio made. Benchmark is what simply holding the comparison (all the same stocks equally, or XLK itself) made over the same days. Ahead by is the gap: a positive number means the rule beat it, even if the benchmark fell. These are only a few days old, so treat them as noise for now.")}<div class="card scroll"><table><tr><th>Rule</th><th>Return</th><th>Benchmark</th><th>Ahead by</th><th>Orders</th></tr>${rs.map(r=>`<tr><td>${esc(NAMES[r.rule]||r.rule)}</td><td class="num ${cls(r.total_return)}">${pct(r.total_return)}</td><td class="num ${cls(bret(r))}">${pct(bret(r))}</td><td class="num ${cls(r.excess)}">${pct(r.excess)}</td><td>${r.alloc>0?`<span class="pill good">${r.alloc}% sleeve</span>`:`<span class="pill mute">shadow</span>`}</td></tr>`).join("")}</table></div>`;
+  $("overview").innerHTML=h}
+
+const bret=r=>r.total_return==null||r.excess==null?null:(1+r.total_return)/(1+r.excess)-1; // benchmark return implied by the official record (all records start from $100,000)
+function rules(){let h=say("A <b>shadow record</b> is a pretend portfolio that follows a rule exactly, with no orders sent. It is the official scoreboard. A <b>paper sleeve</b> means the rule also places real orders in the practice account, limited to that share of its equity.");
+  h+=`<div class="grid">`+D.rules.map(r=>{const has=r.nav.length>1;const st=r.state==="running"?`<span class="pill good">running</span>`:`<span class="pill warn">waiting</span>`;
+   return`<div class="card"><h3><span>${esc(NAMES[r.rule]||r.rule)}</span>${st}</h3><div class="sub">${r.alloc>0?`Paper orders: ${r.alloc}% of equity`:"Shadow only, no orders"} · started ${esc(r.start)}</div>
+   <div style="display:flex;gap:18px;margin:8px 0"><div><div class="sub">Return</div><div class="num ${cls(r.total_return)}" style="font-size:18px;font-weight:600">${pct(r.total_return)}</div></div><div><div class="sub">Benchmark</div><div class="num ${cls(bret(r))}" style="font-size:18px;font-weight:600">${pct(bret(r))}</div></div><div><div class="sub">Ahead by</div><div class="num ${cls(r.excess)}" style="font-size:18px;font-weight:600">${pct(r.excess)}</div></div><div><div class="sub">${r.kind==="signal"?"In position":"Holdings"}</div><div class="num" style="font-size:18px;font-weight:600">${r.kind==="signal"?(r.in_position?"yes":"no"):r.holdings||"–"}</div></div></div>
+   ${has?chart([{color:"var(--s2)",pts:norm(r.nav,2)},{color:"var(--s1)",pts:norm(r.nav,1)}],{h:120,base:100,fmt:v=>v.toFixed(1)})+legend([["var(--s1)","Rule"],["var(--s2)","Benchmark"]]):`<div class="empty">${r.state==="waiting"?`First decision ${esc(r.first_decision||"at next month-end")}.`:"Needs a few more days of history."}</div>`}
+   ${r.caveat?`<div class="sub" style="margin-top:6px">${esc(r.caveat)}</div>`:""}</div>`}).join("")+`</div>`;$("rules").innerHTML=h}
+
+function account(){const a=D.account;if(!a.ok){$("account").innerHTML=`<div class="card attn">Could not reach the paper broker (${esc(a.error||"unknown")}). Rule records above still update.</div>`;return}
+  let h=say("The practice brokerage account. Nothing here is real money.")+`<div class="tiles"><div class="tile"><div class="k">Equity</div><div class="v">${usd(a.equity)}</div></div><div class="tile"><div class="k">Cash</div><div class="v">${usd(a.cash)}</div></div><div class="tile"><div class="k">Invested</div><div class="v">${a.gross}%</div><div class="s">limit 150%</div></div><div class="tile"><div class="k">Open orders</div><div class="v">${a.open_orders}</div><div class="s">${a.open_orders?"waiting to fill":"none waiting"}</div></div></div>`;
+  h+=`<h2>Equity, last month</h2><div class="card">${chart([{color:"var(--s1)",area:1,pts:a.history}],{fmt:v=>"$"+(v/1000).toFixed(1)+"k"})}</div>`;
+  const tot=a.positions.reduce((s,p)=>s+Math.abs(p.mv),0)||1,top=a.positions.slice(0,12);
+  h+=`<h2>Largest positions</h2>${say(`${a.positions.length} stocks held in total; the 12 biggest are listed.`)}<div class="card">${top.map(p=>`<div class="row"><span class="num">${esc(p.s)}</span><span class="num">${usd(p.mv)} <span class="${cls(p.pl)}">(${p.pl>=0?"+":""}${p.pl.toFixed(0)})</span></span></div><div class="bar"><b style="width:${(Math.abs(p.mv)/top[0].mv*100).toFixed(1)}%;background:var(--s1)"></b></div>`).join("")}</div>`;
+  h+=`<h2>Orders by day and rule</h2>${say("How many orders each rule sent and whether they filled.")}<div class="card scroll"><table><tr><th>Day</th><th>Rule</th><th>Result</th></tr>${Object.entries(a.orders_by_day||{}).reverse().flatMap(([d,m])=>Object.entries(m).map(([k,v])=>`<tr><td class="num">${d.slice(5)}</td><td>${esc(NAMES[k]||k)}</td><td class="num">${Object.entries(v).map(([s,n])=>n+" "+s).join(", ")}</td></tr>`)).join("")}</table></div>`;
+  $("account").innerHTML=h}
+
+function search(){const S=D.search,b=S.by_status;let h=say("Every trading idea we try goes through the same strict test. Most fail, which is expected. Because we test so many, a pass has to clear a high bar so luck doesn't fool us.");
+  const t=S.total||1;h+=`<div class="tiles"><div class="tile"><div class="k">Tested</div><div class="v">${S.total}</div></div><div class="tile"><div class="k">Passed strict bar</div><div class="v pos">${S.strict.length}</div></div><div class="tile"><div class="k">Rejected</div><div class="v">${b.rejected||0}</div></div><div class="tile"><div class="k">Other ledger entries</div><div class="v">${(b.supported||0)+(b.testing||0)-S.strict.length}</div><div class="s">earlier momentum and reversal rules, near-copies of passes</div></div></div>`;
+  h+=`<div class="card" style="margin-top:10px"><div class="bar" style="height:14px"><b style="width:${S.strict.length/t*100}%;background:var(--good)"></b><b style="width:${((b.supported||0)+(b.testing||0)-S.strict.length)/t*100}%;background:var(--warn)"></b><b style="width:${(b.rejected||0)/t*100}%;background:var(--s2)"></b></div>${legend([["var(--good)","passed strict bar"],["var(--warn)","other ledger entries"],["var(--s2)","rejected"]])}</div>`;
+  if(S.per_day&&S.per_day.length>1){let c=0;const pts=S.per_day.map(([d,n])=>[d,c+=n]);h+=`<h2>Ideas tested over time</h2><div class="card">${chart([{color:"var(--s1)",area:1,pts}],{fmt:v=>Math.round(v)})}</div>`}
+  h+=`<h2>Passed the strict bar</h2>${say("Only these three cleared the full bar for the rule search. The first two are shadow records; sales to price is a weaker pass that also has a small paper sleeve.")}<div class="card">${S.strict.map(x=>`<div class="row"><span>${esc(x.title)}</span><span class="sub num">#${x.id}</span></div>`).join("")}</div><h2>Other ledger entries marked supported or testing</h2>${say("Earlier momentum and reversal rules, plus near-copies of the passes above (same bet, not counted as new passes).")}<div class="card scroll"><table><tr><th>#</th><th>Idea</th><th></th></tr>${S.supported.filter(x=>!S.strict.some(y=>y.id===x.id)).map(x=>`<tr><td class="num">${x.id}</td><td>${esc(x.title)}</td><td><span class="pill ${x.status==="supported"?"good":"warn"}">${x.status==="supported"?"passed":"testing"}</span></td></tr>`).join("")}</table></div>`;
+  h+=`<h2>Latest test rounds</h2><div class="card">${S.rounds.slice().reverse().map(r=>`<div class="row"><span>${esc(r.title||r.file)}</span><span class="sub num">${r.id}</span></div>`).join("")}</div>`;$("search").innerHTML=h}
+
+function setups(){const sw=D.setups.swing,p=D.setups.poly;let h=say("Experiments built to be watched, not to pass the strict test. Simulation only: no money, no orders, no accounts.");
+  h+=`<h2>Bitcoin 4-hour swing (simulated)</h2>${say("Two simple trend rules follow Bitcoin in a $10,000 pretend account each. It only trades when a trend signal fires, so flat for days is normal.")}`;
+  if(sw)h+=`<div class="grid">${Object.entries(sw.rules).map(([n,r])=>`<div class="card"><h3><span>${esc(n)}</span><span class="pill ${r.pos==="FLAT"?"mute":"good"}">${esc(r.pos)}</span></h3><div class="num" style="font-size:20px;font-weight:600">${usd(r.equity)}</div><div class="sub">${r.log.length} trades · last bar ${esc(r.last_bar)}</div></div>`).join("")}<div class="card"><h3><span>Bitcoin</span></h3><div class="num" style="font-size:20px;font-weight:600">${usd(sw.price)}</div><div class="sub">updated ${esc(sw.updated)}</div></div></div>`;else h+=`<div class="empty">No swing data yet.</div>`;
+  h+=`<h2>Polymarket 5-minute lag (simulated)</h2>${say("Looks for moments when the prediction-market odds on Bitcoin's next 5 minutes lag the real price, and pretends to bet $10 when the gap beats fees.")}`;
+  h+=p?`<div class="tiles"><div class="tile"><div class="k">Simulated bets</div><div class="v">${p.trades}</div></div><div class="tile"><div class="k">Settled</div><div class="v">${p.settled}</div></div><div class="tile"><div class="k">Won</div><div class="v">${p.wins}</div></div><div class="tile"><div class="k">Profit/loss</div><div class="v ${cls(p.pnl)}">${usd(p.pnl,2)}</div></div></div>`:`<div class="card"><span class="empty">The recorder keeps its results inside the container that runs it, so numbers show here once the checking routine publishes them.</span> ${D.live.poly_note?`<div style="margin-top:6px">${esc(D.live.poly_note)}</div>`:""}</div>`;
+  $("setups").innerHTML=h}
+
+function schedule(){const R=D.live.routines||[];let h=say("The automatic jobs that keep everything running, with the time they run (New York) and what happened last time.");
+  h+=R.length?`<div class="card scroll"><table><tr><th>Job</th><th>Runs</th><th>Next</th><th>Last run</th></tr>${R.map(r=>`<tr><td>${esc(r.name)}</td><td class="sub">${esc(r.when)}</td><td class="num">${when(r.next)}</td><td>${r.last?`<span class="num">${ago(r.last)}</span> <span class="pill ${r.last_status==="ok"?"good":"bad"}">${esc(r.last_status||"?")}</span>`:'<span class="sub">not yet</span>'}</td></tr>`).join("")}</table></div>`:`<div class="empty">No schedule data yet.</div>`;
+  $("schedule").innerHTML=h}
+
+function agents(){const T=D.live.threads||[];const act=T.filter(t=>t.state!=="done"),dn=T.filter(t=>t.state==="done");const pill={working:"good",blocked:"bad",review_ready:"warn"};
+  const lab={working:"working now",blocked:"waiting on you",review_ready:"ready to review",done:"done"};
+  let h=say("Each conversation thread is a Claude working on one job. This shows who is busy, who is waiting on you, and who has finished.");
+  h+=`<div class="grid">${act.map(t=>`<div class="card"><h3><span>${esc(t.title)}</span><span class="pill ${pill[t.state]||"mute"}">${lab[t.state]||esc(t.state)}</span></h3><div class="sub">active ${ago(t.last)}</div>${t.doing?`<p style="margin:6px 0 0">${esc(t.doing)}</p>`:""}</div>`).join("")}</div>`;
+  const g={};dn.forEach(t=>{(g[t.title]=g[t.title]||[]).push(t)});
+  h+=`<h2>Finished or routine runs</h2><div class="card">${Object.entries(g).sort((a,b)=>b[1][0].last.localeCompare(a[1][0].last)).slice(0,14).map(([k,v])=>`<div class="row"><span>${esc(k)}${v.length>1?` <span class="sub">×${v.length}</span>`:""}</span><span class="sub">${ago(v[0].last)}</span></div>`).join("")}</div>`;
+  $("agents").innerHTML=h}
+
+[overview,rules,account,search,setups,schedule,agents].forEach(f=>{try{f()}catch(e){const el=$(f.name);if(el)el.innerHTML='<div class="card attn">This part failed to draw.</div>'}});
+function route(){const k=(location.hash||"#overview").slice(1);const ok=TABS.some(t=>t[0]===k)?k:"overview";
+  $("nav").innerHTML=TABS.map(([i,n])=>`<a href="#${i}"${i===ok?' aria-current="page"':""}>${n}</a>`).join("");
+  TABS.forEach(([i])=>$(i).hidden=i!==ok)}
+addEventListener("hashchange",route);route();
+function tick(){const m=(Date.now()-new Date(D.built.replace(" ","T")+"Z"))/6e4;$("fresh").textContent="updated "+dur(m)+" ago ("+D.built+" UTC)";$("dot").className="dot"+(m>600?" stale":m>180?" old":"")}
+tick();setInterval(tick,6e4);
+</script>

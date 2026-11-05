@@ -1,0 +1,17 @@
+# NEXUS application configuration. NO secrets here (scanned at load; secrets come from the environment).
+app:
+  name: nexus-ais
+  environment: development
+  stage: 0                      # must equal permissions.STAGE; mismatch fails closed
+  database_path: data/nexus.sqlite3   # data/ is git-ignored
+  clock_skew_tolerance_seconds: 5     # decision-like events must be stamped within this of recorded_at
+  display_timezone: UTC
+# Owner-confirmed inputs (spec section 18). null = unconfirmed -> dependent features stay disabled.
+owner_inputs:
+  base_currency: null
+  tax_jurisdiction: null
+  investment_horizon_years: null
+  max_acceptable_drawdown: null
+  broker_or_custodian: null
+  market_data_vendors: null
+  notification_channel: null

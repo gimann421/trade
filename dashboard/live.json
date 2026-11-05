@@ -1,0 +1,136 @@
+{
+ "routines": [
+  {
+   "name": "Short-horizon reversal orders (15:38 start, orders 15:55)",
+   "when": "Weekdays 15:38",
+   "next": "2026-11-05T20:38:00Z",
+   "last": null,
+   "last_status": null
+  },
+  {
+   "name": "Morning catch-up for missed orders",
+   "when": "Weekdays 09:36",
+   "next": "2026-11-05T14:36:00Z",
+   "last": "2026-11-04T14:36:47Z",
+   "last_status": "ok"
+  },
+  {
+   "name": "Daily shadow record run",
+   "when": "Weekdays 17:10",
+   "next": "2026-11-05T22:10:00Z",
+   "last": "2026-11-04T22:10:51Z",
+   "last_status": "ok"
+  },
+  {
+   "name": "XLK gap-fade evening orders",
+   "when": "Weekdays 17:24",
+   "next": "2026-11-05T22:24:00Z",
+   "last": "2026-11-04T22:24:31Z",
+   "last_status": "ok"
+  },
+  {
+   "name": "Month-end shadow run",
+   "when": "Days 26-2, 18:20",
+   "next": "2026-11-26T23:20:00Z",
+   "last": "2026-11-02T23:20:37Z",
+   "last_status": "ok"
+  },
+  {
+   "name": "Month-end paper orders (stock rules)",
+   "when": "Days 26-2, 18:31",
+   "next": "2026-11-26T23:31:00Z",
+   "last": "2026-11-02T23:31:27Z",
+   "last_status": "ok"
+  },
+  {
+   "name": "Monthly summary",
+   "when": "1st of month, 09:07",
+   "next": "2026-12-01T14:07:00Z",
+   "last": "2026-11-01T14:10:56Z",
+   "last_status": "ok"
+  },
+  {
+   "name": "Bitcoin swing refresh",
+   "when": "Every 4 hours (:16)",
+   "next": "2026-11-05T04:16:00Z",
+   "last": null,
+   "last_status": null
+  },
+  {
+   "name": "Polymarket results check",
+   "when": "One time",
+   "next": "2026-11-05T01:06:00Z",
+   "last": null,
+   "last_status": null
+  }
+ ],
+ "threads": [
+  {
+   "title": "Build live status dashboard",
+   "state": "working",
+   "last": "2026-11-05T00:17:53Z",
+   "doing": "Building this dashboard and its auto-refresh."
+  },
+  {
+   "title": "Ongoing search for a passing rule",
+   "state": "working",
+   "last": "2026-11-05T00:14:13Z",
+   "doing": "Testing new ideas round after round (281 tested so far); none new has passed."
+  },
+  {
+   "title": "Test Polymarket lag and swing strategies",
+   "state": "done",
+   "last": "2026-11-05T00:17:38Z",
+   "doing": null
+  },
+  {
+   "title": "Free data for 2000 to 2015",
+   "state": "blocked",
+   "last": "2026-10-15T00:31:08Z",
+   "doing": "Waiting on you: older survivorship-free data needs the paid Sharadar data set."
+  },
+  {
+   "title": "Paper orders for all rules",
+   "state": "review_ready",
+   "last": "2026-11-02T22:30:10Z",
+   "doing": "Sleeves for every rule are set up; ready for you to review."
+  },
+  {
+   "title": "Short horizon methods",
+   "state": "done",
+   "last": "2026-11-04T23:59:12Z",
+   "doing": "Runs the reversal rules, daily records and monthly summary."
+  },
+  {
+   "title": "Evening paper orders for XLK gap-fade",
+   "state": "done",
+   "last": "2026-11-04T22:27:34Z",
+   "doing": null
+  },
+  {
+   "title": "Morning catch-up for missed reversal orders",
+   "state": "done",
+   "last": "2026-11-04T14:38:12Z",
+   "doing": null
+  },
+  {
+   "title": "15:45 close orders for reversal rules",
+   "state": "done",
+   "last": "2026-11-04T21:20:33Z",
+   "doing": null
+  },
+  {
+   "title": "Month-end paper orders for stock rules",
+   "state": "done",
+   "last": "2026-11-01T23:33:36Z",
+   "doing": null
+  },
+  {
+   "title": "Oct 30 paper orders",
+   "state": "done",
+   "last": "2026-10-30T22:37:18Z",
+   "doing": null
+  }
+ ],
+ "poly_note": "First results are due from the check scheduled at 01:06 UTC on Nov 5."
+}

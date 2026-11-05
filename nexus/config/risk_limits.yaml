@@ -1,0 +1,13 @@
+# Risk limits. Governance-locked; agents cannot edit. Structural launch defaults only;
+# owner-specific limits stay null (unconfirmed) and block dependent decisions.
+version: 1
+launch_defaults:
+  max_gross_leverage: 1.0        # no leverage at launch
+  allow_short: false
+  allow_derivatives: false
+owner_limits:
+  max_position_weight: null
+  max_sleeve_drawdown: null
+  max_portfolio_drawdown: null
+data_quality:
+  daily_bar_grace_minutes_after_close: 60   # latest daily bar must be the last session that closed >60 min ago
