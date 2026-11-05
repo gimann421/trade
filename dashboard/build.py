@@ -77,7 +77,8 @@ except Exception as e:
     acct["error"] = type(e).__name__
 
 # ---- rule search ledger
-search = dict(total=0, by_status={}, supported=[], rounds=[])
+STRICT = {177: "Low accruals", 189: "R&D intensity", 218: "Sales to price (weak pass: mostly an industry bet)"}  # passes of the strict rule-search bar (ledger status 'supported' is broader)
+search = dict(strict=[dict(id=i, title=t) for i, t in STRICT.items()], total=0, by_status={}, supported=[], rounds=[])
 try:
     db = sqlite3.connect(os.path.join(ROOT, "memory", "ledger.db"))
     search["by_status"] = dict(db.execute("select status,count(*) from hypotheses group by 1").fetchall())
