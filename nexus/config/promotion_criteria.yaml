@@ -1,0 +1,15 @@
+# Strategy promotion tiers (spec 7.4). Governance-locked.
+version: 1
+tiers:
+  Q0: {name: Idea, requires_independent_review: false}
+  Q1: {name: Research complete, requires_independent_review: false}
+  Q2: {name: Backtest candidate, requires_independent_review: false}
+  Q3: {name: Independently challenged, requires_independent_review: true}
+  Q4: {name: Out-of-sample validated, requires_independent_review: true}
+  Q5: {name: Paper eligible, requires_independent_review: true}
+  Q6: {name: Paper demonstrated, requires_independent_review: true}
+  Q7: {name: Live review eligible, requires_independent_review: true, automatic_live_authority: false}
+rules:
+  author_may_not_certify: true
+  self_promotion_allowed: false
+  observation_minimums_preregistered_before_paper_test: true

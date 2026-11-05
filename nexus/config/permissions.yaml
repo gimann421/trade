@@ -1,0 +1,13 @@
+# Owner permissions. Governance-locked: edits are detected by governance.lock.json.
+# Config can only NARROW authority; the hard-coded launch boundary in nexus/permissions.py always wins.
+stage: 0
+live_trading: false
+broker_write: false
+money_movement: false
+max_instrument_capability_tier: R3     # R4 (future live eligible) is unavailable at launch
+allowed_capabilities:
+  - research
+  - backtest
+  - simulate_order
+  - record_hypothetical_trade
+  - read_only_portfolio

@@ -1,0 +1,8 @@
+{
+  "files": {
+    "config/permissions.yaml": "f60bcfbaa9eb193049495c482b28c6447355791f1ab048aa1ee87f5cf002bd00",
+    "config/promotion_criteria.yaml": "daf59b7756351bdd69f95cc9dd1957a4d11b8b3e9f04af2843397fa5a172f028",
+    "config/risk_limits.yaml": "2475eaa2eed01a6d87b1da2f8a0e7af400371d7ba711735c296d0cc5419a60ac",
+    "docs/01_CONSTITUTION.md": "8692ed316a3d291513a3be5b8364f9de28b5d4a6c5be40bda5b82e78d0ff3137"
+  }
+}
