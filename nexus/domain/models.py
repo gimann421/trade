@@ -12,7 +12,7 @@ from ..errors import NexusError, StaleOrInvalidDataError
 from ..timeutil import require_aware, to_iso
 from .enums import AssetClass, CapabilityTier, DataQuality, LedgerKind
 
-__all__ = ["Instrument", "DataSnapshot", "LedgerAccount", "canonical_json", "content_hash"]
+__all__ = ["Bar", "Instrument", "DataSnapshot", "LedgerAccount", "canonical_json", "content_hash"]
 
 
 def canonical_json(obj: Any) -> str:
@@ -113,3 +113,19 @@ class LedgerAccount:
     kind: LedgerKind
     name: str
     created_at: datetime = field(compare=False)
+
+
+@dataclass(frozen=True)
+class Bar:
+    """One daily OHLCV observation. Provenance is carried by the snapshot it is stored under."""
+    instrument_id: str
+    session_date: str          # YYYY-MM-DD in the instrument's calendar
+    open: float
+    high: float
+    low: float
+    close: float
+    volume: float
+
+    def __post_init__(self):  # normalize so hashes are identical before/after a DB round trip
+        for f in ("open", "high", "low", "close", "volume"):
+            object.__setattr__(self, f, float(getattr(self, f)))

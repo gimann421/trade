@@ -10,4 +10,4 @@ owner_limits:
   max_sleeve_drawdown: null
   max_portfolio_drawdown: null
 data_quality:
-  max_price_staleness_seconds: null   # set per asset class in Milestone 2
+  daily_bar_grace_minutes_after_close: 60   # latest daily bar must be the last session that closed >60 min ago
