@@ -80,7 +80,7 @@ function chart(series,{h=150,fmt=v=>v.toFixed(1),base=null}={}){
     if(s.area)g+=`<path d="${d}L${X(s.pts[s.pts.length-1][0])} ${h-B}L${X(s.pts[0][0])} ${h-B}Z" fill="${s.color}" opacity=".12"/>`;
     g+=`<path d="${d}" fill="none" stroke="${s.color}" stroke-width="2"/>`;const e=s.pts[s.pts.length-1];g+=`<circle cx="${X(e[0])}" cy="${Y(e[1])}" r="3.5" fill="${s.color}"/>`}
   return`<svg viewBox="0 0 ${w} ${h}" role="img">${g}</svg>`}
-const norm=(nav,i)=>nav.map(r=>[r[0],r[i]/nav[0][i]*100]);
+const norm=(nav,i)=>nav.map(r=>[r[0],r[i]/1000]); // every record starts from $100,000, so 100 = the starting level
 const legend=a=>`<div class="legend">${a.map(([c,n])=>`<span><i style="background:${c}"></i>${n}</span>`).join("")}</div>`;
 const say=t=>`<p class="say">${t}</p>`;
 
@@ -100,7 +100,7 @@ function overview(){const a=D.account,rs=D.rules,S=D.search;const live=rs.filter
   h+=`<h2>Every record vs. its benchmark</h2>${say("Return is what the rule's pretend portfolio made. Benchmark is what simply holding the comparison (all the same stocks equally, or XLK itself) made over the same days. Ahead by is the gap: a positive number means the rule beat it, even if the benchmark fell. These are only a few days old, so treat them as noise for now.")}<div class="card scroll"><table><tr><th>Rule</th><th>Return</th><th>Benchmark</th><th>Ahead by</th><th>Orders</th></tr>${rs.map(r=>`<tr><td>${esc(NAMES[r.rule]||r.rule)}</td><td class="num ${cls(r.total_return)}">${pct(r.total_return)}</td><td class="num ${cls(bret(r))}">${pct(bret(r))}</td><td class="num ${cls(r.excess)}">${pct(r.excess)}</td><td>${r.alloc>0?`<span class="pill good">${r.alloc}% sleeve</span>`:`<span class="pill mute">shadow</span>`}</td></tr>`).join("")}</table></div>`;
   $("overview").innerHTML=h}
 
-const bret=r=>r.nav.length>1?r.nav[r.nav.length-1][2]/r.nav[0][2]-1:null;
+const bret=r=>r.total_return==null||r.excess==null?null:(1+r.total_return)/(1+r.excess)-1; // benchmark return implied by the official record (all records start from $100,000)
 function rules(){let h=say("A <b>shadow record</b> is a pretend portfolio that follows a rule exactly, with no orders sent. It is the official scoreboard. A <b>paper sleeve</b> means the rule also places real orders in the practice account, limited to that share of its equity.");
   h+=`<div class="grid">`+D.rules.map(r=>{const has=r.nav.length>1;const st=r.state==="running"?`<span class="pill good">running</span>`:`<span class="pill warn">waiting</span>`;
    return`<div class="card"><h3><span>${esc(NAMES[r.rule]||r.rule)}</span>${st}</h3><div class="sub">${r.alloc>0?`Paper orders: ${r.alloc}% of equity`:"Shadow only, no orders"} · started ${esc(r.start)}</div>
