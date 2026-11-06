@@ -1,5 +1,5 @@
 {
- "asof": "2026-11-05",
+ "asof": "2026-11-06",
  "caveat": "Unconfirmed lead: the mirror of a pre-registered rule, found after the results were seen (in-sample placebo 0.91, below the 0.95 bar; OOS +6.1%). Universe is current S&P 500 members that report debt proceeds or repayments (survivorship). 263 hypotheses tested.",
  "first_decision": "2026-11-30",
  "membership_last_row": "2026-08-18",
