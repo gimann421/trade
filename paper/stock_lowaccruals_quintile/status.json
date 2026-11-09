@@ -1,8 +1,8 @@
 {
- "asof": "2026-11-06",
- "benchmark_nav": 98997.66372118788,
+ "asof": "2026-11-09",
+ "benchmark_nav": 101304.23144071821,
  "decisions": 1,
- "excess_return": -0.005116431051636283,
+ "excess_return": -0.008086795178259498,
  "first_decision": "2026-10-30",
  "holdings": [
   "ABBV",
@@ -96,11 +96,11 @@
  ],
  "last_decision": "2026-10-30",
  "membership_last_row": "2026-08-18",
- "nav": 98491.14900048535,
+ "nav": 100485.00487036613,
  "rule": "stock_lowaccruals_quintile",
  "scored": 440,
  "start": "2026-10-30",
  "state": "running",
  "strategy_rule": "lowaccruals_quintile",
- "total_return": -0.015088509995146437
+ "total_return": 0.004850048703661347
 }
