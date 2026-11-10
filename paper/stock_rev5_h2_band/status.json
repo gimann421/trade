@@ -1,7 +1,7 @@
 {
- "asof": "2026-11-09",
- "benchmark_nav": 103021.1060800293,
- "decisions": 9,
+ "asof": "2026-11-10",
+ "benchmark_nav": 103012.63089338382,
+ "decisions": 10,
  "decisions_changed_since_recorded": [
   {
    "decision_date": "2026-10-21",
@@ -15,26 +15,24 @@
   {
    "decision_date": "2026-10-27",
    "recomputed_only": [
-    "WELL"
+    "GOOG"
    ],
    "stored_only": [
     "LVS"
    ]
   }
  ],
- "excess_return": -0.04767947607340062,
+ "excess_return": -0.05508536250066365,
  "first_decision": "2026-10-15",
  "holdings": [
   "ADBE",
   "ADM",
   "AKAM",
   "AMAT",
-  "AMD",
   "APA",
   "AXON",
   "CAT",
   "CIEN",
-  "COHR",
   "COIN",
   "CRM",
   "DDOG",
@@ -46,6 +44,7 @@
   "FIX",
   "FLEX",
   "FTNT",
+  "GEV",
   "GLW",
   "HOOD",
   "HPE",
@@ -60,6 +59,7 @@
   "MU",
   "NOW",
   "NTAP",
+  "NVDA",
   "PANW",
   "PLTR",
   "PSX",
@@ -77,11 +77,11 @@
   "ZBRA"
  ],
  "kind": "snapshot",
- "last_decision": "2026-11-06",
- "nav": 98109.11371763128,
+ "last_decision": "2026-11-10",
+ "nav": 97338.1427784747,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.0189088628236872
+ "total_return": -0.02661857221525299
 }
