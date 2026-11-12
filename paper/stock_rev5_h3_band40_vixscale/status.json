@@ -1,6 +1,6 @@
 {
- "asof": "2026-11-11",
- "benchmark_nav": 104373.86764967446,
+ "asof": "2026-11-12",
+ "benchmark_nav": 103412.98910892554,
  "decisions": 7,
  "decisions_changed_since_recorded": [
   {
@@ -11,9 +11,20 @@
    "stored_only": [
     "STZ"
    ]
+  },
+  {
+   "decision_date": "2026-11-11",
+   "recomputed_only": [
+    "IRM",
+    "NKE"
+   ],
+   "stored_only": [
+    "FANG",
+    "TJX"
+   ]
   }
  ],
- "excess_return": 0.03154034505448866,
+ "excess_return": 0.029150967935606564,
  "first_decision": "2026-10-16",
  "holdings": [
   "ADBE",
@@ -69,10 +80,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-11",
- "nav": 107665.85545001672,
+ "nav": 106427.57783856506,
  "rule": "stock_rev5_h3_band40_vixscale",
  "start": "2026-10-16",
  "state": "running",
  "strategy_rule": "rev5_h3_band40_vixscale_s",
- "total_return": 0.07665855450016723
+ "total_return": 0.06427577838565068
 }
