@@ -1,6 +1,6 @@
 {
- "asof": "2026-11-12",
- "benchmark_nav": 103058.15682889304,
+ "asof": "2026-11-13",
+ "benchmark_nav": 103246.59425819876,
  "decisions": 11,
  "decisions_changed_since_recorded": [
   {
@@ -22,7 +22,7 @@
    ]
   }
  ],
- "excess_return": -0.019273238802692272,
+ "excess_return": -0.012794120713152779,
  "first_decision": "2026-10-15",
  "holdings": [
   "ABT",
@@ -78,10 +78,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-12",
- "nav": 101071.89236176448,
+ "nav": 101925.64486803746,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": 0.010718923617644815
+ "total_return": 0.01925644868037457
 }

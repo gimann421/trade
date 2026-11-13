@@ -1,9 +1,9 @@
 {
- "asof": "2026-11-12",
- "benchmark_nav": 101152.30824235626,
+ "asof": "2026-11-13",
+ "benchmark_nav": 101355.40043101255,
  "decisions": 1,
  "decisions_changed_since_recorded": [],
- "excess_return": -0.023588579613674776,
+ "excess_return": -0.030840618132027764,
  "first_decision": "2026-10-30",
  "holdings": [
   "AES",
@@ -66,8 +66,8 @@
   "VTRS",
   "NOW",
   "AAPL",
-  "DOC",
   "SMCI",
+  "DOC",
   "JNJ",
   "APH",
   "CPAY",
@@ -110,9 +110,9 @@
  "last_decision": "2026-10-30",
  "members_without_bars": [],
  "membership_last_row": "2026-08-18",
- "nav": 98766.26896627447,
+ "nav": 98229.53723070092,
  "rule": "stock_resmom6_1_quintile",
  "start": "2026-10-30",
  "state": "running",
- "total_return": -0.01233731033725538
+ "total_return": -0.01770462769299075
 }
