@@ -1,6 +1,6 @@
 {
  "asof": "2026-11-16",
- "benchmark_nav": 102079.37911006529,
+ "benchmark_nav": 102079.37911006527,
  "decisions": 12,
  "decisions_changed_since_recorded": [
   {
@@ -22,7 +22,7 @@
    ]
   }
  ],
- "excess_return": -0.013077329528222936,
+ "excess_return": -0.013077329528222825,
  "first_decision": "2026-10-15",
  "holdings": [
   "ABT",

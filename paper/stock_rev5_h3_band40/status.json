@@ -1,6 +1,6 @@
 {
  "asof": "2026-11-16",
- "benchmark_nav": 102430.69784456796,
+ "benchmark_nav": 102430.69784456794,
  "decisions": 8,
  "decisions_changed_since_recorded": [
   {
@@ -33,7 +33,7 @@
    ]
   }
  ],
- "excess_return": 0.01760208517747408,
+ "excess_return": 0.017602085177474303,
  "first_decision": "2026-10-16",
  "holdings": [
   "ALB",
