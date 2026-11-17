@@ -5,7 +5,8 @@
   - Limits: no real vendor adapter yet (no entitlements assumed; needs your vendor choice); daily bars only; NYSE ad hoc closures must be added by hand; no futures/options contract metadata yet.
 - [x] **M3 Portfolio accounting, real-portfolio view and shadow ledger** - exact-Decimal append-only journal, immutable owner-confirmed ACTUAL snapshots (history kept, hash-verified), shadow ledger opened from an actual snapshot (actual never touched; DB triggers block cross-ledger entries), explicit reset/merge/parallel decision log, fail-closed NAV, reconciliation, holdings CSV import (works today), Schwab read-only boundary (GET + accounts/positions allowlist, orders refused).
   - Limits: no live Schwab connection (owner must create a Schwab developer app and complete OAuth; tokens env-only); single currency; no tax lots, corporate-action automation or recommendations engine yet (recommendations arrive with the risk gate and agents).
-- [ ] M4 Simulator and paper ledger
+- [x] **M4 Simulator, risk gate, paper order lifecycle** - orders/transition tables (immutable, append-only), pre-registered DECISION events (no backdating), deterministic risk gate (no leverage/shorts/derivatives, tier, max weight, cash, NAV marks; ACTUAL ledger can never be ordered against), conservative next-session-open fill model with slippage, half-spread, 1% volume cap, DAY expiry and no look-ahead, deterministic replay, and the paper-only Alpaca adapter (paper endpoint only, env keys, PAPER_SLEEVE + risk-approved orders only, client_order_id idempotency).
+  - Limits: paper-broker FILLS are not yet reconciled back into the sleeve ledger (needs real keys to verify the response shapes); no futures/options/FX models; financing, borrow and tax modeling absent; slippage numbers are placeholders until measured.
 - [ ] M5 Research and backtest framework
 - [ ] M6 Agent layer
 - [ ] M7 Continuous orchestration
