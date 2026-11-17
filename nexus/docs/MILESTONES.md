@@ -12,7 +12,8 @@
 - [ ] M6 Agent layer
 - [x] **M7 Orchestration** - scheduler with fixed time slots, idempotent per slot, bounded retries, restart-safe (interrupted runs are retried), honest `missed` records (optional catch-up of the latest slot), global halt + per-job pause honoured on every attempt, fail-closed on a broken audit chain, health report/CLI (`health`, `tick`, `run`, `halt`, `resume`), jobs for heartbeat, audit verification, data ingestion and recommendation refresh, duplicate-order prevention via `client_key`, Dockerfile + compose with restart policy and healthcheck (`nexus/infra/`).
   - Limits: not yet deployed anywhere (needs an always-on host and your env-file with keys; I cannot start one from here); notifications are log-only until you pick a channel; the audit chain head is not yet anchored outside the database.
-- [ ] M8 Dashboard and attribution
+- [x] **M8 Dashboard** - `python -m nexus dashboard` renders a static, escaped HTML page: separate ACTUAL / SHADOW / PAPER_SLEEVE views with per-ledger NAV, mark sources (fresh bar vs labelled fallback vs UNPRICEABLE), reconciliation status, recommendations, paper orders, research tiers, risk/health/audit. Written only to untracked locations because it shows real holdings.
+  - Limits: no return-attribution or drawdown charts yet (needs history of snapshots); not served over HTTP; the first live ingestion showed KRKNF (OTC) has no IEX bars, so it uses a labelled fallback mark.
 - [ ] M9 Shadow validation period
 
 ## Assumptions
