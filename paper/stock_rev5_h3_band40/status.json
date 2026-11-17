@@ -1,0 +1,98 @@
+{
+ "asof": "2026-11-16",
+ "benchmark_nav": 102430.69784456794,
+ "decisions": 8,
+ "decisions_changed_since_recorded": [
+  {
+   "decision_date": "2026-10-21",
+   "recomputed_only": [
+    "ADM"
+   ],
+   "stored_only": [
+    "SCHW"
+   ]
+  },
+  {
+   "decision_date": "2026-10-29",
+   "recomputed_only": [
+    "CI"
+   ],
+   "stored_only": [
+    "STZ"
+   ]
+  },
+  {
+   "decision_date": "2026-11-11",
+   "recomputed_only": [
+    "IRM",
+    "NKE"
+   ],
+   "stored_only": [
+    "FANG",
+    "TJX"
+   ]
+  }
+ ],
+ "excess_return": 0.017602085177474303,
+ "first_decision": "2026-10-16",
+ "holdings": [
+  "ALB",
+  "AMCR",
+  "APTV",
+  "BKNG",
+  "BLDR",
+  "CDNS",
+  "CMI",
+  "COHR",
+  "COIN",
+  "CTVA",
+  "CVNA",
+  "DASH",
+  "DDOG",
+  "DECK",
+  "DELL",
+  "DHI",
+  "EXPE",
+  "FCX",
+  "FFIV",
+  "FSLR",
+  "GEV",
+  "GLW",
+  "GPN",
+  "HOOD",
+  "IFF",
+  "ISRG",
+  "IT",
+  "LEN",
+  "LITE",
+  "MCHP",
+  "MKC",
+  "MLM",
+  "MRNA",
+  "MSFT",
+  "NEM",
+  "NOW",
+  "NVDA",
+  "PANW",
+  "PODD",
+  "Q",
+  "RDDT",
+  "RVTY",
+  "SMCI",
+  "SNDK",
+  "SYK",
+  "TJX",
+  "UAL",
+  "WDC",
+  "XYL",
+  "ZBRA"
+ ],
+ "kind": "snapshot",
+ "last_decision": "2026-11-16",
+ "nav": 104233.69171281616,
+ "rule": "stock_rev5_h3_band40",
+ "start": "2026-10-16",
+ "state": "running",
+ "strategy_rule": "rev5_h3_band40_s",
+ "total_return": 0.042336917128161566
+}

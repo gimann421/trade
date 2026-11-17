@@ -1,8 +1,87 @@
 {
- "asof": "2026-10-13",
+ "asof": "2026-11-16",
+ "benchmark_nav": 102079.37911006527,
+ "decisions": 12,
+ "decisions_changed_since_recorded": [
+  {
+   "decision_date": "2026-10-21",
+   "recomputed_only": [
+    "CIEN"
+   ],
+   "stored_only": [
+    "HWM"
+   ]
+  },
+  {
+   "decision_date": "2026-10-27",
+   "recomputed_only": [
+    "GOOG"
+   ],
+   "stored_only": [
+    "LVS"
+   ]
+  }
+ ],
+ "excess_return": -0.013077329528222825,
+ "first_decision": "2026-10-15",
+ "holdings": [
+  "ABT",
+  "ACN",
+  "ALB",
+  "AMCR",
+  "APTV",
+  "ARES",
+  "BKNG",
+  "BLDR",
+  "CDNS",
+  "CMI",
+  "COF",
+  "COHR",
+  "COIN",
+  "CTVA",
+  "CVNA",
+  "DASH",
+  "DECK",
+  "DELL",
+  "DHI",
+  "DVA",
+  "EXPE",
+  "F",
+  "FCX",
+  "FSLR",
+  "GEV",
+  "GLW",
+  "GPN",
+  "HOOD",
+  "IFF",
+  "ISRG",
+  "LEN",
+  "LITE",
+  "LULU",
+  "MCHP",
+  "MRNA",
+  "NEM",
+  "NFLX",
+  "NKE",
+  "NOW",
+  "NVDA",
+  "PHM",
+  "PODD",
+  "Q",
+  "RDDT",
+  "RVTY",
+  "SMCI",
+  "SNDK",
+  "SYK",
+  "UAL",
+  "XYL"
+ ],
  "kind": "snapshot",
+ "last_decision": "2026-11-16",
+ "nav": 100744.45343140657,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
- "state": "waiting",
- "strategy_rule": "rev5_h2_band_s"
+ "state": "running",
+ "strategy_rule": "rev5_h2_band_s",
+ "total_return": 0.007444534314065665
 }
