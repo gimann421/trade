@@ -32,8 +32,10 @@ def boot(db_path: str | None = None) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="nexus")
-    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume"])
+    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard"])
     p.add_argument("--db", default=None, help="override database path")
+    p.add_argument("--out", default="data/dashboard/index.html", help="dashboard output path (keep it untracked; it contains holdings)")
+    p.add_argument("--fallback-marks", default=None, help="optional JSON {instrument_id: price} used only where the feed has no fresh bar")
     args = p.parse_args(argv)
     log = get_logger()
     try:
@@ -48,7 +50,7 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(governance.write_lock(), indent=2))
             print("governance.lock.json rewritten - review the diff and get owner approval before committing.",
                   file=sys.stderr)
-        elif args.command in ("tick", "run", "health", "halt", "resume"):
+        elif args.command in ("tick", "run", "health", "halt", "resume", "dashboard"):
             return _ops(args)
         else:
             store = Store.open(args.db)
@@ -88,6 +90,16 @@ def _ops(args) -> int:
     if args.command in ("halt", "resume"):
         (store.controls.halt if args.command == "halt" else store.controls.resume)("cli-owner", "via command line")
         print(json.dumps({"halted": store.controls.is_halted()}))
+        return 0
+    if args.command == "dashboard":
+        from decimal import Decimal
+        from pathlib import Path
+        from .dashboard import render
+        fb = {k: Decimal(str(v)) for k, v in json.load(open(args.fallback_marks)).items()} if args.fallback_marks else None
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(render(store, jobs, utcnow(), fb), encoding="utf-8")
+        print(json.dumps({"written": str(out)}))
         return 0
     sched = Scheduler(store, jobs)
     if args.command == "tick":
