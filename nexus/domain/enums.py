@@ -110,6 +110,8 @@ class EventType(str, Enum):
     SHADOW_INITIALIZED = "shadow.initialized"
     SHADOW_PATH_DECISION = "shadow.path_decision"
     RECOMMENDATION_RECORDED = "recommendation.recorded"
+    EXPERIMENT_RECORDED = "experiment.recorded"
+    PROMOTION_DECIDED = "promotion.decided"
 
 
 # Events that assert "this was decided at time T": must be stamped contemporaneously (no backdating).
