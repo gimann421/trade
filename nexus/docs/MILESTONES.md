@@ -29,3 +29,6 @@
 ## Owner authorization log
 - 2026-11-05, Garret: paper trading is fine. Recorded in `config/permissions.yaml` as `paper_broker_order`, pinned to `https://paper-api.alpaca.markets` (`nexus/paper_guard.py`). Live trading, broker_write and money movement stay forbidden. The order adapter itself arrives in Milestone 4; Milestone 2 (data foundation) is next.
 - 2026-11-05, Garret: NEXUS stays in the trade repo.
+
+## Real-portfolio recommendations (read-only, advisory)
+`nexus/recommendations.py`: deterministic generators (single-name and theme concentration, tax-loss candidates with wash-sale/holding-period caveats, cash share, stale snapshot) recorded as immutable, pre-registered findings tied to the exact snapshot; owner responses and outcomes are appended notes. It cannot place orders (tested). Holdings, prices and theme tags are supplied from local untracked files, never committed. Limits: thresholds are review prompts, not owner limits; tax logic is generic (taxable status unconfirmed, other accounts not modeled by owner request); LLM-written recommendations arrive in M6 through the same path.

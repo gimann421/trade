@@ -109,9 +109,10 @@ class EventType(str, Enum):
     PORTFOLIO_SNAPSHOT_IMPORTED = "portfolio.snapshot_imported"
     SHADOW_INITIALIZED = "shadow.initialized"
     SHADOW_PATH_DECISION = "shadow.path_decision"
+    RECOMMENDATION_RECORDED = "recommendation.recorded"
 
 
 # Events that assert "this was decided at time T": must be stamped contemporaneously (no backdating).
 DECISION_LIKE_EVENTS: frozenset[EventType] = frozenset(
-    {EventType.DECISION_RECORDED, EventType.HYPOTHESIS_REGISTERED}
+    {EventType.DECISION_RECORDED, EventType.HYPOTHESIS_REGISTERED, EventType.RECOMMENDATION_RECORDED}
 )
