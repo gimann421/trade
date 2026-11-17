@@ -1,6 +1,6 @@
 {
- "asof": "2026-11-16",
- "benchmark_nav": 102430.69784456794,
+ "asof": "2026-11-17",
+ "benchmark_nav": 101006.58368468143,
  "decisions": 8,
  "decisions_changed_since_recorded": [
   {
@@ -33,7 +33,7 @@
    ]
   }
  ],
- "excess_return": 0.02529217139783624,
+ "excess_return": 0.024980706439470923,
  "first_decision": "2026-10-16",
  "holdings": [
   "ALB",
@@ -89,10 +89,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-16",
- "nav": 105021.39261085274,
+ "nav": 103529.7995001623,
  "rule": "stock_rev5_h3_band40_vixscale",
  "start": "2026-10-16",
  "state": "running",
  "strategy_rule": "rev5_h3_band40_vixscale_s",
- "total_return": 0.050213926108527485
+ "total_return": 0.035297995001623006
 }

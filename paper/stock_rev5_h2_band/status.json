@@ -1,6 +1,6 @@
 {
- "asof": "2026-11-16",
- "benchmark_nav": 102079.37911006527,
+ "asof": "2026-11-17",
+ "benchmark_nav": 100660.16013470179,
  "decisions": 12,
  "decisions_changed_since_recorded": [
   {
@@ -15,14 +15,16 @@
   {
    "decision_date": "2026-10-27",
    "recomputed_only": [
-    "GOOG"
+    "GOOG",
+    "GOOGL"
    ],
    "stored_only": [
+    "BG",
     "LVS"
    ]
   }
  ],
- "excess_return": -0.013077329528222825,
+ "excess_return": -0.013935848526992145,
  "first_decision": "2026-10-15",
  "holdings": [
   "ABT",
@@ -78,10 +80,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-16",
- "nav": 100744.45343140657,
+ "nav": 99257.3753903618,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": 0.007444534314065665
+ "total_return": -0.007426246096381983
 }

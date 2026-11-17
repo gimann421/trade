@@ -1,9 +1,9 @@
 {
- "asof": "2026-11-16",
- "benchmark_nav": 100271.8763218644,
+ "asof": "2026-11-17",
+ "benchmark_nav": 98851.7864478628,
  "decisions": 1,
  "decisions_changed_since_recorded": [],
- "excess_return": -0.037496955251047015,
+ "excess_return": -0.03657949164572116,
  "first_decision": "2026-10-30",
  "holdings": [
   "AES",
@@ -110,9 +110,9 @@
  "last_decision": "2026-10-30",
  "members_without_bars": [],
  "membership_last_row": "2026-08-18",
- "nav": 96511.98626248493,
+ "nav": 95235.8383513286,
  "rule": "stock_resmom6_1_quintile",
  "start": "2026-10-30",
  "state": "running",
- "total_return": -0.03488013737515061
+ "total_return": -0.047641616486714056
 }
