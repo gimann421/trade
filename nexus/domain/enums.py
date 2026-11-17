@@ -105,6 +105,10 @@ class EventType(str, Enum):
     ORDER_STATE_CHANGED = "order.state_changed"
     CORRECTION = "record.correction"
     JOB_MISSED = "job.missed"
+    LEDGER_ENTRY_RECORDED = "ledger.entry_recorded"
+    PORTFOLIO_SNAPSHOT_IMPORTED = "portfolio.snapshot_imported"
+    SHADOW_INITIALIZED = "shadow.initialized"
+    SHADOW_PATH_DECISION = "shadow.path_decision"
 
 
 # Events that assert "this was decided at time T": must be stamped contemporaneously (no backdating).
