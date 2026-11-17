@@ -96,6 +96,8 @@ class EventType(str, Enum):
     GOVERNANCE_LOCK_UPDATED = "governance.lock_updated"
     CONTROL_HALT = "control.halt"
     CONTROL_RESUME = "control.resume"
+    CONTROL_PAUSE_JOB = "control.pause_job"
+    CONTROL_RESUME_JOB = "control.resume_job"
     INSTRUMENT_REGISTERED = "instrument.registered"
     LEDGER_ACCOUNT_CREATED = "ledger.account_created"
     DATA_SNAPSHOT_RECORDED = "data.snapshot_recorded"
@@ -105,9 +107,16 @@ class EventType(str, Enum):
     ORDER_STATE_CHANGED = "order.state_changed"
     CORRECTION = "record.correction"
     JOB_MISSED = "job.missed"
+    LEDGER_ENTRY_RECORDED = "ledger.entry_recorded"
+    PORTFOLIO_SNAPSHOT_IMPORTED = "portfolio.snapshot_imported"
+    SHADOW_INITIALIZED = "shadow.initialized"
+    SHADOW_PATH_DECISION = "shadow.path_decision"
+    RECOMMENDATION_RECORDED = "recommendation.recorded"
+    EXPERIMENT_RECORDED = "experiment.recorded"
+    PROMOTION_DECIDED = "promotion.decided"
 
 
 # Events that assert "this was decided at time T": must be stamped contemporaneously (no backdating).
 DECISION_LIKE_EVENTS: frozenset[EventType] = frozenset(
-    {EventType.DECISION_RECORDED, EventType.ORDER_STATE_CHANGED, EventType.HYPOTHESIS_REGISTERED}
+    {EventType.DECISION_RECORDED, EventType.HYPOTHESIS_REGISTERED, EventType.RECOMMENDATION_RECORDED}
 )

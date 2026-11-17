@@ -18,7 +18,7 @@ def inst(**kw):
 
 def test_migrations_apply_once_and_are_idempotent():
     c = connect(":memory:")
-    assert migrate(c) == [1, 2]
+    assert migrate(c) == [1, 2, 3, 4, 5, 6, 7, 8]
     assert migrate(c) == []
 
 

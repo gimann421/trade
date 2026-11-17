@@ -32,8 +32,13 @@ def boot(db_path: str | None = None) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="nexus")
-    p.add_argument("command", choices=["boot", "verify", "lock", "status"])
+    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard", "suggest"])
     p.add_argument("--db", default=None, help="override database path")
+    p.add_argument("--out", default="data/dashboard/index.html", help="dashboard output path (keep it untracked; it contains holdings)")
+    p.add_argument("--fallback-marks", default=None, help="optional JSON {instrument_id: price} used only where the feed has no fresh bar")
+    p.add_argument("--snapshot", default=None, help="suggest: owner-confirmed holdings snapshot JSON (private, untracked)")
+    p.add_argument("--state", default=None, help="suggest: private state file recording what was last posted")
+    p.add_argument("--themes", default=None, help="suggest: optional JSON {symbol: theme}")
     args = p.parse_args(argv)
     log = get_logger()
     try:
@@ -48,6 +53,15 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(governance.write_lock(), indent=2))
             print("governance.lock.json rewritten - review the diff and get owner approval before committing.",
                   file=sys.stderr)
+        elif args.command == "suggest":
+            if not (args.snapshot and args.state):
+                raise NexusError("suggest needs --snapshot and --state")
+            governance.verify_lock()
+            from .suggest import run_files
+            from .timeutil import utcnow
+            print(json.dumps(run_files(args.snapshot, args.state, _data_adapter, utcnow(), args.themes, args.fallback_marks), indent=2))
+        elif args.command in ("tick", "run", "health", "halt", "resume", "dashboard"):
+            return _ops(args)
         else:
             store = Store.open(args.db)
             print(json.dumps({"halted": store.controls.is_halted(), "events": store.events.count(),
@@ -56,3 +70,65 @@ def main(argv: list[str] | None = None) -> int:
     except NexusError as exc:
         log.error("failing closed: %s", exc)
         return 2
+
+
+def _data_adapter():
+    from .adapters.alpaca_data import AlpacaDataAdapter, data_credentials
+    k, s = data_credentials()
+    return AlpacaDataAdapter(k, s, derive_symbols=True)
+
+
+def _jobs():
+    from .jobs import default_jobs
+    from .adapters.alpaca_data import AlpacaDataAdapter, data_credentials
+    def factory():
+        k, s = data_credentials()
+        return AlpacaDataAdapter(k, s, derive_symbols=True)
+    try:
+        data_credentials()
+        return default_jobs(factory)
+    except NexusError:
+        return default_jobs(None)            # no data credentials: ingestion/recommendation jobs are not scheduled
+
+
+def _ops(args) -> int:
+    import time
+    from .health import report
+    from .scheduler import Scheduler
+    from .timeutil import utcnow
+    governance.verify_lock()
+    store = Store.open(args.db)
+    jobs = _jobs()
+    if args.command == "health":
+        rep = report(store, jobs, utcnow())
+        print(json.dumps(rep, indent=2))
+        return 0 if rep["healthy"] else 1
+    if args.command in ("halt", "resume"):
+        (store.controls.halt if args.command == "halt" else store.controls.resume)("cli-owner", "via command line")
+        print(json.dumps({"halted": store.controls.is_halted()}))
+        return 0
+    if args.command == "dashboard":
+        from decimal import Decimal
+        from pathlib import Path
+        from .dashboard import render
+        fb = {k: Decimal(str(v)) for k, v in json.load(open(args.fallback_marks)).items()} if args.fallback_marks else None
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(render(store, jobs, utcnow(), fb), encoding="utf-8")
+        print(json.dumps({"written": str(out)}))
+        return 0
+    sched = Scheduler(store, jobs)
+    if args.command == "tick":
+        print(json.dumps(sched.tick(utcnow())))
+        return 0
+    stop = {"flag": False}
+    import signal
+    signal.signal(signal.SIGTERM, lambda *_: stop.update(flag=True))
+    signal.signal(signal.SIGINT, lambda *_: stop.update(flag=True))
+    while not stop["flag"]:
+        sched.tick(utcnow())
+        for _ in range(30):
+            if stop["flag"]:
+                break
+            time.sleep(1)
+    return 0

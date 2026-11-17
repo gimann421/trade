@@ -1,0 +1,7 @@
+# Execution-model assumptions (conservative defaults). Changes must be versioned in git and compared to the prior version.
+version: 1
+fill_model: next_session_open_v1
+slippage_bps: 5          # adverse, applied to the open
+half_spread_bps: 2       # adverse
+fee_per_order: "0"
+participation_cap: 0.01  # at most 1% of the bar's volume per order; remainder stays open until the day ends
