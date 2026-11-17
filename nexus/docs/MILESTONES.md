@@ -3,7 +3,8 @@
 - [x] **M1 Specification and skeleton** - package, config, typed models, schema + migrations, immutable audit log, instrument registry, three separate ledger accounts, data-lineage record, secrets handling, no-live-trading invariant, governance lock, tests, CI (existing `tests` workflow).
 - [x] **M2 Data foundation** - NYSE + 24/7 calendars, bars table with lineage (migration 002), read-only adapter protocol + fixture adapter, quality checks (OHLC sanity, duplicates, calendar gaps, source conflict, freshness), idempotent ingestion, point-in-time reads, `DecisionDataGate` that blocks stale/missing/unknown data and respects the halt switch.
   - Limits: no real vendor adapter yet (no entitlements assumed; needs your vendor choice); daily bars only; NYSE ad hoc closures must be added by hand; no futures/options contract metadata yet.
-- [ ] M3 Portfolio accounting and shadow state
+- [x] **M3 Portfolio accounting, real-portfolio view and shadow ledger** - exact-Decimal append-only journal, immutable owner-confirmed ACTUAL snapshots (history kept, hash-verified), shadow ledger opened from an actual snapshot (actual never touched; DB triggers block cross-ledger entries), explicit reset/merge/parallel decision log, fail-closed NAV, reconciliation, holdings CSV import (works today), Schwab read-only boundary (GET + accounts/positions allowlist, orders refused).
+  - Limits: no live Schwab connection (owner must create a Schwab developer app and complete OAuth; tokens env-only); single currency; no tax lots, corporate-action automation or recommendations engine yet (recommendations arrive with the risk gate and agents).
 - [ ] M4 Simulator and paper ledger
 - [ ] M5 Research and backtest framework
 - [ ] M6 Agent layer
