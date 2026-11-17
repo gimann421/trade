@@ -209,3 +209,14 @@ def test_deterministic_replay(clock):
         st = state_from_entries(s, a)
         results.append((st.cash, st.positions))
     assert results[0] == results[1]
+
+
+def test_duplicate_proposals_with_same_client_key_return_original_order(env, clock):
+    store, acct, now = setup_decision(env, clock)
+    a = propose_order(store, req(acct, client_key="job-2026-11-05"), now)
+    b = propose_order(store, req(acct, client_key="job-2026-11-05"), now)
+    assert a == b and store.conn.execute("SELECT COUNT(*) FROM orders").fetchone()[0] == 1
+    with pytest.raises(NexusError, match="client_key"):
+        propose_order(store, req(acct, client_key="job-2026-11-05", quantity="11"), now)
+    c = propose_order(store, req(acct, client_key="other"), now)
+    assert c != a

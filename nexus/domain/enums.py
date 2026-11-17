@@ -96,6 +96,8 @@ class EventType(str, Enum):
     GOVERNANCE_LOCK_UPDATED = "governance.lock_updated"
     CONTROL_HALT = "control.halt"
     CONTROL_RESUME = "control.resume"
+    CONTROL_PAUSE_JOB = "control.pause_job"
+    CONTROL_RESUME_JOB = "control.resume_job"
     INSTRUMENT_REGISTERED = "instrument.registered"
     LEDGER_ACCOUNT_CREATED = "ledger.account_created"
     DATA_SNAPSHOT_RECORDED = "data.snapshot_recorded"
