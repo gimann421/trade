@@ -32,10 +32,13 @@ def boot(db_path: str | None = None) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="nexus")
-    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard"])
+    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard", "suggest"])
     p.add_argument("--db", default=None, help="override database path")
     p.add_argument("--out", default="data/dashboard/index.html", help="dashboard output path (keep it untracked; it contains holdings)")
     p.add_argument("--fallback-marks", default=None, help="optional JSON {instrument_id: price} used only where the feed has no fresh bar")
+    p.add_argument("--snapshot", default=None, help="suggest: owner-confirmed holdings snapshot JSON (private, untracked)")
+    p.add_argument("--state", default=None, help="suggest: private state file recording what was last posted")
+    p.add_argument("--themes", default=None, help="suggest: optional JSON {symbol: theme}")
     args = p.parse_args(argv)
     log = get_logger()
     try:
@@ -50,6 +53,13 @@ def main(argv: list[str] | None = None) -> int:
             print(json.dumps(governance.write_lock(), indent=2))
             print("governance.lock.json rewritten - review the diff and get owner approval before committing.",
                   file=sys.stderr)
+        elif args.command == "suggest":
+            if not (args.snapshot and args.state):
+                raise NexusError("suggest needs --snapshot and --state")
+            governance.verify_lock()
+            from .suggest import run_files
+            from .timeutil import utcnow
+            print(json.dumps(run_files(args.snapshot, args.state, _data_adapter, utcnow(), args.themes, args.fallback_marks), indent=2))
         elif args.command in ("tick", "run", "health", "halt", "resume", "dashboard"):
             return _ops(args)
         else:
@@ -60,6 +70,12 @@ def main(argv: list[str] | None = None) -> int:
     except NexusError as exc:
         log.error("failing closed: %s", exc)
         return 2
+
+
+def _data_adapter():
+    from .adapters.alpaca_data import AlpacaDataAdapter, data_credentials
+    k, s = data_credentials()
+    return AlpacaDataAdapter(k, s, derive_symbols=True)
 
 
 def _jobs():
