@@ -127,6 +127,9 @@ class AlwaysOpenCalendar(Calendar):
     def session_close(self, d: date) -> datetime:
         return datetime.combine(d + timedelta(days=1), time(0, 0), tzinfo=timezone.utc)
 
+    def session_open(self, d: date) -> datetime:
+        return datetime.combine(d, time(0, 0), tzinfo=timezone.utc)
+
 
 _CALENDARS = {"XNYS": NyseCalendar(), "24x7": AlwaysOpenCalendar()}
 

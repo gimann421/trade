@@ -113,5 +113,5 @@ class EventType(str, Enum):
 
 # Events that assert "this was decided at time T": must be stamped contemporaneously (no backdating).
 DECISION_LIKE_EVENTS: frozenset[EventType] = frozenset(
-    {EventType.DECISION_RECORDED, EventType.ORDER_STATE_CHANGED, EventType.HYPOTHESIS_REGISTERED}
+    {EventType.DECISION_RECORDED, EventType.HYPOTHESIS_REGISTERED}
 )
