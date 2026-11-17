@@ -1,0 +1,19 @@
+# Run from the repo root:  docker compose -f nexus/infra/docker-compose.yml up -d
+# Put secrets in an untracked env file (never commit it):  nexus/infra/nexus.env
+services:
+  nexus:
+    build:
+      context: ../..
+      dockerfile: nexus/infra/Dockerfile
+    restart: unless-stopped
+    env_file:
+      - nexus.env            # NEXUS_ALPACA_DATA_KEY_ID / _SECRET_KEY, NEXUS_ALPACA_PAPER_KEY_ID / _SECRET_KEY (all optional)
+    volumes:
+      - nexus-data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-m", "nexus", "health"]
+      interval: 5m
+      timeout: 30s
+      retries: 3
+volumes:
+  nexus-data:

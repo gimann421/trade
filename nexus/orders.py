@@ -41,6 +41,7 @@ class OrderRequest:
     order_type: str = "MARKET"
     limit_price: str | None = None
     mode: str = "simulated"       # 'paper_broker' = also routed to the Alpaca paper API (never live)
+    client_key: str | None = None  # idempotency key: re-proposing the same decision returns the original order
 
 
 def current_state(store: Store, order_id: str) -> OrderState:
@@ -78,6 +79,13 @@ def propose_order(store: Store, req: OrderRequest, now: datetime) -> str:
     if not req.rationale.strip():
         raise NexusError("a rationale is required")
     qty = D(req.quantity)
+    if req.client_key is not None:
+        dup = store.conn.execute("SELECT order_id, instrument_id, side, quantity, strategy_id FROM orders WHERE account_id=? AND client_key=?",
+                                 (req.account_id, req.client_key)).fetchone()
+        if dup is not None:
+            if (dup["instrument_id"], dup["side"], Decimal(dup["quantity"]), dup["strategy_id"]) != (req.instrument_id, req.side, qty, req.strategy_id):
+                raise NexusError("client_key reused with a different order")
+            return dup["order_id"]
     kind = store.conn.execute("SELECT kind FROM ledger_accounts WHERE account_id=?", (req.account_id,)).fetchone()
     if kind is None:
         raise NexusError("unknown account")
@@ -110,10 +118,10 @@ def propose_order(store: Store, req: OrderRequest, now: datetime) -> str:
                               "snapshots": snap_ids, "risk_approved": risk.approved, "risk_reasons": risk.reasons,
                               "fill_model": cfg["fill_model"]}, occurred_at=now)
     order_id = f"ord-{uuid.uuid4().hex[:16]}"
-    store.conn.execute("INSERT INTO orders VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+    store.conn.execute("INSERT INTO orders (order_id, account_id, instrument_id, side, quantity, order_type, limit_price, time_in_force, strategy_id, strategy_version, decision_ts, decision_event_id, data_snapshot_ids, rationale, fill_model, risk_json, mode, client_key) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                        (order_id, req.account_id, req.instrument_id, req.side, str(qty), req.order_type, req.limit_price, "DAY",
                         req.strategy_id, req.strategy_version, to_iso(now), ev.event_id, json.dumps(snap_ids), req.rationale,
-                        cfg["fill_model"], json.dumps({"approved": risk.approved, "reasons": risk.reasons}), req.mode))
+                        cfg["fill_model"], json.dumps({"approved": risk.approved, "reasons": risk.reasons}), req.mode, req.client_key))
     store.conn.execute("INSERT INTO order_transitions (order_id, from_state, to_state, at, detail_json) VALUES (?,?,?,?,?)",
                        (order_id, None, OrderState.PROPOSED.value, to_iso(now), "{}"))
     if not risk.approved:

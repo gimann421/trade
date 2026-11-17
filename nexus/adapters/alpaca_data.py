@@ -56,17 +56,19 @@ class AlpacaDataAdapter:
     source = "alpaca-data"
 
     def __init__(self, key_id: Secret, secret: Secret, feed: str = "iex", transport: Transport = urllib_get,
-                 clock: Callable[[], datetime] = utcnow, symbol_key: str = "alpaca"):
+                 clock: Callable[[], datetime] = utcnow, symbol_key: str = "alpaca",
+                 derive_symbols: bool = False):
         if feed not in ("iex", "sip"):
             raise ValueError("feed must be 'iex' or 'sip'")
         self._k, self._s, self.feed, self._get, self._clock, self._symkey = key_id, secret, feed, transport, clock, symbol_key
+        self.derive = derive_symbols      # use the last id segment (e.g. EQ:US:AAPL -> AAPL) when no symbol is mapped
         self.symbols: dict[str, str] = {}   # instrument_id -> vendor symbol (set via register_symbol)
 
     def register_symbol(self, instrument_id: str, symbol: str) -> None:
         self.symbols[instrument_id] = symbol
 
     def fetch_daily_bars(self, instrument_id: str, start: date, end: date) -> FetchResult:
-        sym = self.symbols.get(instrument_id)
+        sym = self.symbols.get(instrument_id) or (instrument_id.rsplit(':', 1)[-1] if self.derive else None)
         if not sym:
             raise StaleOrInvalidDataError(f"no Alpaca symbol mapped for {instrument_id}")
         headers = {"APCA-API-KEY-ID": self._k.reveal(), "APCA-API-SECRET-KEY": self._s.reveal(),
