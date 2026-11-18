@@ -1,7 +1,7 @@
 {
- "asof": "2026-11-17",
- "benchmark_nav": 100660.16013470179,
- "decisions": 12,
+ "asof": "2026-11-18",
+ "benchmark_nav": 100533.36615793551,
+ "decisions": 13,
  "decisions_changed_since_recorded": [
   {
    "decision_date": "2026-10-21",
@@ -9,7 +9,7 @@
     "CIEN"
    ],
    "stored_only": [
-    "HWM"
+    "ADM"
    ]
   },
   {
@@ -22,68 +22,77 @@
     "BG",
     "LVS"
    ]
+  },
+  {
+   "decision_date": "2026-11-16",
+   "recomputed_only": [
+    "XYZ"
+   ],
+   "stored_only": [
+    "EXPE"
+   ]
   }
  ],
- "excess_return": -0.013935848526992145,
+ "excess_return": -0.020066622303492765,
  "first_decision": "2026-10-15",
  "holdings": [
-  "ABT",
   "ACN",
   "ALB",
-  "AMCR",
-  "APTV",
+  "AMAT",
   "ARES",
-  "BKNG",
   "BLDR",
   "CDNS",
+  "CIEN",
   "CMI",
   "COF",
   "COHR",
   "COIN",
+  "CRM",
   "CTVA",
-  "CVNA",
   "DASH",
   "DECK",
   "DELL",
-  "DHI",
   "DVA",
   "EXPE",
   "F",
   "FCX",
+  "FIS",
   "FSLR",
-  "GEV",
   "GLW",
   "GPN",
   "HOOD",
-  "IFF",
+  "HUM",
+  "INTC",
   "ISRG",
-  "LEN",
   "LITE",
-  "LULU",
+  "LRCX",
   "MCHP",
+  "MOS",
+  "MPWR",
   "MRNA",
+  "MRVL",
+  "MU",
   "NEM",
   "NFLX",
   "NKE",
   "NOW",
   "NVDA",
-  "PHM",
+  "ORCL",
   "PODD",
   "Q",
   "RDDT",
-  "RVTY",
   "SMCI",
   "SNDK",
-  "SYK",
+  "TER",
   "UAL",
-  "XYL"
+  "UNH"
  ],
  "kind": "snapshot",
- "last_decision": "2026-11-16",
- "nav": 99257.3753903618,
+ "last_decision": "2026-11-18",
+ "nav": 98516.00107034548,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.007426246096381983
+ "total_return": -0.014839989296545286
 }
