@@ -41,7 +41,9 @@ def test_boot_fails_closed_when_governance_drifts(tmp_path, monkeypatch):
 
 def test_unconfirmed_owner_inputs_listed():
     miss = load_config().unconfirmed_owner_inputs()
-    assert "max_acceptable_drawdown" in miss and "risk_limits.owner_limits.max_portfolio_drawdown" in miss
+    assert "max_acceptable_drawdown" in miss
+    lim = load_config().risk_limits["owner_limits"]       # provisional, owner-delegated conservative defaults (2026-11-19)
+    assert lim["max_position_weight"] == 0.10 and set(lim["protected_from_sales"]) == {"VTI", "VXUS", "RSP"}
 
 
 def test_nexus_data_dir_is_gitignored():
