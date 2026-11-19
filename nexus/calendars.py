@@ -12,7 +12,14 @@ from .errors import NexusError
 from .timeutil import require_aware
 
 NY = ZoneInfo("America/New_York")
-ADHOC_CLOSURES: set[date] = {date(2025, 1, 9)}  # National Day of Mourning (Carter)
+ADHOC_CLOSURES: set[date] = {
+    date(2001, 9, 11), date(2001, 9, 12), date(2001, 9, 13), date(2001, 9, 14),   # September 11 attacks
+    date(2004, 6, 11),                                                           # National Day of Mourning (Reagan)
+    date(2007, 1, 2),                                                            # National Day of Mourning (Ford)
+    date(2012, 10, 29), date(2012, 10, 30),                                      # Hurricane Sandy
+    date(2018, 12, 5),                                                           # National Day of Mourning (Bush)
+    date(2025, 1, 9),                                                            # National Day of Mourning (Carter)
+}
 
 
 def _easter(y: int) -> date:
