@@ -210,6 +210,64 @@ def golden_cross(h: Hist, fast: int = 50, slow: int = 200) -> dict[str, float]:
 
 
 
+# ---- batch 3 rules (authored before any was tested) ---------------------------------------------------------------------
+def pair_rotation(h: Hist, a: str = "EEM", b: str = "EFA", lookback: int = 126) -> dict[str, float]:
+    x, y, c = h.get(iid(a)), h.get(iid(b)), h.get(iid("SHY"))
+    if not x or not y or not c:
+        return {}
+    rx, ry = _ret(x, lookback), _ret(y, lookback)
+    if rx is None or ry is None or max(rx, ry) <= 0:
+        return {iid("SHY"): CB}
+    return {iid(a) if rx >= ry else iid(b): CB}
+
+
+def single_trend(h: Hist, sym: str = "GLD", sma: int = 200) -> dict[str, float]:
+    x, c = h.get(iid(sym)), h.get(iid("SHY"))
+    m = _sma(x, sma) if x else None
+    if m is None or not c:
+        return {}
+    return {iid(sym): CB} if x[-1].close > m else {iid("SHY"): CB}
+
+
+def spy_tlt_inverse_vol(h: Hist, window: int = 63) -> dict[str, float]:
+    s, t = h.get(iid("SPY")), h.get(iid("TLT"))
+    vs, vt = (_vol(s, window), _vol(t, window)) if s and t else (None, None)
+    if not vs or not vt:
+        return {}
+    ws, wt = 1 / vs, 1 / vt
+    return {iid("SPY"): CB * ws / (ws + wt), iid("TLT"): CB * wt / (ws + wt)}
+
+
+def vol_regime(h: Hist, short: int = 20, long: int = 126) -> dict[str, float]:
+    s, b = h.get(iid("SPY")), h.get(iid("IEF"))
+    vs, vl = (_vol(s, short), _vol(s, long)) if s and b else (None, None)
+    if not vs or not vl:
+        return {}
+    return {iid("SPY"): CB} if vs <= vl else {iid("IEF"): CB}
+
+
+def return_over_vol(h: Hist, lookback: int = 126, top: int = 4) -> dict[str, float]:
+    assets = [iid(x) for x in "SPY EFA EEM TLT IEF LQD GLD VNQ".split()]
+    sc = []
+    for i in assets:
+        if i in h:
+            r, v = _ret(h[i], lookback), _vol(h[i], lookback)
+            if r is not None and v:
+                sc.append((r / v, r, i))
+    sc.sort(reverse=True)
+    pick = [i for _, r, i in sc[:top] if r > 0]
+    return {i: CB / top for i in pick}
+
+
+def drawdown_stop(h: Hist, window: int = 252, limit: float = 0.10) -> dict[str, float]:
+    s, b = h.get(iid("SPY")), h.get(iid("SHY"))
+    if not s or not b or len(s) < window:
+        return {}
+    peak = max(x.close for x in s[-window:])
+    return {iid("SHY"): CB} if s[-1].close < peak * (1 - limit) else {iid("SPY"): CB}
+
+
+
 @dataclass(frozen=True)
 class Candidate:
     cid: str
@@ -307,4 +365,44 @@ CANDIDATES: list[Candidate] = [
        "The classic crossover trend rule (Brock, Lakonishok, LeBaron): the 50-session average above the 200-session average marks an uptrend.",
        "Monthly: hold SPY while its 50-session average is above its 200-session average, otherwise SHY.", "SPY SHY",
        golden_cross, [partial(golden_cross, fast=30), partial(golden_cross, slow=250)]),
+    _c("N21_em_vs_developed", "Emerging versus developed markets rotation",
+       "Country and regional momentum (Asness, Moskowitz, Pedersen; Rouwenhorst): the stronger region over the past months tends to stay ahead.",
+       "Monthly: hold EEM or EFA, whichever has the higher 126-session return, if positive; otherwise SHY.", "EEM EFA SHY",
+       pair_rotation, [partial(pair_rotation, lookback=63), partial(pair_rotation, lookback=189)]),
+    _c("N22_small_vs_large", "Small versus large cap rotation",
+       "Size-factor momentum (Fama and French size factor; Ehsani and Linnainmaa): the size segment that did better recently keeps its lead.",
+       "Monthly: hold IWM or IWB, whichever has the higher 126-session return, if positive; otherwise SHY.", "IWM IWB SHY",
+       partial(pair_rotation, a="IWM", b="IWB"), [partial(pair_rotation, a="IWM", b="IWB", lookback=63), partial(pair_rotation, a="IWM", b="IWB", lookback=189)]),
+    _c("N23_gold_trend", "Gold trend filter",
+       "Trend following works in commodities (Hurst, Ooi, Pedersen): gold has long multi-month trends driven by real-rate and fear cycles.",
+       "Monthly: hold GLD while above its 200-session average, otherwise SHY.", "GLD SHY",
+       single_trend, [partial(single_trend, sma=150), partial(single_trend, sma=250)]),
+    _c("N24_commodity_trend", "Broad commodity trend filter",
+       "Commodity futures show strong time-series momentum (Miffre and Rallis; Gorton and Rouwenhorst); the filter avoids long bear phases.",
+       "Monthly: hold DBC while above its 200-session average, otherwise SHY.", "DBC SHY",
+       partial(single_trend, sym="DBC"), [partial(single_trend, sym="DBC", sma=150), partial(single_trend, sym="DBC", sma=250)]),
+    _c("N25_reit_trend", "Listed real estate trend filter",
+       "Real estate returns trend and are cyclical with credit conditions; a trend filter sidesteps large REIT drawdowns.",
+       "Monthly: hold VNQ while above its 200-session average, otherwise SHY.", "VNQ SHY",
+       partial(single_trend, sym="VNQ"), [partial(single_trend, sym="VNQ", sma=150), partial(single_trend, sym="VNQ", sma=250)]),
+    _c("N26_long_bond_trend", "Long Treasury trend filter",
+       "Bond trends follow the monetary cycle (Hurst, Ooi, Pedersen): long bonds spend years rising or falling, and trend rules capture part of that.",
+       "Monthly: hold TLT while above its 200-session average, otherwise SHY.", "TLT SHY",
+       partial(single_trend, sym="TLT"), [partial(single_trend, sym="TLT", sma=150), partial(single_trend, sym="TLT", sma=250)]),
+    _c("N27_stock_bond_inverse_vol", "Stock and long-bond risk balance",
+       "Risk parity (Qian; Asness, Frazzini, Pedersen): weighting stocks and bonds so each contributes similar risk, with no forecast.",
+       "Monthly: SPY and TLT weighted by 1/volatility (63 sessions), summing to 99%.", "SPY TLT",
+       spy_tlt_inverse_vol, [partial(spy_tlt_inverse_vol, window=42), partial(spy_tlt_inverse_vol, window=126)]),
+    _c("N28_volatility_regime", "Volatility regime switch",
+       "Volatility clusters (Engle; Moreira and Muir): when recent volatility rises above its long-run level, risk assets tend to do worse.",
+       "Monthly: hold SPY while its 20-session volatility is at or below its 126-session volatility, otherwise IEF.", "SPY IEF",
+       vol_regime, [partial(vol_regime, short=10), partial(vol_regime, long=252)]),
+    _c("N29_return_over_volatility", "Risk-adjusted multi-asset momentum",
+       "Momentum scaled by volatility (Barroso and Santa-Clara; Moskowitz et al.): ranking by return per unit of risk avoids chasing volatile winners.",
+       "Monthly: of SPY, EFA, EEM, TLT, IEF, LQD, GLD, VNQ hold the 4 with the best 126-session return/volatility, only those with positive return.", "SPY EFA EEM TLT IEF LQD GLD VNQ",
+       return_over_vol, [partial(return_over_vol, lookback=63), partial(return_over_vol, lookback=189), partial(return_over_vol, top=3), partial(return_over_vol, top=5)]),
+    _c("N30_drawdown_stop", "S&P 500 drawdown stop",
+       "Loss aversion and crash clustering (Daniel and Moskowitz): after a 10% fall from the 12-month high, further large losses are more likely than usual.",
+       "Monthly: hold SPY unless it closes more than 10% below its 252-session high, then SHY.", "SPY SHY",
+       drawdown_stop, [partial(drawdown_stop, limit=0.08), partial(drawdown_stop, limit=0.12)]),
 ]
