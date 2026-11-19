@@ -61,7 +61,7 @@ def transition(store: Store, order_id: str, to: OrderState, at: datetime, detail
                         occurred_at=at)
 
 
-def propose_order(store: Store, req: OrderRequest, now: datetime) -> str:
+def propose_order(store: Store, req: OrderRequest, now: datetime, fallback_marks: dict[str, Decimal] | None = None) -> str:
     """Decision -> data gate -> risk gate -> pre-registered decision event -> immutable order + PROPOSED/REJECTED state.
 
     The decision event is stamped with ``now`` BEFORE any later market outcome can exist; the order row carries its id.
@@ -104,11 +104,14 @@ def propose_order(store: Store, req: OrderRequest, now: datetime) -> str:
         "SELECT DISTINCT snapshot_id FROM bars WHERE instrument_id=? AND session_date=?", (req.instrument_id, bars[-1].session_date))]
     ref_price = D(str(bars[-1].close)) if req.order_type == "MARKET" else D(req.limit_price)
     state = state_from_entries(store, req.account_id, now)
-    marks = {}
+    marks, fb_used = {}, {}
     for iid in state.positions:
         b = bars_known_at(store, iid, now)
         if b:
             marks[iid] = D(str(b[-1].close))
+        elif fallback_marks and iid in fallback_marks:       # explicit, recorded, owner-supplied mark for a held name the feed lacks
+            marks[iid] = D(str(fallback_marks[iid]))
+            fb_used[iid] = str(marks[iid])
     risk = risk_gate.evaluate(store.config.risk_limits, kind, inst, req.side, qty, ref_price, state, marks)
     cfg = load_sim_config()
     ev = store.events.append(EventType.DECISION_RECORDED, "orders", req.strategy_id,
@@ -116,7 +119,7 @@ def propose_order(store: Store, req: OrderRequest, now: datetime) -> str:
                               "instrument_id": req.instrument_id, "side": req.side, "quantity": str(qty),
                               "order_type": req.order_type, "limit_price": req.limit_price, "rationale": req.rationale,
                               "snapshots": snap_ids, "risk_approved": risk.approved, "risk_reasons": risk.reasons,
-                              "fill_model": cfg["fill_model"]}, occurred_at=now)
+                              "fill_model": cfg["fill_model"], "fallback_marks_used": fb_used}, occurred_at=now)
     order_id = f"ord-{uuid.uuid4().hex[:16]}"
     store.conn.execute("INSERT INTO orders (order_id, account_id, instrument_id, side, quantity, order_type, limit_price, time_in_force, strategy_id, strategy_version, decision_ts, decision_event_id, data_snapshot_ids, rationale, fill_model, risk_json, mode, client_key) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
                        (order_id, req.account_id, req.instrument_id, req.side, str(qty), req.order_type, req.limit_price, "DAY",

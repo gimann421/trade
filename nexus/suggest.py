@@ -15,6 +15,7 @@ from typing import Callable
 
 from .adapters.base import MarketDataAdapter
 from .errors import NexusError
+from .ideas import UNIVERSE, current_ideas, iid
 from .recommendations import Finding, analyze
 from .calendars import NY
 from .timeutil import require_aware, to_iso
@@ -86,12 +87,44 @@ def diff_findings(findings: list[Finding], prev: dict[str, dict], remind_cash: b
             update.add(k)
         elif f.kind == "cash_share" and remind_cash:
             lines.append(f"STILL OPEN - {f.summary}")
-    resolved = [k for k in prev if k not in current]
+    resolved = [k for k in prev if k not in current and not k.startswith("buy_idea:")]
     return lines, resolved, update
 
 
+def fetch_universe(adapter: MarketDataAdapter, now: datetime) -> dict:
+    """Daily history for the research universe; an instrument with a fetch problem is simply left out (ideas, not risk checks)."""
+    today = now.astimezone(NY).date()
+    out = {}
+    for s in UNIVERSE:
+        try:
+            bars = adapter.fetch_daily_bars(iid(s), today - timedelta(days=520), today).bars
+            if bars and (today - date.fromisoformat(max(b.session_date for b in bars))).days <= STALE_BAR_DAYS:
+                out[iid(s)] = sorted(bars, key=lambda b: b.session_date)
+        except Exception:
+            continue
+    return out
+
+
+def idea_lines(snapshot: dict, prices: dict[str, Decimal], hist: dict, prev: dict[str, dict], now: datetime) -> tuple[list[str], dict]:
+    """New buy ideas (advisory). Sized as a small share of NAV and only if the owner's cash covers it."""
+    cash = sum((Decimal(v) for v in snapshot["cash"].values()), Decimal(0))
+    nav = cash + sum((Decimal(h["quantity"]) * prices[i] for i, h in snapshot["holdings"].items()), Decimal(0))
+    held = {i.rsplit(":", 1)[-1] for i in snapshot["holdings"]}
+    lines, keep = [], {}
+    for idea in current_ideas(hist, held):
+        k = f"buy_idea:{idea.instrument_id}"
+        amt = (Decimal(str(idea.suggested_weight)) * nav).quantize(Decimal("1"))
+        if amt > cash:
+            continue
+        keep[k] = {"mag": str(idea.suggested_weight), "at": to_iso(now)}
+        if k not in prev:
+            lines.append(f"NEW IDEA - consider about ${amt:,} ({idea.suggested_weight:.0%} of the portfolio), paid from your cash, in {idea.rationale} "
+                         "It is a research idea you would act on yourself; it has not passed our validation bar.")
+    return lines, keep
+
+
 def run(snapshot: dict, adapter: MarketDataAdapter, now: datetime, state: dict, *, themes: dict[str, str] | None = None,
-        fallback: dict[str, Decimal] | None = None) -> dict:
+        fallback: dict[str, Decimal] | None = None, ideas: bool = True) -> dict:
     """Pure with respect to disk: returns {"post", "lines", "state", "log"}; the caller persists ``state``."""
     require_aware(now, "now")
     prices, notes = price_snapshot(snapshot, adapter, now, fallback or {})
@@ -107,6 +140,14 @@ def run(snapshot: dict, adapter: MarketDataAdapter, now: datetime, state: dict, 
     for f in findings:
         if _key(f) in update:
             posted[_key(f)] = {"mag": str(_magnitude(f)), "at": to_iso(now)}
+    if ideas:
+        try:
+            il, keep = idea_lines(snapshot, prices, fetch_universe(adapter, now), {k: v for k, v in posted.items() if k.startswith("buy_idea:")}, now)
+            lines += il
+            posted = {k: v for k, v in posted.items() if not k.startswith("buy_idea:")}
+            posted.update(keep)
+        except Exception:
+            pass                                    # ideas are optional; the risk checks above never depend on them
     new_state["posted"] = posted
     new_state["last_run"] = to_iso(now)
     return {"post": bool(lines), "lines": lines, "state": new_state, "price_notes": notes,
