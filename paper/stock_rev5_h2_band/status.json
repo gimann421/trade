@@ -1,6 +1,6 @@
 {
- "asof": "2026-11-18",
- "benchmark_nav": 100533.36615793551,
+ "asof": "2026-11-19",
+ "benchmark_nav": 98739.44282380333,
  "decisions": 13,
  "decisions_changed_since_recorded": [
   {
@@ -33,7 +33,7 @@
    ]
   }
  ],
- "excess_return": -0.020066622303492765,
+ "excess_return": -0.02728239672880206,
  "first_decision": "2026-10-15",
  "holdings": [
   "ACN",
@@ -89,10 +89,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-18",
- "nav": 98516.00107034548,
+ "nav": 96045.59417190346,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.014839989296545286
+ "total_return": -0.03954405828096541
 }
