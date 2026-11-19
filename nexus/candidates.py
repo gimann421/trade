@@ -122,6 +122,94 @@ def turn_of_month(hist: Hist, first: int = 3, last: int = 27) -> dict[str, float
     return {iid("SPY"): CB} if day >= last or day <= first - 1 else {}
 
 
+# ---- batch 2 rules (authored before any was tested) ---------------------------------------------------------------------
+def value_growth(h: Hist, lookback: int = 126) -> dict[str, float]:
+    v, g, b = h.get(iid("IWD")), h.get(iid("IWF")), h.get(iid("SHY"))
+    if not v or not g or not b:
+        return {}
+    rv, rg = _ret(v, lookback), _ret(g, lookback)
+    if rv is None or rg is None or max(rv, rg) <= 0:
+        return {iid("SHY"): CB}
+    return {iid("IWD") if rv >= rg else iid("IWF"): CB}
+
+
+def credit_signal(h: Hist, sma: int = 100) -> dict[str, float]:
+    hy, lq, s, t = (h.get(iid(x)) for x in ("HYG", "LQD", "SPY", "IEF"))
+    if not (hy and lq and s and t):
+        return {}
+    n = min(len(hy), len(lq))
+    if n < sma:
+        return {}
+    ratio = [hy[-n + k].close / lq[-n + k].close for k in range(n)]
+    return {iid("SPY"): CB} if ratio[-1] > sum(ratio[-sma:]) / sma else {iid("IEF"): CB}
+
+
+def absolute_momentum(h: Hist, lookback: int = 252) -> dict[str, float]:
+    s, b = h.get(iid("SPY")), h.get(iid("SHY"))
+    r = _ret(s, lookback) if s else None
+    if r is None or not b:
+        return {}
+    return {iid("SPY"): CB} if r > 0 else {iid("SHY"): CB}
+
+
+def sector_breadth(h: Hist, sma: int = 200) -> dict[str, float]:
+    sec = [iid(x) for x in "XLB XLE XLF XLI XLK XLP XLU XLV XLY".split()]
+    on = [i for i in sec if i in h and (m := _sma(h[i], sma)) is not None and h[i][-1].close > m]
+    if not h.get(iid("SHY")) or any(i in h and len(h[i]) < sma for i in sec):
+        return {}
+    w = {i: CB / len(sec) for i in on}
+    if len(on) < len(sec):
+        w[iid("SHY")] = CB * (len(sec) - len(on)) / len(sec)
+    return w
+
+
+def permanent_portfolio(h: Hist) -> dict[str, float]:
+    assets = [iid(x) for x in "SPY TLT GLD SHY".split()]
+    return {i: CB / 4 for i in assets if i in h}
+
+
+def low_vol_sectors(h: Hist, window: int = 63, top: int = 3) -> dict[str, float]:
+    sec = [iid(x) for x in "XLB XLE XLF XLI XLK XLP XLU XLV XLY".split()]
+    sc = sorted((v, i) for i in sec if i in h and (v := _vol(h[i], window)))[:top]
+    return {i: CB / top for _, i in sc}
+
+
+def sector_reversal(h: Hist, lookback: int = 21, top: int = 3) -> dict[str, float]:
+    sec = [iid(x) for x in "XLB XLE XLF XLI XLK XLP XLU XLV XLY".split()]
+    sc = sorted((r, i) for i in sec if i in h and (r := _ret(h[i], lookback)) is not None)[:top]
+    return {i: CB / top for _, i in sc}
+
+
+def bond_rotation(h: Hist, lookback: int = 126) -> dict[str, float]:
+    assets = [iid(x) for x in "TLT IEF LQD HYG".split()]
+    sc = sorted(((_ret(h[i], lookback), i) for i in assets if i in h and _ret(h[i], lookback) is not None), reverse=True)
+    if not sc or not h.get(iid("SHY")):
+        return {}
+    return {sc[0][1]: CB} if sc[0][0] > 0 else {iid("SHY"): CB}
+
+
+def defensive_cyclical(h: Hist, lookback: int = 126) -> dict[str, float]:
+    d = [iid(x) for x in "XLP XLU XLV".split()]
+    c = [iid(x) for x in "XLY XLK XLI".split()]
+    if not all(i in h for i in d + c):
+        return {}
+    rd = [_ret(h[i], lookback) for i in d]
+    rc = [_ret(h[i], lookback) for i in c]
+    if None in rd or None in rc:
+        return {}
+    pick = d if sum(rd) > sum(rc) else c
+    return {i: CB / 3 for i in pick}
+
+
+def golden_cross(h: Hist, fast: int = 50, slow: int = 200) -> dict[str, float]:
+    s, b = h.get(iid("SPY")), h.get(iid("SHY"))
+    f, sl = (_sma(s, fast), _sma(s, slow)) if s else (None, None)
+    if f is None or sl is None or not b:
+        return {}
+    return {iid("SPY"): CB} if f > sl else {iid("SHY"): CB}
+
+
+
 @dataclass(frozen=True)
 class Candidate:
     cid: str
@@ -179,4 +267,44 @@ CANDIDATES: list[Candidate] = [
        "Equity returns concentrate around the turn of the month (Lakonishok and Smidt; McConnell and Xu) as flows arrive; capital sits in cash otherwise.",
        "Daily: hold SPY from the 27th through the 2nd calendar day of each month, otherwise cash.", "SPY",
        turn_of_month, [partial(turn_of_month, first=4), partial(turn_of_month, last=26)], is_monthly=False),
+    _c("N11_value_growth", "Value versus growth style rotation",
+       "Style momentum (Barberis and Shleifer; Chen and De Bondt): styles that outperformed recently tend to keep doing so for months.",
+       "Monthly: hold IWD (value) or IWF (growth), whichever has the higher 126-session return, if positive; otherwise SHY.", "IWD IWF SHY",
+       value_growth, [partial(value_growth, lookback=63), partial(value_growth, lookback=189)]),
+    _c("N12_credit_risk_signal", "High-yield credit as an equity risk signal",
+       "Credit markets lead equities (Gilchrist and Zakrajsek): when high-yield bonds weaken against investment grade, risk appetite is falling.",
+       "Monthly: hold SPY while the HYG/LQD price ratio is above its 100-session average, otherwise IEF.", "HYG LQD SPY IEF",
+       credit_signal, [partial(credit_signal, sma=63), partial(credit_signal, sma=150)]),
+    _c("N13_absolute_momentum", "S&P 500 12-month absolute momentum",
+       "Time-series momentum (Moskowitz, Ooi, Pedersen): an asset's own past 12-month excess return predicts the next months.",
+       "Monthly: hold SPY if its 252-session return is positive, otherwise SHY.", "SPY SHY",
+       absolute_momentum, [partial(absolute_momentum, lookback=189), partial(absolute_momentum, lookback=315)]),
+    _c("N14_sector_breadth", "Sector trend breadth",
+       "Breadth of participation confirms trends: each sector above its own long-term average is held, the rest of that slice sits in short bonds.",
+       "Monthly: nine sector ETFs, 1/9 each while above their 200-session average, the slice of any sector below it goes to SHY.", "XLB XLE XLF XLI XLK XLP XLU XLV XLY SHY",
+       sector_breadth, [partial(sector_breadth, sma=150), partial(sector_breadth, sma=250)]),
+    _c("N15_permanent_portfolio", "Permanent portfolio (fixed 25% mix)",
+       "Browne's permanent portfolio: equal parts stocks, long bonds, gold and cash so that some part does well in every regime. No forecast used.",
+       "Monthly: hold SPY, TLT, GLD, SHY at 1/4 each.", "SPY TLT GLD SHY",
+       permanent_portfolio, [partial(permanent_portfolio)]),
+    _c("N16_low_vol_sectors", "Low-volatility sectors",
+       "The low-volatility anomaly (Ang, Hodrick, Xing, Zhang; Frazzini and Pedersen): calmer assets earn better risk-adjusted returns than volatile ones.",
+       "Monthly: hold the 3 of 9 sector ETFs with the lowest 63-session volatility, equal weight.", "XLB XLE XLF XLI XLK XLP XLU XLV XLY",
+       low_vol_sectors, [partial(low_vol_sectors, window=42), partial(low_vol_sectors, window=126), partial(low_vol_sectors, top=2), partial(low_vol_sectors, top=4)]),
+    _c("N17_sector_reversal", "Short-term sector reversal",
+       "Short-horizon reversal (Jegadeesh; Lo and MacKinlay): last month's losers tend to rebound next month, strongest in liquidity-driven moves.",
+       "Monthly: hold the 3 of 9 sector ETFs with the worst 21-session return, equal weight.", "XLB XLE XLF XLI XLK XLP XLU XLV XLY",
+       sector_reversal, [partial(sector_reversal, lookback=10), partial(sector_reversal, lookback=42), partial(sector_reversal, top=2), partial(sector_reversal, top=4)]),
+    _c("N18_bond_rotation", "Bond sector momentum",
+       "Momentum in fixed income (Jostova et al.): the bond segment with the best recent return, long Treasuries, intermediate, investment grade or high yield, keeps leading.",
+       "Monthly: hold whichever of TLT, IEF, LQD, HYG has the best 126-session return if positive, otherwise SHY.", "TLT IEF LQD HYG SHY",
+       bond_rotation, [partial(bond_rotation, lookback=63), partial(bond_rotation, lookback=189)]),
+    _c("N19_defensive_cyclical", "Defensive versus cyclical sector tilt",
+       "Sector rotation across the business cycle (Stovall; Conover et al.): defensive sectors lead when growth worries rise, cyclicals when it recovers.",
+       "Monthly: hold XLP, XLU, XLV or XLY, XLK, XLI (1/3 each), whichever group had the higher 126-session average return.", "XLP XLU XLV XLY XLK XLI",
+       defensive_cyclical, [partial(defensive_cyclical, lookback=63), partial(defensive_cyclical, lookback=189)]),
+    _c("N20_golden_cross", "S&P 500 50/200 moving-average crossover",
+       "The classic crossover trend rule (Brock, Lakonishok, LeBaron): the 50-session average above the 200-session average marks an uptrend.",
+       "Monthly: hold SPY while its 50-session average is above its 200-session average, otherwise SHY.", "SPY SHY",
+       golden_cross, [partial(golden_cross, fast=30), partial(golden_cross, slow=250)]),
 ]
