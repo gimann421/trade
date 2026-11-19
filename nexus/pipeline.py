@@ -141,7 +141,7 @@ def research_g2(store: Store, now: datetime, symbols: list[str]) -> dict:
     return research_strategy(store, now, symbols, G2_ID, G2_RECORD, g2_strategy)
 
 
-def daily_growth(store: Store, adapter: MarketDataAdapter, now: datetime, fallback_marks=None, lookback_days: int = 520) -> dict:
+def daily_growth(store: Store, adapter: MarketDataAdapter, now: datetime, fallback_marks=None, lookback_days: int = 520, refresh_clock: bool = False) -> dict:
     """The daily growth loop: observe -> validate -> (re)rank -> forward-test sleeve and shadow ideas. Simulated only."""
     from datetime import timedelta
     from . import sleeve
@@ -150,6 +150,9 @@ def daily_growth(store: Store, adapter: MarketDataAdapter, now: datetime, fallba
     from .calendars import NyseCalendar
     end = NyseCalendar().last_completed_session(now, _td(minutes=60)) or now.date()
     ing = ingest_universe(store, adapter, end, end - timedelta(days=lookback_days))
+    if refresh_clock:                 # ingestion can take longer than the anti-backdating tolerance: stamp decisions at the real time
+        from .timeutil import utcnow
+        now = utcnow()
     out = {"data_failed": ing["failed"], "sleeve": sleeve.run_sleeve(store, now, ing["ok"])}
     out["shadow_ideas"] = sleeve.shadow_ideas(store, now, ing["ok"], fallback_marks=fallback_marks)
     out["filled_after"] = sleeve.fill_pending(store, now)
