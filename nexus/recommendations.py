@@ -83,7 +83,7 @@ def analyze(snapshot: dict, prices: dict[str, Decimal], now: datetime, *, themes
                                {"unrealized": str(loss.quantize(Decimal('1'))), "basis": h["cost_basis"],
                                 "basis_is_estimated": "cost_basis" in " ".join(snapshot["estimated_fields"])}))
     cw = cash / nav
-    out.append(Finding("cash_share", "cash", "info", f"Cash is {cw:.1%} of the portfolio. No target is set; tell NEXUS if this is deliberate.",
+    out.append(Finding("cash_share", "cash", "info", f"Cash is {cw:.1%} of the portfolio. The owner said (2026-11-19) this is not deliberate, so NEXUS treats it as money to put to work once a call passes validation.",
                        {"weight": f"{cw:.4f}"}))
     return out
 

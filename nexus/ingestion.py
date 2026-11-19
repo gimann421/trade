@@ -36,7 +36,7 @@ def ingest_daily_bars(store: Store, adapter: MarketDataAdapter, instrument_id: s
     bars = sorted(res.bars, key=lambda b: b.session_date)
     report = check_bars(bars, cal, start, end)
     digest = content_hash([vars(b) for b in bars])
-    snap_id = f"{res.source}:{instrument_id}:{digest[:16]}"
+    snap_id = f"{res.source}:{instrument_id}:{digest[:16]}" + f"-{report.quality.value}"   # quality is part of identity: re-ingesting after a fix must not return the old verdict
     existing = store.conn.execute("SELECT 1 FROM data_snapshots WHERE snapshot_id=?", (snap_id,)).fetchone()
     if existing:  # identical content already stored: idempotent retry
         return _load_snapshot(store, snap_id), report
