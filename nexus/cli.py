@@ -66,7 +66,7 @@ def main(argv: list[str] | None = None) -> int:
             from .pipeline import daily_growth
             from .timeutil import utcnow
             fb = {k: Decimal(str(v)) for k, v in json.load(open(args.fallback_marks)).items()} if args.fallback_marks else None
-            print(json.dumps(daily_growth(Store.open(args.db), _data_adapter(), utcnow(), fb), indent=2))
+            print(json.dumps(daily_growth(Store.open(args.db), _data_adapter(), utcnow(), fb, refresh_clock=True), indent=2))
         elif args.command == "search":
             governance.verify_lock()
             from .search import digest, run_next
