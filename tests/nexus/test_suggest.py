@@ -30,11 +30,10 @@ def test_first_run_reports_then_quiet_then_change():
     assert r3["post"] and any(l.startswith("CHANGED") for l in r3["lines"])
 
 
-def test_cash_reminder_only_mondays_until_answered():
+def test_cash_question_is_closed_so_no_monday_reminder():
     r1 = run(SNAP, feed(100, 10), TUE, {})
-    assert not run(SNAP, feed(100, 10), WED, r1["state"])["post"]
     mon = run(SNAP, feed(100, 10, "2026-11-20"), MON, r1["state"])
-    assert mon["post"] and any("STILL OPEN" in l and "Cash" in l for l in mon["lines"])
+    assert not mon["post"]
 
 
 def test_resolved_when_finding_goes_away():

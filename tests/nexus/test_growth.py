@@ -155,3 +155,19 @@ def test_calls_are_withheld_unless_the_gate_passes_and_recorded_when_it_does(sto
     assert any(l.startswith("BUY SPY") for l in out2["lines"])
     rec = store.conn.execute("SELECT subject FROM recommendations WHERE kind='buy_call'").fetchall()
     assert [r[0] for r in rec] == ["SPY"]                  # recorded (timestamped, immutable) before it was returned
+
+
+def test_g2_picks_calm_uptrends_only_and_never_levers():
+    from nexus.ideas import g2_target_weights
+    import random
+    rng = random.Random(1)
+
+    def noisy(sym, drift, vol):
+        out, c = [], 100.0
+        for d in SESS:
+            c *= 1 + drift + rng.uniform(-vol, vol)
+            out.append(Bar(iid(sym), d.isoformat(), c, c, c, c, 1e6))
+        return out
+    hist = {iid("CALM"): noisy("CALM", .0015, .002), iid("WILD"): noisy("WILD", .0015, .03), iid("DOWN"): noisy("DOWN", -.002, .001)}
+    w = g2_target_weights(hist, top_n=2)
+    assert iid("DOWN") not in w and iid("CALM") in w and sum(w.values()) <= 0.99 + 1e-9

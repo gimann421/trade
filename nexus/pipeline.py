@@ -11,7 +11,7 @@ from .adapters.base import MarketDataAdapter
 from .domain import AssetClass, CapabilityTier, Instrument
 from .domain.models import Bar
 from .errors import NexusError
-from .ideas import G1_ID, UNIVERSE, buy_and_hold, g1_strategy, iid
+from .ideas import G1_ID, G2_ID, UNIVERSE, buy_and_hold, g1_strategy, g2_strategy, iid
 from .ingestion import bars_known_at, ingest_daily_bars
 from .research import BacktestConfig, get_hypothesis, register_hypothesis, run_backtest, run_experiment
 from .store import Store
@@ -68,28 +68,30 @@ def ingest_universe(store: Store, adapter: MarketDataAdapter, end: date, start: 
 def latest_snapshot_ids(store: Store, symbols: list[str]) -> list[str]:
     out = []
     for s in symbols:
-        r = store.conn.execute("SELECT snapshot_id FROM data_snapshots d WHERE snapshot_id LIKE ? AND quality='ok' "
-                               "ORDER BY ingested_at DESC LIMIT 1", (f"%:{iid(s)}:%",)).fetchone()
+        # the snapshot with the longest history (research needs the full window, not the short daily-refresh ones)
+        r = store.conn.execute("SELECT d.snapshot_id FROM data_snapshots d WHERE d.snapshot_id LIKE ? AND d.quality='ok' "
+                               "ORDER BY (SELECT MIN(session_date) FROM bars b WHERE b.snapshot_id=d.snapshot_id), d.ingested_at DESC LIMIT 1",
+                               (f"%:{iid(s)}:%",)).fetchone()
         if r:
             out.append(r[0])
     return out
 
 
-def research_g1(store: Store, now: datetime, symbols: list[str]) -> dict:
+def research_strategy(store: Store, now: datetime, symbols: list[str], hyp_id: str, record: dict, strategy) -> dict:
     """Register G1 (once), run train and validation, and a buy-and-hold SPY baseline on the same windows. Holdout is not touched."""
-    ver = store.conn.execute("SELECT MAX(version) FROM hypotheses WHERE hyp_id=?", (G1_ID,)).fetchone()[0]
+    ver = store.conn.execute("SELECT MAX(version) FROM hypotheses WHERE hyp_id=?", (hyp_id,)).fetchone()[0]
     if ver is not None:
-        cur = {k: v for k, v in get_hypothesis(store, G1_ID, ver).items() if k not in ("hyp_id", "version", "author")}
-        if cur != json.loads(json.dumps(G1_RECORD)):
+        cur = {k: v for k, v in get_hypothesis(store, hyp_id, ver).items() if k not in ("hyp_id", "version", "author")}
+        if cur != json.loads(json.dumps(record)):
             ver = None                    # the registered text differs from this code: register a new immutable version
-    ver = ver or register_hypothesis(store, G1_ID, AUTHOR, G1_RECORD, now)
-    rec = get_hypothesis(store, G1_ID, ver)
+    ver = ver or register_hypothesis(store, hyp_id, AUTHOR, record, now)
+    rec = get_hypothesis(store, hyp_id, ver)
     universe = [iid(s) for s in symbols]
     snaps = latest_snapshot_ids(store, [s for s in symbols])
     if len(snaps) != len(symbols):
         raise NexusError("not every instrument has an OK snapshot; refuse to test on a partial universe")
     cfg = BacktestConfig()
-    out = {"hypothesis": f"{G1_ID} v{ver}", "segments": {}}
+    out = {"hypothesis": f"{hyp_id} v{ver}", "segments": {}}
     from .research import evaluate_criteria
     from .ingestion import get_snapshot_bars
     allbars: dict[str, list[Bar]] = {}
@@ -97,19 +99,45 @@ def research_g1(store: Store, now: datetime, symbols: list[str]) -> dict:
         for b in get_snapshot_bars(store, sid):
             allbars.setdefault(b.instrument_id, []).append(b)
     for seg in ("train", "validation"):
-        have = store.conn.execute("SELECT 1 FROM experiments WHERE hyp_id=? AND version=? AND segment=?", (G1_ID, ver, seg)).fetchone()
+        have = store.conn.execute("SELECT 1 FROM experiments WHERE hyp_id=? AND version=? AND segment=?", (hyp_id, ver, seg)).fetchone()
         if have:
             continue
         # the registered universe must be fully covered by the snapshots (partial runs are refused above)
-        res = run_experiment(store, G1_ID, ver, seg, g1_strategy, snaps, cfg, now)
+        res = run_experiment(store, hyp_id, ver, seg, strategy, snaps, cfg, now)
         start, end = rec[f"{seg}_period"]
         spy = run_backtest({iid("SPY"): allbars[iid("SPY")]}, buy_and_hold(iid("SPY")), start, end, cfg)
-        costly = run_backtest(allbars, g1_strategy, start, end, BacktestConfig(cost_multiplier=3.0))
+        costly = run_backtest(allbars, strategy, start, end, BacktestConfig(cost_multiplier=3.0))
         out["segments"][seg] = {"result": {k: res[k] for k in ("cagr_net", "max_drawdown", "sharpe", "trades", "total_return", "turnover")},
                                 "criteria_failed": evaluate_criteria(rec["success_criteria"], res),
                                 "spy_buy_hold": {k: spy[k] for k in ("cagr_net", "max_drawdown", "sharpe")},
                                 "cagr_at_3x_costs": costly["cagr_net"]}
     return out
+
+
+
+
+def research_g1(store: Store, now: datetime, symbols: list[str]) -> dict:
+    return research_strategy(store, now, symbols, G1_ID, G1_RECORD, g1_strategy)
+
+
+G2_RECORD = {
+    **G1_RECORD,
+    "title": "G2: low-volatility leaders inside an uptrend",
+    "rationale": "The low-volatility anomaly (Frazzini and Pedersen; Ang et al.): calmer assets have earned risk-adjusted returns at least as good "
+                 "as volatile ones, because many investors overpay for exciting names. Restricting to assets in an uptrend avoids calm decliners. "
+                 "A different premise from G1 (momentum) and aimed at the drawdown and Sharpe criteria G1 narrowly missed - chosen before looking at any G2 result.",
+    "signal_definition": "Eligible: close above its 200-session average AND positive 126-session return. Rank eligible assets by lowest realized daily "
+                         "volatility over 126 sessions; hold the 8 calmest, equal weight (12.4% each, 1% always in cash), rest cash. Decide at the close of the "
+                         "first session of each month; trade at the next open.",
+    "entry_exit_sizing_risk": "Equal weight, max 8 positions, monthly rebalance; positions drop out when ineligible.",
+    "known_biases": ["survivorship: universe built from today's leaders", "IEX-only volumes", "short sample with one major regime",
+                     "second hypothesis tried on the same universe and periods (multiple-testing: G1 and G2); parameters fixed before testing, no tuning",
+                     "same pass bar as G1, deliberately not loosened"],
+}
+
+
+def research_g2(store: Store, now: datetime, symbols: list[str]) -> dict:
+    return research_strategy(store, now, symbols, G2_ID, G2_RECORD, g2_strategy)
 
 
 def daily_growth(store: Store, adapter: MarketDataAdapter, now: datetime, fallback_marks=None, lookback_days: int = 520) -> dict:
