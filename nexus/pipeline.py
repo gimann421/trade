@@ -153,3 +153,51 @@ def daily_growth(store: Store, adapter: MarketDataAdapter, now: datetime, fallba
     out["shadow_ideas"] = sleeve.shadow_ideas(store, now, ing["ok"], fallback_marks=fallback_marks)
     out["filled_after"] = sleeve.fill_pending(store, now)
     return out
+
+
+# ---------------- long-history (2004+) ETF research ----------------
+LONG_DIR = "data/long"          # Yahoo adjusted daily bars from the repo's own core.longdata (gitignored); ETFs only, no delisted names
+LONG_UNIVERSE = ("SPY QQQ IWM IWB IWD IWF VTI XLB XLE XLF XLI XLK XLP XLU XLV XLY EFA EEM VEA VNQ GLD DBC "
+                 "TLT IEF IEI TLH LQD SHY AGG HYG EDV SPTL ZROZ VGIT VGLT").split()
+LONG_SOURCE = "yahoo-long"
+
+
+def load_long_bars(symbol: str, directory: str = LONG_DIR) -> list[Bar]:
+    import csv
+    with open(f"{directory}/{symbol}_1Day.csv", newline="", encoding="utf-8") as f:
+        return [Bar(iid(symbol), r["date"], float(r["open"]), float(r["high"]), float(r["low"]), float(r["close"]), float(r["volume"]))
+                for r in csv.DictReader(f)]
+
+
+def ingest_long(store: Store, directory: str = LONG_DIR, start: date = date(2003, 1, 2)) -> dict:
+    """Ingest the long ETF files through the same quality gates as live data. Single source (no stitching)."""
+    from .adapters.fixture import FixtureAdapter
+    from .timeutil import utcnow
+    ok, bad = [], {}
+    for sym in LONG_UNIVERSE:
+        if store.get_instrument(iid(sym)) is None:
+            store.register_instrument(Instrument(iid(sym), {"yahoo": sym}, AssetClass.EQUITY, "USD", "America/New_York",
+                                                 capability_tier=CapabilityTier.R3))
+        bars = [b for b in load_long_bars(sym, directory) if b.session_date >= start.isoformat()]
+        try:
+            _, rep = ingest_daily_bars(store, FixtureAdapter(bars, source=LONG_SOURCE, as_of=utcnow()), iid(sym),
+                                       date.fromisoformat(bars[0].session_date), date.fromisoformat(bars[-1].session_date))
+            (ok.append(sym) if rep.ok else bad.__setitem__(sym, rep.issues[:2]))
+        except Exception as exc:
+            bad[sym] = [type(exc).__name__ + ": " + str(exc)[:80]]
+    return {"ok": ok, "failed": bad}
+
+
+LONG_PERIODS = {"train_period": ["2004-01-01", "2012-01-01"], "validation_period": ["2012-01-01", "2018-01-01"],
+                "holdout_period": ["2018-01-01", "2026-12-31"]}
+LONG_BIAS_NOTE = ("ETF-only universe from the repo's Yahoo files, 2003 onward, single source (no stitching); funds that launched later join when "
+                  "they exist, but ETFs that closed are absent (mild survivorship). Earlier versions of this hypothesis were already run on "
+                  "2021-2026 Alpaca data and failed; the 2018-2026 'holdout' therefore overlaps years the author has already seen, so only the "
+                  "forward test is clean. Candidates tried so far: G1 v2, G2 v1 (2021+), G1 v3, G2 v2 (long history).")
+
+
+def long_record(base: dict) -> dict:
+    return {**base, **LONG_PERIODS, "asset_universe": [iid(s) for s in LONG_UNIVERSE],
+            "data_sources": ["yahoo daily bars via core.longdata (adjusted), 2003 onward"],
+            "known_biases": [LONG_BIAS_NOTE, "pass bar identical to the 2021+ versions, deliberately not loosened",
+                             "parameters fixed before testing, no tuning"]}
