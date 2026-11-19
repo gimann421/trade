@@ -182,7 +182,7 @@ def run(snapshot: dict, adapter: MarketDataAdapter, now: datetime, state: dict, 
     findings = analyze(snapshot, prices, now, themes=themes, broad_funds=BROAD)
     prev = state.get("posted", {})
     weekday = now.astimezone(NY).weekday()
-    remind_cash = weekday == 0                      # the open cash question is repeated every Monday until answered
+    remind_cash = False                              # owner answered the cash question (not deliberate): no more reminders
     lines, resolved, update = diff_findings(findings, prev, remind_cash)
     if resolved:
         lines += [f"RESOLVED - {k} no longer applies" for k in resolved]

@@ -12,7 +12,7 @@ from datetime import datetime
 
 from .domain.models import Bar
 from .errors import NexusError
-from .ideas import Params, buy_and_hold, g1_strategy, iid, with_params
+from .ideas import buy_and_hold, iid
 from .promotion import TIERS, current_tier, decide
 from .research import BacktestConfig, evaluate_criteria, get_hypothesis, run_backtest
 from .store import Store
@@ -39,7 +39,8 @@ def _random_strategy(universe: list[str], seed: int, n: int = 5):
     return strat
 
 
-def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]], now: datetime, trials: int = 30) -> dict:
+def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]], now: datetime, strategy, variants: list, trials: int = 30) -> dict:
+    """``strategy`` is the registered rule; ``variants`` are nearby-setting versions of it (parameter-neighbour test)."""
     h = get_hypothesis(store, hyp_id, version)
     crit = h["success_criteria"]
     start, end = h["train_period"][0], h["validation_period"][1]
@@ -63,7 +64,7 @@ def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]
     # 2. cost stress
     for seg in ("train", "validation"):
         a, b = h[f"{seg}_period"]
-        res = run_backtest(bars, g1_strategy, a, b, BacktestConfig(cost_multiplier=3.0))
+        res = run_backtest(bars, strategy, a, b, BacktestConfig(cost_multiplier=3.0))
         add(f"costs_x3:{seg}", res["cagr_net"] >= crit["min_cagr_net"], f"net CAGR {res['cagr_net']:.1%} at 3x costs (needs {crit['min_cagr_net']:.0%})")
 
     # 3. sub-period stability against SPY buy-and-hold, by calendar year inside train+validation
@@ -73,7 +74,7 @@ def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]
     for y in years:
         a, b = max(f"{y}-01-01", start), min(f"{int(y) + 1}-01-01", end)
         try:
-            g = run_backtest(bars, g1_strategy, a, b, cfg)["total_return"]
+            g = run_backtest(bars, strategy, a, b, cfg)["total_return"]
             s = run_backtest(spy_bars, buy_and_hold(iid("SPY")), a, b, cfg)["total_return"] if spy_bars else 0.0
         except Exception:
             continue
@@ -82,20 +83,18 @@ def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]
     add("stability_vs_spy", tot > 0 and beat / tot >= 2 / 3, f"beat SPY in {beat} of {tot} calendar windows (needs two thirds)")
 
     # 4. parameter neighbours: a real edge should survive nearby settings
-    variants = [Params(63, 5, 200, 5), Params(189, 5, 200, 5), Params(126, 5, 150, 5), Params(126, 5, 250, 5),
-                Params(126, 5, 200, 3), Params(126, 5, 200, 8)]
     ok_n = 0
-    for p in variants:
-        res = run_backtest(bars, with_params(p), start, end, cfg)
+    for v in variants:
+        res = run_backtest(bars, v, start, end, cfg)
         ok_n += _meets(crit, res)
     add("parameter_neighbours", ok_n / len(variants) >= 0.6, f"{ok_n} of {len(variants)} nearby settings still meet the criteria (needs 60%)")
 
     # 5. luck: random monthly picks with no signal, same costs and window
-    own = run_backtest(bars, g1_strategy, start, end, cfg)["cagr_net"]
+    own = run_backtest(bars, strategy, start, end, cfg)["cagr_net"]
     universe = sorted(bars)
     rnd = sorted(run_backtest(bars, _random_strategy(universe, s), start, end, cfg)["cagr_net"] for s in range(trials))
     pct = sum(r < own for r in rnd) / trials
-    add("beats_random_selection", pct >= 0.9, f"G1 {own:.1%} beat {pct:.0%} of {trials} signal-free random portfolios (needs 90%)")
+    add("beats_random_selection", pct >= 0.9, f"{hyp_id} {own:.1%} beat {pct:.0%} of {trials} signal-free random portfolios (needs 90%)")
 
     # 6. disclosure items that cannot pass or fail mechanically
     n_hyp = store.conn.execute("SELECT COUNT(DISTINCT hyp_id) FROM hypotheses").fetchone()[0]

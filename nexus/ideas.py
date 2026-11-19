@@ -110,3 +110,39 @@ def current_ideas(hist: dict[str, list[Bar]], held: set[str], max_weight_each: f
                         f"{i.rsplit(':', 1)[-1]}: ~6-month momentum {m:+.0%} (skipping last week) and above its 200-day average. "
                         "Basis: strategy G1, backtested only - not independently validated."))
     return out[:3]
+
+
+# ---------------- G2: low volatility inside an uptrend (a different premise from G1) ----------------
+G2_ID = "G2_low_vol_uptrend"
+G2_VOL_WINDOW, G2_TOP_N = 126, 8
+
+
+def realized_vol(bars: list[Bar], window: int = G2_VOL_WINDOW) -> float | None:
+    if len(bars) < window + 1:
+        return None
+    rets = [bars[k].close / bars[k - 1].close - 1 for k in range(len(bars) - window, len(bars))]
+    m = sum(rets) / len(rets)
+    return (sum((r - m) ** 2 for r in rets) / (len(rets) - 1)) ** 0.5
+
+
+def g2_target_weights(hist: dict[str, list[Bar]], top_n: int = G2_TOP_N, vol_window: int = G2_VOL_WINDOW, trend: int = TREND) -> dict[str, float]:
+    elig = []
+    for i, bs in hist.items():
+        v = realized_vol(bs, vol_window)
+        if v is None or len(bs) < trend or v <= 0:
+            continue
+        if bs[-1].close > sum(b.close for b in bs[-trend:]) / trend and bs[-1].close / bs[-1 - vol_window].close - 1 > 0:
+            elig.append((v, i))
+    chosen = [i for _, i in sorted(elig)[:top_n]]
+    return {i: CASH_BUFFER_WEIGHT / top_n for i in chosen}
+
+
+def g2_strategy(hist: dict[str, list[Bar]], top_n: int = G2_TOP_N, vol_window: int = G2_VOL_WINDOW, trend: int = TREND) -> dict[str, float]:
+    dates = sorted({b.session_date for bs in hist.values() for b in bs})
+    if not dates:
+        return {}
+    last_reb = next((d for d in reversed(dates) if is_rebalance_day(dates, d)), None)
+    if last_reb is None:
+        return {}
+    cut = {i: [b for b in bs if b.session_date <= last_reb] for i, bs in hist.items()}
+    return g2_target_weights(cut, top_n, vol_window, trend)
