@@ -11,7 +11,6 @@ from nexus.domain import AssetClass, Bar, CapabilityTier, Instrument, LedgerKind
 from nexus.ideas import g1_strategy, iid, rank, target_weights
 from nexus.ingestion import ingest_daily_bars
 from nexus.research import BacktestConfig, run_backtest
-from nexus.suggest import idea_lines
 
 cal = NyseCalendar()
 SESS = cal.sessions_between(date(2025, 9, 1), date(2026, 11, 13))
@@ -55,17 +54,27 @@ def test_current_ideas_exclude_held_and_are_small():
     assert "not independently validated" in got[0].rationale
 
 
-def test_idea_lines_only_when_cash_covers_and_only_new():
+def test_buy_call_is_specific_and_honest_and_only_when_cash_covers():
+    from nexus.suggest import call_lines
     hist = {iid("B"): series("B", .002)}
-    snap = {"cash": {"USD": "5000"}, "holdings": {"EQ:US:Z": {"quantity": "10", "cost_basis": None}}, "estimated_fields": []}
+    snap = {"cash": {"USD": "50000"}, "holdings": {"EQ:US:Z": {"quantity": "10", "cost_basis": None}}, "estimated_fields": []}
     prices = {"EQ:US:Z": Decimal(100)}
     now = datetime(2026, 11, 19, 21, 30, tzinfo=timezone.utc)
-    lines, keep = idea_lines(snap, prices, hist, {}, now)
-    assert len(lines) == 1 and "NEW IDEA" in lines[0] and "has not passed" in lines[0]
-    again, _ = idea_lines(snap, prices, hist, keep, now)
-    assert again == []
-    poor = dict(snap, cash={"USD": "10"})
-    assert idea_lines(poor, prices, hist, {}, now)[0] == []
+    lines, keep = call_lines(snap, prices, hist, {}, {}, now)
+    assert len(lines) == 1 and lines[0].startswith("BUY B: ") and "limit $" in lines[0] and "Exit: sell if it closes below" in lines[0]
+    assert "not been independently validated" in lines[0]
+    assert call_lines(snap, prices, hist, {}, keep, now)[0] == []
+    assert call_lines(dict(snap, cash={"USD": "10"}), prices, hist, {}, {}, now)[0] == []
+
+
+def test_sell_call_needs_broken_trend_deep_momentum_and_a_loss():
+    from nexus.suggest import call_lines
+    bad = series("Z", -0.004)
+    snap = {"cash": {"USD": "100"}, "estimated_fields": [],
+            "holdings": {"EQ:US:Z": {"quantity": "100", "cost_basis": "20000"}, "EQ:US:Y": {"quantity": "100", "cost_basis": "100"}}}
+    prices = {"EQ:US:Z": Decimal(str(bad[-1].close)), "EQ:US:Y": Decimal(100)}
+    lines, _ = call_lines(snap, prices, {}, {"Z": bad, "Y": series("Y", -0.004)}, {}, datetime(2026, 11, 19, 21, 30, tzinfo=timezone.utc))
+    assert [l.split(":")[0] for l in lines] == ["SELL Z"] and "wash-sale" in lines[0]      # Y has no loss -> no sell call
 
 
 def test_sleeve_decides_once_per_month_and_never_targets_actual(store, clock):

@@ -87,7 +87,7 @@ def diff_findings(findings: list[Finding], prev: dict[str, dict], remind_cash: b
             update.add(k)
         elif f.kind == "cash_share" and remind_cash:
             lines.append(f"STILL OPEN - {f.summary}")
-    resolved = [k for k in prev if k not in current and not k.startswith("buy_idea:")]
+    resolved = [k for k in prev if k not in current and not k.startswith(("buy_idea:", "buy_call:", "sell_call:"))]
     return lines, resolved, update
 
 
@@ -105,21 +105,67 @@ def fetch_universe(adapter: MarketDataAdapter, now: datetime) -> dict:
     return out
 
 
-def idea_lines(snapshot: dict, prices: dict[str, Decimal], hist: dict, prev: dict[str, dict], now: datetime) -> tuple[list[str], dict]:
-    """New buy ideas (advisory). Sized as a small share of NAV and only if the owner's cash covers it."""
+EVIDENCE = ("Evidence: strategy G1 (trend-following momentum) backtested at about 13%/yr net on 2021-24 and 50%/yr on 2024-25 versus "
+            "3% and 22% for SPY, but it narrowly missed our own pass bar and has not been independently validated or forward-tested "
+            "(forward test began 2026-11-19). Treat as a reasoned, unproven call.")
+STOP_PCT = Decimal("0.12")
+SELL_MOMENTUM = -0.35
+
+
+def fetch_symbols(adapter: MarketDataAdapter, now: datetime, symbols) -> dict:
+    today = now.astimezone(NY).date()
+    out = {}
+    for s in symbols:
+        try:
+            bars = adapter.fetch_daily_bars(iid(s), today - timedelta(days=520), today).bars
+            if bars:
+                out[s] = sorted(bars, key=lambda b: b.session_date)
+        except Exception:
+            continue
+    return out
+
+
+def call_lines(snapshot: dict, prices: dict[str, Decimal], hist: dict, held_hist: dict, prev: dict[str, dict], now: datetime) -> tuple[list[str], dict]:
+    """Firm, actionable calls for the owner's own trades: ticker, shares, limit, reason, stop, and how well tested it is."""
+    from .ideas import momentum, trend_ok
     cash = sum((Decimal(v) for v in snapshot["cash"].values()), Decimal(0))
     nav = cash + sum((Decimal(h["quantity"]) * prices[i] for i, h in snapshot["holdings"].items()), Decimal(0))
     held = {i.rsplit(":", 1)[-1] for i in snapshot["holdings"]}
-    lines, keep = [], {}
+    lines, keep, spend = [], {}, Decimal(0)
     for idea in current_ideas(hist, held):
-        k = f"buy_idea:{idea.instrument_id}"
-        amt = (Decimal(str(idea.suggested_weight)) * nav).quantize(Decimal("1"))
-        if amt > cash:
+        sym = idea.instrument_id.rsplit(":", 1)[-1]
+        k = f"buy_call:{sym}"
+        last = Decimal(str(hist[idea.instrument_id][-1].close))
+        limit = (last * Decimal("1.003")).quantize(Decimal("0.01"))
+        amt = Decimal(str(idea.suggested_weight)) * nav
+        shares = int(amt // limit)
+        if shares < 1 or spend + shares * limit > cash:
             continue
+        spend += shares * limit
         keep[k] = {"mag": str(idea.suggested_weight), "at": to_iso(now)}
         if k not in prev:
-            lines.append(f"NEW IDEA - consider about ${amt:,} ({idea.suggested_weight:.0%} of the portfolio), paid from your cash, in {idea.rationale} "
-                         "It is a research idea you would act on yourself; it has not passed our validation bar.")
+            lines.append(f"BUY {sym}: {shares} shares, limit ${limit} (about ${shares * limit:,.0f}, paid from your cash). "
+                         f"Why: {sym} is up {idea.momentum:+.0%} over ~6 months and trading above its 200-day average. "
+                         f"Exit: sell if it closes below ${(limit * (1 - STOP_PCT)).quantize(Decimal('0.01'))} ({STOP_PCT:.0%} stop), "
+                         f"or at month-end if it is no longer a top trend name. {EVIDENCE}")
+    for iid_, h in snapshot["holdings"].items():
+        sym = iid_.rsplit(":", 1)[-1]
+        bs = held_hist.get(sym)
+        if not bs or h.get("cost_basis") is None or sym in BROAD:
+            continue
+        m = momentum(bs)
+        px = prices[iid_]
+        loss = Decimal(h["quantity"]) * px - Decimal(h["cost_basis"])
+        if m is not None and m <= SELL_MOMENTUM and not trend_ok(bs) and loss <= -LOSS_STEP:
+            k = f"sell_call:{sym}"
+            keep[k] = {"mag": str(loss.quantize(Decimal('1'))), "at": to_iso(now)}
+            if k not in prev:
+                limit = (px * Decimal("0.997")).quantize(Decimal("0.01"))
+                lines.append(f"SELL {sym}: all {h['quantity']} shares, limit ${limit} (about ${Decimal(h['quantity']) * limit:,.0f}). "
+                             f"Why: down {abs(m):.0%} over ~6 months, below its 200-day average, and already ${-loss:,.0f} under your cost basis, "
+                             "so selling also books a loss you can use against gains if this is a taxable account. "
+                             "Do not buy it back within 30 days (wash-sale rule, including your other accounts); check lot dates. "
+                             "Not selling means accepting that the downtrend may reverse. " + EVIDENCE)
     return lines, keep
 
 
@@ -142,9 +188,11 @@ def run(snapshot: dict, adapter: MarketDataAdapter, now: datetime, state: dict, 
             posted[_key(f)] = {"mag": str(_magnitude(f)), "at": to_iso(now)}
     if ideas:
         try:
-            il, keep = idea_lines(snapshot, prices, fetch_universe(adapter, now), {k: v for k, v in posted.items() if k.startswith("buy_idea:")}, now)
+            held_syms = [i.rsplit(":", 1)[-1] for i in snapshot["holdings"]]
+            pc = {k: v for k, v in posted.items() if k.startswith(("buy_call:", "sell_call:"))}
+            il, keep = call_lines(snapshot, prices, fetch_universe(adapter, now), fetch_symbols(adapter, now, held_syms), pc, now)
             lines += il
-            posted = {k: v for k, v in posted.items() if not k.startswith("buy_idea:")}
+            posted = {k: v for k, v in posted.items() if not k.startswith(("buy_call:", "sell_call:", "buy_idea:"))}
             posted.update(keep)
         except Exception:
             pass                                    # ideas are optional; the risk checks above never depend on them
