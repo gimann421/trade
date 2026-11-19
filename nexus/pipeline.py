@@ -98,6 +98,7 @@ def research_strategy(store: Store, now: datetime, symbols: list[str], hyp_id: s
     for sid in snaps:
         for b in get_snapshot_bars(store, sid):
             allbars.setdefault(b.instrument_id, []).append(b)
+    spy_bars = allbars.get(iid("SPY")) or [b for sid in latest_snapshot_ids(store, ["SPY"]) for b in get_snapshot_bars(store, sid)]
     for seg in ("train", "validation"):
         have = store.conn.execute("SELECT 1 FROM experiments WHERE hyp_id=? AND version=? AND segment=?", (hyp_id, ver, seg)).fetchone()
         if have:
@@ -105,7 +106,7 @@ def research_strategy(store: Store, now: datetime, symbols: list[str], hyp_id: s
         # the registered universe must be fully covered by the snapshots (partial runs are refused above)
         res = run_experiment(store, hyp_id, ver, seg, strategy, snaps, cfg, now)
         start, end = rec[f"{seg}_period"]
-        spy = run_backtest({iid("SPY"): allbars[iid("SPY")]}, buy_and_hold(iid("SPY")), start, end, cfg)
+        spy = run_backtest({iid("SPY"): spy_bars}, buy_and_hold(iid("SPY")), start, end, cfg)
         costly = run_backtest(allbars, strategy, start, end, BacktestConfig(cost_multiplier=3.0))
         out["segments"][seg] = {"result": {k: res[k] for k in ("cagr_net", "max_drawdown", "sharpe", "trades", "total_return", "turnover")},
                                 "criteria_failed": evaluate_criteria(rec["success_criteria"], res),
