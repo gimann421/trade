@@ -1,6 +1,6 @@
 {
  "asof": "2026-11-19",
- "benchmark_nav": 99079.24981641534,
+ "benchmark_nav": 99079.24981641537,
  "decisions": 9,
  "decisions_changed_since_recorded": [
   {
@@ -33,7 +33,7 @@
    ]
   }
  ],
- "excess_return": 0.02481970043778592,
+ "excess_return": 0.024819700437785475,
  "first_decision": "2026-10-16",
  "holdings": [
   "ACN",
