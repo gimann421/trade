@@ -60,7 +60,8 @@ def test_buy_call_is_specific_and_honest_and_only_when_cash_covers():
     snap = {"cash": {"USD": "50000"}, "holdings": {"EQ:US:Z": {"quantity": "10", "cost_basis": None}}, "estimated_fields": []}
     prices = {"EQ:US:Z": Decimal(100)}
     now = datetime(2026, 11, 19, 21, 30, tzinfo=timezone.utc)
-    lines, keep = call_lines(snap, prices, hist, {}, {}, now)
+    lines, keep, found = call_lines(snap, prices, hist, {}, {}, now)
+    assert [f.kind for f in found] == ["buy_call"]
     assert len(lines) == 1 and lines[0].startswith("BUY B: ") and "limit $" in lines[0] and "Exit: sell if it closes below" in lines[0]
     assert "not been independently validated" in lines[0]
     assert call_lines(snap, prices, hist, {}, keep, now)[0] == []
@@ -73,7 +74,7 @@ def test_sell_call_needs_broken_trend_deep_momentum_and_a_loss():
     snap = {"cash": {"USD": "100"}, "estimated_fields": [],
             "holdings": {"EQ:US:Z": {"quantity": "100", "cost_basis": "20000"}, "EQ:US:Y": {"quantity": "100", "cost_basis": "100"}}}
     prices = {"EQ:US:Z": Decimal(str(bad[-1].close)), "EQ:US:Y": Decimal(100)}
-    lines, _ = call_lines(snap, prices, {}, {"Z": bad, "Y": series("Y", -0.004)}, {}, datetime(2026, 11, 19, 21, 30, tzinfo=timezone.utc))
+    lines, _, _ = call_lines(snap, prices, {}, {"Z": bad, "Y": series("Y", -0.004)}, {}, datetime(2026, 11, 19, 21, 30, tzinfo=timezone.utc))
     assert [l.split(":")[0] for l in lines] == ["SELL Z"] and "wash-sale" in lines[0]      # Y has no loss -> no sell call
 
 
@@ -112,3 +113,45 @@ def test_unpriced_holding_blocks_shadow_buy_unless_explicit_fallback(store, cloc
     assert current_state(store, propose_order(store, req("a"), clock.now)).value == "REJECTED"
     ok = propose_order(store, req("b"), clock.now, {iid("ZZ"): Decimal("2")})
     assert current_state(store, ok).value == "ACCEPTED_BY_SIMULATOR"
+
+
+def test_protected_index_funds_are_never_sold():
+    from nexus.suggest import call_lines
+    bad = series("VTI", -0.004)
+    snap = {"cash": {"USD": "100"}, "estimated_fields": [],
+            "holdings": {"EQ:US:VTI": {"quantity": "100", "cost_basis": "90000"}}}
+    prices = {"EQ:US:VTI": Decimal(str(bad[-1].close))}
+    now = datetime(2026, 11, 19, 21, 30, tzinfo=timezone.utc)
+    assert call_lines(snap, prices, {}, {"VTI": bad}, {}, now, protected=frozenset({"VTI"}))[0] == []
+
+
+def test_calls_are_withheld_unless_the_gate_passes_and_recorded_when_it_does(store, clock, monkeypatch, tmp_path):
+    import json as _json
+    from nexus import redteam
+    from nexus.accounting import import_actual_snapshot
+    from nexus.ideas import G1_ID
+    from nexus.pipeline import G1_RECORD
+    from nexus.research import register_hypothesis
+    from nexus.suggest import run, run_files
+    # strategy registered but never promoted -> the real gate blocks calls
+    register_hypothesis(store, G1_ID, "quant_lab", G1_RECORD, clock.now)
+    ok, why = redteam.call_gate(store, G1_ID, 1)
+    assert not ok and any("Q5 or higher" in w for w in why)
+    store.register_instrument(Instrument("EQ:US:Z", {"alpaca": "Z"}, AssetClass.EQUITY, "USD", "America/New_York"))
+    acct = store.create_account(LedgerKind.ACTUAL, "real").account_id
+    import_actual_snapshot(store, acct, clock.now, "stmt", "Garret", cash={"USD": "50000"},
+                           holdings={"EQ:US:Z": {"quantity": "10", "cost_basis": None}}, estimated_fields=[])
+    snap_file = tmp_path / "s.json"
+    snap_file.write_text(_json.dumps({"as_of": clock.now.isoformat(), "cash": {"USD": "50000"}, "estimated_fields": [],
+                                      "holdings": {"EQ:US:Z": {"quantity": "10", "cost_basis": None}}}))
+    feed = lambda: FixtureAdapter(series("Z", .001) + series("SPY", .002))
+    t = datetime(2026, 11, 16, 21, 30, tzinfo=timezone.utc)
+    clock.now = t
+    out = run_files(str(snap_file), str(tmp_path / "st.json"), feed, t, store=store)
+    assert out["calls_withheld"] and not any(l.startswith(("BUY", "SELL")) for l in out["lines"])
+    assert store.conn.execute("SELECT COUNT(*) FROM recommendations WHERE kind='buy_call'").fetchone()[0] == 0   # nothing while closed
+    monkeypatch.setattr(redteam, "call_gate", lambda *a: (True, []))
+    out2 = run_files(str(snap_file), str(tmp_path / "st2.json"), feed, t, store=store)
+    assert any(l.startswith("BUY SPY") for l in out2["lines"])
+    rec = store.conn.execute("SELECT subject FROM recommendations WHERE kind='buy_call'").fetchall()
+    assert [r[0] for r in rec] == ["SPY"]                  # recorded (timestamped, immutable) before it was returned

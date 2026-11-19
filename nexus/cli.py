@@ -59,7 +59,7 @@ def main(argv: list[str] | None = None) -> int:
             governance.verify_lock()
             from .suggest import run_files
             from .timeutil import utcnow
-            print(json.dumps(run_files(args.snapshot, args.state, _data_adapter, utcnow(), args.themes, args.fallback_marks), indent=2))
+            print(json.dumps(run_files(args.snapshot, args.state, _data_adapter, utcnow(), args.themes, args.fallback_marks, Store.open(args.db)), indent=2))
         elif args.command == "growth":
             governance.verify_lock()
             from decimal import Decimal

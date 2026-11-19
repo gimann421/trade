@@ -26,25 +26,36 @@ def iid(symbol: str) -> str:
     return f"EQ:US:{symbol}"
 
 
-def momentum(bars: list[Bar]) -> float | None:
+@dataclass(frozen=True)
+class Params:
+    lookback: int = LOOKBACK
+    skip: int = SKIP
+    trend: int = TREND
+    top_n: int = TOP_N
+
+
+DEFAULT = Params()
+
+
+def momentum(bars: list[Bar], p: Params = DEFAULT) -> float | None:
     """~6-month total return skipping the most recent week; None without enough history."""
-    if len(bars) < max(LOOKBACK + SKIP + 1, TREND):
+    if len(bars) < max(p.lookback + p.skip + 1, p.trend):
         return None
-    return bars[-1 - SKIP].close / bars[-1 - SKIP - LOOKBACK].close - 1
+    return bars[-1 - p.skip].close / bars[-1 - p.skip - p.lookback].close - 1
 
 
-def trend_ok(bars: list[Bar]) -> bool:
-    if len(bars) < TREND:
+def trend_ok(bars: list[Bar], p: Params = DEFAULT) -> bool:
+    if len(bars) < p.trend:
         return False
-    return bars[-1].close > sum(b.close for b in bars[-TREND:]) / TREND
+    return bars[-1].close > sum(b.close for b in bars[-p.trend:]) / p.trend
 
 
-def rank(hist: dict[str, list[Bar]]) -> list[tuple[str, float]]:
+def rank(hist: dict[str, list[Bar]], p: Params = DEFAULT) -> list[tuple[str, float]]:
     """Eligible instruments (positive momentum AND above the 200-day average), best first. Ties broken by id."""
     out = []
     for i, bs in hist.items():
-        m = momentum(bs)
-        if m is not None and m > 0 and trend_ok(bs):
+        m = momentum(bs, p)
+        if m is not None and m > 0 and trend_ok(bs, p):
             out.append((i, m))
     return sorted(out, key=lambda t: (-t[1], t[0]))
 
@@ -55,12 +66,13 @@ def is_rebalance_day(hist_dates: list[str], d: str) -> bool:
     return k == 0 or hist_dates[k - 1][:7] != d[:7]
 
 
-def target_weights(hist: dict[str, list[Bar]], top_n: int = TOP_N) -> dict[str, float]:
-    ranked = rank(hist)[:top_n]
+def target_weights(hist: dict[str, list[Bar]], top_n: int | None = None, p: Params = DEFAULT) -> dict[str, float]:
+    top_n = top_n or p.top_n
+    ranked = rank(hist, p)[:top_n]
     return {i: CASH_BUFFER_WEIGHT / top_n for i, _ in ranked}   # unfilled slots stay in cash (trend filter -> defensive)
 
 
-def g1_strategy(hist: dict[str, list[Bar]]) -> dict[str, float]:
+def g1_strategy(hist: dict[str, list[Bar]], p: Params = DEFAULT) -> dict[str, float]:
     """Stateless: holds the weights chosen at the latest rebalance day on or before today (data up to that day only)."""
     dates = sorted({b.session_date for bs in hist.values() for b in bs})
     if not dates:
@@ -69,7 +81,11 @@ def g1_strategy(hist: dict[str, list[Bar]]) -> dict[str, float]:
     if last_reb is None:
         return {}
     cut = {i: [b for b in bs if b.session_date <= last_reb] for i, bs in hist.items()}
-    return target_weights(cut)
+    return target_weights(cut, None, p)
+
+
+def with_params(p: Params):
+    return lambda hist: g1_strategy(hist, p)
 
 
 def buy_and_hold(instrument_id: str):
