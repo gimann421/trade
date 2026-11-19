@@ -32,7 +32,7 @@ def boot(db_path: str | None = None) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="nexus")
-    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard", "suggest"])
+    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard", "suggest", "growth"])
     p.add_argument("--db", default=None, help="override database path")
     p.add_argument("--out", default="data/dashboard/index.html", help="dashboard output path (keep it untracked; it contains holdings)")
     p.add_argument("--fallback-marks", default=None, help="optional JSON {instrument_id: price} used only where the feed has no fresh bar")
@@ -60,6 +60,13 @@ def main(argv: list[str] | None = None) -> int:
             from .suggest import run_files
             from .timeutil import utcnow
             print(json.dumps(run_files(args.snapshot, args.state, _data_adapter, utcnow(), args.themes, args.fallback_marks), indent=2))
+        elif args.command == "growth":
+            governance.verify_lock()
+            from decimal import Decimal
+            from .pipeline import daily_growth
+            from .timeutil import utcnow
+            fb = {k: Decimal(str(v)) for k, v in json.load(open(args.fallback_marks)).items()} if args.fallback_marks else None
+            print(json.dumps(daily_growth(Store.open(args.db), _data_adapter(), utcnow(), fb), indent=2))
         elif args.command in ("tick", "run", "health", "halt", "resume", "dashboard"):
             return _ops(args)
         else:
