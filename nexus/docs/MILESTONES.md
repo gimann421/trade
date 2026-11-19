@@ -42,3 +42,10 @@
 
 ## Real-portfolio recommendations (read-only, advisory)
 `nexus/recommendations.py`: deterministic generators (single-name and theme concentration, tax-loss candidates with wash-sale/holding-period caveats, cash share, stale snapshot) recorded as immutable, pre-registered findings tied to the exact snapshot; owner responses and outcomes are appended notes. It cannot place orders (tested). Holdings, prices and theme tags are supplied from local untracked files, never committed. Limits: thresholds are review prompts, not owner limits; tax logic is generic (taxable status unconfirmed, other accounts not modeled by owner request); LLM-written recommendations arrive in M6 through the same path.
+
+## Continuous search loop (candidates.py, search.py)
+`python -m nexus search` tests the next untried pre-authored candidate on the long ETF history (train 2004-2012, validation 2012-2018) and
+runs it through the Red Team, which now includes a deflated-Sharpe check against the count of all registered hypothesis versions. The pass
+bar is fixed and shared by every candidate. Results go to a ledger outside git. The loop can only reach "cleared the Red Team, needs
+independent review"; it never promotes a strategy or issues a call. First batch: N01-N10 all failed (best validation Sharpe 1.19, N05 SPY trend,
+but its train period missed).
