@@ -39,7 +39,7 @@ def _random_strategy(universe: list[str], seed: int, n: int = 5):
     return strat
 
 
-def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]], now: datetime, strategy, variants: list, trials: int = 30) -> dict:
+def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]], now: datetime, strategy, variants: list, trials: int = 30, quick: bool = True) -> dict:
     """``strategy`` is the registered rule; ``variants`` are nearby-setting versions of it (parameter-neighbour test)."""
     h = get_hypothesis(store, hyp_id, version)
     crit = h["success_criteria"]
@@ -60,6 +60,10 @@ def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]
             continue
         fails = evaluate_criteria(crit, json.loads(r[0]))
         add(f"criteria:{seg}", not fails, "; ".join(fails) or "meets every pre-registered criterion")
+
+    quick_fail = quick and any(not f["passed"] for f in findings)     # a strategy that already misses its own criteria needs no further proof
+    if quick_fail:
+        return _finish(store, hyp_id, version, findings, now)
 
     # 2. cost stress
     for seg in ("train", "validation"):
@@ -96,12 +100,25 @@ def challenge(store: Store, hyp_id: str, version: int, bars: dict[str, list[Bar]
     pct = sum(r < own for r in rnd) / trials
     add("beats_random_selection", pct >= 0.9, f"{hyp_id} {own:.1%} beat {pct:.0%} of {trials} signal-free random portfolios (needs 90%)")
 
+    # 5b. multiple testing: the Sharpe must beat what the best of N zero-skill trials would reach by luck (Bailey and Lopez de Prado)
+    from statistics import NormalDist
+    n_trials = max(1, store.conn.execute("SELECT COUNT(*) FROM hypotheses").fetchone()[0])
+    own_res = run_backtest(bars, strategy, start, end, cfg)
+    yrs = max(own_res["observations"] / 252, 0.5)
+    g, nd = 0.5772156649, NormalDist()
+    sr0 = (1 / yrs ** 0.5) * ((1 - g) * nd.inv_cdf(1 - 1 / max(n_trials, 2)) + g * nd.inv_cdf(1 - 1 / (max(n_trials, 2) * 2.718281828)))
+    add("deflated_sharpe", own_res["sharpe"] > sr0, f"Sharpe {own_res['sharpe']:.2f} vs {sr0:.2f} expected from the best of {n_trials} luck-only trials")
+
     # 6. disclosure items that cannot pass or fail mechanically
     n_hyp = store.conn.execute("SELECT COUNT(DISTINCT hyp_id) FROM hypotheses").fetchone()[0]
     add("multiple_testing", True, f"{n_hyp} distinct hypotheses registered so far; survivorship bias and a short sample are disclosed biases", hard=False)
     hold = store.conn.execute("SELECT 1 FROM experiments WHERE hyp_id=? AND version=? AND segment='holdout'", (hyp_id, version)).fetchone()
     add("holdout_sealed", hold is None, "holdout period has not been evaluated", hard=False)
 
+    return _finish(store, hyp_id, version, findings, now)
+
+
+def _finish(store: Store, hyp_id: str, version: int, findings: list[dict], now: datetime) -> dict:
     failed = [f for f in findings if f["hard"] and not f["passed"]]
     verdict = "fail" if failed else "defer"          # the engine can block; it never promotes
     cur = current_tier(store, hyp_id, version)
