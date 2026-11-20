@@ -343,6 +343,83 @@ def sector_momentum_filtered(h: Hist, lookback: int = 126, top: int = 3, sma: in
 
 
 
+# ---- batch 5 rules (authored before any was tested) ---------------------------------------------------------------------
+def global_equity_momentum(h: Hist, lookback: int = 126) -> dict[str, float]:
+    eq = [iid(x) for x in "SPY EFA EEM".split()]
+    if not h.get(iid("SHY")) or any(i not in h for i in eq):
+        return {}
+    sc = sorted(((_ret(h[i], lookback), i) for i in eq if _ret(h[i], lookback) is not None), reverse=True)
+    if not sc:
+        return {}
+    return {sc[0][1]: CB} if sc[0][0] > 0 else {iid("SHY"): CB}
+
+
+def three_asset_inverse_vol(h: Hist, window: int = 63) -> dict[str, float]:
+    assets = [iid(x) for x in "SPY TLT GLD".split()]
+    v = {i: _vol(h[i], window) for i in assets if i in h}
+    v = {i: x for i, x in v.items() if x}
+    if len(v) < 3:
+        return {}
+    tot = sum(1 / x for x in v.values())
+    return {i: CB * (1 / x) / tot for i, x in v.items()}
+
+
+def oversold_dip(h: Hist, sma: int = 200, window: int = 21, drop: float = 0.08) -> dict[str, float]:
+    s, c = h.get(iid("SPY")), h.get(iid("SHY"))
+    m, r = (_sma(s, sma), _ret(s, window)) if s else (None, None)
+    if m is None or r is None or not c:
+        return {}
+    return {iid("SPY"): CB} if (s[-1].close > m or r < -drop) else {iid("SHY"): CB}
+
+
+def momentum_12_1(h: Hist, lookback: int = 252, skip: int = 21, top: int = 3) -> dict[str, float]:
+    sec = [iid(x) for x in "XLB XLE XLF XLI XLK XLP XLU XLV XLY".split()]
+    sc = []
+    for i in sec:
+        if i in h and len(h[i]) > lookback + skip:
+            sc.append((h[i][-1 - skip].close / h[i][-1 - skip - lookback + skip].close - 1, i))
+    sc.sort(reverse=True)
+    return {i: CB / top for r, i in sc[:top]}
+
+
+def faber_eight(h: Hist, sma: int = 200) -> dict[str, float]:
+    assets = [iid(x) for x in "SPY EFA EEM VNQ DBC GLD TLT IEF".split()]
+    on = [i for i in assets if i in h and (m := _sma(h[i], sma)) is not None and h[i][-1].close > m]
+    return {i: CB / len(assets) for i in on}
+
+
+def donchian_mid(h: Hist, window: int = 100) -> dict[str, float]:
+    s, c = h.get(iid("SPY")), h.get(iid("SHY"))
+    if not s or not c or len(s) < window:
+        return {}
+    hi, lo = max(b.close for b in s[-window:]), min(b.close for b in s[-window:])
+    return {iid("SPY"): CB} if s[-1].close > (hi + lo) / 2 else {iid("SHY"): CB}
+
+
+def credit_vs_treasury(h: Hist, lookback: int = 63) -> dict[str, float]:
+    l, t = h.get(iid("LQD")), h.get(iid("IEF"))
+    if not l or not t:
+        return {}
+    n = min(len(l), len(t))
+    if n <= lookback:
+        return {}
+    ratio_now = l[-1].close / t[-1].close
+    ratio_then = l[-1 - lookback].close / t[-1 - lookback].close
+    return {iid("LQD"): CB} if ratio_now > ratio_then else {iid("IEF"): CB}
+
+
+def value_small_trend(h: Hist, sma: int = 200) -> dict[str, float]:
+    assets = [iid("IWD"), iid("IWM")]
+    if not h.get(iid("SHY")) or any(i not in h or len(h[i]) < sma for i in assets):
+        return {}
+    w: dict[str, float] = {}
+    for i in assets:
+        key = i if h[i][-1].close > _sma(h[i], sma) else iid("SHY")
+        w[key] = w.get(key, 0.0) + CB / 2
+    return w
+
+
+
 @dataclass(frozen=True)
 class Candidate:
     cid: str
@@ -512,4 +589,36 @@ CANDIDATES: list[Candidate] = [
        "High-yield bonds behave like equity-lite plus carry and fall hard in credit stress; a trend filter avoids the worst of it (Faber).",
        "Monthly: hold HYG while above its 100-session average, otherwise SHY.", "HYG SHY",
        credit_trend, [partial(credit_trend, sma=63), partial(credit_trend, sma=150)]),
+    _c("N39_global_equity_momentum", "Best of US, developed and emerging equities",
+       "Global equity momentum (Antonacci; Asness, Moskowitz, Pedersen): the strongest equity region over six months tends to keep leading.",
+       "Monthly: hold the best of SPY, EFA, EEM by 126-session return if positive; otherwise SHY.", "SPY EFA EEM SHY",
+       global_equity_momentum, [partial(global_equity_momentum, lookback=63), partial(global_equity_momentum, lookback=189)]),
+    _c("N40_stocks_bonds_gold_risk_balance", "Stocks, long bonds and gold risk balance",
+       "All-weather risk balancing (Dalio's published framework; Asness, Frazzini, Pedersen): equalise risk across growth, rates and inflation exposures.",
+       "Monthly: SPY, TLT, GLD weighted by 1/volatility (63 sessions), summing to 99%.", "SPY TLT GLD",
+       three_asset_inverse_vol, [partial(three_asset_inverse_vol, window=42), partial(three_asset_inverse_vol, window=126)]),
+    _c("N41_oversold_dip_in_uptrend", "Buying sharp dips",
+       "Short-term overreaction (De Bondt and Thaler; Lehmann): sharp one-month falls tend to partly reverse, so a trend rule that stays long after a 8% drop avoids selling the low.",
+       "Monthly: hold SPY if above its 200-session average or if it fell more than 8% over 21 sessions; otherwise SHY.", "SPY SHY",
+       oversold_dip, [partial(oversold_dip, drop=0.06), partial(oversold_dip, drop=0.10)]),
+    _c("N42_sector_momentum_12_1", "Classic 12-1 sector momentum",
+       "Jegadeesh and Titman (1993): rank by return over the past twelve months excluding the most recent month to avoid short-term reversal.",
+       "Monthly: hold the 3 of 9 sector ETFs with the best 12-month return skipping the latest 21 sessions.", "XLB XLE XLF XLI XLK XLP XLU XLV XLY",
+       momentum_12_1, [partial(momentum_12_1, lookback=189), partial(momentum_12_1, top=2), partial(momentum_12_1, top=4)]),
+    _c("N43_faber_eight_assets", "Faber trend following on eight asset classes",
+       "Faber (2007) timing model across US, developed and emerging stocks, real estate, commodities, gold, long and intermediate bonds.",
+       "Monthly: SPY, EFA, EEM, VNQ, DBC, GLD, TLT, IEF at 1/8 each while above their 200-session average, otherwise cash.", "SPY EFA EEM VNQ DBC GLD TLT IEF",
+       faber_eight, [partial(faber_eight, sma=150), partial(faber_eight, sma=250)]),
+    _c("N44_donchian_midline", "S&P 500 range midpoint trend",
+       "Channel breakout rules (Donchian; Lukac, Brorsen, Irwin): price above the midpoint of its 100-session range marks an uptrend.",
+       "Monthly: hold SPY if it is above the midpoint of its 100-session high and low, otherwise SHY.", "SPY SHY",
+       donchian_mid, [partial(donchian_mid, window=63), partial(donchian_mid, window=150)]),
+    _c("N45_credit_vs_treasury", "Investment-grade credit versus Treasuries",
+       "Credit spreads signal the economic cycle (Gilchrist and Zakrajsek): when investment-grade bonds outperform Treasuries, risk appetite is high.",
+       "Monthly: hold LQD if the LQD/IEF price ratio is above its level 63 sessions ago, otherwise IEF.", "LQD IEF",
+       credit_vs_treasury, [partial(credit_vs_treasury, lookback=42), partial(credit_vs_treasury, lookback=126)]),
+    _c("N46_value_small_trend", "Trend-filtered value and small caps",
+       "Value and size premia (Fama and French) are volatile; holding each only while in an uptrend aims to keep the premium and cut the crashes.",
+       "Monthly: IWD (value) and IWM (small cap) at half each while above their 200-session average, otherwise that half sits in SHY.", "IWD IWM SHY",
+       value_small_trend, [partial(value_small_trend, sma=150), partial(value_small_trend, sma=250)]),
 ]
