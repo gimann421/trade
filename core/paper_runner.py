@@ -278,6 +278,8 @@ def place_sleeve_orders(rule: str, picks: list[str], prices: dict[str, float], a
     if pending:
         return {"orders": [], "skipped": f"{len(pending)} earlier order(s) of this rule are still open", "unpriced": []}
     shares = sleeve_shares(history)
+    from core.sleeves import apply_split_factors
+    shares = apply_split_factors(shares, account_split_factors(client, shares))
     used_ids = {str(o.client_order_id) for o in history}
     try:
         other_open = {}
@@ -347,6 +349,22 @@ def execute_signal_orders(cfg: dict, status: dict, price: float, session: pd.Tim
 
 # --- command line -------------------------------------------------------------------------
 
+def account_split_factors(client, symbols) -> dict[str, float]:
+    """Split ratio per symbol: the account's share count against what every tracked rule's orders add up to."""
+    from core.sleeves import rule_orders, sleeve_shares, split_factor
+
+    held = {p.symbol: float(p.qty) for p in client.get_all_positions() if p.symbol in set(symbols)}
+    if not held:
+        return {}
+    total: dict[str, float] = {}
+    for cfg in load_tracked():
+        for symbol, qty in sleeve_shares(rule_orders(client, cfg["rule"])).items():
+            if symbol in held:
+                total[symbol] = total.get(symbol, 0.0) + qty
+    factors = {s: split_factor(total.get(s, 0.0), q) for s, q in held.items()}
+    return {s: f for s, f in factors.items() if f != 1.0}
+
+
 def load_tracked() -> list[dict]:
     return json.loads(TRACKED_PATH.read_text())["tracked"]
 
@@ -394,6 +412,8 @@ def main(argv=None) -> int:
         client = get_paper_client()
         state, limits = account_state(client), load_risk_limits()
         held = sleeve_shares(rule_orders(client, args.rule))
+        from core.sleeves import apply_split_factors
+        held = apply_split_factors(held, account_split_factors(client, held))
         managed = set(held)
         prices = fetch_closes(sorted(set(status["holdings"]) | managed), session - pd.Timedelta(days=10), session).iloc[-1].to_dict()
         checked = check_plan(plan_orders(status["holdings"], prices, held, managed, state.equity * allocation / 100), state, limits)
