@@ -1,15 +1,35 @@
 {
- "asof": "2026-11-19",
- "benchmark_nav": 99079.24981641537,
+ "asof": "2026-11-20",
+ "benchmark_nav": 96884.38447152486,
  "decisions": 9,
  "decisions_changed_since_recorded": [
   {
+   "decision_date": "2026-10-16",
+   "recomputed_only": [
+    "Q"
+   ],
+   "stored_only": [
+    "SNDK"
+   ]
+  },
+  {
    "decision_date": "2026-10-21",
    "recomputed_only": [
+    "CTVA",
     "VLO"
    ],
    "stored_only": [
-    "SCHW"
+    "SCHW",
+    "SNDK"
+   ]
+  },
+  {
+   "decision_date": "2026-10-26",
+   "recomputed_only": [
+    "GE"
+   ],
+   "stored_only": [
+    "SNDK"
    ]
   },
   {
@@ -22,6 +42,24 @@
    ]
   },
   {
+   "decision_date": "2026-11-03",
+   "recomputed_only": [
+    "TT"
+   ],
+   "stored_only": [
+    "SNDK"
+   ]
+  },
+  {
+   "decision_date": "2026-11-06",
+   "recomputed_only": [
+    "GLW"
+   ],
+   "stored_only": [
+    "SNDK"
+   ]
+  },
+  {
    "decision_date": "2026-11-11",
    "recomputed_only": [
     "IRM",
@@ -29,11 +67,31 @@
    ],
    "stored_only": [
     "FANG",
-    "TJX"
+    "SNDK"
+   ]
+  },
+  {
+   "decision_date": "2026-11-16",
+   "recomputed_only": [
+    "ARES",
+    "F"
+   ],
+   "stored_only": [
+    "CMI",
+    "SNDK"
+   ]
+  },
+  {
+   "decision_date": "2026-11-19",
+   "recomputed_only": [
+    "CAT"
+   ],
+   "stored_only": [
+    "SNDK"
    ]
   }
  ],
- "excess_return": 0.017255015966392673,
+ "excess_return": -0.01406858973130154,
  "first_decision": "2026-10-16",
  "holdings": [
   "ACN",
@@ -89,10 +147,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-19",
- "nav": 100788.86385393582,
+ "nav": 95521.35781502529,
  "rule": "stock_rev5_h3_band40",
  "start": "2026-10-16",
  "state": "running",
  "strategy_rule": "rev5_h3_band40_s",
- "total_return": 0.007888638539358173
+ "total_return": -0.04478642184974713
 }
