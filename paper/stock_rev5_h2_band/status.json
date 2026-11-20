@@ -4,110 +4,32 @@
  "decisions": 14,
  "decisions_changed_since_recorded": [
   {
-   "decision_date": "2026-10-15",
-   "recomputed_only": [
-    "STT"
-   ],
-   "stored_only": [
-    "SNDK"
-   ]
-  },
-  {
-   "decision_date": "2026-10-19",
-   "recomputed_only": [
-    "DDOG"
-   ],
-   "stored_only": [
-    "SNDK"
-   ]
-  },
-  {
    "decision_date": "2026-10-21",
    "recomputed_only": [
-    "CIEN",
-    "T"
+    "CIEN"
    ],
    "stored_only": [
-    "ADM",
-    "SNDK"
-   ]
-  },
-  {
-   "decision_date": "2026-10-23",
-   "recomputed_only": [
-    "NEM"
-   ],
-   "stored_only": [
-    "SNDK"
+    "ADM"
    ]
   },
   {
    "decision_date": "2026-10-27",
    "recomputed_only": [
-    "FDXF",
     "GOOG",
     "GOOGL"
    ],
    "stored_only": [
     "BG",
-    "LVS",
-    "SNDK"
-   ]
-  },
-  {
-   "decision_date": "2026-11-02",
-   "recomputed_only": [
-    "QCOM"
-   ],
-   "stored_only": [
-    "SNDK"
-   ]
-  },
-  {
-   "decision_date": "2026-11-04",
-   "recomputed_only": [
-    "DVN"
-   ],
-   "stored_only": [
-    "SNDK"
-   ]
-  },
-  {
-   "decision_date": "2026-11-06",
-   "recomputed_only": [
-    "CRWD"
-   ],
-   "stored_only": [
-    "SNDK"
-   ]
-  },
-  {
-   "decision_date": "2026-11-10",
-   "recomputed_only": [
-    "GNRC"
-   ],
-   "stored_only": [
-    "SNDK"
+    "LVS"
    ]
   },
   {
    "decision_date": "2026-11-16",
    "recomputed_only": [
-    "INTC",
     "XYZ"
    ],
    "stored_only": [
-    "EXPE",
-    "SNDK"
-   ]
-  },
-  {
-   "decision_date": "2026-11-18",
-   "recomputed_only": [
-    "KLAC"
-   ],
-   "stored_only": [
-    "SNDK"
+    "EXPE"
    ]
   }
  ],
