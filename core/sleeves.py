@@ -62,3 +62,26 @@ def sleeve_shares(orders) -> dict[str, float]:
 
 def open_orders(orders) -> list:
     return [o for o in orders if _status(o) in OPEN_STATES]
+
+
+def split_factor(order_total: float, account_qty: float | None, tolerance: float = 0.01) -> float:
+    """Share-count change a stock split made to the account's position since the orders were filled.
+
+    Alpaca multiplies the held quantity at a split but leaves old orders' filled_qty as they were, so a
+    sleeve rebuilt from orders is off by the split ratio. When the account holds a clean whole-number
+    multiple (or 1/n, for a reverse split) of what all rules' orders add up to, that ratio is the factor;
+    anything else (no position yet, an unrelated mismatch) gives 1.0 and leaves the counts alone."""
+    if not account_qty or order_total <= 0 or account_qty <= 0:
+        return 1.0
+    ratio = account_qty / order_total
+    n = round(ratio)
+    if 2 <= n <= 100 and abs(ratio - n) <= tolerance * n:
+        return float(n)
+    n = round(1.0 / ratio)
+    if 2 <= n <= 100 and abs(1.0 / ratio - n) <= tolerance * n:
+        return 1.0 / n
+    return 1.0
+
+
+def apply_split_factors(shares: dict[str, float], factors: dict[str, float]) -> dict[str, float]:
+    return {s: q * factors.get(s, 1.0) for s, q in shares.items()}
