@@ -268,6 +268,81 @@ def drawdown_stop(h: Hist, window: int = 252, limit: float = 0.10) -> dict[str, 
 
 
 
+# ---- batch 4 rules (authored before any was tested) ---------------------------------------------------------------------
+def growth_leadership(h: Hist, lookback: int = 126) -> dict[str, float]:
+    q, s, c = h.get(iid("QQQ")), h.get(iid("SPY")), h.get(iid("SHY"))
+    if not q or not s or not c:
+        return {}
+    rq, rs = _ret(q, lookback), _ret(s, lookback)
+    if rq is None or rs is None or max(rq, rs) <= 0:
+        return {iid("SHY"): CB}
+    return {iid("QQQ") if rq >= rs else iid("SPY"): CB}
+
+
+def duration_rotation(h: Hist, lookback: int = 126) -> dict[str, float]:
+    lo, sh, c = h.get(iid("TLT")), h.get(iid("IEI")), h.get(iid("SHY"))
+    if not lo or not sh or not c:
+        return {}
+    rl, rs = _ret(lo, lookback), _ret(sh, lookback)
+    if rl is None or rs is None or max(rl, rs) <= 0:
+        return {iid("SHY"): CB}
+    return {iid("TLT") if rl >= rs else iid("IEI"): CB}
+
+
+def sell_in_may(h: Hist, start_month: int = 11, end_month: int = 4) -> dict[str, float]:
+    s, c = h.get(iid("SPY")), h.get(iid("SHY"))
+    if not s or not c:
+        return {}
+    m = int(s[-1].session_date[5:7])
+    return {iid("SPY"): CB} if (m >= start_month or m <= end_month) else {iid("SHY"): CB}
+
+
+def four_asset_trend(h: Hist, sma: int = 200) -> dict[str, float]:
+    assets = [iid(x) for x in "SPY TLT GLD VNQ".split()]
+    if not h.get(iid("SHY")) or any(i not in h or len(h[i]) < sma for i in assets):
+        return {}
+    w: dict[str, float] = {}
+    for i in assets:
+        key = i if h[i][-1].close > _sma(h[i], sma) else iid("SHY")
+        w[key] = w.get(key, 0.0) + CB / 4
+    return w
+
+
+def inflation_rotation(h: Hist, lookback: int = 126) -> dict[str, float]:
+    assets = [iid(x) for x in "GLD TLT DBC".split()]
+    sc = sorted(((_ret(h[i], lookback), i) for i in assets if i in h and _ret(h[i], lookback) is not None), reverse=True)
+    if not sc or not h.get(iid("SHY")):
+        return {}
+    return {sc[0][1]: CB} if sc[0][0] > 0 else {iid("SHY"): CB}
+
+
+def calm_assets(h: Hist, window: int = 126, top: int = 3) -> dict[str, float]:
+    assets = [iid(x) for x in "SPY EFA EEM TLT IEF LQD GLD VNQ".split()]
+    sc = sorted((v, i) for i in assets if i in h and (v := _vol(h[i], window)) and (_ret(h[i], window) or 0) > 0)[:top]
+    return {i: CB / top for _, i in sc}
+
+
+def credit_trend(h: Hist, sma: int = 100) -> dict[str, float]:
+    x, c = h.get(iid("HYG")), h.get(iid("SHY"))
+    m = _sma(x, sma) if x else None
+    if m is None or not c:
+        return {}
+    return {iid("HYG"): CB} if x[-1].close > m else {iid("SHY"): CB}
+
+
+def sector_momentum_filtered(h: Hist, lookback: int = 126, top: int = 3, sma: int = 200) -> dict[str, float]:
+    s, c = h.get(iid("SPY")), h.get(iid("SHY"))
+    m = _sma(s, sma) if s else None
+    if m is None or not c:
+        return {}
+    if s[-1].close <= m:
+        return {iid("SHY"): CB}
+    sec = [iid(x) for x in "XLB XLE XLF XLI XLK XLP XLU XLV XLY".split()]
+    sc = sorted(((_ret(h[i], lookback), i) for i in sec if i in h and _ret(h[i], lookback) is not None), reverse=True)[:top]
+    return {i: CB / top for _, i in sc}
+
+
+
 @dataclass(frozen=True)
 class Candidate:
     cid: str
@@ -405,4 +480,36 @@ CANDIDATES: list[Candidate] = [
        "Loss aversion and crash clustering (Daniel and Moskowitz): after a 10% fall from the 12-month high, further large losses are more likely than usual.",
        "Monthly: hold SPY unless it closes more than 10% below its 252-session high, then SHY.", "SPY SHY",
        drawdown_stop, [partial(drawdown_stop, limit=0.08), partial(drawdown_stop, limit=0.12)]),
+    _c("N31_growth_leadership", "Nasdaq-100 versus S&P 500 leadership",
+       "Style and sector leadership persists (Moskowitz and Grinblatt): growth-heavy indexes that lead tend to keep leading over the next months.",
+       "Monthly: hold QQQ or SPY, whichever has the higher 126-session return, if positive; otherwise SHY.", "QQQ SPY SHY",
+       growth_leadership, [partial(growth_leadership, lookback=63), partial(growth_leadership, lookback=189)]),
+    _c("N32_duration_rotation", "Long versus intermediate Treasury rotation",
+       "Duration timing follows the rate cycle (Ilmanen): the maturity that performed better recently tends to keep doing so while yields trend.",
+       "Monthly: hold TLT or IEI, whichever has the higher 126-session return, if positive; otherwise SHY.", "TLT IEI SHY",
+       duration_rotation, [partial(duration_rotation, lookback=63), partial(duration_rotation, lookback=189)]),
+    _c("N33_sell_in_may", "Halloween indicator (sell in May)",
+       "Seasonality in stock returns (Bouman and Jacobsen 2002): returns from November to April have historically exceeded May to October across many markets.",
+       "Monthly: hold SPY in November through April, SHY in May through October.", "SPY SHY",
+       sell_in_may, [partial(sell_in_may, start_month=10), partial(sell_in_may, end_month=5)]),
+    _c("N34_four_asset_trend", "Trend-filtered stocks, long bonds, gold and real estate",
+       "Faber-style timing applied to the permanent-portfolio style mix: four uncorrelated assets, each held only in an uptrend.",
+       "Monthly: SPY, TLT, GLD, VNQ at 1/4 each while above their 200-session average, otherwise that quarter sits in SHY.", "SPY TLT GLD VNQ SHY",
+       four_asset_trend, [partial(four_asset_trend, sma=150), partial(four_asset_trend, sma=250)]),
+    _c("N35_inflation_rotation", "Inflation-hedge asset rotation",
+       "Real-asset momentum (Erb and Harvey): gold, commodities and long bonds take turns as the best response to changing inflation and growth.",
+       "Monthly: hold whichever of GLD, TLT, DBC has the best 126-session return if positive, otherwise SHY.", "GLD TLT DBC SHY",
+       inflation_rotation, [partial(inflation_rotation, lookback=63), partial(inflation_rotation, lookback=189)]),
+    _c("N36_calm_rising_assets", "Calm rising assets",
+       "Low risk with positive trend (Baker, Bradley, Wurgler; Frazzini and Pedersen): low-volatility assets in an uptrend have given high return per unit of risk.",
+       "Monthly: of SPY, EFA, EEM, TLT, IEF, LQD, GLD, VNQ with a positive 126-session return, hold the 3 with the lowest 126-session volatility.", "SPY EFA EEM TLT IEF LQD GLD VNQ",
+       calm_assets, [partial(calm_assets, window=63), partial(calm_assets, window=189), partial(calm_assets, top=2), partial(calm_assets, top=4)]),
+    _c("N37_sector_momentum_trend_gate", "Sector momentum with a market trend gate",
+       "Momentum crashes happen in bear markets (Daniel and Moskowitz); gating on the market trend is a published remedy.",
+       "Monthly: if SPY is above its 200-session average hold the 3 of 9 sector ETFs with the best 126-session return, otherwise SHY.", "SPY XLB XLE XLF XLI XLK XLP XLU XLV XLY SHY",
+       sector_momentum_filtered, [partial(sector_momentum_filtered, lookback=63), partial(sector_momentum_filtered, lookback=189), partial(sector_momentum_filtered, sma=150), partial(sector_momentum_filtered, sma=250)]),
+    _c("N38_high_yield_trend", "High-yield bond trend filter",
+       "High-yield bonds behave like equity-lite plus carry and fall hard in credit stress; a trend filter avoids the worst of it (Faber).",
+       "Monthly: hold HYG while above its 100-session average, otherwise SHY.", "HYG SHY",
+       credit_trend, [partial(credit_trend, sma=63), partial(credit_trend, sma=150)]),
 ]
