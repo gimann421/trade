@@ -108,7 +108,10 @@ def shadow_ideas(store: Store, now: datetime, symbols: list[str], max_new: int =
         qty = _qty(Decimal(str(idea.suggested_weight)) * n, p)
         if qty < 1:
             continue
+        key = f"idea3:{now.date().isoformat()[:7]}:{idea.instrument_id}"
+        if store.conn.execute("SELECT 1 FROM orders WHERE account_id=? AND client_key=?", (sh, key)).fetchone():
+            continue                  # already pre-registered this month (the price, hence the size, moves daily; the decision stands)
         oid = propose_order(store, OrderRequest(sh, idea.instrument_id, "BUY", str(qty), "G1_shadow_ideas", "2", idea.rationale,
-                                                client_key=f"idea3:{now.date().isoformat()[:7]}:{idea.instrument_id}"), now, fallback_marks)
+                                                client_key=key), now, fallback_marks)
         out.append((idea.instrument_id, str(qty), current_state(store, oid).value))
     return {"orders": out}
