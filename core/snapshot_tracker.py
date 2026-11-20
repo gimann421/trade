@@ -102,6 +102,25 @@ def fetch_snapshot(symbols, day, client=None, batch: int = 100, feed=None) -> pd
     return pd.Series(out, dtype=float)
 
 
+def unsplit_snapshot(snap: pd.Series, close_that_day: pd.Series, tolerance: float = 0.15) -> pd.Series:
+    """Put a stored 15:45 price on the same footing as today's split-adjusted history.
+
+    The history is re-downloaded adjusted, so after a stock split every earlier close is divided by the
+    ratio while the stored snapshot kept the price of the day. A snapshot a whole-number multiple (2x or
+    more) of that day's adjusted close, within intraday-move tolerance, is divided by that ratio; real
+    moves never come near it. Reverse splits are not handled: a 1-in-2 drop is indistinguishable from a crash."""
+    out = snap.copy()
+    for t in snap.index:
+        base = close_that_day.get(t)
+        if base is None or pd.isna(base) or not base or snap[t] <= 0:
+            continue
+        ratio = snap[t] / base
+        n = round(ratio)
+        if 2 <= n <= 100 and abs(ratio - n) <= tolerance * n:
+            out[t] = snap[t] / n
+    return out
+
+
 def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, out_dir, fetch_closes_fn=fetch_closes,
                       fetch_snapshot_fn=fetch_snapshot, fetch_vix_fn=fetch_vix) -> dict:
     rule, sh = find_rule(cfg["strategy_rule"])
@@ -134,7 +153,7 @@ def run_snapshot_rule(cfg: dict, session: pd.Timestamp, membership: pd.Series, o
         stored = _read_json(out_dir, f"decisions/{date.date()}.json")
         priced = [t for t in sorted(members_on(membership, [date])[0]) if t in closes.columns and pd.notna(closes.at[date, t])]
         if stored is not None:
-            snap = pd.Series(stored["snapshot_1545"], dtype=float)
+            snap = unsplit_snapshot(pd.Series(stored["snapshot_1545"], dtype=float), closes.loc[date])
         else:
             snap = fetch_snapshot_fn(priced, date)
             if snap.empty:
