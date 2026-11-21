@@ -297,3 +297,22 @@ def test_planned_orders_fit_the_order_and_position_caps(monkeypatch):
     assert [o["qty"] for o in out["orders"]] == [30]               # cap 5000 - 2000 = 3000
     # one order never exceeds the per-order cap
     assert [o["qty"] for o in pr.plan_orders(["B"], {"B": 10.0}, {}, set(), 100_000, max_order=5000)] == [500]
+
+
+def test_split_factor_reads_a_clean_split_ratio_from_the_account_position():
+    assert sleeves.split_factor(4.0, 32.0) == 8.0
+    assert sleeves.split_factor(4.0, 4.0) == 1.0          # not split yet (or no split)
+    assert sleeves.split_factor(4.0, 2.0) == 0.5          # 1-for-2 reverse split
+    assert sleeves.split_factor(4.0, 13.0) == 1.0         # unrelated mismatch stays untouched
+    assert sleeves.split_factor(4.0, None) == 1.0
+    assert sleeves.apply_split_factors({"SNDK": 1.0, "AAPL": 2.0}, {"SNDK": 8.0}) == {"SNDK": 8.0, "AAPL": 2.0}
+
+
+def test_stored_snapshot_is_put_on_the_split_adjusted_footing():
+    from core.snapshot_tracker import unsplit_snapshot
+
+    snap = pd.Series({"SNDK": 1394.0, "AAA": 101.0, "BBB": 50.0})
+    close = pd.Series({"SNDK": 174.35, "AAA": 100.0})      # SNDK history divided by 8 after the split; BBB has no bar
+    out = unsplit_snapshot(snap, close)
+    assert out["SNDK"] == pytest.approx(1394.0 / 8)
+    assert out["AAA"] == 101.0 and out["BBB"] == 50.0
