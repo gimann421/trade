@@ -32,7 +32,7 @@ def boot(db_path: str | None = None) -> dict:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="nexus")
-    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard", "suggest", "growth", "search"])
+    p.add_argument("command", choices=["boot", "verify", "lock", "status", "health", "tick", "run", "halt", "resume", "dashboard", "suggest", "growth", "search", "judgment"])
     p.add_argument("--db", default=None, help="override database path")
     p.add_argument("--out", default="data/dashboard/index.html", help="dashboard output path (keep it untracked; it contains holdings)")
     p.add_argument("--fallback-marks", default=None, help="optional JSON {instrument_id: price} used only where the feed has no fresh bar")
@@ -67,6 +67,12 @@ def main(argv: list[str] | None = None) -> int:
             from .timeutil import utcnow
             fb = {k: Decimal(str(v)) for k, v in json.load(open(args.fallback_marks)).items()} if args.fallback_marks else None
             print(json.dumps(daily_growth(Store.open(args.db), _data_adapter(), utcnow(), fb, refresh_clock=True), indent=2))
+        elif args.command == "judgment":
+            if not (args.snapshot and args.state):
+                raise NexusError("judgment needs --snapshot and --state (the calls file)")
+            governance.verify_lock()
+            from .judgment_run import run_calls_file
+            print(json.dumps(run_calls_file(args.snapshot, args.state, _data_adapter, Store.open(args.db), args.themes), indent=2))
         elif args.command == "search":
             governance.verify_lock()
             from .search import digest, run_next
