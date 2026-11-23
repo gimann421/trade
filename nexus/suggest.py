@@ -28,7 +28,7 @@ STALE_BAR_DAYS = 5                 # a close older than this is not used; a labe
 
 
 def price_snapshot(snapshot: dict, adapter: MarketDataAdapter, now: datetime,
-                   fallback: dict[str, Decimal]) -> tuple[dict[str, Decimal], dict[str, str]]:
+                   fallback: dict[str, Decimal], secondary=None) -> tuple[dict[str, Decimal], dict[str, str]]:
     fallback = {**fallback, **{k.rsplit(":", 1)[-1]: v for k, v in fallback.items()}}   # accept bare or full ids
     prices: dict[str, Decimal] = {}
     notes: dict[str, str] = {}
@@ -44,6 +44,12 @@ def price_snapshot(snapshot: dict, adapter: MarketDataAdapter, now: datetime,
                     got = (Decimal(str(last.close)), last.session_date)
         except Exception:
             got = None
+        if not got and secondary is not None:
+            alt = secondary(iid)
+            if alt and (today - date.fromisoformat(alt[1])).days <= STALE_BAR_DAYS:
+                prices[iid] = alt[0]
+                notes[iid] = f"priced from the secondary feed (close {alt[1]}); the primary feed has no bars"
+                continue
         if got:
             prices[iid] = got[0]
         elif iid in fallback:
@@ -172,13 +178,30 @@ def call_lines(snapshot: dict, prices: dict[str, Decimal], hist: dict, held_hist
     return lines, keep, found
 
 
+def valuation(snapshot: dict, prices: dict[str, Decimal], notes: dict[str, str]) -> dict:
+    """Every owned equity at today's price: shares, value, gain or loss against cost, share of the account. Pure arithmetic."""
+    rows, total = [], Decimal(str(snapshot.get("cash", {}).get("USD", 0))) if isinstance(snapshot.get("cash"), dict) else Decimal("0")
+    cash = total
+    for sym, h in snapshot["holdings"].items():
+        px = prices[sym]
+        val = (Decimal(str(h["quantity"])) * px).quantize(Decimal("0.01"))
+        total += val
+        rows.append({"symbol": sym.rsplit(":", 1)[-1], "price": str(px), "value": str(val),
+                     "gain": None if h.get("cost_basis") is None else str((val - Decimal(str(h["cost_basis"]))).quantize(Decimal("0.01"))),
+                     "source": "screenshot mark" if "screenshot" in notes.get(sym, "") else ("secondary feed" if sym in notes else "primary feed")})
+    for r in rows:
+        r["weight"] = str((Decimal(r["value"]) / total * 100).quantize(Decimal("0.1"))) if total else "0"
+    rows.sort(key=lambda r: -Decimal(r["value"]))
+    return {"total": str(total.quantize(Decimal("0.01"))), "cash": str(cash), "rows": rows}
+
+
 def run(snapshot: dict, adapter: MarketDataAdapter, now: datetime, state: dict, *, themes: dict[str, str] | None = None,
         fallback: dict[str, Decimal] | None = None, ideas: bool = True,
         calls_gate: tuple[bool, list[str]] = (False, ["no validation record supplied"]), protected: frozenset[str] = BROAD,
-        max_weight: Decimal = Decimal('0.10')) -> dict:
+        max_weight: Decimal = Decimal('0.10'), secondary=None) -> dict:
     """Pure with respect to disk: returns {"post", "lines", "state", "log"}; the caller persists ``state``."""
     require_aware(now, "now")
-    prices, notes = price_snapshot(snapshot, adapter, now, fallback or {})
+    prices, notes = price_snapshot(snapshot, adapter, now, fallback or {}, secondary)
     findings = analyze(snapshot, prices, now, themes=themes, broad_funds=BROAD)
     prev = state.get("posted", {})
     weekday = now.astimezone(NY).weekday()
@@ -204,7 +227,7 @@ def run(snapshot: dict, adapter: MarketDataAdapter, now: datetime, state: dict, 
             pass                                    # ideas are optional; the risk checks above never depend on them
     new_state["posted"] = posted
     new_state["last_run"] = to_iso(now)
-    return {"post": bool(lines), "lines": lines, "state": new_state, "call_findings": call_findings, "calls_withheld": [] if calls_gate[0] else calls_gate[1], "price_notes": notes,
+    return {"post": bool(lines), "lines": lines, "valuation": valuation(snapshot, prices, notes), "state": new_state, "call_findings": call_findings, "calls_withheld": [] if calls_gate[0] else calls_gate[1], "price_notes": notes,
             "log": {"at": to_iso(now), "findings": len(findings), "reported": len(lines)}}
 
 
@@ -226,7 +249,9 @@ def run_files(snapshot_path: str, state_path: str, adapter_factory: Callable[[],
         lim = store.config.risk_limits.get("owner_limits", {})
         protected = frozenset(lim.get("protected_from_sales") or BROAD)
         max_w = Decimal(str(lim.get("max_position_weight") or "0.10"))
-    res = run(snap, adapter_factory(), now, state, themes=themes, fallback=fb, calls_gate=gate, protected=protected, max_weight=max_w)
+    from .quotes import yahoo_last_close
+    res = run(snap, adapter_factory(), now, state, themes=themes, fallback=fb, calls_gate=gate, protected=protected, max_weight=max_w,
+              secondary=lambda iid: yahoo_last_close(iid.rsplit(":", 1)[-1]))
     if res["call_findings"]:
         from .recommendations import record_findings
         acct = store.conn.execute("SELECT account_id FROM ledger_accounts WHERE kind='ACTUAL' ORDER BY created_at DESC LIMIT 1").fetchone()
@@ -236,4 +261,5 @@ def run_files(snapshot_path: str, state_path: str, adapter_factory: Callable[[],
     sp.write_text(json.dumps(res["state"], indent=2, sort_keys=True))
     with open(sp.with_suffix(".log.jsonl"), "a") as fh:
         fh.write(json.dumps(res["log"]) + "\n")
-    return {k: res[k] for k in ("post", "lines", "price_notes", "calls_withheld")}
+    (sp.parent / "valuation_latest.json").write_text(json.dumps({"at": to_iso(now), **res["valuation"]}, indent=2))
+    return {k: res[k] for k in ("post", "lines", "price_notes", "calls_withheld", "valuation")}
