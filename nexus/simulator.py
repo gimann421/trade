@@ -82,9 +82,16 @@ def try_fill(store: Store, order_id: str, now: datetime) -> OrderState:
     fee = D(cfg.get("fee_per_order", "0"))
     signed = qty if buy else -qty
     fill_ts = cal.session_open(d)
-    record_entry(store, o["account_id"], "TRADE", fill_ts, instrument_id=o["instrument_id"], qty_delta=str(signed), price=str(px),
-                 fee=str(fee), cash_delta=str(-signed * px - fee), ref=order_id, note=f"simulated fill {cfg['fill_model']}",
-                 actor="simulator")
+    try:
+        record_entry(store, o["account_id"], "TRADE", fill_ts, instrument_id=o["instrument_id"], qty_delta=str(signed), price=str(px),
+                     fee=str(fee), cash_delta=str(-signed * px - fee), ref=order_id, note=f"simulated fill {cfg['fill_model']}",
+                     actor="simulator")
+    except NexusError as exc:
+        if "cash negative" not in str(exc):
+            raise
+        # earlier fills used the cash this order was approved against: the order dies unfilled, the ledger is never leveraged
+        transition(store, order_id, OrderState.EXPIRED, close_ts, {"reason": "insufficient simulated cash at fill; order not filled"})
+        return OrderState.EXPIRED
     detail = {"fill_qty": str(qty), "fill_price": str(px), "fee": str(fee), "bar": target.session_date, "model": cfg["fill_model"]}
     if qty < remaining:
         transition(store, order_id, OrderState.PARTIALLY_FILLED, close_ts, detail)
