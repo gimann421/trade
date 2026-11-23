@@ -1,6 +1,6 @@
 {
- "asof": "2026-11-20",
- "benchmark_nav": 96552.09677181435,
+ "asof": "2026-11-23",
+ "benchmark_nav": 99364.84808812795,
  "decisions": 14,
  "decisions_changed_since_recorded": [
   {
@@ -31,9 +31,18 @@
    "stored_only": [
     "EXPE"
    ]
+  },
+  {
+   "decision_date": "2026-11-18",
+   "recomputed_only": [
+    "KLAC"
+   ],
+   "stored_only": [
+    "MCHP"
+   ]
   }
  ],
- "excess_return": -0.06011055941737953,
+ "excess_return": -0.00697952578814931,
  "first_decision": "2026-10-15",
  "holdings": [
   "ACN",
@@ -89,10 +98,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-20",
- "nav": 90748.29622193963,
+ "nav": 98671.32856846132,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.09251703778060372
+ "total_return": -0.01328671431538675
 }
