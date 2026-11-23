@@ -61,3 +61,26 @@ def test_files_roundtrip(tmp_path):
     r = run_files(str(sp), str(st), lambda: feed(100, 10), TUE)
     assert r["post"] and st.exists() and (tmp_path / "state" / "s.log.jsonl").exists()
     assert not run_files(str(sp), str(st), lambda: feed(100, 10), WED)["post"]
+
+
+def test_valuation_prices_every_holding_and_labels_the_source():
+    from decimal import Decimal
+    from nexus.suggest import valuation
+    snap = {"cash": {"USD": "1000"}, "holdings": {"EQ:US:AAA": {"quantity": "10", "cost_basis": "500"}, "EQ:US:BBB": {"quantity": "100", "cost_basis": None}}}
+    v = valuation(snap, {"EQ:US:AAA": Decimal("60"), "EQ:US:BBB": Decimal("2")}, {"EQ:US:BBB": "priced from the secondary feed (close 2026-11-20); the primary feed has no bars"})
+    by = {r["symbol"]: r for r in v["rows"]}
+    assert v["total"] == "1800.00" and by["AAA"]["gain"] == "100.00" and by["BBB"]["gain"] is None
+    assert by["AAA"]["source"] == "primary feed" and by["BBB"]["source"] == "secondary feed"
+
+
+def test_secondary_feed_is_used_only_when_the_primary_has_no_bars():
+    from datetime import datetime, timezone
+    from decimal import Decimal
+    from nexus.suggest import price_snapshot
+    class Empty:
+        def fetch_daily_bars(self, *a, **k):
+            raise RuntimeError("no bars")
+    snap = {"holdings": {"EQ:US:OTC": {"quantity": "1", "cost_basis": "1"}}}
+    now = datetime(2026, 11, 23, 21, 30, tzinfo=timezone.utc)
+    p, n = price_snapshot(snap, Empty(), now, {}, lambda iid: (Decimal("2.5"), "2026-11-23"))
+    assert p["EQ:US:OTC"] == Decimal("2.5") and "secondary" in n["EQ:US:OTC"]
