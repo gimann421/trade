@@ -220,3 +220,14 @@ def test_duplicate_proposals_with_same_client_key_return_original_order(env, clo
         propose_order(store, req(acct, client_key="job-2026-11-05", quantity="11"), now)
     c = propose_order(store, req(acct, client_key="other"), now)
     assert c != a
+
+
+def test_fill_that_would_overdraw_cash_expires_instead_of_crashing(env, clock):
+    store, acct, now = setup_decision(env, clock, 5)
+    oid = propose_order(store, req(acct, quantity="50"), now)          # approved against the cash on hand ...
+    clock.advance(days=1); load(store, clock, 6)
+    t = decide_at(SESS[5]) + timedelta(hours=1)
+    clock.now = t
+    record_entry(store, acct, "TRADE", t, instrument_id=IID, qty_delta="990", price="100", cash_delta="-99000")   # ... then other fills use it
+    assert try_fill(store, oid, t) is OrderState.EXPIRED
+    assert state_from_entries(store, acct).cash == 100000 - 99000
