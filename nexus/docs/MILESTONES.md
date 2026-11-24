@@ -49,3 +49,10 @@ runs it through the Red Team, which now includes a deflated-Sharpe check against
 bar is fixed and shared by every candidate. Results go to a ledger outside git. The loop can only reach "cleared the Red Team, needs
 independent review"; it never promotes a strategy or issues a call. First batch: N01-N10 all failed (best validation Sharpe 1.19, N05 SPY trend,
 but its train period missed).
+
+## Long-term judgment track (judgment.py, judgment_run.py)
+Approved by the owner on 2026-11-23 as a separate, clearly labelled track: firm buy / add / trim / hold calls on long-term holds for the real
+account. These are opinions, NOT validated strategies, and are never mixed with the validated-strategy calls. Each call is checked by a
+deterministic gate (10% position limit, protected index funds can never be trimmed, cash only with a 5% floor, 30% theme cap, price required),
+stored as an immutable recommendation stamped before it is shown, with entry and benchmark (VTI) prices so `score()` can grade it later.
+No orders are created; the owner places any trade himself. Calls file and snapshot stay outside git.
