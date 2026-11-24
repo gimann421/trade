@@ -1,15 +1,17 @@
 {
- "asof": "2026-11-23",
- "benchmark_nav": 99364.84808812795,
- "decisions": 14,
+ "asof": "2026-11-24",
+ "benchmark_nav": 99719.05116987591,
+ "decisions": 15,
  "decisions_changed_since_recorded": [
   {
    "decision_date": "2026-10-21",
    "recomputed_only": [
-    "CIEN"
+    "CIEN",
+    "T"
    ],
    "stored_only": [
-    "ADM"
+    "ADM",
+    "VLO"
    ]
   },
   {
@@ -42,48 +44,45 @@
    ]
   }
  ],
- "excess_return": -0.00697952578814931,
+ "excess_return": -0.03875413454179544,
  "first_decision": "2026-10-15",
  "holdings": [
-  "ACN",
+  "ADI",
   "ALB",
   "AMAT",
   "AMD",
-  "BLDR",
+  "ANET",
+  "AVGO",
+  "BG",
   "CDNS",
   "CIEN",
   "CMI",
+  "CNC",
   "COHR",
   "COIN",
-  "CRM",
   "CTVA",
   "DASH",
-  "DECK",
   "DELL",
-  "EXPE",
+  "ECHO",
+  "ELV",
   "FCX",
-  "FIS",
+  "FDXF",
   "FSLR",
   "GLW",
   "HOOD",
+  "HPE",
   "HUM",
-  "INTC",
   "INTU",
-  "ISRG",
   "KLAC",
   "LITE",
   "LRCX",
   "MCHP",
   "MOS",
+  "MPC",
   "MPWR",
-  "MRNA",
   "MRVL",
   "MU",
   "NEM",
-  "NFLX",
-  "NKE",
-  "NOW",
-  "NVDA",
   "ORCL",
   "PODD",
   "Q",
@@ -91,17 +90,20 @@
   "SMCI",
   "SNDK",
   "TER",
+  "TPL",
+  "TXN",
   "UNH",
+  "VLO",
   "VRT",
   "WSM",
   "XYZ"
  ],
  "kind": "snapshot",
- "last_decision": "2026-11-20",
- "nav": 98671.32856846132,
+ "last_decision": "2026-11-24",
+ "nav": 95854.52564445835,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.01328671431538675
+ "total_return": -0.04145474355541645
 }

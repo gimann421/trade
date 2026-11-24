@@ -1,12 +1,12 @@
 {
- "asof": "2026-11-23",
- "benchmark_nav": 99706.85770093015,
- "decisions": 9,
+ "asof": "2026-11-24",
+ "benchmark_nav": 100062.27148076882,
+ "decisions": 10,
  "decisions_changed_since_recorded": [
   {
    "decision_date": "2026-10-21",
    "recomputed_only": [
-    "VLO"
+    "CTVA"
    ],
    "stored_only": [
     "SCHW"
@@ -51,41 +51,40 @@
    ]
   }
  ],
- "excess_return": 0.028150063612924825,
+ "excess_return": 0.005110737940341226,
  "first_decision": "2026-10-16",
  "holdings": [
   "ACN",
+  "ADI",
   "ALB",
   "AMD",
+  "AVGO",
+  "BG",
   "BKNG",
-  "BLDR",
   "CDNS",
   "CMI",
   "COHR",
   "COIN",
-  "CRM",
-  "CTSH",
   "CTVA",
   "CVS",
   "DASH",
-  "DDOG",
-  "DECK",
   "DELL",
   "DVA",
+  "ECHO",
   "EXPE",
   "FCX",
+  "FDXF",
   "FSLR",
   "GEV",
   "GLW",
-  "GPN",
   "HOOD",
+  "HPE",
   "HUM",
-  "ISRG",
+  "INTU",
   "IT",
   "LITE",
   "LRCX",
   "MCHP",
-  "MRNA",
   "MRVL",
   "MU",
   "NEM",
@@ -99,18 +98,19 @@
   "SNDK",
   "SWKS",
   "TER",
-  "UAL",
+  "TPL",
+  "TXN",
   "UNH",
   "VEEV",
   "VRT",
   "WSM"
  ],
  "kind": "snapshot",
- "last_decision": "2026-11-19",
- "nav": 102513.61208785618,
+ "last_decision": "2026-11-24",
+ "nav": 100573.6635280223,
  "rule": "stock_rev5_h3_band40",
  "start": "2026-10-16",
  "state": "running",
  "strategy_rule": "rev5_h3_band40_s",
- "total_return": 0.025136120878561874
+ "total_return": 0.005736635280223057
 }
