@@ -1,6 +1,6 @@
 {
- "asof": "2026-11-24",
- "benchmark_nav": 99719.05116987591,
+ "asof": "2026-11-25",
+ "benchmark_nav": 100531.33067848482,
  "decisions": 15,
  "decisions_changed_since_recorded": [
   {
@@ -26,11 +26,22 @@
    ]
   },
   {
+   "decision_date": "2026-11-12",
+   "recomputed_only": [
+    "DXCM"
+   ],
+   "stored_only": [
+    "AMCR"
+   ]
+  },
+  {
    "decision_date": "2026-11-16",
    "recomputed_only": [
+    "INTC",
     "XYZ"
    ],
    "stored_only": [
+    "AMCR",
     "EXPE"
    ]
   },
@@ -44,7 +55,7 @@
    ]
   }
  ],
- "excess_return": -0.03875413454179544,
+ "excess_return": -0.0440418663176545,
  "first_decision": "2026-10-15",
  "holdings": [
   "ADI",
@@ -100,10 +111,10 @@
  ],
  "kind": "snapshot",
  "last_decision": "2026-11-24",
- "nav": 95854.52564445835,
+ "nav": 96103.74325200707,
  "rule": "stock_rev5_h2_band",
  "start": "2026-10-15",
  "state": "running",
  "strategy_rule": "rev5_h2_band_s",
- "total_return": -0.04145474355541645
+ "total_return": -0.03896256747992932
 }
