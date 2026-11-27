@@ -1,9 +1,9 @@
 {
- "asof": "2026-11-25",
- "benchmark_nav": 98710.68467479436,
+ "asof": "2026-11-27",
+ "benchmark_nav": 99930.8745090589,
  "decisions": 1,
  "decisions_changed_since_recorded": [],
- "excess_return": -0.04907093793951711,
+ "excess_return": -0.04604343260745469,
  "first_decision": "2026-10-30",
  "holdings": [
   "AES",
@@ -44,8 +44,8 @@
   "LRCX",
   "EXPD",
   "DXCM",
-  "BAX",
   "TRV",
+  "BAX",
   "HOOD",
   "LLY",
   "MRNA",
@@ -110,9 +110,9 @@
  "last_decision": "2026-10-30",
  "members_without_bars": [],
  "membership_last_row": "2026-08-18",
- "nav": 93866.85879315028,
+ "nav": 95329.71402319703,
  "rule": "stock_resmom6_1_quintile",
  "start": "2026-10-30",
  "state": "running",
- "total_return": -0.061331412068497126
+ "total_return": -0.04670285976802979
 }

@@ -1,9 +1,9 @@
 {
- "asof": "2026-11-25",
- "benchmark_nav": 95680.72623191816,
+ "asof": "2026-11-27",
+ "benchmark_nav": 97420.9637456066,
  "caveat": "Picks are almost all technology, health-care and chemicals names (SIC 28, 35-38, 73); outside them the 2017-22 backtest edge was +0.6%. Universe is current S&P 500 members with an R&D tag (survivorship). 190 hypotheses tested.",
  "decisions": 1,
- "excess_return": -0.04225557066263985,
+ "excess_return": -0.03771267932875544,
  "first_decision": "2026-10-30",
  "holdings": [
   "AAPL",
@@ -48,11 +48,11 @@
  ],
  "last_decision": "2026-10-30",
  "membership_last_row": "2026-08-18",
- "nav": 91637.68254357265,
+ "nav": 93746.95817997023,
  "rule": "stock_rnd_quintile",
  "scored": 194,
  "start": "2026-10-30",
  "state": "running",
  "strategy_rule": "rnd_quintile",
- "total_return": -0.08362317456427348
+ "total_return": -0.0625304182002977
 }
