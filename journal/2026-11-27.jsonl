@@ -1,0 +1,1 @@
+{"timestamp": "2026-11-27T20:39:14+00:00", "action": "skip", "strategy": "stock_rev5_h2_band", "hypothesis_id": null, "symbol": null, "side": null, "qty": null, "price": null, "reasoning": "2026-11-27 is an early-close session (market-on-close cut-off is 12:50); no orders for stock_rev5_h2_band", "risk_violations": [], "order_id": null, "extra": {}}
